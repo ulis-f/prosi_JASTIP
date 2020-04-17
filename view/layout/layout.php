@@ -1,4 +1,5 @@
-<!DOCTYPE html>
-<html>
-	
-</html>
+<?php
+    include "home.php";
+    echo $content;
+    include "footer.php";
+?>
