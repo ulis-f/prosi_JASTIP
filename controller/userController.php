@@ -8,7 +8,8 @@ class UserController{
 
 	public function __construct(){
 		$this->db = new MySQLDB("localhost","root","","titipaja");
-    }
+	}
+	
 
 	public function register(){
 		$username = $_POST['username'];
@@ -17,7 +18,7 @@ class UserController{
 		if (isset($username) && isset($password) && $username != "" && $password != "") {
 			$id = $this->db->escapeString($id);
 			$username = $this->db->escapeString($username);
-			$query = "insert into user(username,password) values('$username','$password')";
+			$query = "INSERT INTO user(namaUser, password) VALUES('$username','$password')";
 			$this->db->executeNonSelectQuery($query);
 		}
 	}

@@ -6,13 +6,13 @@ class User{
 	protected $password;
 
 	public function __construct($IDuser,$username,$password){
-		$this->IDuser$IDuser = $IDuser;
+		$this->$IDuser = $IDuser;
 		$this->username = $username;
 		$this->password = $password;
 	}
 
 	public function getIDUser(){
-		return $this->IDuser$IDuser;
+		return $this->IDuser;
 	}
 
 	public function getUsername(){
