@@ -35,7 +35,7 @@
 					header('Location: index');
 				}
 				else{
-					header('Location: login')
+					header('Location: login');
 				}
 				break;
 			case $baseURL.'/hapusAkun':
