@@ -11,7 +11,7 @@ class UserController{
 	}
 
 	public function view_user(){
-		$result = $this->login();
+		$result = $_SESSION['username'];
 		return view::createView('halamanUtamaMember.php',["result"=>$result]);
 	}
 
@@ -25,7 +25,7 @@ class UserController{
 			$query_result = $this->db->executeSelectQuery($query);
 			
 
-			if($query_result){
+			if($query_result[0]!=null){
 				$_SESSION['username'] = $username;
 				$_SESSION['password'] = $password;
 				$kondisi = "berhasil";
@@ -56,7 +56,7 @@ class UserController{
 
 	public function hapusAkun(){
 		$username = $_SESSION['username'];
-		$query = "DELETE FROM user WHERE namaUser = $username";
+		$query = "DELETE FROM user WHERE namaUser =". $username;
 		$query_result =$this->db->executeNonSelectQuery($query);
 	}
 
