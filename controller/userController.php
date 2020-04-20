@@ -23,6 +23,18 @@ class UserController{
 		}
 	}
 
+	public function login(){
+		$username = $_GET['username'];
+		$password = $_GET['password'];
+
+		if (isset($username) && isset($password) && $username != "" && $password != "") {
+			$id = $this->db->escapeString($id);
+			$username = $this->db->escapeString($username);
+			$query = "SELECT password WHERE namaUser LIKE $username";
+			$this->db->executeNonSelectQuery($query);
+		}
+	}
+
 	
 }
 
