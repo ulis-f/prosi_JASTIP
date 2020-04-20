@@ -10,20 +10,25 @@ class UserController{
 		$this->db = new MySQLDB("localhost","root","","titipaja");
 	}
 
+	public function view_user(){
+		$result = $this->login();
+		return view::createView('halamanUtamaMember.php',["result"=>$result]);
+	}
+
 	public function login(){
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		$kondisi = false;
+		$kondisi = "";
 
 		if (isset($username) && isset($password) && $username != "" && $password != "") {
 			$query = "SELECT * FROM user where namaUser = $username AND password = $password";
 			$query_result = $this->db->executeSelectQuery($query);
-			$cek = mysql_num_rows($query_result);
+			
 
-			if($cek>0){
+			if($query_result){
 				$_SESSION['username'] = $username;
 				$_SESSION['password'] = $password;
-				$kondisi = true;
+				$kondisi = "berhasil";
 			}
 			
 			return $kondisi;
@@ -58,13 +63,11 @@ class UserController{
 	public function updatePass(){
 		$username = $_SESSION['username'];
 		$password = $_SESSION['password'];
-		$usernameBaru = $_POST['usernameBaru'];
 		$passwordBaru = $_POST['passwordBaru'];
 		$query = "UPDATE user 
-				SET namaUser = $usernameBaru, password = $passwordBaru 
-				WHERE namaUser = $username AND password = $password";
+				SET password = $passwordBaru 
+				WHERE AND password = $password";
 		$query_result = $this->db->executeNonSelectQuery($query);
-		$_SESSION['username'] = $usernameBaru;
 		$_SESSION['password'] = $passwordBaru;
 	}
 	

@@ -5,6 +5,11 @@
 
 	if ($_SERVER["REQUEST_METHOD"] == "GET"){
 		switch($url){
+			case $baseURL . '/index':
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_user();
+				break;
 			case $baseURL . '/register':
 				header('location: register.php');
 				break;
@@ -27,15 +32,15 @@
 				$roleCtrl->register();
 				header('Location: register');
 				break;
-			case $baseURL.'/cekLogin':
+			case $baseURL.'/loginKlik':
 				require_once "controller/userController.php";
 				$roleCtrl = new userController();
 				$result=$roleCtrl->login();
-				if($result = true){
+				if($result != "berhasil"){
 					header('Location: index');
 				}
 				else{
-					header('Location: login')
+					header('Location: login');
 				}
 				break;
 			case $baseURL.'/hapusAkun':
@@ -44,7 +49,7 @@
 				$roleCtrl->hapusAkun();
 				header('Location: login');
 				break;
-			case $baseURL.'/updatePass':
+			case $baseURL.'/gantiPass':
 				require_once "controller/userController.php";
 				$roleCtrl = new userController();
 				$roleCtrl->updatePass();
