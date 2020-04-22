@@ -18,22 +18,18 @@ class UserController{
 	public function login(){
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		$kondisi = "";
+		$kondisi = false;
 
 		if (isset($username) && isset($password) && $username != "" && $password != "") {
-			$query = "SELECT * FROM user where namaUser = $username AND password = $password";
+			$query = "SELECT * FROM `user` WHERE `namaUser` LIKE '$username' AND `password` LIKE '$password' ";
 			$query_result = $this->db->executeSelectQuery($query);
-			
-
 			if($query_result[0]!=null){
-				$_SESSION['username'] = $username;
-				$_SESSION['password'] = $password;
-				$kondisi = "berhasil";
-			}
-			
-			return $kondisi;
+				$kondisi = true;
+				$_SESSION['username'] = $query_result[0]['namaUser'];
+				$_SESSION['password'] = $query_result[0]['password'];
+			}	
 		}
-
+		return $kondisi;
 	}
 
 	public function logout(){
@@ -56,20 +52,21 @@ class UserController{
 
 	public function hapusAkun(){
 		$username = $_SESSION['username'];
-		$query = "DELETE FROM user WHERE namaUser =". $username;
+		$query = "DELETE FROM user WHERE `namaUser` LIKE '$username' ";
 		$query_result =$this->db->executeNonSelectQuery($query);
 	}
 
 	public function updatePass(){
 		$username = $_SESSION['username'];
-		$password = $_SESSION['password'];
+		$password = $_POST['password'];
 		$passwordBaru = $_POST['passwordBaru'];
-		$query = "UPDATE user 
-				SET password = $passwordBaru 
-				WHERE AND password = $password";
+		$query = "UPDATE `user` 
+				SET `password` = $passwordBaru 
+				WHERE `namaUser` LIKE '$username' AND `password` LIKE '$password' ";
 		$query_result = $this->db->executeNonSelectQuery($query);
 		$_SESSION['password'] = $passwordBaru;
 	}
+	// UPDATE `user` SET `password`= 12345678 WHERE `namaUser` LIKE 'quadratnp@gmail.com' AND `password` LIKE '1234567878'
 	
 }
 

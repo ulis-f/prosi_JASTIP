@@ -16,6 +16,15 @@
 			case $baseURL . '/login':
 				header('location: login.php');
 				break;
+			case $baseURL . '/editPass':
+				header('location: gantiPassword.php');
+				break;
+			case $baseURL . '/logout':
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				$userctrl->logout();
+				header('location: login.php');
+				break;
 			default:
 				echo '404 Not Found';
 				break;
@@ -36,7 +45,7 @@
 				require_once "controller/userController.php";
 				$roleCtrl = new userController();
 				$result=$roleCtrl->login();
-				if($result != "berhasil"){
+				if($result){
 					header('Location: index');
 				}
 				else{
