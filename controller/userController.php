@@ -47,7 +47,11 @@ class UserController{
 			$username = $this->db->escapeString($username);
 			$query = "INSERT INTO user(namaUser, password) VALUES('$username','$password')";
 			$this->db->executeNonSelectQuery($query);
+			$_SESSION['username'] = $username;
+			$_SESSION['password'] = $password;
 		}
+
+	
 	}
 
 	public function hapusAkun(){
@@ -59,9 +63,9 @@ class UserController{
 	public function updatePass(){
 		$username = $_SESSION['username'];
 		$password = $_POST['password'];
-		$passwordBaru = $_POST['passwordBaru'];
+		$passwordBaru = $_POST['PasswordBaru'];
 		$query = "UPDATE `user` 
-				SET `password` = $passwordBaru 
+				SET `password` = '$passwordBaru' 
 				WHERE `namaUser` LIKE '$username' AND `password` LIKE '$password' ";
 		$query_result = $this->db->executeNonSelectQuery($query);
 		$_SESSION['password'] = $passwordBaru;

@@ -39,7 +39,7 @@
 				require_once "controller/userController.php";
 				$roleCtrl = new userController();
 				$roleCtrl->register();
-				header('Location: register');
+				header('Location: index');
 				break;
 			case $baseURL.'/loginKlik':
 				require_once "controller/userController.php";
