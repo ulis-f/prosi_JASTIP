@@ -25,6 +25,10 @@ class UserController{
 		return view::createViewRegister('register.php',[]);
 	}
 
+	public function view_register(){
+		return view::createViewRegister('register.php',[]);
+	}
+
 	public function login(){
 		$nama = $_POST['nama'];
 		$password = $_POST['password'];
