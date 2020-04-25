@@ -70,27 +70,27 @@
                     echo '
                         <h3 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn" onclick="btnLogin()" >Daftar / Masuk</h3>
                         <div id="login" class="modal">
-        <form class="modal-content animate" action="#" method="POST">
-            <div class="imgcontainer">
-                <span onclick="btnLoginClose()" class="close" title="Close Modal">&times;</span>
-            </div>
-            <div class="container"> 
-                <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="" name="email">
-                <br>
-                <label for="password"><b>Password</b></label>
-                <br>
-                <input type="password" placeholder="" name="password">
-                <br>
-                <br>
-                <br>
-                <!--<button id="login"><a href="#"> Login </a></button><br><br>-->
-                <div class="w3-btn" style="background-color:#b74449; color: white;"><a href="#"> Login </a></div><br><br>
-                <p><b>Belum mempunyai akun?</b><a href="register">Register</a></p>
-                
-            </div>
-        </form>
-    </div>
+                            <div class="modal-content animate" >
+                                <div class="imgcontainer">
+                                    <span onclick="btnLoginClose()" class="close" title="Close Modal">&times;</span>
+                                </div>
+                                <form action="loginKlik" method="POST">
+                                <div class="container"> 
+                                    <label for="email"><b>Email</b></label>
+                                    <input type="text" placeholder="" name="email">
+                                    <br>
+                                    <label for="password"><b>Password</b></label>
+                                    <br>
+                                    <input type="password" placeholder="" name="password">
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <input type="submit" class="w3-btn" style="background-color:#b74449; color: white;" value="login"><br><br>
+                                    </div>    
+                                    </form>
+                                    <p><b>Belum mempunyai akun?</b><a href="register">Register</a></p>   
+                            </div>
+                        </div>
                         ';
                 }
                 else{

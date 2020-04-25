@@ -25,7 +25,7 @@
 				require_once "controller/userController.php";
 				$userctrl = new userController();
 				$userctrl->logout();
-				header('location: login.php');
+				header('location: index');
 				break;
 			default:
 				echo '404 Not Found';
@@ -47,11 +47,11 @@
 				require_once "controller/userController.php";
 				$roleCtrl = new userController();
 				$result=$roleCtrl->login();
-				if($result){
+				if($result == true){
 					header('Location: index');
 				}
 				else{
-					header('Location: login');
+					header('Location: register');
 				}
 				break;
 			case $baseURL.'/hapusAkun':
