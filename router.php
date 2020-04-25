@@ -11,9 +11,20 @@
 				echo $userctrl->view_user();
 				break;
 			case $baseURL . '/register':
-				header('location: register.php');
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_register();
 				break;
 			case $baseURL . '/login':
+				header('location: login.php');
+				break;
+			case $baseURL . '/editPass':
+				header('location: gantiPassword.php');
+				break;
+			case $baseURL . '/logout':
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				$userctrl->logout();
 				header('location: login.php');
 				break;
 			default:
@@ -30,13 +41,13 @@
 				require_once "controller/userController.php";
 				$roleCtrl = new userController();
 				$roleCtrl->register();
-				header('Location: register');
+				header('Location: index');
 				break;
 			case $baseURL.'/loginKlik':
 				require_once "controller/userController.php";
 				$roleCtrl = new userController();
 				$result=$roleCtrl->login();
-				if($result != "berhasil"){
+				if($result){
 					header('Location: index');
 				}
 				else{
@@ -53,7 +64,7 @@
 				require_once "controller/userController.php";
 				$roleCtrl = new userController();
 				$roleCtrl->updatePass();
-				header('Location: login');
+				header('Location: index');
 				break;
 			default:
 				echo '404 Not Found';

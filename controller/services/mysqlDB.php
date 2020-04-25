@@ -25,6 +25,14 @@ class MySQLDB{
 		}
 	}
 
+	public function numRows($sql){
+		$this->openConnection();
+		$query_result = $this->db_connection->query($sql);
+		$result = $query_result->num_rows;
+		$this->closeConnection();
+		return $result;
+	}
+
 	public function executeSelectQuery($sql){ //clean input
 		$this->openConnection();
 		$query_result = $this->db_connection->query($sql);

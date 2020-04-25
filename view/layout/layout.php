@@ -1,5 +1,11 @@
 <?php
     include "headerHome.php";
-    echo $content;
+?>
+<body>
+    <?php
+        echo $content;
+    ?>
+</body>
+<?php
     include "footer.php";
 ?>
