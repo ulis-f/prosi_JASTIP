@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="http://localhost:80/prosi_JASTIP/view/layout/style/style.css">
+<link rel="stylesheet" href="http://localhost:80/prosi_JASTIP/view/layout/style/styleRegister.css">
 <h1 style="text-align: center;">titipaja</h1><br><br>
 <form class="SignUp-form" action="registerKlik" method="POST">
 <div class="container" style="width: 70%;">
@@ -33,6 +33,6 @@
             <input type="text" placeholder="Masukkan Provinsi" name="provinsi" required>
             <hr>
 
-            <input type="submit" class="w3-btn" style="background-color:#b74449; color: white;" value="register">
+            <input type="submit" class="w3-btn" style="background-color:#b74449; color: white; float:right;" value="register">
         </div>
 </form>
