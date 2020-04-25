@@ -21,6 +21,12 @@ class UserController{
 		return view::createView('halamanUtamaMember.php',["nama"=>$nama,"title"=>$title]);
 	}
 
+	public function view_lengkap(){
+		$nama = $_SESSION['nama'];
+		$title = "titipaja.com - Melengkapi Pendaftaran";
+		return view::createView('lengkapiPendaftaran.php',["nama"=>$nama,"title"=>$title]);
+	}
+
 	public function view_register(){
 		return view::createViewRegister('register.php',[]);
 	}
@@ -128,6 +134,27 @@ class UserController{
 	}
 	// UPDATE `user` SET `password`= 12345678 WHERE `namaUser` LIKE 'quadratnp@gmail.com' AND `password` LIKE '1234567878'
 	
+	public function lengkapPendaftaran(){
+		$nama = $_SESSION['nama'];
+		$nik = $_POST['nik'];
+		$namabank = $_POST['namaBank'];
+		$norek = $_POST['noRek'];
+		$fotoktp = $_FILES['fotoKTP']['name'];
+		$fotoselfie = $_FILES['fotoSelfie']['name'];
+		
+		$oldnamektp = $_FILES['fotoKTP']['tmp_name'];
+		$newnamektp = dirname(__DIR__) . "\\view\image\\" . $fotoktp;
+		move_uploaded_file($oldnamektp, $newname);
+		
+		$oldnameselfie = $_FILES['fotoSelfie']['tmp_name'];
+		$newnameselfie = dirname(__DIR__) . "\\view\image\\" . $fotoselfie;
+		move_uploaded_file($oldnameselfie,$newnameselfie);
+
+		$query = "UPDATE `user` 
+				SET `gambarKTP` = '$fotoktp', `swafoto` = '$fotoselfie', `namaBank` = '$namabank', `norek` = '$norek', `noKTP` = '$nik'
+				WHERE `namaUser` LIKE '$nama'";
+		$query_result = $this->db->executeNonSelectQuery($query);
+	}
 }
 
 

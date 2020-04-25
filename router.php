@@ -27,6 +27,12 @@
 				$userctrl->logout();
 				header('location: index');
 				break;
+				break;
+			case $baseURL . '/lengkapPendaftaran':
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_lengkap();
+				break;
 			default:
 				echo '404 Not Found';
 				break;
@@ -64,6 +70,12 @@
 				require_once "controller/userController.php";
 				$roleCtrl = new userController();
 				$roleCtrl->updatePass();
+				header('Location: index');
+				break;
+			case $baseURL.'/lengkapKlik':
+				require_once "controller/userController.php";
+				$roleCtrl = new userController();
+				$roleCtrl->lengkapPendaftaran();
 				header('Location: index');
 				break;
 			default:
