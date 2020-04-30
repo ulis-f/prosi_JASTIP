@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="http://localhost:80/prosi_JASTIP/view/layout/style/style.css">
 <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 750px; ">
+        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 900px; ">
             <h2>Pendaftaran Tambahan</h2>
             <br>
             <br>
