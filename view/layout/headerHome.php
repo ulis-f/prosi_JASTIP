@@ -101,7 +101,7 @@
                     </button>
                     <div id="myDropdown" class="dropdown-content">
                         <a href="#"><i class="fa fa-user" style="font-size:15px"></i>Profile</a>
-                        <a href="#"><i class="fa fa-edit" style="font-size:15px"></i>Lengkapi Pendaftaran</a>
+                        <a href="lengkapPendaftaran"><i class="fa fa-edit" style="font-size:15px"></i>Lengkapi Pendaftaran</a>
                         <a href="logout"><i class="fa fa-sign-out" style="font-size:15px"></i>Keluar</a>
                     </div>
                 </div>

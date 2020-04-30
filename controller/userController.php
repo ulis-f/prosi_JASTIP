@@ -66,62 +66,85 @@ class UserController{
 		$kota = $_POST['kota'];
 		$provinsi = $_POST['provinsi'];
 		
-		$queryNegara = "SELECT * FROM `negara` WHERE `namaNegara` LIKE 'Indonesia'";
+		$queryNegara = "SELECT idNegara FROM `negara` WHERE `namaNegara` LIKE 'Indonesia'";
 		$queryNegara_result = $this->db->executeSelectQuery($queryNegara);
 		if($queryNegara_result[0]['idNegara']==NULL){
-			$query = "INSERT INTO negara(namaNegara) VALUES('Indonesia')";
-			$query_result = $this->db->executeNonSelectQuery($queryNegara);
+			$query = "INSERT INTO `negara` (`namaNegara`) VALUES ('Indonesia');";
+			$query_result = $this->db->executeNonSelectQuery($query);
+			
 		}
-		$fk_negara = $queryNegara_result[0]['idNegara'];
-		$queryProvinsi = "SELECT `idProvinsi`, `namaProvinsi` FROM `provinsi` WHERE `namaProvinsi` LIKE '$provinsi'";
+		$queryProvinsi = "SELECT `idProvinsi` FROM `provinsi` WHERE `namaProvinsi` LIKE '".$provinsi;
 		$queryProvinsi_result = $this->db->executeSelectQuery($queryProvinsi);
-		if($queryProvinsi_result[0]['idProvinsi']==null){
-			$query = "INSERT INTO provinsi(namaProvinsi,idNegara) VALUES ('$provinsi','$fk_negara')";
+		if($queryProvinsi_result[0]==NULL){
+			$query = "INSERT INTO `provinsi`( `namaProvinsi`, `idNegara`) 
+				VALUES ('$provinsi',null)";
 			$query_result = $this->db->executeNonSelectQuery($query);
 			
 		}
-		$fk_provinsi = $queryProvinsi_result[0]['idProvinsi'];
-		$queryKota = "SELECT `idKota`,`namaKota` FROM `kota` WHERE `namaKota` LIKE '$kota'";
+		$queryKota = "SELECT `idKota` FROM `kota` WHERE `namaKota` LIKE '".$kota;
 		$queryKota_result = $this->db->executeSelectQuery($queryKota);
-		if($queryKota_result[0]['idKota']==null){
-			$query = "INSERT INTO kota(namaKota,idProvinsi) VALUES ('$kota','$fk_provinsi')";
-			$query_result = $this->db->executeNonSelectQuery($query);
-		}
-		$fk_kota = $queryKota_result[0]['idKota'];
-		$queryKecamatan = "SELECT `idKecamatan`, `namaKecamatan` FROM `kecamatan` WHERE `namaKecamatan` LIKE '$kecamatan'";
-		$queryKecamatan_result = $this->db->executeSelectQuery($queryKecamatan);
-		if($queryKecamatan_result[0]['idKecamatan']==null){
-			$query = "INSERT INTO kecamatan(namaKecamatan,idKota) VALUES('$kecamatan','$fk_kota')";
-			$query_result = $this->db->executeNonSelectQuery($query);
-		}
-		$fk_kecamatan = $queryKecamatan_result[0]['idKecamatan'];
-		$queryKelurahan = "SELECT `idKelurahan`,`namaKelurahan` FROM `kelurahan` WHERE `namaKelurahan` LIKE '$kelurahan'";
-		$queryKelurahan_result = $this->db->executeSelectQuery($queryKelurahan);
-		if($queryKelurahan_result[0]['idKelurahan']==null){
-			$query = "INSERT INTO kelurahan(namaKelurahan,idKecamatan) VALUES ('$kelurahan','$fk_kecamatan')";
-			$query_result = $this->db->executeNonSelectQuery($query);
-		}
-		$fk_kelurahan = $queryKelurahan_result[0]['idKelurahan'];
-		$queryUser = "SELECT `idUser` FROM user WHERE `email` LIKE '$email'";
-		$queryUser_result = $this->db->executeSelectQuery($queryUser);
-		if($queryUser_result[0]==null){
-			
-			$query = "INSERT INTO user (namaUser,email,password,nohp,alamat,rating,isTraveller,gambarKTP,swafoto,norek,noKTP,idKelurahan) 
-					VALUES ('$nama','$email','$password','$nohp','$alamat',null,null,null,null,null,null,'$fk_kelurahan')";
+		if($queryKota_result[0]==NULL){
+			$query = "INSERT INTO `kota`( `namaKota`, `idProvinsi`) 
+				VALUES ('$kota',null)";
 			$query_result = $this->db->executeNonSelectQuery($query);
 			$_SESSION['nama'] = $nama;
 			
 		}
+		$queryKecamatan = "SELECT `idKecamatan` FROM `kecamatan` WHERE `namaKecamatan` LIKE '".$kecamatan;
+		$queryKecamatan_result = $this->db->executeSelectQuery($queryKecamatan);
+		if($queryKecamatan_result[0]==NULL){
+			$query = "INSERT INTO `kecamatan`(`namaKecamatan`, `idKota`) 
+			VALUES ('$kecamatan',null)";
+			$query_result = $this->db->executeNonSelectQuery($query);
+			
+		}
+		$queryKelurahan = "SELECT `idKelurahan` FROM `kelurahan` WHERE `namaKelurahan` LIKE '".$kelurahan;
+		$queryKelurahan_result = $this->db->executeSelectQuery($queryKelurahan);
+		if($queryKelurahan_result[0]==NULL){
+			$query = "INSERT INTO `kelurahan`(`namaKelurahan`, `idKecamatan`) 
+			VALUES ('$kelurahan',null)";
+			$query_result = $this->db->executeNonSelectQuery($query);
+			
+		}
+		$queryUser = "SELECT `idUser` FROM user WHERE `email` LIKE '".$email;
+		$queryUser_result = $this->db->executeSelectQuery($queryUser);
+		if($queryUser_result[0]==NULL){
+			
+			$query = "INSERT INTO user (namaUser,email,password,nohp,alamat,rating,isTraveller,gambarKTP,swafoto,norek,noKTP,idKelurahan) 
+					VALUES ('$nama','$email','$password','$nohp','$alamat',null,null,null,null,null,null,null)";
+			$query_result = $this->db->executeNonSelectQuery($query);
+			
+			
+		}
+		$fk_negara = $queryNegara_result[0];
+		$fk_provinsi = $queryProvinsi_result[0];
+		$fk_kota = $queryKota_result[0];
+		$fk_kecamatan = $queryKecamatan_result[0];
+		$fk_kelurahan = $queryKelurahan_result[0];
+		
+		$query1 = "UPDATE `provinsi` SET `idNegara` = '$fk_negara' WHERE `namaProvinsi` LIKE '$provinsi' ";
+		$query1_result = $this->db->executeNonSelectQuery($query1);
+		
+		$query2 = "UPDATE `kota` SET `idProvinsi` = '$fk_provinsi' WHERE `namaKota` LIKE '$kota' ";
+		$query2_result = $this->db->executeNonSelectQuery($query2);
 
-	
+		$query3 = "UPDATE `kecamatan` SET `idKota` = '$fk_kota' WHERE `namaKecamatan` LIKE '$kecamatan' ";
+		$query3_result = $this->db->executeNonSelectQuery($query3);
+
+		$query4 = "UPDATE `kelurahan` SET `idKecamatan` = '$fk_kecamatan' WHERE `namaKelurahan` LIKE '$kelurahan' ";
+		$query4_result = $this->db->executeNonSelectQuery($query4);
+
+		$query5 = "UPDATE `user` SET `idKelurahan` = '$fk_kelurahan' WHERE `namaUser` LIKE '$nama' ";
+		$query5_result = $this->db->executeNonSelectQuery($query5);
+		
 	}
-
+	
 	public function hapusAkun(){
 		$nama = $_SESSION['nama'];
 		$query = "DELETE FROM user WHERE `namaUser` LIKE '$nama' ";
 		$query_result =$this->db->executeNonSelectQuery($query);
 	}
-
+	
 	public function updatePass(){
 		$nama = $_SESSION['nama'];
 		$password = $_POST['password'];
@@ -144,7 +167,7 @@ class UserController{
 		
 		$oldnamektp = $_FILES['fotoKTP']['tmp_name'];
 		$newnamektp = dirname(__DIR__) . "\\view\image\\" . $fotoktp;
-		move_uploaded_file($oldnamektp, $newname);
+		move_uploaded_file($oldnamektp, $newnamektp);
 		
 		$oldnameselfie = $_FILES['fotoSelfie']['tmp_name'];
 		$newnameselfie = dirname(__DIR__) . "\\view\image\\" . $fotoselfie;

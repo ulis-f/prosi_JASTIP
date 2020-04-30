@@ -27,11 +27,15 @@
 				$userctrl->logout();
 				header('location: index');
 				break;
-				break;
 			case $baseURL . '/lengkapPendaftaran':
 				require_once "controller/userController.php";
 				$userctrl = new userController();
 				echo $userctrl->view_lengkap();
+				break;
+			case $baseURL . '/postTrip':
+				require_once "controller/tripController.php";
+				$userctrl = new tripController();
+				echo $userctrl->view_posttrip();
 				break;
 			default:
 				echo '404 Not Found';
@@ -76,6 +80,12 @@
 				require_once "controller/userController.php";
 				$roleCtrl = new userController();
 				$roleCtrl->lengkapPendaftaran();
+				header('Location: index');
+				break;
+			case $baseURL.'/postKlik':
+				require_once "controller/tripController.php";
+				$roleCtrl = new tripController();
+				$roleCtrl->insertTrip();
 				header('Location: index');
 				break;
 			default:

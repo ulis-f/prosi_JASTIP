@@ -250,7 +250,7 @@
             <option value="Zimbabwe">Zimbabwe</option>
         </select>
         
-        <h6>Tambahkan Perjalanan <a href="" style="color:#b74449;">+trip</a></h6> 
+        <h6>Tambahkan Perjalanan <a href="postTrip" style="color:#b74449;">+trip</a></h6> 
     </div>
     <div>
         
