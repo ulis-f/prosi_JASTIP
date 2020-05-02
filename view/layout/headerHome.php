@@ -57,14 +57,14 @@
 
     </style>
 </head>
-<header class="w3-top w3-theme">
+<header class="w3-top w3-theme" style="background-color:white;">
     <div class="w3-bar-left w3-left">
-        <h1>titipaja</h1>
+        <h1><b>titipaja</b></h1>
     </div>
     <div class="w3-bar-right w3-right">  
-            <h3 class="w3-bar-item w3-display-inline w3-btn" >
-            <h3 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Market</h3>
-            <h3 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Tracking</h3>
+            <h4 class="w3-bar-item w3-display-inline w3-btn" >
+            <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Market</h4>
+            <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Tracking</h4>
             <?php
                 if($nama==null){
                     echo '
