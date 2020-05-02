@@ -52,6 +52,15 @@ class tripController{
         move_uploaded_file($oldnametiket, $newnametiket);  
         
         
+        if ($_FILES["fotoKTP"]["size"] > 10000000) {
+            echo "Maaf, file anda melebihi batas.";
+            $uploadOk = 0;
+        }
+
+        if ($_FILES["fotoSelfie"]["size"] > 10000000) {
+            echo "Maaf, file anda melebihi batas.";
+            $uploadOk = 0;
+        }
     }
 }
 ?>

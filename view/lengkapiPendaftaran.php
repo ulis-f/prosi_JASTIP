@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="http://localhost:80/prosi_JASTIP/view/layout/style/style.css">
 <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 900px; ">
+        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1000px; ">
             <h2>Pendaftaran Tambahan</h2>
             <br>
             <br>
@@ -17,21 +17,23 @@
                         <option value="BCA">BCA</option>
                         <option value="BRI">BRI</option>
                         <option value="BNI">BNI</option>
-                        <option value="OCBC">OCBC</option>
+                        <option value="OCBC">OCBC NISP</option>
                         <option value="MANDIRI">MANDIRI</option>
                     </select>
                     <br>
                     <br>
                     <label for="noRek"><b>No. Rekening</b></label>
                     <br>
-                    (Contoh input: BCA: 1234-5678-91, BNI: )
+                    <div style="font-size: 10px;">(Contoh input: BCA: 123-456-7891, BNI: 12-3456-7891 ,BRI: 1234-56-789123-45-6, OCBC: 123.45.6789.123, MANDIRI: 123-45-6789123-4 )</div>
                     <input type="text" placeholder="" name="noRek">
                     <br>
-                    <h4>Upload Foto KTP</h4>
-                    <input type='file' name='fotoKTP' accept='image/*'>  
+                    <h4>Upload Foto KTP</h4> 
+                    <div style="font-size: 10px;">(Maksimum 10MB)</div>
+                    <input type='file' name="fotoKTP" id="fotoKTP" accept='image/*'>  
                     <br>
                     <h4>Upload Foto Swafoto</h4>  
-                    <input type='file' name='fotoSelfie' accept='image/*'>  
+                    <div style="font-size: 10px;">(Maksimum 10MB)</div>
+                    <input type='file' name="fotoSelfie" id="fotoSelfie" accept='image/*'>  
                     <br>
                      
                 </div>
@@ -47,3 +49,6 @@
             </form>
         </div>
     </div>
+
+    
+    

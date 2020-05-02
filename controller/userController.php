@@ -169,6 +169,18 @@ class UserController{
 				SET `gambarKTP` = '$fotoktp', `swafoto` = '$fotoselfie', `namaBank` = '$namabank', `norek` = '$norek', `noKTP` = '$nik'
 				WHERE `namaUser` LIKE '$nama'";
 		$query_result = $this->db->executeNonSelectQuery($query);
+
+
+		
+		if ($_FILES["fotoKTP"]["size"] > 10000000) {
+			echo "Maaf, file anda melebihi batas.";
+			$uploadOk = 0;
+		}
+	
+		if ($_FILES["fotoSelfie"]["size"] > 10000000) {
+			echo "Maaf, file anda melebihi batas.";
+			$uploadOk = 0;
+		}
 	}
 }
 
