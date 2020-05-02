@@ -15,7 +15,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
-    <link rel="stylesheet" href="http://localhost:80/prosi_JASTIP/view/layout/style/styleAdmin.css">    
+    <link rel="stylesheet" href="http://localhost:80/prosi_JASTIP/view/layout/style/styleAdmin.css">      
     <title>Home Admin</title>
 
     <style>
@@ -60,7 +60,7 @@
     </style>
 </head>
 <header>
-    <div class="w3-top w3-theme">
+    <div class="w3-top w3-theme" style="background-color:white;">
         <div class="w3-bar-left w3-left">
             <h1><b>titipaja</b></h1>
         </div>
