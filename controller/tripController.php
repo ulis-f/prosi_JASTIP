@@ -24,25 +24,34 @@ class tripController{
     public function insertTrip(){
         $asal = $_POST['asal'];
         $tujuan = $_POST['tujuan'];
-        $waktuAwal = $_POST['waktuAsal'];
-        $waktuAkhir = $_POST['waktuTujuan'];
         $fotoTiket = $_FILES['fotoTiket']['name'];
+
+        $waktuAwal = new DateTime($_POST['waktuAsal']);
+        $waktuA = $waktuAwal->format("Y-m-d H:i:s");
+
+        $waktuTujuan = new DateTime($_POST['waktuTujuan']);
+        $waktuT = $waktuTujuan->format("Y-m-d H:i:s");
 
         $queryAsal = "SELECT `idKota` FROM `kota` WHERE `namaKota` LIKE '$asal'";
         $queryAsal_result = $this->db->executeSelectQuery($queryAsal);
-        $hasilAsal = $queryAsal_result[0];
+        $hasilAsal = $queryAsal_result[0]['idKota'];
+        
 
         $queryTujuan = "SELECT `idKota` FROM `kota` WHERE `namaKota` LIKE '$tujuan'";
         $queryTujuan_result = $this->db->executeSelectQuery($queryTujuan);
-        $hasilTujuan = $queryTujuan_result[0];
+        $hasilTujuan = $queryTujuan_result[0]['idKota'];
+    
 
-        $query = "INSERT INTO `trip` (`idTrip`, `waktuAwal`, `waktuAkhir`, `statusTrip`, `gambarTrip`, `idKota1`, `idKota2`) 
-        VALUES (NULL, '$waktuAwal', '$waktuAkhir', 'null', $fotoTiket, '$hasilAsal', '$hasilTujuan')";
+
+        $query = "INSERT INTO trip (waktuAwal, waktuAkhir,statusTrip, gambarTrip, idKota1, idKota2) 
+        VALUES ('$waktuA', '$waktuT', null , '$fotoTiket', '$hasilAsal', '$hasilTujuan')";
         $query_result = $this->db->executeNonSelectQuery($query);  
 
         $oldnametiket = $_FILES['fotoTiket']['tmp_name'];
-		    $newnametiket = dirname(__DIR__) . "\\view\image\\" . $fotoTiket;
-		    move_uploaded_file($oldnametiket, $newnametiket);   
+		    $newnametiket = dirname(__DIR__) . "\\view\image\\" . "\\trip\\" . $fotoTiket;
+        move_uploaded_file($oldnametiket, $newnametiket);  
+        
+        
     }
 }
 ?>
