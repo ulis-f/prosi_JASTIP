@@ -102,3 +102,13 @@ body{
   .dropdown a:hover {background-color: #ddd;}
   
   .show {display: block;}
+
+body {
+	background-color: #ebebeb;
+}
+
+header{
+    background-color: white;
+    padding: 10px;
+    padding-top: 10px;
+}
