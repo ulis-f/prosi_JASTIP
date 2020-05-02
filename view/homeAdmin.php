@@ -1,11 +1,3 @@
-<div class="w3-bar" style="background-color:#c7676c; color: white;">
-        <button class=" tablink w3-bar-item w3-button  w3-light-gray" onclick="openContent(this,'postTrip')">Post Trip</button>
-        <button class=" tablink w3-bar-item w3-button" onclick="openContent(this,'liveChat')">Live Chat</button>
-        <button class=" tablink w3-bar-item w3-button" onclick="openContent(this,'formBarang')">Form Barang</button>
-        <button class=" tablink w3-bar-item w3-button" onclick="openContent(this,'pembayaran')">Pembayaran</button>
-        <button class=" tablink w3-bar-item w3-button" onclick="openContent(this,'mengirimUang')">Mengirim Uang</button>
-    </div>  
-
     <div class="w3-container">  
         <div id="postTrip" class="tabs w3-container"> 
             <div class="" style="width: 80%; margin-left: 10%; margin-right: 10%; margin-top: 5%;" >
@@ -14,38 +6,8 @@
 						<label for="namaTraveller">Nama Traveller</label>
                     </div>
                     gambar
-				</div>   
-				  
-				<div class="w3-card-4 w3-white" style="width:30%; float:left; padding: 15px;">
-					<div class="">
-						<label for="namaTraveller">Nama Traveller</label>  
-                    </div>
-                    gambar  
-				</div>
-				
-				<div class="w3-card-4 w3-white" style="width:30%; float: right;margin-left: 5%; padding: 15px;">
-					<div class="">
-						<label for="namaTraveller">Nama Traveller</label>
-                    </div>
-                    gambar
 				</div>
 			</div>
-        </div>
-
-        <div id="liveChat" class="tabs w3-container" style="display: none">
-            <p>ini live chat</p>
-        </div>
-
-        <div id="formBarang" class="tabs w3-container" style="display: none">
-        
-        </div>
-
-        <div id="pembayaran" class="tabs w3-container" style="display: none">
-        
-        </div>
-
-        <div id="mengirimUang" class="tabs w3-container" style="display: none">
-        
         </div>
 
     </div>
@@ -56,7 +18,7 @@
                 <span onclick="document.getElementById('persetujuan').style.display='none'" class="close" title="Close Modal">&times;</span>
             </div>
             <div class="container"> 
-                <div class="" onclick="document.getElementById('persetujuan').style.display='block'" >
+                <div class="" onclick="document.getElementById('persetujuan').style.display='block'" >  
                     <h2>Post Trip</h2>
                     <br>
                     foto trip disini

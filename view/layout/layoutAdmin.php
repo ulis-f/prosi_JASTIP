@@ -1,5 +1,5 @@
 <?php
-    include "headerHome.php";
+    include "headerAdmin.php";
 ?>
 <body>
     <?php
@@ -7,5 +7,5 @@
     ?>
 </body>
 <?php
-    include "footer.php";  
+    include "footer.php";      
 ?>

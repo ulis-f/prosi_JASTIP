@@ -37,6 +37,11 @@
 				$userctrl = new tripController();
 				echo $userctrl->view_posttrip();
 				break;
+			case $baseURL . '/homeAdmin':
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_Admin();
+				break;  
 			default:
 				echo '404 Not Found';
 				break;

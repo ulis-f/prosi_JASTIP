@@ -24,12 +24,13 @@
                     <br>
                     <label for="noRek"><b>No. Rekening</b></label>
                     <br>
+                    (Contoh input: BCA: 1234-5678-91, BNI: )
                     <input type="text" placeholder="" name="noRek">
                     <br>
                     <h4>Upload Foto KTP</h4>
                     <input type='file' name='fotoKTP' accept='image/*'>  
                     <br>
-                    <h4>Upload Foto Swafoto</h4>
+                    <h4>Upload Foto Swafoto</h4>  
                     <input type='file' name='fotoSelfie' accept='image/*'>  
                     <br>
                      

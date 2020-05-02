@@ -31,6 +31,10 @@ class UserController{
 		return view::createViewRegister('register.php',[]);
 	}
 
+	public function view_Admin(){
+		return view::createViewRegister('homeAdmin.php',[]);
+	}
+
 	public function login(){
 		$email = $_POST['email'];
 		$password = $_POST['password'];
