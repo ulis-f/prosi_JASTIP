@@ -1,5 +1,5 @@
 <div class="menuAdmin">
-    <ul>
+    <ul style="background-color: #b74449;" >
         <li><a class="active" href="#">Post Trip</a></li>
         <li><a href="#">Live Chat</a></li>
         <li><a href="#">Form Barang</a></li>

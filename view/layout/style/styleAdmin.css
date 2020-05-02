@@ -56,11 +56,14 @@ footer {
 }
 
 
-body{
-    padding-bottom: 30px;
-    padding-top: 110px;
+body {
+	background-color: #ebebeb;
 }
 
+header{
+    padding: 10px;
+    padding-top: 10px;  
+}
 
 
 .dropbtn {
@@ -114,7 +117,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #b74449;       
   }
   
   li {
@@ -136,5 +139,5 @@ ul {
   }
   
   .active {
-    background-color: lightgray;
+    background-color: lightgray;    
   }

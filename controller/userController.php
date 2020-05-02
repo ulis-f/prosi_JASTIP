@@ -32,7 +32,7 @@ class UserController{
 	}
 
 	public function view_Admin(){
-		return view::createViewRegister('homeAdmin.php',[]);
+		return view::createViewAdmin('homeAdmin.php',[]);
 	}
 
 	public function login(){
