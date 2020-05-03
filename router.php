@@ -62,12 +62,10 @@
 				require_once "controller/userController.php";
 				$roleCtrl = new userController();
 				$result=$roleCtrl->login();
-				if($result == true){
+				
 					header('Location: index');
-				}
-				else{
-					header('Location: register');
-				}
+				
+				
 				break;
 			case $baseURL.'/hapusAkun':
 				require_once "controller/userController.php";

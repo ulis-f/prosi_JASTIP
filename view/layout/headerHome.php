@@ -73,8 +73,19 @@
                             <div class="modal-content animate" >
                                 <div class="imgcontainer">
                                     <span onclick="btnLoginClose()" class="close" title="Close Modal">&times;</span>
-                                </div>
-                                <form action="loginKlik" method="POST">
+                                </div>';
+                                
+                                    
+                                        if ($auth ==0) {
+                                            echo '<div class="text-center mb-2">
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <strong>Login Gagal!</strong>';
+                                            
+                                        }
+                                    
+                                
+                                echo '<form action="loginKlik" method="POST">
                                 <div class="container"> 
                                     <label for="email"><b>Email</b></label>
                                     <input type="text" placeholder="" name="email">
