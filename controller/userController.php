@@ -177,7 +177,7 @@ class UserController{
 		move_uploaded_file($oldnameselfie,$newnameselfie);
 
 		$query = "UPDATE `user` 
-				SET `gambarKTP` = '$fotoktp', `swafoto` = '$fotoselfie', `namaBank` = '$namabank', `norek` = '$norek', `noKTP` = '$nik'
+				SET `gambarKTP` = '$fotoktp', `swafoto` = '$fotoselfie', `namaBank` = '$namabank', `isTraveller` = 'pending', `norek` = '$norek', `noKTP` = '$nik'
 				WHERE `namaUser` LIKE '$nama'";
 		$query_result = $this->db->executeNonSelectQuery($query);
 
