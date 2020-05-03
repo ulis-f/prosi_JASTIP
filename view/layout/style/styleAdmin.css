@@ -16,7 +16,7 @@
     height: 100%;
     overflow: auto;
     background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.4);  
     padding-top: 60px;
 }
 
@@ -105,14 +105,13 @@ header{
   
   .show {display: block;}
 
-header{
-    background-color:white;
-    padding: 10px;
-}
+  header{
+      background-color:white;
+  }
 
-body {
-	background-color: #ebebeb;
-}
+  body {
+    background-color: #ebebeb;
+  }
 
 
 
@@ -144,4 +143,10 @@ ul {
   
   .active {
     background-color: lightgray;    
+  }
+
+  table, tr, th, td {
+    padding: 5px;
+    border: 1px solid rgb(38, 81, 121);
+    width: 100%;
   }

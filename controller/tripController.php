@@ -41,26 +41,29 @@ class tripController{
         $queryTujuan_result = $this->db->executeSelectQuery($queryTujuan);
         $hasilTujuan = $queryTujuan_result[0]['idKota'];
     
-
-
-        $query = "INSERT INTO trip (waktuAwal, waktuAkhir,statusTrip, gambarTrip, idKota1, idKota2) 
-        VALUES ('$waktuA', '$waktuT', null , '$fotoTiket', '$hasilAsal', '$hasilTujuan')";
-        $query_result = $this->db->executeNonSelectQuery($query);  
-
         $oldnametiket = $_FILES['fotoTiket']['tmp_name'];
-		    $newnametiket = dirname(__DIR__) . "\\view\image\\" . "\\trip\\" . $fotoTiket;
-        move_uploaded_file($oldnametiket, $newnametiket);  
-        
-        
-        if ($_FILES["fotoKTP"]["size"] > 10000000) {
-            echo "Maaf, file anda melebihi batas.";
-            $uploadOk = 0;
-        }
+		$newnametiket = dirname(__DIR__) . "\\view\image\\" . "\\trip\\" . $fotoTiket;
+        move_uploaded_file($oldnametiket, $newnametiket); 
 
-        if ($_FILES["fotoSelfie"]["size"] > 10000000) {
-            echo "Maaf, file anda melebihi batas.";
-            $uploadOk = 0;
-        }
+        $query = "INSERT INTO trip (idTrip, waktuAwal, waktuAkhir,statusTrip, gambarTrip, idKota1, idKota2) 
+        VALUES (null, $waktuA, $waktuT, null , '$fotoTiket', '$hasilAsal', '$hasilTujuan')";
+        $query_result = $this->db->executeNonSelectQuery($query);    
+
+        $queryUser = "SELECT `idUser` FROM `user` WHERE `namaUser` LIKE '$nama'";
+        $queryUser_result = $this->db->executeSelectQuery($queryUser);
+        $hasilUser = $queryUser_result[0]['idUser'];
+
+        $queryTrip = "SELECT `idTrip` FROM `trip` WHERE `waktuAwal` LIKE '$waktuA' AND  `waktuAkhir` LIKE '$waktuT'";
+        $queryTrip_result = $this->db->executeSelectQuery($queryTrip);
+        $hasilTrip = $queryTrip_result[0]['idTrip'];
+        
+        $queryPost = "INSERT INTO post (idUser, idTrip) 
+        VALUES ('$hasilUser','$hasilTrip')";
+        $query_result = $this->db->executeNonSelectQuery($query);  
+   
+         
+        
+        
     }
 }
 ?>

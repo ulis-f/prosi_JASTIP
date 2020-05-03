@@ -34,6 +34,7 @@ class View{
 		ob_end_clean();
 		return $include;
 	}
+
 	public static function createViewRegister($view,$param){
 		foreach ($param as $key => $value) {
 			$$key = $value;
@@ -50,5 +51,6 @@ class View{
 		ob_end_clean();
 		return $include;
 	}
+
 }
 ?>

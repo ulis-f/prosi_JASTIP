@@ -23,7 +23,7 @@
 				break;
 			case $baseURL . '/logout':
 				require_once "controller/userController.php";
-				$userctrl = new userController();
+				$userctrl = new userController();  
 				$userctrl->logout();
 				header('location: index');
 				break;
@@ -93,7 +93,7 @@
 				$roleCtrl->insertTrip();
 				header('Location: index');
 				break;
-			default:
+			default:  
 				echo '404 Not Found';
 				break;
 		}

@@ -48,7 +48,7 @@
         background: #007bb5;
         color: white;
         }
-
+        
 
         .fa-instagram {
         background: #125688;
@@ -66,7 +66,7 @@
             <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Market</h4>
             <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Tracking</h4>
             <?php
-                if($nama==null){
+                if($nama==null){  
                     echo '
                         <h3 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn" onclick="btnLogin()" >Daftar / Masuk</h3>
                         <div id="login" class="modal">
