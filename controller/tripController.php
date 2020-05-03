@@ -41,29 +41,40 @@ class tripController{
         $queryTujuan_result = $this->db->executeSelectQuery($queryTujuan);
         $hasilTujuan = $queryTujuan_result[0]['idKota'];
     
+
+
+        $query = "INSERT INTO trip (waktuAwal, waktuAkhir,statusTrip, gambarTrip, idKota1, idKota2) 
+        VALUES ('$waktuA', '$waktuT', null , '$fotoTiket', '$hasilAsal', '$hasilTujuan')";
+        $query_result = $this->db->executeNonSelectQuery($query);  
+
         $oldnametiket = $_FILES['fotoTiket']['tmp_name'];
-		$newnametiket = dirname(__DIR__) . "\\view\image\\" . "\\trip\\" . $fotoTiket;
-        move_uploaded_file($oldnametiket, $newnametiket); 
+		    $newnametiket = dirname(__DIR__) . "\\view\image\\" . "\\trip\\" . $fotoTiket;
+        move_uploaded_file($oldnametiket, $newnametiket);  
+        
+        
+        if ($_FILES["fotoKTP"]["size"] > 10000000) {
+            echo "Maaf, file anda melebihi batas.";
+            $uploadOk = 0;
+        }
 
-        $query = "INSERT INTO trip (idTrip, waktuAwal, waktuAkhir,statusTrip, gambarTrip, idKota1, idKota2) 
-        VALUES (null, $waktuA, $waktuT, null , '$fotoTiket', '$hasilAsal', '$hasilTujuan')";
-        $query_result = $this->db->executeNonSelectQuery($query);    
+        if ($_FILES["fotoSelfie"]["size"] > 10000000) {
+            echo "Maaf, file anda melebihi batas.";
+            $uploadOk = 0;
+        }
 
+        $nama = $_SESSION['nama'];
         $queryUser = "SELECT `idUser` FROM `user` WHERE `namaUser` LIKE '$nama'";
         $queryUser_result = $this->db->executeSelectQuery($queryUser);
-        $hasilUser = $queryUser_result[0]['idUser'];
 
-        $queryTrip = "SELECT `idTrip` FROM `trip` WHERE `waktuAwal` LIKE '$waktuA' AND  `waktuAkhir` LIKE '$waktuT'";
+        $queryTrip = "SELECT `idTrip` FROM `trip` WHERE `idKota1` = '$hasilAsal' AND `idKota2` = '$hasilTujuan' AND `waktuAwal` = '$waktuA'
+        AND `waktuAkhir` = '$waktuT'";
         $queryTrip_result = $this->db->executeSelectQuery($queryTrip);
-        $hasilTrip = $queryTrip_result[0]['idTrip'];
-        
-        $queryPost = "INSERT INTO post (idUser, idTrip) 
-        VALUES ('$hasilUser','$hasilTrip')";
-        $query_result = $this->db->executeNonSelectQuery($query);  
-   
-         
-        
-        
+
+        $fk_user = $queryUser_result[0]['idUser'];
+        $fk_trip = $queryTrip_result[0]['idTrip'];
+
+        $queryInsert = "INSERT INTO transaksi(idUser1,idTrip) VALUES ('$fk_user','$fk_trip')";
+        $queryInsert_result = $this->db->executeNonSelectQuery($queryInsert);
     }
 }
 ?>
