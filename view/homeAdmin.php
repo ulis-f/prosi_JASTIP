@@ -22,7 +22,7 @@
                             <td><button>Setujui</button></td>
                         </tr>
                     </table>  
-				</div>  
+				</div>     
 			</div>    
         </div>
     </div>
