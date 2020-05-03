@@ -1,5 +1,5 @@
 <div class="menuAdmin">
-    <ul style="background-color: #b74449;" >
+    <ul style="background-color: #b74449; margin-top:6%" >
         <li><a class="active" href="#">Post Trip</a></li>
         <li><a href="#">Live Chat</a></li>
         <li><a href="#">Form Barang</a></li>
@@ -12,7 +12,7 @@
         <div id="postTrip" class="tabs w3-container"> 
             <div class="" style="width: 80%; margin-left: 10%; margin-right: 10%; margin-top: 5%;" >
                 <?php
-                    foreach($result as $key=>$value){
+                    foreach($result as $value){
                         echo "<div class='w3-card-4 w3-white' style='width:30%; float: left;margin-right: 5%; padding: 15px;'>";
                         echo"<div class=''>";
                         echo"<form method='GET' action='persetujuan'>";
@@ -20,10 +20,13 @@
                         echo"</form>";
                         echo"<label for=".$value->namaUser.">".$value->namaUser."</label>";
                         echo"</div>";
-                        echo"<img src='image/trip/".$value->fotoTiket."'>";
+                        echo"<img src='image/trip/".$value->fotoTiket."' width=100px height=100px>";
                         echo "</div>";
                     }
+
+                    
                 ?>
 			</div>
         </div>
 </div>
+
