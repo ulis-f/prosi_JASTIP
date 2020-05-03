@@ -18,7 +18,14 @@ class UserController{
 		else{
 			$nama = null;
 		}
-		return view::createView('halamanUtamaMember.php',["nama"=>$nama,"title"=>$title]);
+		if(isset($_SESSION['auth']) && !empty($_SESSION['auth'])) {
+			$auth = $_SESSION['auth'];
+		}
+		else{
+			$auth = 1;
+		}
+		
+		return view::createView('halamanUtamaMember.php',["nama"=>$nama,"title"=>$title,"auth"=>$auth]);
 	}
 
 	public function view_lengkap(){
@@ -48,7 +55,11 @@ class UserController{
 				$_SESSION['email'] = $query_result[0]['email'];
 				$_SESSION['password'] = $query_result[0]['password'];
 				$_SESSION['nama'] = $query_result[0]['namaUser'];
+				$_SESSION['auth'] =1;
 			}	
+			else{
+				$_SESSION['auth'] =0;
+			}
 		}
 		return $kondisi;
 	}
