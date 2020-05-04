@@ -42,6 +42,12 @@
 				$userctrl = new adminController();
 				echo $userctrl->view_index();
 				break;  
+				break;
+			case $baseURL . '/persetujuan':
+				require_once "controller/adminController.php";
+				$userctrl = new adminController();
+				echo $userctrl->view_persetujuan();
+				break;  
 			default:
 				echo '404 Not Found';
 				break;
