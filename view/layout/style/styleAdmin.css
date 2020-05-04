@@ -144,9 +144,3 @@ ul {
   .active {
     background-color: lightgray;    
   }
-
-  table, tr, th, td {
-    padding: 5px;
-    border: 1px solid black;  
-    width: 100%;  
-  }
