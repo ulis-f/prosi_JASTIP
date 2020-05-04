@@ -10,10 +10,10 @@
 
 <div class="w3-container">  
         <div id="postTrip" class="tabs w3-container"> 
-            <div class="" style="width: 80%; margin-left: 10%; margin-top: 5%;" >
+            <div class="" style="width: 80%; margin-top: 5%;" >
                 <?php
                     foreach($result as $key=>$value){
-                        echo "<div class='w3-card-4 w3-white' style='width:67%; padding: 15px;'>";
+                        echo "<div class='w3-card-4 w3-white' style='width:30%; height:30%; padding: 15px;'>";
                         echo"<div class=''>";
                         echo"<form method='GET' action='persetujuan'>";
                         echo"<input type='hidden' name='id' value='".$value->idtrip."'>";
@@ -21,7 +21,8 @@
                         echo"</form>";
                         echo"<label for=".$value->namaUser.">".$value->namaUser."</label>";
                         echo"</div>";
-                        echo"<img src='image/trip/".$value->fotoTiket."'>";
+                        echo"<img src='image/trip/".$value->fotoTiket."'width=100px height=70px>";
+                        
                         echo "</div>";
                     }
 
@@ -31,40 +32,73 @@
         </div>
 </div>
 
-<div class="w3-container">  
-        <div id="postTrip" class="tabs w3-container"> 
-            <div class="" style="width: 80%; margin-left: 10%; margin-right: 10%; margin-top: 5%;" >
-		    <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Gambar KTP</th>
-                        <th>Swafoto</th>
-                        <th>Nama Bank</th>
-                        <th>No Rek</th>
-                        <th>No KTP</th>
-                        <th>Action</th>
-                    </tr>
-                    <?php
-                        $conn = mysqli_connect("localhost","root","","titipaja");
-                        if ($conn-> connect_error){
-                            die("connection failed:" . $conn-> connect_error);
+
+<table style="margin-top: 5%; width:100%;" >
+    
+        <div class="w3-container">  
+            <div id="postTrip" class="tabs w3-container"> 
+                <div class="" >
+                <?php
+                   
+                    
+                    $i=1;
+                    echo"<tr>";
+                    foreach($result as $key=>$value){
+                    echo"<div style='margin-bottom:100px;'>";
+                        echo"<td>";
+                        if($i==1){
+                            echo"<div class='w3-card-4 w3-white' style='width:60%; height:300px ; margin-bottom:10%; margin-left:50%;'>";
+                            echo"<div class=''>";
+                            echo"<form method='GET' action='persetujuan'>";
+                            echo"<input type='hidden' name='id' value='".$value->idtrip."'>";      
+                            echo"<p align='center' style='padding-bottom:0px; padding-top:10px;'><label for=".$value->namaUser.">".$value->namaUser."</label></p>";
+                            echo"</div>";
+                            echo"<img src='image/trip/".$value->fotoTiket."'width=100% height=150px>";
+                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#b74449; color: white;' value='Detail'></p>";
+                            echo"</form>";
+                            echo "</div>";
                         }
-
-                        $sql = "SELECT idUser, namaUser, gambarKTP, swafoto, namaBank, norek, noKTP from user WHERE isTraveller LIKE 'pending'";
-                        $result = $conn-> query($sql);
-
-                        if($result-> num_rows > 0){
-                            while($row = $result-> fetch_assoc()){
-                                echo "<tr><td>" . $row["namaUser"] ."</td><td>" . $row["gambarKTP"] . "</td><td>" . $row["swafoto"] ."</td><td>" . $row["namaBank"] ."</td><td>" . $row["norek"] ."</td><td>" . $row["noKTP"] ."</td><td> <button type='button' value='".$row["idUser"] ."'>Decline</button><button type='button'>Confirm</button></td></tr>";
-                            }
-                            echo "</table>";
-                        }else{
-                            echo "0 result";
+                        elseif($i==2){
+                            echo"<div class='w3-card-4 w3-white' style='width:60%; height:300px; margin-bottom:10%; margin-left:25%;'>";
+                            echo"<div class=''>";
+                            echo"<form method='GET' action='persetujuan'>";  
+                            echo"<input type='hidden' name='id' value='".$value->idtrip."'>";      
+                            echo"<p align='center' style='padding-bottom:0px; padding-top:10px;'><label for=".$value->namaUser.">".$value->namaUser."</label></p>";
+                            echo"</div>";
+                            echo"<img src='image/trip/".$value->fotoTiket."'width=100% height=150px>";
+                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#b74449; color: white;' value='Detail'></p>";
+                            echo"</form>";
+                            echo "</div>";
                         }
+                        else{
+                            echo"<div class='w3-card-4 w3-white' style='width:60%; height:300px ; margin-bottom:10%; margin-right:50%;'>";
+                            echo"<div class=''>";
+                            echo"<form method='GET' action='persetujuan'>";
+                            echo"<input type='hidden' name='id' value='".$value->idtrip."'>";      
+                            echo"<p align='center' style='padding-bottom:0px; padding-top:10px;'><label for=".$value->namaUser.">".$value->namaUser."</label></p>";
+                            echo"</div>";
+                            echo"<img src='image/trip/".$value->fotoTiket."'width=100% height=150px>";
+                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#b74449; color: white;' value='Detail'></p>";
+                            echo"</form>";
+                            echo "</div>";
+                        }
+                       
+                    echo"</div>";  
+                        
+                        echo "</td>";
+                        $i++;
 
-                        $conn-> close();
-                    ?>
-                </table>
-	    </div>
-        </div>
-</div>
+                        if($i>3){
+                            echo"</tr>";
+                            echo"<br>";
+                            $i=1;
+                        }
+                    }
+                         
+                        
+                ?>    
+        
+    
+</table>
+
+
