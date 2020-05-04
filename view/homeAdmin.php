@@ -10,10 +10,10 @@
 
 <div class="w3-container">  
         <div id="postTrip" class="tabs w3-container"> 
-            <div class="" style="width: 80%; margin-left: 10%; margin-right: 10%; margin-top: 5%;" >
+            <div class="" style="width: 80%; margin-left: 10%; margin-top: 5%;" >
                 <?php
                     foreach($result as $key=>$value){
-                        echo "<div class='w3-card-4 w3-white' style='width:30%; float: left;margin-right: 5%; padding: 15px;'>";
+                        echo "<div class='w3-card-4 w3-white' style='width:67%; padding: 15px;'>";
                         echo"<div class=''>";
                         echo"<form method='GET' action='persetujuan'>";
                         echo"<input type='hidden' name='id' value='".$value->idtrip."'>";
