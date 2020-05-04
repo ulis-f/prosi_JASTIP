@@ -1,11 +1,11 @@
 <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 650px; background-color: #ebebeb; ">
+        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1100px; background-color: #ebebeb; ">
             <form action="#" method="POST">
                 <h2>Post Trip</h2>
                     <br>
                     <?php
                     foreach($result as $key=>$value){
-                    echo"<img src='image/trip/".$value->fotoTiket."'>";
+                    echo"<img src='image/trip/".$value->fotoTiket."'width=570px height=300px>";
                     echo"<table>";
                     echo"<tr>";
                     echo"<td>Tujuan</td>";
