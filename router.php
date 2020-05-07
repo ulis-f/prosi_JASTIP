@@ -61,7 +61,7 @@
 			case $baseURL . '/profileTraveller':
 				require_once "controller/userController.php";
 				$userctrl = new userController();
-				echo $userctrl->view_profileTraveller1();    
+				echo $userctrl->view_profileTraveller();      
 				break;   
 			default:
 				echo '404 Not Found';
