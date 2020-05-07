@@ -43,7 +43,7 @@
             <br> 
 
             <div class="w3-right" style="padding-top: 100px;"> 
-                <div class="w3-btn" style="background-color:#b74449; color: white;">Submit</div>
+                <div class="w3-btn w3-theme-d2">Submit</div>
             </div>
         </div>
     </div>

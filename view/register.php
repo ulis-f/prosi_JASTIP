@@ -37,6 +37,6 @@
             <input type="text" placeholder="Masukkan Provinsi" name="provinsi" required>
             <hr>
 
-            <input type="submit" class="w3-btn w3-theme" style="width:100%;" value="register">
+            <input type="submit" class="w3-btn w3-theme-d2" style="width:100%;" value="register">
         </div>
 </form>

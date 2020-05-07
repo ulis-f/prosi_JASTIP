@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="http://localhost:80/prosi_JASTIP/view/layout/style/styleAdmin.css">       
     <title>Home Admin</title>
 
-    <style>
+    <style> 
         .fa {
         padding: 20px;
         font-size: 20px;

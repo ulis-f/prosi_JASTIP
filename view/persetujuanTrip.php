@@ -30,7 +30,7 @@
                     echo"<label for='note'>Note</label> <br>";
                     echo"<textarea name='' id='' cols='30' rows='5'></textarea>";
                     echo"<br><br><br><br><br>";
-                    echo"<div class='w3-btn w3-right w3-theme'>Submit</div>";
+                    echo"<div class='w3-btn w3-right w3-theme-d2'>Submit</div>";
                     }
                     ?>
             </form>

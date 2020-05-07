@@ -27,7 +27,7 @@
                             echo"<p align='center' style='padding-top:10px;'><label for=".$value->namaUser.">".$value->namaUser."</label></p>";
                             echo"</div>";
                             echo"<img src='image/trip/".$value->fotoTiket."'width=100% height=150px>";
-                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn w3-theme' value='Detail'></p>";
+                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn w3-theme-d2' value='Detail'></p>";
                             echo"</form>";
                             echo "</div>";
                         }
@@ -39,7 +39,7 @@
                             echo"<p align='center' style='padding-top:10px;'><label for=".$value->namaUser.">".$value->namaUser."</label></p>";
                             echo"</div>";
                             echo"<img src='image/trip/".$value->fotoTiket."'width=100% height=150px>";
-                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn w3-theme' value='Detail'></p>";
+                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn w3-theme-d2' value='Detail'></p>";
                             echo"</form>";
                             echo "</div>";
                         }
@@ -51,7 +51,7 @@
                             echo"<p align='center' style='padding-top:10px;'><label for=".$value->namaUser.">".$value->namaUser."</label></p>";
                             echo"</div>";
                             echo"<img src='image/trip/".$value->fotoTiket."'width=100% height=150px>";
-                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn w3-theme' value='Detail'></p>";
+                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn w3-theme-d2' value='Detail'></p>";
                             echo"</form>";
                             echo "</div>";
                         }

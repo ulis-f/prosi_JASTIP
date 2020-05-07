@@ -99,7 +99,7 @@
                                     <br>
                                     <br>
                                     <br>
-                                    <input type="submit" class="w3-btn w3-theme" value="login"><br><br>
+                                    <input type="submit" class="w3-btn w3-theme-d2" value="login"><br><br>
                                     </div>    
                                     </form>
                                     <p class="w3-text-theme"><b>Belum mempunyai akun?</b><a href="register">Register</a></p>   
