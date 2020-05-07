@@ -47,7 +47,22 @@
 				require_once "controller/adminController.php";
 				$userctrl = new adminController();
 				echo $userctrl->view_persetujuan();
+				break; 
+			case $baseURL . '/profileUser':
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_profileUser();  
+				break; 
+			case $baseURL . '/titipBarang':
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_titipBarang();  
 				break;  
+			case $baseURL . '/profileTraveller':
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_profileTraveller1();    
+				break;   
 			default:
 				echo '404 Not Found';
 				break;
@@ -99,7 +114,7 @@
 				break;
 			default:
 				echo '404 Not Found';
-				break;
+				break;  
 		}
 	
 	}

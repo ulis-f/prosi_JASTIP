@@ -20,7 +20,7 @@
                     echo"<tr>";
                     echo"<td>".$value->waktuAwal."</td>";  
                     echo"<td></td>";
-                    echo"<td>".$value->waktuAkhir."</td>";
+                    echo"<td>".$value->waktuAkhir."</td>"; 
                     echo"</tr>";
                     echo"</table>";
                     echo"<br>";

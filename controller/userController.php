@@ -2,6 +2,7 @@
 require_once "controller/services/mysqlDB.php";
 require_once "controller/services/view.php";
 require_once "model/user.php";
+require_once "model/trip.php";
 
 class UserController{
 	protected $db;
@@ -12,6 +13,7 @@ class UserController{
 
 	public function view_user(){
 		$title = "titipaja.com - index";
+		$result = $this->getTraveller();
 		if(isset($_SESSION['nama']) && !empty($_SESSION['nama'])) {
 			$nama = $_SESSION['nama'];
 		}
@@ -25,7 +27,7 @@ class UserController{
 			$auth = 1;
 		}
 		
-		return view::createView('halamanUtamaMember.php',["nama"=>$nama,"title"=>$title,"auth"=>$auth]);
+		return view::createView('halamanUtamaMember.php',["nama"=>$nama,"title"=>$title,"auth"=>$auth,"result"=>$result]);
 	}
 
 	public function view_lengkap(){
@@ -34,13 +36,82 @@ class UserController{
 		return view::createView('lengkapiPendaftaran.php',["nama"=>$nama,"title"=>$title]);
 	}
 
+	public function view_titipBarang(){
+		$nama = $_SESSION['nama'];
+		$title = "titipaja.com - Titip Barang";
+		return view::createView('titipBarang.php',["nama"=>$nama,"title"=>$title]);   
+	}
+
 	public function view_register(){
 		return view::createViewRegister('register.php',[]);
-	}
+	}  
 
 	public function view_Admin(){
 		return view::createViewAdmin('homeAdmin.php',[]);
 	}
+
+	public function view_profileUser(){
+		$nama = $_SESSION['nama'];
+		$result = $this->getTripSendiri(); 
+		$title = "titipaja.com - Profile User";
+		return view::createView('profileUser.php',["nama"=>$nama, "title"=>$title, "result"=>$result]);
+	}
+
+	public function view_profileTraveller(){
+		$nama = $_SESSION['nama'];
+		$result = $this->getTripSendiri(); 
+		$title = "titipaja.com - Profile User";
+		return view::createView('profileTraveller.php',["nama"=>$nama, "title"=>$title, "result"=>$result]);
+	}
+
+	public function view_profileTraveller1(){
+		$id = $_GET['id'];
+        $result = $this->getProfileTraveller($id);    
+		return view::createView('profileTraveller.php',["title"=>$title, "result"=>$result]);  
+	}
+
+	public function getProfileTraveller($id){
+        $query = "SELECT himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
+			as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
+			FROM kota inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota ) 
+			as himpA on kota.idKota = himpA.idKota2 inner join post on post.idTrip = himpA.idTrip 
+			inner join user on user.idUser= post.idUser WHERE user.idUser = '$id' "; 
+        $query_result = $this->db->executeSelectQuery($query);
+        $result=[];
+        foreach($query_result as $key =>$value){  
+            $result[] = new Trip(null,null, null, $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
+        }   
+        return $result;   
+	}
+	
+	public function getTripSendiri(){
+		$nama = $_SESSION['nama'];
+        $query = "SELECT himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
+			as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
+			FROM kota inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota ) 
+			as himpA on kota.idKota = himpA.idKota2 inner join post on post.idTrip = himpA.idTrip 
+			inner join user on user.idUser= post.idUser WHERE user.namaUser like '$nama' "; 
+        $query_result = $this->db->executeSelectQuery($query);
+        $result=[];
+        foreach($query_result as $key =>$value){  
+            $result[] = new Trip(null,null, null, $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
+        }   
+        return $result;   
+    }
+
+	public function getTraveller(){
+        $query = "SELECT user.namaUser, himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
+			as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
+			FROM kota inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota ) 
+			as himpA on kota.idKota = himpA.idKota2 inner join post on post.idTrip = himpA.idTrip 
+			inner join user on user.idUser= post.idUser";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result=[];
+        foreach($query_result as $key =>$value){
+            $result[] = new Trip($value['namaUser'],null, null, $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
+        }   
+        return $result;   
+    }
 
 	public function login(){
 		$email = $_POST['email'];
@@ -55,6 +126,8 @@ class UserController{
 				$_SESSION['email'] = $query_result[0]['email'];
 				$_SESSION['password'] = $query_result[0]['password'];
 				$_SESSION['nama'] = $query_result[0]['namaUser'];
+				$_SESSION['noHp'] = $query_result[0]['nohp'];
+				$_SESSION['alamat'] = $query_result[0]['alamat'];    
 				$_SESSION['auth'] =1;
 			}	
 			else{

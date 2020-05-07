@@ -75,6 +75,9 @@ class tripController{
 
         $queryInsert = "INSERT INTO transaksi(idUser1,idTrip) VALUES ('$fk_user','$fk_trip')";
         $queryInsert_result = $this->db->executeNonSelectQuery($queryInsert);
+
+        $queryInsert1 = "INSERT INTO post(idUser,idTrip) VALUES ('$fk_user','$fk_trip')";
+        $queryInsert_result1 = $this->db->executeNonSelectQuery($queryInsert1);
     }
 }
 ?>

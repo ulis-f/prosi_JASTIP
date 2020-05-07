@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://localhost:80/prosi_JASTIP/view/layout/style/style.css">
 
+
     <title><?php $title ?></title>
 
     <style>
@@ -66,7 +67,7 @@
             <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Market</h4>
             <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Tracking</h4>
             <?php
-                if($nama==null){  
+                if($nama==null){   
                     echo '
                         <h3 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn" onclick="btnLogin()" >Daftar / Masuk</h3>
                         <div id="login" class="modal">
@@ -110,8 +111,8 @@
                     <button onclick="myFunction()" class="dropbtn">'.$nama.'
                         <i class="fa fa-caret-down"></i>
                     </button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <a href="#"><i class="fa fa-user" style="font-size:15px"></i>Profile</a>
+                    <div id="myDropdown" class="dropdown-content"> 
+                        <a href="profileUser"><i class="fa fa-user" style="font-size:15px"></i>Profile</a>
                         <a href="lengkapPendaftaran"><i class="fa fa-edit" style="font-size:15px"></i>Lengkapi Pendaftaran</a>
                         <a href="logout"><i class="fa fa-sign-out" style="font-size:15px"></i>Keluar</a>
                     </div>
@@ -153,7 +154,7 @@
         if (event.target == modal) {
             modal.style.display = "none";
         }
-    }
+    } 
 
     function btnLogin(){
         document.getElementById('login').style.display='block';

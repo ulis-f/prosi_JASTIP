@@ -249,13 +249,36 @@
             <option value="Zambia">Zambia</option>
             <option value="Zimbabwe">Zimbabwe</option>
         </select>
-        
         <h6>Tambahkan Perjalanan <a href="postTrip" style="color:#b74449;">+trip</a></h6> 
     </div>
-    <div>
-        
-    </div>
+
+    <?php
+        foreach($result as $key=>$value){
+        echo"<div class='w3-card w3-round w3-white' style='width:40%; margin: auto; margin-top:5%;'>";
+            echo"<div class='w3-container w3-padding'>";
+            echo"<table>";
+                echo"<tr>";
+                    echo"<td><a href='profileTraveller'>".$value->namaUser."</a></td>";  
+                    echo"<td></td>";
+                    echo"<td></td>";
+                    echo"<td rowspan='3'><a href='titipBarang'><button style='float:right; padding:10%;margin-left:50%;'>Titip Barang</button></a></td>";
+                echo"</tr>";
+                echo"<tr>";
+                    echo"<td>".$value->kotaAwal."</td>";
+                    echo"<td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:24px'></i></td>";
+                    echo"<td>".$value->kotaTujuan."</td>";
+                echo"</tr>";
+                echo"<tr>";
+                    echo"<td>".$value->waktuAwal."</td>";  
+                    echo"<td>".$value->waktuAkhir."</td>";     
+                echo"</tr>";
+            echo"</table>";
+            echo"</div>";
+        echo"</div>";
+        }
+    ?>
 </body>
+
 
 <!-- 
 

@@ -16,7 +16,7 @@ class Trip{
         $this->waktuAwal = $waktuAwal;
         $this->waktuAkhir = $waktuAkhir;
         $this->kotaAwal = $kotaAwal;
-        $this->kotaTujuan = $kotaTujuan;
+        $this->kotaTujuan = $kotaTujuan;  
     }
 
 }
