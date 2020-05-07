@@ -31,7 +31,7 @@ class UserController{
 	}
 
 	public function view_lengkap(){
-		$nama = $_SESSION['nama'];
+		$nama = $_SESSION['nama'];  
 		$title = "titipaja.com - Melengkapi Pendaftaran";
 		return view::createView('lengkapiPendaftaran.php',["nama"=>$nama,"title"=>$title]);
 	}

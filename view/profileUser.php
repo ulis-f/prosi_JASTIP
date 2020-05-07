@@ -1,7 +1,7 @@
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 </style>
-<body class="w3-theme-l5">
+
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
     <div class="w3-row">
         <!-- Left Column -->
@@ -55,5 +55,3 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 <!-- End Page Container -->
 </div>
 
-</body>
-</html> 

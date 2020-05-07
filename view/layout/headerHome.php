@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link rel="stylesheet" href="http://localhost:80/prosi_JASTIP/view/layout/style/style.css">
 
 
@@ -58,9 +60,9 @@
 
     </style>
 </head>
-<header class="w3-top w3-theme" style="background-color:white;">
+<header class="w3-top w3-theme">
     <div class="w3-bar-left w3-left">
-        <h1><b>titipaja</b></h1>
+        <h1 style="size:10%;"><b>titipaja</b></h1>
     </div>
     <div class="w3-bar-right w3-right">  
             <h4 class="w3-bar-item w3-display-inline w3-btn" >
@@ -87,7 +89,7 @@
                                     
                                 
                                 echo '<form action="loginKlik" method="POST">
-                                <div class="container"> 
+                                <div class="container w3-text-theme"> 
                                     <label for="email"><b>Email</b></label>
                                     <input type="text" placeholder="" name="email">
                                     <br>
@@ -97,10 +99,10 @@
                                     <br>
                                     <br>
                                     <br>
-                                    <input type="submit" class="w3-btn" style="background-color:#b74449; color: white;" value="login"><br><br>
+                                    <input type="submit" class="w3-btn w3-theme" value="login"><br><br>
                                     </div>    
                                     </form>
-                                    <p><b>Belum mempunyai akun?</b><a href="register">Register</a></p>   
+                                    <p class="w3-text-theme"><b>Belum mempunyai akun?</b><a href="register">Register</a></p>   
                             </div>
                         </div>
                         ';
@@ -108,7 +110,7 @@
                 else{
                     echo '
                     <div class="dropdown">
-                    <button onclick="myFunction()" class="dropbtn">'.$nama.'
+                    <button onclick="myFunction()" class="dropbtn  w3-theme">'.$nama.'
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div id="myDropdown" class="dropdown-content"> 

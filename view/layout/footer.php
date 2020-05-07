@@ -1,4 +1,4 @@
-<footer class="page-footer font-small mdb-color pt-3">
+<footer class="page-footer font-small mdb-color pt-3 w3-theme-d5">
 
     <!-- Footer Links -->
     <div class="container text-center text-md-left">
@@ -112,4 +112,4 @@
         }
     }
 
-</script>
+</script>  
