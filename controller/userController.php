@@ -65,17 +65,17 @@ class UserController{
 	}
 
 	public function view_profileTraveller1(){
-		$id = $_GET['id'];
-        $result = $this->getProfileTraveller($id);    
+		$nama = $_GET['nama'];
+        $result = $this->getProfileTraveller($nama);    
 		return view::createView('profileTraveller.php',["title"=>$title, "result"=>$result]);  
 	}
 
-	public function getProfileTraveller($id){
+	public function getProfileTraveller($nama){
         $query = "SELECT himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
 			as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
 			FROM kota inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota ) 
 			as himpA on kota.idKota = himpA.idKota2 inner join post on post.idTrip = himpA.idTrip 
-			inner join user on user.idUser= post.idUser WHERE user.idUser = '$id' "; 
+			inner join user on user.idUser= post.idUser WHERE user.namaUser = '$nama' "; 
         $query_result = $this->db->executeSelectQuery($query);
         $result=[];
         foreach($query_result as $key =>$value){  
@@ -102,7 +102,7 @@ class UserController{
 	public function getTraveller(){
         $query = "SELECT user.namaUser, himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
 			as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
-			FROM kota inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota ) 
+			FROM kota inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota WHERE statusTrip = 'verified') 
 			as himpA on kota.idKota = himpA.idKota2 inner join post on post.idTrip = himpA.idTrip 
 			inner join user on user.idUser= post.idUser";
         $query_result = $this->db->executeSelectQuery($query);
