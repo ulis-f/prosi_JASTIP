@@ -28,7 +28,7 @@ class adminController{
                     FROM trip inner join 
                         (SELECT user.namaUser, transaksi.idTrip 
                         FROM user inner join transaksi on user.idUser = transaksi.idUser1 
-                        WHERE user.isTraveller IS NULL) as himpA on trip.idTrip = himpA.idTrip 
+                        WHERE user.isTraveller = 'ya') as himpA on trip.idTrip = himpA.idTrip 
                     WHERE trip.statusTrip IS NULL";
         $query_result = $this->db->executeSelectQuery($query);
         foreach($query_result as $key => $value){
@@ -48,6 +48,15 @@ class adminController{
             $result[] = new Trip(null,$value['gambarTrip'], $value['idTrip'], $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
         }   
         return $result;
+    }
+
+    public function verifikasi(){
+        $idTrip = $_POST['id'];
+        $verifikasi = $_POST['verified'];
+
+        $query = "UPDATE trip SET statusTrip = '$verifikasi' WHERE idTrip = '$idTrip'";
+        
+        $query_result = $this->db->executeNonSelectQuery($query);
     }
 }
 ?>

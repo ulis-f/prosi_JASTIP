@@ -1,6 +1,6 @@
 <div class="container">
         <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; margin-top: 10%; height: 1100px; background-color: #ebebeb; ">
-            <form action="#" method="POST">
+            <form action="verifikasi" method="POST">
                 <h2>Post Trip</h2>
                     <br>
                     <?php
@@ -25,12 +25,12 @@
                     echo"</table>";
                     echo"<br>";
                     echo"<input type='radio' id='verified' name='verified' value='verified'>Verified<br>";
-                    echo"<input type='radio' id='unverified' name='unverified' value='unverified'>Unverified";
+                    echo"<input type='radio' id='unverified' name='verified' value='unverified'>Unverified";
                     echo"<br> <br>";
                     echo"<label for='note'>Note</label> <br>";
                     echo"<textarea name='' id='' cols='30' rows='5'></textarea>";
                     echo"<br><br><br><br><br>";
-                    echo"<div class='w3-btn w3-right w3-theme-d2'>Submit</div>";
+                    echo"<input type='submit' class='w3-btn w3-right w3-theme-d2'>";
                     }
                     ?>
             </form>

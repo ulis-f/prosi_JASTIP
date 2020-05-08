@@ -61,8 +61,8 @@
 			case $baseURL . '/profileTraveller':
 				require_once "controller/userController.php";
 				$userctrl = new userController();
-				echo $userctrl->view_profileTraveller();      
-				break;   
+				echo $userctrl->view_profileTraveller();    
+				break;  
 			default:
 				echo '404 Not Found';
 				break;
@@ -112,9 +112,15 @@
 				$roleCtrl->insertTrip();
 				header('Location: index');
 				break;
+			case $baseURL.'/verifikasi':
+				require_once "controller/adminController.php";
+				$roleCtrl = new adminController();
+				$roleCtrl->verifikasi();
+				header('Location: homeAdmin');
+				break;
 			default:
 				echo '404 Not Found';
-				break;  
+				break;
 		}
 	
 	}
