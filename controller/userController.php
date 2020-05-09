@@ -26,8 +26,9 @@ class UserController{
 		else{
 			$auth = 1;
 		}
+		$lengkap = $this->cekMelengkapiPendaftaran($nama);
 		
-		return view::createView('halamanUtamaMember.php',["nama"=>$nama,"title"=>$title,"auth"=>$auth,"result"=>$result]);
+		return view::createView('halamanUtamaMember.php',["nama"=>$nama,"title"=>$title,"auth"=>$auth,"result"=>$result,"lengkap"=>$lengkap]);
 	}
 
 	public function view_lengkap(){
@@ -265,6 +266,22 @@ class UserController{
 			echo "Maaf, file anda melebihi batas.";
 			$uploadOk = 0;
 		}
+
+		
+	}
+
+	public function cekMelengkapiPendaftaran($nama){
+		$lengkap = false;
+		if($nama!=null){
+			$query = "SELECT isTraveller FROM user WHERE namaUser LIKE '$nama'";
+	
+			$query_result = $this->db->executeSelectQuery($query);
+	
+			if($query_result[0]['isTraveller']!=null){
+				$lengkap = true;
+			}
+		}
+		return $lengkap;
 	}
 }
 

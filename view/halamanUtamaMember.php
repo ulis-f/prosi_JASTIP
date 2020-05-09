@@ -249,7 +249,7 @@
             <option value="Zambia">Zambia</option>
             <option value="Zimbabwe">Zimbabwe</option>
         </select>
-        <h6>Tambahkan Perjalanan <a href="postTrip" style="color:#b74449;">+trip</a></h6> 
+        <h6>Tambahkan Perjalanan <a id="trip" href="" onclick="myFungsi()" style="color:#b74449;">+trip</a></h6> 
     </div>
 
     <?php
@@ -258,7 +258,10 @@
             echo"<div class='w3-container w3-padding'>";
             echo"<table>";
                 echo"<tr>";
-                    echo"<td><a href='profileTraveller'>".$value->namaUser."</a></td>";  
+                    echo"<form id='myForm' method='GET' action='profileTraveller'";
+                    echo"<input type='hidden' name='nama' value='".$value->namaUser."'>";
+                    echo"<td><div id='nama'>".$value->namaUser."</div></td>";  
+                    echo"</form>";
                     echo"<td></td>";
                     echo"<td></td>";
                     echo"<td rowspan='3'><a href='titipBarang'><button style='float:right; padding:10%;margin-left:50%;'>Titip Barang</button></a></td>";
@@ -279,22 +282,24 @@
     ?>
 </body>
 
-
-<!-- 
-
-<form action="hapusAkun" method="post" style="display:inline">
-	<input style="width:70px;" type="submit" style="width:70px;" value="DeleteAkun">
-</form>
-
-<form action="logout" method="get" style="display:inline">
-	<input style="width:70px;" type="submit" style="width:70px;" value="logout">
-</form>
-
-<button onclick="gantiPass()">Edit Password</button>
-
 <script>
-    function gantiPass(){
-        location.href = "editPass";
-    }
-</script> -->
+    document.getElementById("nama").onclick = function() {
+  document.getElementById("myForm").submit();
+};
+
+function myFungsi(){
+    <?php
+        if($nama==null){
+            $message = "Login Terlebih Dahulu";
+            echo "alert('$message');";
+        }
+        else{
+            echo " document.getElementById('trip').href='postTrip'; "; 
+        }
+    ?>
+}
+
+</script>
+
+
 
