@@ -1,18 +1,18 @@
-<ul class="nav nav-tabs justify-content-center" style="margin-top:6%; background-color:white;height: 60px; padding-top: 20px;">
+<ul class="nav nav-tabs justify-content-center" style="margin-top:6%; background-color:white;">
     <li class="nav-item">
-        <a href="#" style="background-color:#f9f9f9;">Post Trip</a>
+        <a class="nav-link w3-text-theme" href="#" style="background-color:#f9f9f9; height: 100%;">Post Trip</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="lengkapDaftar">Lengkapi Pendaftaran</a>
+    <li class="nav-item w3-text-theme">
+        <a class="nav-link text-center w3-text-theme" href="lengkapDaftar" style="height: 100%;">Lengkapi Pendaftaran</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Form Barang</a>  
+    <li class="nav-item w3-text-theme">
+        <a class="nav-link" href="#"  style="height: 100%;">Form Barang</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Pembayaran</a>  
+    <li class="nav-item w3-text-theme">
+        <a class="nav-link" href="#" style="height: 100%;">Pembayaran</a>  
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Mengirim Uang</a>
+    <li class="nav-item w3-text-theme">
+        <a class="nav-link" href="#" style="height: 100%;">Mengirim Uang</a>
     </li>
 </ul>
 
@@ -35,7 +35,7 @@
                             echo"<p align='center' style='padding-top:10px;'><label for=".$value->namaUser.">".$value->namaUser."</label></p>";
                             echo"</div>";
                             echo"<img src='image/trip/".$value->fotoTiket."'width=100% height=150px>";
-                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn w3-theme-d2' value='Detail'></p>";
+                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn w3-theme' value='Detail'></p>";
                             echo"</form>";
                             echo "</div>";
                         }
@@ -47,7 +47,7 @@
                             echo"<p align='center' style='padding-top:10px;'><label for=".$value->namaUser.">".$value->namaUser."</label></p>";
                             echo"</div>";
                             echo"<img src='image/trip/".$value->fotoTiket."'width=100% height=150px>";
-                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn w3-theme-d2' value='Detail'></p>";
+                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn w3-theme' value='Detail'></p>";
                             echo"</form>";
                             echo "</div>";
                         }
@@ -59,7 +59,7 @@
                             echo"<p align='center' style='padding-top:10px;'><label for=".$value->namaUser.">".$value->namaUser."</label></p>";
                             echo"</div>";
                             echo"<img src='image/trip/".$value->fotoTiket."'width=100% height=150px>";
-                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn w3-theme-d2' value='Detail'></p>";
+                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn w3-theme' value='Detail'></p>";
                             echo"</form>";
                             echo "</div>";
                         }

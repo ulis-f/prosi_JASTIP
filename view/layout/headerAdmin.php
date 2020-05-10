@@ -61,7 +61,7 @@
 <header>
     <div class="w3-top w3-theme" style="background-color:white;">
         <div class="w3-bar-left w3-left">
-            <h1><b>titipaja</b></h1>
+            <a class="navbar-brand" href="homeAdmin"><h1 style="size:10%;"><b>titipaja</b></h1></a> 
         </div>
         <div class="w3-bar-right w3-right">
                 <div class="dropdown">

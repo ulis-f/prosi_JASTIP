@@ -10,12 +10,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link rel="stylesheet" href="http://localhost:80/prosi_JASTIP/view/layout/style/style.css">
-
 
     <title><?php $title ?></title>
 
@@ -62,9 +61,9 @@
 </head>
 <header class="w3-top w3-theme">
     <div class="w3-bar-left w3-left">
-        <h1 style="size:10%;"><b>titipaja</b></h1>
+        <a class="navbar-brand" href="index"><h1 style="size:10%;"><b>titipaja</b></h1></a>
     </div>
-    <div class="w3-bar-right w3-right">  
+    <div class="w3-bar-right w3-right">            
             <h4 class="w3-bar-item w3-display-inline w3-btn" >
             <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Market</h4>
             <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Tracking</h4>

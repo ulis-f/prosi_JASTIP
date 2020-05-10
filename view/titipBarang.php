@@ -11,13 +11,7 @@
                 <tr>
                     <td>Jumlah Barang</td>
                     <td>:</td>
-                    <td><select id="jumlahBarang" name="jumlahBarang"> 
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>  
-                    </select></td>
+                    <td><input class="w3-input w3-border w3-border-theme" type="number" value="1"></td>
                 </tr>
                 <tr>
                     <td>Deskripsi Barang</td>
@@ -43,7 +37,7 @@
             <br> 
 
             <div class="w3-right" style="padding-top: 100px;"> 
-                <div class="w3-btn w3-theme-d2">Submit</div>
+                <div class="w3-btn w3-theme">Submit</div>
             </div>
         </div>
     </div>

@@ -43,7 +43,7 @@
                 <br> 
 
                 <div class="w3-right" style="padding-top: 100px;"> 
-                    <input type="submit" value="subimt" class="w3-btn w3-theme-d2">
+                    <input type="submit" value="subimt" class="w3-btn w3-theme">
                 </div>
 
             </form>

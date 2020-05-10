@@ -264,7 +264,7 @@
                     echo"</form>";
                     echo"<td></td>";
                     echo"<td></td>";
-                    echo"<td rowspan='3'><a href='titipBarang'><button style='float:right;width: 120px; padding:5px;'>Titip Barang</button></a></td>";
+                    echo"<td rowspan='3'><a href='titipBarang'><div class='w3-btn w3-theme-l1' style='float:right;width: 120px; padding:15px;'>Titip Barang</div></a></td>";
                 echo"</tr>";
                 echo"<tr>";
                     echo"<td>".$value->kotaAwal."</td>";

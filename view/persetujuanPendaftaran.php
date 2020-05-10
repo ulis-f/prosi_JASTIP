@@ -16,21 +16,21 @@
     }
 </style>
 
-<ul class="nav nav-tabs justify-content-center" style="margin-top:6%; background-color:white;height: 60px; padding-top: 20px;">
+<ul class="nav nav-tabs justify-content-center" style="margin-top:6%; background-color:white;">
     <li class="nav-item">
-        <a class="nav-link" href="homeAdmin">Post Trip</a>
+        <a class="nav-link w3-text-theme" href="homeAdmin" style="height: 100%;">Post Trip</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#" style="background-color:#f9f9f9;">Lengkapi Pendaftaran</a>
+    <li class="nav-item w3-text-theme">
+        <a class="nav-link text-center w3-text-theme" href="#" style="background-color:#f9f9f9;height: 100%;">Lengkapi Pendaftaran</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Form Barang</a>
+    <li class="nav-item w3-text-theme">
+        <a class="nav-link" href="#"  style="height: 100%;">Form Barang</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Pembayaran</a>  
+    <li class="nav-item w3-text-theme">
+        <a class="nav-link" href="#" style="height: 100%;">Pembayaran</a>  
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Mengirim Uang</a>
+    <li class="nav-item w3-text-theme">
+        <a class="nav-link" href="#" style="height: 100%;">Mengirim Uang</a>
     </li>
 </ul>
 
@@ -52,7 +52,7 @@
             echo"<input type='hidden' name='id' value'".$value->IDuser."'>";  
             echo " <td>".$value->username."</td> ";
             echo " <td>".$value->email."</td>";
-            echo " <p align='center'><td><input type='submit' value='Submit'></td></p>
+            echo " <td class='text-center'><input type='submit' value='Submit'></td>
                 </tr>";
             echo"</form>";
             }

@@ -22,7 +22,7 @@
                     <label for="note">Note</label> <br>
                     <textarea name="" id="" cols="30" rows="5"></textarea>
                     <br><br><br><br><br>
-                    <div class="w3-btn w3-right">Submit</div>
+                    <div class="w3-btn w3-right w3-theme">Submit</div>  
             </form>    
         </div>
     </div>

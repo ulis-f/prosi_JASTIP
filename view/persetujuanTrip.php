@@ -32,7 +32,7 @@
                     echo"<label for='note'>Note</label> <br>";
                     echo"<textarea name='' id='' cols='30' rows='5'></textarea>";
                     echo"<br><br><br><br><br>";
-                    echo"<input type='submit' class='w3-btn w3-right w3-theme-d2'>";
+                    echo"<input type='submit' class='w3-btn w3-right w3-theme'>";
                     }
                     ?>
             </form>
