@@ -1,35 +1,33 @@
 <?php
 
 class User{
-    protected $IDuser;
-	protected $username;
-	protected $password;
-	protected $alamat;
-	protected $noHp; 
-	protected $email;
-	protected $swafoto;
+    public $IDuser;
+	public $username;
+	public $password;
+	public $alamat;
+	public $noHp; 
+	public $email;
+	public $swafoto;
+	public $gambarktp;
+	public $namabank;
+	public $norek;
+	public $noktp;
 
-	public function __construct($IDuser,$username,$password, $alamat, $noHp, $email, $swafoto){
-		$this->$IDuser = $IDuser;
+
+	public function __construct($IDuser,$username,$password, $alamat, $noHp, $email, $swafoto, $gambarktp, $namabank, $norek, $noktp){
+		$this->IDuser = $IDuser;
 		$this->username = $username;
 		$this->password = $password;
 		$this->alamat = $alamat;
 		$this->noHp = $noHp;
 		$this->email = $email;  
 		$this->swafoto = $swafoto;   
+		$this->gambarktp = $gambarktp; 
+		$this->namabank = $namabank;
+		$this->norek = $norek;
+		$this->noktp = $noktp;  
 	}
 
-	public function getIDUser(){
-		return $this->IDuser;
-	}
-
-	public function getUsername(){
-		return $this->username;
-	}
-
-	public function getPassword(){
-		return $this->password;
-	}
 
 }
 ?>
