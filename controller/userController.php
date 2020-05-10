@@ -251,7 +251,7 @@ class UserController{
 		move_uploaded_file($oldnameselfie,$newnameselfie);
 
 		$query = "UPDATE `user` 
-				SET `gambarKTP` = '$fotoktp', `swafoto` = '$fotoselfie', `namaBank` = '$namabank', `norek` = '$norek', `noKTP` = '$nik'
+				SET `isTraveller` = 'pending', `gambarKTP` = '$fotoktp', `swafoto` = '$fotoselfie', `namaBank` = '$namabank', `norek` = '$norek', `noKTP` = '$nik'
 				WHERE `namaUser` LIKE '$nama'";
 		$query_result = $this->db->executeNonSelectQuery($query);
 
@@ -277,7 +277,7 @@ class UserController{
 	
 			$query_result = $this->db->executeSelectQuery($query);
 	
-			if($query_result[0]['isTraveller']!=null){
+			if($query_result[0]['isTraveller']!='pending'){
 				$lengkap = true;
 			}
 		}
