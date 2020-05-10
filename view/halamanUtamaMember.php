@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="http://localhost:80/prosi_JASTIP/view/layout/style/style.css">
-<div style="text-align: center;">
+<div style="text-align: center; margin-bottom:5%; margin-top:10%;">
         
-        <select id="country" name="country" style="padding: 10px;"> 
+        <select id="country" name="country" style="padding: 15px; width:30%;"> 
             <option value="Afganistan">Afghanistan</option>
             <option value="Albania">Albania</option>
             <option value="Algeria">Algeria</option>
@@ -9,7 +9,7 @@
             <option value="Andorra">Andorra</option>
             <option value="Angola">Angola</option>
             <option value="Anguilla">Anguilla</option>
-            <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+            <option value="Antigua & Barbuda">Antigua & Barbuda</option>  
             <option value="Argentina">Argentina</option>
             <option value="Armenia">Armenia</option>
             <option value="Aruba">Aruba</option>
@@ -251,12 +251,12 @@
         </select>
         <h6>Tambahkan Perjalanan <a id="trip" href="" onclick="myFungsi()" style="color:#b74449;">+trip</a></h6> 
     </div>
-
+    
     <?php
         foreach($result as $key=>$value){
-        echo"<div class='w3-card w3-round w3-white' style='width:40%; margin: auto; margin-top:5%;'>";
+        echo"<div class='w3-card w3-round w3-white' style='width:60%; margin: auto; margin-top:1%;'>";
             echo"<div class='w3-container w3-padding'>";
-            echo"<table>";
+            echo"<table style='width:100%;'>";
                 echo"<tr>";
                     echo"<form id='myForm' method='GET' action='profileTraveller'";
                     echo"<input type='hidden' name='nama' value='".$value->namaUser."'>";
@@ -264,11 +264,11 @@
                     echo"</form>";
                     echo"<td></td>";
                     echo"<td></td>";
-                    echo"<td rowspan='3'><a href='titipBarang'><button style='float:right; padding:10%;margin-left:50%;'>Titip Barang</button></a></td>";
+                    echo"<td rowspan='3'><a href='titipBarang'><button style='float:right;width: 120px; padding:5px;'>Titip Barang</button></a></td>";
                 echo"</tr>";
                 echo"<tr>";
                     echo"<td>".$value->kotaAwal."</td>";
-                    echo"<td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:24px'></i></td>";
+                    echo"<td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:24px'></i></td>";    
                     echo"<td>".$value->kotaTujuan."</td>";
                 echo"</tr>";
                 echo"<tr>";
