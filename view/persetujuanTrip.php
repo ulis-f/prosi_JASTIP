@@ -2,17 +2,19 @@
         <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; margin-top: 10%; height: 1100px; background-color: #ebebeb; ">
             <form action="verifikasi" method="POST">
                 <h2>Post Trip</h2>
-                    <br>
+                    <br> 
                     <?php
                     foreach($result as $key=>$value){
                     echo"<img src='image/trip/".$value->fotoTiket."'width=560px height=300px>";
+                    echo"<br>";
+                    echo"<br>"; 
                     echo"<table>";
                     echo"<tr>";
-                    echo"<td>Tujuan</td>";
+                    echo"<td><b>Asal</b></td>";
                     echo"<td></td>";
-                    echo"<td>Asal</td>";
+                    echo"<td><b>Tujuan</b></td>";
                     echo"</tr>";
-                    echo"<tr>";
+                    echo"<tr>"; 
                     echo"<td>".$value->kotaAwal."</td>";
                     echo"<td><i class='fa fa-angle-double-right' style='font-size:24px'></i></td>";
                     echo"<td>".$value->kotaTujuan."</td>";

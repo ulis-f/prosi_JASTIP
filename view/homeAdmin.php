@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs justify-content-center" style="margin-top:6%; background-color:white;height: 60px; padding-top: 20px;">
     <li class="nav-item">
-        <a href="#" style="background-color:#ebebeb;">Post Trip</a>
+        <a href="#" style="background-color:#f9f9f9;">Post Trip</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="detailPendaftaran">Lengkapi Pendaftaran</a>

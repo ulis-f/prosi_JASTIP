@@ -64,7 +64,6 @@
             <h1><b>titipaja</b></h1>
         </div>
         <div class="w3-bar-right w3-right">
-                <i class="fa fa-bell" style="font-size:36px"></i>
                 <div class="dropdown">
                     <button onclick="myFunction()" class="dropbtn w3-theme">Nama admin
                         <i class="fa fa-caret-down"></i>
@@ -83,20 +82,7 @@
     function myFunction() {
       document.getElementById("myDropdown").classList.toggle("show");
     }
-    
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-                }
-            }
-        }
-    }
+
 
     var modal = document.getElementById('persetujuan');
     // When the user clicks anywhere outside of the modal, close it
