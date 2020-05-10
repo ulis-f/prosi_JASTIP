@@ -114,9 +114,9 @@
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div id="myDropdown" class="dropdown-content"> 
-                        <a href="profileUser"><i class="fa fa-user" style="font-size:15px"></i>Profile</a>
-                        <a href="lengkapPendaftaran"><i class="fa fa-edit" style="font-size:15px"></i>Lengkapi Pendaftaran</a>
-                        <a href="logout"><i class="fa fa-sign-out" style="font-size:15px"></i>Keluar</a>
+                        <a href="profileUser"><i class="fa fa-user w3-text-theme" style="font-size:15px"></i>Profile</a>
+                        <a href="lengkapPendaftaran"><i class="fa fa-edit w3-text-theme" style="font-size:15px"></i>Lengkapi Pendaftaran</a>
+                        <a href="logout"><i class="fa fa-sign-out w3-text-theme" style="font-size:15px"></i>Keluar</a>
                     </div>
                 </div>
                     ';
@@ -129,25 +129,6 @@
             </header>
     </div>	
     <script>
-    /* When the user clicks on the button, 
-    toggle between hiding and showing the dropdown content */
-    function myFunction() {
-      document.getElementById("myDropdown").classList.toggle("show");
-    }
-    
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-                }
-            }
-        }
-    }
 
     // Get the modal
     var modal = document.getElementById('login');
