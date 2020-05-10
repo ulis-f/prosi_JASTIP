@@ -271,14 +271,17 @@ class UserController{
 	}
 
 	public function cekMelengkapiPendaftaran($nama){
-		$lengkap = false;
+		$lengkap = 0;
 		if($nama!=null){
 			$query = "SELECT isTraveller FROM user WHERE namaUser LIKE '$nama'";
 	
 			$query_result = $this->db->executeSelectQuery($query);
 	
-			if($query_result[0]['isTraveller']!='pending'){
-				$lengkap = true;
+			if($query_result[0]['isTraveller']=='verified'){
+				$lengkap = 1;
+			}
+			else if($query_result[0]['isTraveller']=='pending'){
+				$lengkap = 2;
 			}
 		}
 		return $lengkap;

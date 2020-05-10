@@ -30,7 +30,7 @@ class adminController{
     public function view_getProfileLengkap(){
         $id = $_GET['id'];
         $result = $this->getProfileLengkap($id);
-        return view::createViewAdmin('', ["result"=>$result]);
+        return view::createViewAdmin('detailPendaftaran.php', ["result"=>$result]);
     }
 
     public function getPostTrip(){
@@ -40,8 +40,8 @@ class adminController{
                     FROM trip inner join 
                         (SELECT user.namaUser, transaksi.idTrip 
                         FROM user inner join transaksi on user.idUser = transaksi.idUser1 
-                        WHERE user.isTraveller = 'ya') as himpA on trip.idTrip = himpA.idTrip 
-                    WHERE trip.statusTrip IS NULL";
+                        WHERE user.isTraveller = 'verified') as himpA on trip.idTrip = himpA.idTrip 
+                    WHERE trip.statusTrip = 'pending'";
         $query_result = $this->db->executeSelectQuery($query);
         foreach($query_result as $key => $value){
             $result[] = new Trip($value['namaUser'], $value['gambarTrip'], $value['idTrip'],null,null,null,null);
@@ -57,7 +57,7 @@ class adminController{
         $query_result = $this->db->executeSelectQuery($query);
         $result=[];
         foreach($query_result as $key =>$value){
-            $result[] = new Trip(null,$value['gambarTrip'], $value['idTrip'], $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
+            $result[] = new Trip($value['idTrip'],$value['gambarTrip'], $value['idTrip'], $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
         }   
         return $result;
     }
@@ -86,10 +86,19 @@ class adminController{
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach($query_result as $key => $value){
-            $result = new User($value['idUser'], $value['namaUser'], null, null,null,null,$value['swafoto'], $value['gambarKTP'], $value['namaBank'], $value['norek'], $value['noKTP']);
+            $result[] = new User($value['idUser'], $value['namaUser'], null, null,null,null,$value['swafoto'], $value['gambarKTP'], $value['namaBank'], $value['norek'], $value['noKTP']);
         }
 
         return $result;
+    }
+
+    public function verifikasiDaftar(){
+        $iduser = $_POST['id'];
+        $verifikasi = $_POST['verified'];
+
+        $query = "UPDATE user SET isTraveller = '$verifikasi' WHERE idUser = '$iduser'";
+        
+        $query_result = $this->db->executeNonSelectQuery($query);
     }
 }
 ?>

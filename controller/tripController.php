@@ -44,7 +44,7 @@ class tripController{
 
 
         $query = "INSERT INTO trip (waktuAwal, waktuAkhir,statusTrip, gambarTrip, idKota1, idKota2) 
-        VALUES ('$waktuA', '$waktuT', null , '$fotoTiket', '$hasilAsal', '$hasilTujuan')";
+        VALUES ('$waktuA', '$waktuT', 'pending' , '$fotoTiket', '$hasilAsal', '$hasilTujuan')";
         $query_result = $this->db->executeNonSelectQuery($query);  
 
         $oldnametiket = $_FILES['fotoTiket']['tmp_name'];

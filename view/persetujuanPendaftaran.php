@@ -49,7 +49,7 @@
             foreach($result as $key => $value){
             echo"<tr>";
             echo"<form method='GET' action='detailDaftar'>";
-            echo"<input type='hidden' name='id' value'".$value->IDuser."'>";  
+            echo"<input type='hidden' name='id' value='".$value->IDuser."'>";  
             echo " <td>".$value->username."</td> ";
             echo " <td>".$value->email."</td>";
             echo " <td class='text-center'><input type='submit' value='Submit'></td>

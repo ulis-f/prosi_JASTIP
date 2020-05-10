@@ -294,7 +294,17 @@ function myFungsi(){
             echo "alert('$message');";
         }
         else{
-            echo " document.getElementById('trip').href='postTrip'; "; 
+            if($lengkap==0){
+                $message = "Silahkan Melengkapi Pendaftaran";
+                echo "alert('$message');";
+            }
+            else if($lengkap==2){
+                $message = "Melengkapi Pendaftaran anda Sedang di Progress, Mohon Menunggu";
+                echo "alert('$message');";
+            }
+            else{
+                echo " document.getElementById('trip').href='postTrip'; "; 
+            }
         }
     ?>
 }
