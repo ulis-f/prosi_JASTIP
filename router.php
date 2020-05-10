@@ -63,6 +63,11 @@
 				$userctrl = new userController();
 				echo $userctrl->view_profileTraveller();    
 				break;  
+			case $baseURL.'/lengkapDaftar':
+				require_once "controller/adminController.php";
+				$roleCtrl = new adminController();
+				echo $roleCtrl->view_getProfile();
+				break;
 			default:
 				echo '404 Not Found';
 				break;

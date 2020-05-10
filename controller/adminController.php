@@ -2,6 +2,7 @@
 require_once "controller/services/mysqlDB.php";
 require_once "controller/services/view.php";
 require_once "model/trip.php";
+require_once "model/user.php";
 
 class adminController{
 	protected $db;
@@ -19,6 +20,17 @@ class adminController{
         $id = $_GET['id'];
         $result = $this->getTrip($id);
         return view::createViewAdmin('persetujuanTrip.php',["result"=>$result]);
+    }
+
+    public function view_getProfile(){
+        $result = $this->getProfile();
+        return view::createViewAdmin('persetujuanPendaftaran.php',["result"=>$result]);
+    }
+
+    public function view_getProfileLengkap(){
+        $id = $_GET['id'];
+        $result = $this->getProfileLengkap($id);
+        return view::createViewAdmin('', ["result"=>$result]);
     }
 
     public function getPostTrip(){
@@ -57,6 +69,27 @@ class adminController{
         $query = "UPDATE trip SET statusTrip = '$verifikasi' WHERE idTrip = '$idTrip'";
         
         $query_result = $this->db->executeNonSelectQuery($query);
+    }
+
+    public function getProfile(){
+        $query = "SELECT idUser, namaUser, email FROM user WHERE isTraveller = 'pending' ";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result=[];
+        foreach($query_result as $key=>$value){
+            $result = new User($value['idUser'],$value['namaUser'],null,null,null,$value['email'],null,null,null,null,null);
+        }
+        return $result;
+    }
+
+    public function getProfileLengkap($id){
+        $query = "SELECT * FROM user WHERE idUser = '$id'";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        foreach($query_result as $key => $value){
+            $result = new User($value['idUser'], $value['namaUser'], null, null,null,null,$value['swafoto'], $value['gambarKTP'], $value['namaBank'], $value['norek'], $value['noKTP']);
+        }
+
+        return $result;
     }
 }
 ?>
