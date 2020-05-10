@@ -27,24 +27,31 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
             <div class="w3-col m12">
             <h4 style="margin:auto; margin-left: 10%;">Pejalanan yang Masih Aktif</h4>
                 <?php
-                    foreach($result as $key=>$value){
-                    echo"<div class='w3-card w3-round w3-white' style='width:80%; margin: auto; margin-top:5%;'>";
-                        echo"<div class='w3-container w3-padding'>";
-                        echo"<table>";
-                            echo"</tr>";  
-                            echo"<tr>";
-                                echo"<td>".$value->kotaAwal."</td>";
-                                echo"<td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:24px'></i></td>";
-                                echo"<td>".$value->kotaTujuan."</td>";
-
-                            echo"</tr>";
-                            echo"<tr>";
-                                echo"<td>".$value->waktuAwal."</td>";  
-                                echo"<td>".$value->waktuAkhir."</td>";     
-                            echo"</tr>";
-                        echo"</table>";
+                    if($result==null){
+                        echo"<div class='w3-card w3-round w3-white' style='width:80%; margin: auto; padding:20px;'>";
+                            echo"Anda belum memiliki trip";  
                         echo"</div>";
-                    echo"</div>";
+                    }
+                    else{
+                        foreach($result as $key=>$value){
+                        echo"<div class='w3-card w3-round w3-white' style='width:80%; margin: auto; margin-top:5%;'>";
+                            echo"<div class='w3-container w3-padding'>";
+                            echo"<table>";
+                                echo"</tr>";  
+                                echo"<tr>";
+                                    echo"<td>".$value->kotaAwal."</td>";
+                                    echo"<td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:24px'></i></td>";
+                                    echo"<td>".$value->kotaTujuan."</td>";
+
+                                echo"</tr>";
+                                echo"<tr>";
+                                    echo"<td>".$value->waktuAwal."</td>";  
+                                    echo"<td>".$value->waktuAkhir."</td>";     
+                                echo"</tr>";
+                            echo"</table>";
+                            echo"</div>";
+                        echo"</div>";
+                        }  
                     }
                 ?>
             </div>
