@@ -3,10 +3,10 @@
         <a href="#" style="background-color:#f9f9f9;">Post Trip</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="detailPendaftaran">Lengkapi Pendaftaran</a>
+        <a class="nav-link" href="lengkapDaftar">Lengkapi Pendaftaran</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Form Barang</a>
+        <a class="nav-link" href="#">Form Barang</a>  
     </li>
     <li class="nav-item">
         <a class="nav-link" href="#">Pembayaran</a>  
