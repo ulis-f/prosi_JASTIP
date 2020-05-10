@@ -1,12 +1,20 @@
-<!--<div class="menuAdmin">
-    <ul style="background-color: white; color:black ; margin-top:6%" >
-        <li><a class="active" href="#">Post Trip</a></li>
-        <li><a href="#">Live Chat</a></li>
-        <li><a href="#">Form Barang</a></li>
-        <li><a href="#">Pembayaran</a></li>
-        <li><a href="#">Mengirim Uang</a></li>  
-    </ul>  
-</div>-->
+<ul class="nav nav-tabs justify-content-center" style="margin-top:6%; background-color:white;height: 60px; padding-top: 20px;">
+    <li class="nav-item">
+        <a href="#" style="background-color:#ebebeb;">Post Trip</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="detailPendaftaran">Lengkapi Pendaftaran</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Form Barang</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Pembayaran</a>  
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Mengirim Uang</a>
+    </li>
+</ul>
 
 <table style="width:100%;" >
     
