@@ -52,7 +52,7 @@
             echo"<input type='hidden' name='id' value='".$value->IDuser."'>";  
             echo " <td>".$value->username."</td> ";
             echo " <td>".$value->email."</td>";
-            echo " <td class='text-center'><input type='submit' value='Submit'></td>
+            echo " <td class='text-center'><input class='w3-btn w3-theme-l1' type='submit' value='Detail'></td>
                 </tr>";
             echo"</form>";
             }
