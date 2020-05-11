@@ -19,7 +19,7 @@
                     echo "<br>
                     <label for=''><b> NIK</b></label>
                     <br>";
-                    echo "$value->noktp"; 
+                    echo "$value->noktp";   
                     echo "<br><br>
                     <label for=''><b>Nama Bank</b></label>
                     <br>";
