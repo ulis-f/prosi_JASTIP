@@ -68,6 +68,11 @@
 				$roleCtrl = new adminController();
 				echo $roleCtrl->view_getProfile();
 				break;
+			case $baseURL.'/detailDaftar':
+				require_once "controller/adminController.php";
+				$roleCtrl = new adminController();
+				echo $roleCtrl->view_getProfileLengkap();
+				break;
 			default:
 				echo '404 Not Found';
 				break;
@@ -122,6 +127,12 @@
 				$roleCtrl = new adminController();
 				$roleCtrl->verifikasi();
 				header('Location: homeAdmin');
+				break;
+			case $baseURL.'/verifikasiPendaftaran':
+				require_once "controller/adminController.php";
+				$roleCtrl = new adminController();
+				$roleCtrl->verifikasiDaftar();
+				header('Location: lengkapDaftar');
 				break;
 			default:
 				echo '404 Not Found';
