@@ -5,6 +5,7 @@
                     <br> 
                     <?php
                     foreach($result as $key=>$value){
+                    echo "<input type='hidden' name='id' value='".$value->idtrip."'>";
                     echo"<img src='image/trip/".$value->fotoTiket."'width=560px height=300px>";
                     echo"<br>";
                     echo"<br>"; 
