@@ -12,28 +12,28 @@
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
           <h6 class="text-uppercase mb-4 font-weight-bold">TitipAja</h6>
           <p>
-            <a href="#!">About Us</a>
+            <a href="../view/about.html">About Us</a>
           </p>
           <p>
-            <a href="#!">FAQ</a>
+            <a href="../view/about.html#faq">FAQ</a>
           </p>
           <p>
             <a href="#!">Feedback</a>
-          </p>
-          <p>
-            <a href="#!">Live Chat</a>
           </p>
         </div>
         <!-- Grid column -->
 
          <!-- Grid column -->
          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">Market</h6>
+            <h6 class="text-uppercase mb-4 font-weight-bold">Services</h6>  
             <p>
-                <a href="#!">Wanted Item</a>
+                <a href="../view/about.html#services">Wanted Item</a>
             </p>
             <p>
-                <a href="#!">Offer Item</a>
+                <a href="../view/about.html#services">Offer Item</a>
+            </p>
+            <p>
+                <a href="../view/about.html#services">Post Trip</a>
             </p>
         </div>
           <!-- Grid column -->
@@ -41,18 +41,21 @@
 
         <!-- Grid column -->
         <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">Pembayaran</h6>
+            <h6 class="text-uppercase mb-4 font-weight-bold">Payment</h6>
             <p>
-                <a href="#!"><img src="#" alt=""></a>
+                <a href="#!"><img src="#" alt="">BCA</a>
             </p>
             <p>
-                <a href="#!"><img src="#" alt=""></a>
+                <a href="#!"><img src="#" alt="">BNI</a>
             </p>
             <p>
-                <a href="#!"><img src="#" alt=""></a>
+                <a href="#!"><img src="#" alt="">BRI</a>
             </p>
             <p>
-                <a href="#!"><img src="#" alt=""></a>
+                <a href="#!"><img src="#" alt="">MANDIRI</a>
+            </p>
+            <p>
+                <a href="#!"><img src="#" alt="">OCBC NISP</a>
             </p>
         </div>
           <!-- Grid column -->
