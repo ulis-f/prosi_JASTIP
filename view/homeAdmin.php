@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs justify-content-center" style="margin-top:6%; background-color:white;">
     <li class="nav-item">
-        <a class="nav-link w3-text-theme" href="#" style="background-color:#f9f9f9; height: 100%;">Post Trip</a>
+        <a class="nav-link w3-text-theme" href="#" style="border-bottom: 4px solid red; height: 100%;">Post Trip</a>
     </li>
     <li class="nav-item w3-text-theme">
         <a class="nav-link text-center w3-text-theme" href="lengkapDaftar" style="height: 100%;">Lengkapi Pendaftaran</a>

@@ -21,7 +21,7 @@
         <a class="nav-link w3-text-theme" href="homeAdmin" style="height: 100%;">Post Trip</a>
     </li>
     <li class="nav-item w3-text-theme">
-        <a class="nav-link text-center w3-text-theme" href="#" style="background-color:#f9f9f9;height: 100%;">Lengkapi Pendaftaran</a>
+        <a class="nav-link text-center w3-text-theme" href="#" style="border-bottom: 4px solid red; height: 100%;">Lengkapi Pendaftaran</a>
     </li>
     <li class="nav-item w3-text-theme">
         <a class="nav-link" href="#"  style="height: 100%;">Form Barang</a>
