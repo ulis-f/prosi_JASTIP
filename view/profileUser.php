@@ -13,9 +13,9 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                 <p class="w3-center"><img src="../view/image/user.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
                 <hr>
                 <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i><?= $_SESSION['nama']?></p>
-                <p><i class="fa fa-phone fa-fw w3-margin-right w3-text-theme"></i> <?= $_SESSION['noHp']?></p>
-                <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i><?= $_SESSION['email']?></p>
-                <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i><?= $_SESSION['alamat']?></p>    
+                <p><i class="fa fa-phone fa-fw w3-margin-right w3-text-theme"></i>082234122</p>
+                <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i>oden@gmail.com</p>
+                <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>Jl. Rbl 166</p>    
             </div>      
         </div>
         <!-- End Left Column -->
@@ -28,7 +28,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
             <h4 style="margin:auto; margin-left: 10%;">Pejalanan yang Masih Aktif</h4>
                 <?php
                     if($result==null){
-                        echo"<div class='w3-card w3-round w3-white' style='width:80%; margin: auto; padding:20px;'>";
+                        echo"<div class='w3-card w3-round w3-white' style='width:80%; margin: auto; padding:20px; margin-top:5%;'>";
                             echo"Anda belum memiliki trip";  
                         echo"</div>";
                     }
