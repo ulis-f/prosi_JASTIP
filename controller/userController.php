@@ -54,8 +54,9 @@ class UserController{
 	public function view_profileUser(){
 		$nama = $_SESSION['nama'];
 		$result = $this->getTripSendiri(); 
+		$resultA = $this->getProfileSendiri();
 		$title = "titipaja.com - Profile User";
-		return view::createView('profileUser.php',["nama"=>$nama, "title"=>$title, "result"=>$result]);
+		return view::createView('profileUser.php',["nama"=>$nama, "title"=>$title, "result"=>$result, "resultA"=>$resultA]);
 	}
 
 	public function view_profileTraveller(){
@@ -98,7 +99,18 @@ class UserController{
             $result[] = new Trip(null,null, null, $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
         }   
         return $result;   
-    }
+	}
+	
+	public function getProfileSendiri(){
+		$nama = $_SESSION['nama'];
+		$query = "SELECT namaUser,email,nohp,alamat FROM user WHERE namaUser like '$nama' ";
+		$query_result = $this->db->executeSelectQuery($query);
+		$result=[];
+		foreach($query_result as $key =>$value){  
+            $result[] = new user(null,$value['namaUser'], null, $value['alamat'], $value['nohp'], $value['email'], null,null,null,null,null);
+        }   
+        return $result; 
+	}
 
 	public function getTraveller(){
         $query = "SELECT user.namaUser, himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 

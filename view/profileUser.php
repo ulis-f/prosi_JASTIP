@@ -12,10 +12,18 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                 <h4 class="w3-center">Profile Saya</h4>
                 <p class="w3-center"><img src="../view/image/user.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
                 <hr>
-                <p style="margin-bottom:1%; margin-top:1%;"><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i><?= $_SESSION['nama']?></p>
+                <!-- <p style="margin-bottom:1%; margin-top:1%;"><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i></p>
                 <p style="margin-bottom:1%; margin-top:1%;"><i class="fa fa-phone fa-fw w3-margin-right w3-text-theme"></i>082234122</p>
                 <p style="margin-bottom:1%; margin-top:1%;"><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i>oden@gmail.com</p>
-                <p style="margin-bottom:1%; margin-top:1%;"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>Jl. Rbl 166</p>    
+                <p style="margin-bottom:1%; margin-top:1%;"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>Jl. Rbl 166</p>     -->
+                <?php  
+                    foreach($resultA as $key=>$value){
+                        echo"<p style='margin-bottom:1%; margin-top:1%;'><i class='fa fa-user fa-fw w3-margin-right w3-text-theme'></i>".$value->username."</p>";
+                        echo"<p style='margin-bottom:1%; margin-top:1%;'><i class='fa fa-phone fa-fw w3-margin-right w3-text-theme'></i>".$value->noHp."</p>";
+                        echo"<p style='margin-bottom:1%; margin-top:1%;'><i class='fa fa-envelope fa-fw w3-margin-right w3-text-theme'></i>".$value->email."</p>";
+                        echo"<p style='margin-bottom:1%; margin-top:1%;'><i class='fa fa-home fa-fw w3-margin-right w3-text-theme'></i>".$value->alamat."</p>";
+                        }
+                ?>
                 <hr>
                 <div class="w3-center">
                     <button class="btn btn-danger btn-sm" style="margin-bottom:5%; padding:3%;" onclick="btnUpdateProfile()">Edit Profile</button>
@@ -47,26 +55,34 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                                         <div class="form-group">
                                             <label class="col-md-2 col-sm-3 col-xs-12 control-label">Nama User</label>
                                             <div class="col-md-10 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" value="<?= $_SESSION['nama']?>" required>
+                                            <?php
+                                                echo "<input type='text' class='form-control' value='".$value->username."' required>";
+                                            ?>
                                             </div>
                                         </div>
                     
                                         <div class="form-group">
                                             <label class="col-md-2 col-sm-3 col-xs-12 control-label">No. Telepon</label>
                                             <div class="col-md-10 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" value="00000000" required>
+                                            <?php
+                                                echo "<input type='text' class='form-control' value='".$value->noHp."' required>";
+                                            ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-2 col-sm-3 col-xs-12 control-label">Email</label>
                                             <div class="col-md-10 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" value="gmail.com" required>
+                                            <?php
+                                                echo "<input type='text' class='form-control' value='".$value->email."' required>";
+                                            ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-2 col-sm-3 col-xs-12 control-label">Alamat</label>
                                             <div class="col-md-10 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" value="rbl 166" required>
+                                            <?php
+                                                echo "<input type='text' class='form-control' value='".$value->alamat."' required>";
+                                            ?>
                                             </div>
                                         </div>
                                     </fieldset>
