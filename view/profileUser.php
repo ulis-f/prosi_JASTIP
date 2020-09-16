@@ -30,7 +30,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                 </div>
             </div>      
         </div>  
-        <!-- End Left Column -->
+        <!-- End Left Column -->    
     </div>
 
     <div id="updateProfile" class="modal">
@@ -43,7 +43,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                     <section class="module">
                         <div class="module-inner">
                             <div class="content-panel">
-                                <form class="form-horizontal">
+                                <form class="form-horizontal" action="updateProfile" method="POST">
                                     <fieldset class="fieldset">
                                         <p class="w3-center"><img src="../view/image/user.png" class="w3-circle imageProfile" style="height:70px;width:70px" alt="Avatar"></p>
                                         <br>
@@ -56,7 +56,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                                             <label class="col-md-2 col-sm-3 col-xs-12 control-label">Nama User</label>
                                             <div class="col-md-10 col-sm-9 col-xs-12">
                                             <?php
-                                                echo "<input type='text' class='form-control' value='".$value->username."' required>";
+                                                echo "<input type='text' class='form-control' value='".$value->username."' name='updateNama' required>";
                                             ?>
                                             </div>
                                         </div>
@@ -65,7 +65,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                                             <label class="col-md-2 col-sm-3 col-xs-12 control-label">No. Telepon</label>
                                             <div class="col-md-10 col-sm-9 col-xs-12">
                                             <?php
-                                                echo "<input type='text' class='form-control' value='".$value->noHp."' required>";
+                                                echo "<input type='text' class='form-control' value='".$value->noHp."' name='updateTelepon' required>";
                                             ?>
                                             </div>
                                         </div>
@@ -73,7 +73,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                                             <label class="col-md-2 col-sm-3 col-xs-12 control-label">Email</label>
                                             <div class="col-md-10 col-sm-9 col-xs-12">
                                             <?php
-                                                echo "<input type='text' class='form-control' value='".$value->email."' required>";
+                                                echo "<input type='text' class='form-control' value='".$value->email."' name='updateEmail' required>";
                                             ?>
                                             </div>
                                         </div>
@@ -81,14 +81,14 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                                             <label class="col-md-2 col-sm-3 col-xs-12 control-label">Alamat</label>
                                             <div class="col-md-10 col-sm-9 col-xs-12">
                                             <?php
-                                                echo "<input type='text' class='form-control' value='".$value->alamat."' required>";
+                                                echo "<input type='text' class='form-control' value='".$value->alamat."' name='updateAlamat' required>";
                                             ?>
                                             </div>
                                         </div>
                                     </fieldset>
                                     <hr>
                                     <div class="w3-center">
-                                        <button class="btn btn-primary btn-sm" style="margin-bottom:2%; padding:1%;">Update Profile</button>
+                                        <button class="btn btn-primary btn-sm" type="submit" style="margin-bottom:2%; padding:1%;">Update Profile</button>
                                     </div>
                                 </form>
                             </div>

@@ -134,6 +134,12 @@
 				$roleCtrl->verifikasiDaftar();
 				header('Location: lengkapDaftar');
 				break;
+			case $baseURL.'/updateProfile':
+				require_once "controller/userController.php";
+				$roleCtrl = new userController();
+				$roleCtrl->updateProfileUser();
+				header('Location: profileUser');
+				break;
 			default:
 				echo '404 Not Found';
 				break;

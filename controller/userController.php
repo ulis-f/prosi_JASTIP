@@ -298,6 +298,27 @@ class UserController{
 		}
 		return $lengkap;
 	}
+
+	public function updateProfileUser(){
+		$nama = $_SESSION['nama'];
+		$email = $_SESSION['email'];
+		$nohp = $_SESSION['noHp'];
+		$alamat = $_SESSION['alamat'];
+
+		$nama1 = $_POST['updateNama'];
+		$telepon1 = $_POST['updateTelepon'];
+		$email1 = $_POST['updateEmail'];
+		$alamat1 = $_POST['updateAlamat'];
+
+		$query = "UPDATE `user` 
+				SET `namaUser`='$nama1',`email`='$email1',`nohp`='$telepon1',`alamat`='$alamat1' 
+				WHERE `user.namaUser` = '$nama' ";
+		$query_result =$this->db->executeNonSelectQuery($query);  
+		// $_SESSION['nama']=$nama1;
+		// $_SESSION['email']=$email;
+		// $_SESSION['noHp']=$telepon1;
+		// $_SESSION['alamat']=$alamat1; 
+	}
 }
 
 
