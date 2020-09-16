@@ -12,13 +12,75 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                 <h4 class="w3-center">Profile Saya</h4>
                 <p class="w3-center"><img src="../view/image/user.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
                 <hr>
-                <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i><?= $_SESSION['nama']?></p>
-                <p><i class="fa fa-phone fa-fw w3-margin-right w3-text-theme"></i>082234122</p>
-                <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i>oden@gmail.com</p>
-                <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>Jl. Rbl 166</p>    
+                <p style="margin-bottom:1%; margin-top:1%;"><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i><?= $_SESSION['nama']?></p>
+                <p style="margin-bottom:1%; margin-top:1%;"><i class="fa fa-phone fa-fw w3-margin-right w3-text-theme"></i>082234122</p>
+                <p style="margin-bottom:1%; margin-top:1%;"><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i>oden@gmail.com</p>
+                <p style="margin-bottom:1%; margin-top:1%;"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>Jl. Rbl 166</p>    
+                <hr>
+                <div class="w3-center">
+                    <button class="btn btn-danger btn-sm" style="margin-bottom:5%; padding:3%;" onclick="btnUpdateProfile()">Edit Profile</button>
+                </div>
             </div>      
-        </div>
+        </div>  
         <!-- End Left Column -->
+    </div>
+
+    <div id="updateProfile" class="modal">
+        <div id="profile" class="modal-content animate">
+            <div class="imgcontainer">
+                <span onclick="btnCloseUpdateProfile()" class="close" title="Close Modal">&times;</span>
+            </div>
+            <div class="container"> 
+                <div class="view-account">
+                    <section class="module">
+                        <div class="module-inner">
+                            <div class="content-panel">
+                                <form class="form-horizontal">
+                                    <fieldset class="fieldset">
+                                        <p class="w3-center"><img src="../view/image/user.png" class="w3-circle imageProfile" style="height:70px;width:70px" alt="Avatar"></p>
+                                        <br>
+                                        <h6>Update Foto Profile</h6>
+                                        <br>
+                                        <input type='file' name='fotoProfile' accept='image/*'>                                      
+
+                                        <hr>
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-3 col-xs-12 control-label">Nama User</label>
+                                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                                <input type="text" class="form-control" value="<?= $_SESSION['nama']?>" required>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-3 col-xs-12 control-label">No. Telepon</label>
+                                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                                <input type="text" class="form-control" value="00000000" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-3 col-xs-12 control-label">Email</label>
+                                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                                <input type="text" class="form-control" value="gmail.com" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-3 col-xs-12 control-label">Alamat</label>
+                                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                                <input type="text" class="form-control" value="rbl 166" required>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <hr>
+                                    <div class="w3-center">
+                                        <button class="btn btn-primary btn-sm" style="margin-bottom:2%; padding:1%;">Update Profile</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- Middle Column -->
@@ -58,7 +120,38 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
             </div>
         </div>
     </div>
-    
-<!-- End Page Container -->
 </div>
 
+
+<script>
+
+    // Get the modal
+    var modal = document.getElementById('updateProfile');
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    } 
+
+    function btnUpdateProfile(){
+        document.getElementById('updateProfile').style.display='block';
+    }
+    function btnCloseUpdateProfile(){
+        document.getElementById('updateProfile').style.display='none';
+    }
+
+</script>
+
+
+<style>
+    #profile{
+        width: 60%;
+    }
+
+    .imageProfile{
+        float: left;
+    }
+
+
+</style>
