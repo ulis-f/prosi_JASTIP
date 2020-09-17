@@ -301,9 +301,7 @@ class UserController{
 
 	public function updateProfileUser(){
 		$nama = $_SESSION['nama'];
-		$email = $_SESSION['email'];
-		$nohp = $_SESSION['noHp'];
-		$alamat = $_SESSION['alamat'];
+		
 
 		$nama1 = $_POST['updateNama'];
 		$telepon1 = $_POST['updateTelepon'];
@@ -312,8 +310,9 @@ class UserController{
 
 		$query = "UPDATE `user` 
 				SET `namaUser`='$nama1',`email`='$email1',`nohp`='$telepon1',`alamat`='$alamat1' 
-				WHERE `user.namaUser` = '$nama' ";
-		$query_result =$this->db->executeNonSelectQuery($query);  
+				WHERE `namaUser` like '$nama' ";
+		$query_result =$this->db->executeNonSelectQuery($query);
+		$_SESSION['nama'] = $nama1;  
 		// $_SESSION['nama']=$nama1;
 		// $_SESSION['email']=$email;
 		// $_SESSION['noHp']=$telepon1;
