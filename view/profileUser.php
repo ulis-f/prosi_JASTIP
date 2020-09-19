@@ -10,12 +10,18 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
             <div class="w3-card w3-round w3-white">
                 <div class="w3-container">
                 <h4 class="w3-center">Profile Saya</h4>
-                <p class="w3-center"><img src="../view/image/user.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+                <p class="w3-center">
+                <?php
+                foreach($foto as $key => $value){    
+                    if($value->gambarProfile!=null){
+                        echo "<img src='../view/image/".$value->gambarProfile."' class='w3-circle' style='height:106px;width:106px' alt='Avatar'></p>";
+                    }
+                    else{
+                        echo "<img src='../view/image/user.png' class='w3-circle' style='height:106px;width:106px' alt='Avatar'></p>";
+                    }
+                }   
+                ?>
                 <hr>
-                <!-- <p style="margin-bottom:1%; margin-top:1%;"><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i></p>
-                <p style="margin-bottom:1%; margin-top:1%;"><i class="fa fa-phone fa-fw w3-margin-right w3-text-theme"></i>082234122</p>
-                <p style="margin-bottom:1%; margin-top:1%;"><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i>oden@gmail.com</p>
-                <p style="margin-bottom:1%; margin-top:1%;"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>Jl. Rbl 166</p>     -->
                 <?php  
                     foreach($resultA as $key=>$value){
                         echo"<p style='margin-bottom:1%; margin-top:1%;'><i class='fa fa-user fa-fw w3-margin-right w3-text-theme'></i>".$value->username."</p>";
@@ -45,11 +51,20 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                             <div class="content-panel">
                                 <form class="form-horizontal" action="updateProfile" method="POST">
                                     <fieldset class="fieldset">
-                                        <p class="w3-center"><img src="../view/image/user.png" class="w3-circle imageProfile" style="height:70px;width:70px" alt="Avatar"></p>
+                                        <p class="w3-center">
+                                        <?php
+                                        if($foto==null){
+                                            echo "<img src='../view/image/user.png' class='w3-circle imageProfile' style='height:70px;width:70px' alt='Avatar'></p>";
+                                        }
+                                        else{
+                                            echo "<img src='../view/image/".$foto."' class='w3-circle imageProfile' style='height:70px;width:70px' alt='Avatar'></p>";
+                                        }
+                                        
+                                        ?>
                                         <br>
                                         <h6>Update Foto Profile</h6>
                                         <br>
-                                        <input type='file' name='fotoProfile' accept='image/*'>                                      
+                                        <input type='file' name="updateFoto" id="updateFoto" accept="image/*">                                      
 
                                         <hr>
                                         <div class="form-group">

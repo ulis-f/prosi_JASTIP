@@ -53,10 +53,11 @@ class UserController{
 
 	public function view_profileUser(){
 		$nama = $_SESSION['nama'];
+		$foto = $this->getFotoProfile();
 		$result = $this->getTripSendiri(); 
 		$resultA = $this->getProfileSendiri();
 		$title = "titipaja.com - Profile User";
-		return view::createView('profileUser.php',["nama"=>$nama, "title"=>$title, "result"=>$result, "resultA"=>$resultA]);
+		return view::createView('profileUser.php',["nama"=>$nama, "title"=>$title, "result"=>$result, "resultA"=>$resultA, "foto"=>$foto]);
 	}
 
 	public function view_profileTraveller(){
@@ -107,10 +108,22 @@ class UserController{
 		$query_result = $this->db->executeSelectQuery($query);
 		$result=[];
 		foreach($query_result as $key =>$value){  
-            $result[] = new user(null,$value['namaUser'], null, $value['alamat'], $value['nohp'], $value['email'], null,null,null,null,null);
+            $result[] = new user(null,$value['namaUser'], null, $value['alamat'], $value['nohp'], $value['email'], null,null,null,null,null,null);
         }   
         return $result; 
 	}
+
+	public function getFotoProfile(){
+		$nama = $_SESSION['nama'];
+		$query = "SELECT gambarProfile FROM user WHERE namaUser LIKE '$nama'";
+		$query_result = $this->db->executeSelectQuery($query);
+		$result=[];
+		foreach($query_result as $key => $value){
+			$result[] = new user(null,null, null, null, null, null, null,null,null,null,null,$value['gambarProfile']);
+		}
+		return $result;
+	}
+	
 
 	public function getTraveller(){
         $query = "SELECT user.namaUser, himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
@@ -121,7 +134,7 @@ class UserController{
         $query_result = $this->db->executeSelectQuery($query);
         $result=[];
         foreach($query_result as $key =>$value){
-            $result[] = new Trip($value['namaUser'],null, null, $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
+            $result[] = new Trip($value['namaUser'],null, null, $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan'],null);
         }   
         return $result;   
     }
@@ -307,9 +320,15 @@ class UserController{
 		$telepon1 = $_POST['updateTelepon'];
 		$email1 = $_POST['updateEmail'];
 		$alamat1 = $_POST['updateAlamat'];
+		$foto = $_FILES['updateFoto']['name'];
+		
+		
+		$oldnameprofile = $_FILES['updateFoto']['tmp_name'];
+		$newnameprofile = dirname(__DIR__) . "\\view\image\\" . $foto;
+		move_uploaded_file($oldnameprofile, $newnameprofile);
 
 		$query = "UPDATE `user` 
-				SET `namaUser`='$nama1',`email`='$email1',`nohp`='$telepon1',`alamat`='$alamat1' 
+				SET `namaUser`='$nama1',`email`='$email1',`nohp`='$telepon1',`alamat`='$alamat1' , `gambarProfile`='$foto'
 				WHERE `namaUser` like '$nama' ";
 		$query_result =$this->db->executeNonSelectQuery($query);
 		$_SESSION['nama'] = $nama1;  
