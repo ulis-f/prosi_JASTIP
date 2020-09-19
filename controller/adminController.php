@@ -76,7 +76,7 @@ class adminController{
         $query = "SELECT idUser, namaUser, email FROM user WHERE isTraveller = 'pending' ";
         $query_result = $this->db->executeSelectQuery($query);
         foreach($query_result as $key=>$value){
-            $result[] = new User($value['idUser'],$value['namaUser'],null,null,null,$value['email'],null,null,null,null,null);
+            $result[] = new User($value['idUser'],$value['namaUser'],null,null,null,$value['email'],null,null,null,null,null,null);
         }
         return $result;
     }
@@ -86,7 +86,7 @@ class adminController{
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach($query_result as $key => $value){
-            $result[] = new User($value['idUser'], $value['namaUser'], null, null,null,null,$value['swafoto'], $value['gambarKTP'], $value['namaBank'], $value['norek'], $value['noKTP']);
+            $result[] = new User($value['idUser'], $value['namaUser'], null, null,null,null,$value['swafoto'], $value['gambarKTP'], $value['namaBank'], $value['norek'], $value['noKTP'],null);
         }
 
         return $result;

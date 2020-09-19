@@ -26,9 +26,9 @@
                 <br>
                 <br> 
 
-                <div class="w3-right" style="padding-top: 100px;"> 
-                    <div class="w3-btn w3-theme">Cancel</div>
-                    <input type="submit" class="w3-btn w3-theme" value="Submit">
+                <div class="w3-right" style="padding-top: 100px; padding-right:1%"> 
+                    <button class="btn btn-danger btn-sm" style="font-size:17px;">Cancel</button>
+                    <input type="submit" class="btn btn-primary btn-sm" style="font-size:17px;" value="Submit">
                 </div>
             </form>
         </div>
