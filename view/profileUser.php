@@ -49,22 +49,25 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                     <section class="module">
                         <div class="module-inner">
                             <div class="content-panel">
-                                <form class="form-horizontal" action="updateProfile" method="POST">
+                                <form class="form-horizontal" action="updateProfile" method="POST" enctype="multipart/form-data">
                                     <fieldset class="fieldset">
                                         <p class="w3-center">
                                         <?php
-                                        if($foto==null){
-                                            echo "<img src='../view/image/user.png' class='w3-circle imageProfile' style='height:70px;width:70px' alt='Avatar'></p>";
-                                        }
-                                        else{
-                                            echo "<img src='../view/image/".$foto."' class='w3-circle imageProfile' style='height:70px;width:70px' alt='Avatar'></p>";
-                                        }
+                                        foreach($foto as $key => $value){    
+                                            if($value->gambarProfile!=null){
+                                                echo "<img src='../view/image/".$value->gambarProfile."' class='w3-circle' style='height:106px;width:106px' alt='Avatar'></p>";
+                                            }
+                                            else{
+                                                echo "<img src='../view/image/user.png' class='w3-circle' style='height:106px;width:106px' alt='Avatar'></p>";
+                                            }
+                                        } 
                                         
                                         ?>
-                                        <br>
+                                        <br> 
                                         <h6>Update Foto Profile</h6>
                                         <br>
-                                        <input type='file' name="updateFoto" id="updateFoto" accept="image/*">                                      
+                                        <input type='file' name="updateFoto" id="updateFoto" accept="image/*">         
+                                                                      
 
                                         <hr>
                                         <div class="form-group">
