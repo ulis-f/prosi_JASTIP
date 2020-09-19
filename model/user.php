@@ -12,9 +12,10 @@ class User{
 	public $namabank;
 	public $norek;
 	public $noktp;
+	public $gambarProfile;
 
 
-	public function __construct($IDuser,$username,$password, $alamat, $noHp, $email, $swafoto, $gambarktp, $namabank, $norek, $noktp){
+	public function __construct($IDuser,$username,$password, $alamat, $noHp, $email, $swafoto, $gambarktp, $namabank, $norek, $noktp,$gambarProfile){
 		$this->IDuser = $IDuser;
 		$this->username = $username;
 		$this->password = $password;
@@ -26,6 +27,7 @@ class User{
 		$this->namabank = $namabank;
 		$this->norek = $norek;
 		$this->noktp = $noktp;  
+		$this->gambarProfile = $gambarProfile;
 	}
 
 
