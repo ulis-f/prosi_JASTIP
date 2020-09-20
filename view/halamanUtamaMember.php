@@ -2,6 +2,7 @@
 <div style="text-align: center; margin-bottom:5%; margin-top:10%;">
         
         <select id="country" name="country" style="padding: 15px; width:30%;"> 
+            <option value="Cari Negara">Cari Negara</option>
             <option value="Afganistan">Afghanistan</option>
             <option value="Albania">Albania</option>
             <option value="Algeria">Algeria</option>
