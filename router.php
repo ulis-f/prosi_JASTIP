@@ -73,6 +73,11 @@
 				$roleCtrl = new adminController();
 				echo $roleCtrl->view_getProfileLengkap();
 				break;
+			case $baseURL.'/cariNegara':
+				require_once "controller/userController.php";
+				$roleCtrl = new userController();
+				echo $roleCtrl->view_getPencarian();
+				break;
 			default:
 				echo '404 Not Found';
 				break;

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="http://localhost:80/prosi_JASTIP/view/layout/style/style.css">
 <div style="text-align: center; margin-bottom:5%; margin-top:10%;">
-        
+    <form action="cariNegara" method="GET">
         <select id="country" name="country" style="padding: 15px; width:30%;"> 
             <option value="Cari Negara">Cari Negara</option>
             <option value="Afganistan">Afghanistan</option>
@@ -250,6 +250,8 @@
             <option value="Zambia">Zambia</option>
             <option value="Zimbabwe">Zimbabwe</option>
         </select>
+        <input type="submit" value="Submit">
+        </form>
         <h6>Tambahkan Perjalanan <a id="trip" href="" onclick="myFungsi()" style="color:#b74449;">+trip</a></h6> 
     </div>
     

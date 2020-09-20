@@ -30,6 +30,25 @@ class UserController{
 		
 		return view::createView('halamanUtamaMember.php',["nama"=>$nama,"title"=>$title,"auth"=>$auth,"result"=>$result,"lengkap"=>$lengkap]);
 	}
+	public function view_getPencarian(){
+		$title = "titipaja.com - index";
+		$result = $this->getPencarian();
+		if(isset($_SESSION['nama']) && !empty($_SESSION['nama'])) {
+			$nama = $_SESSION['nama'];
+		}
+		else{
+			$nama = null;
+		}
+		if(isset($_SESSION['auth']) && !empty($_SESSION['auth'])) {
+			$auth = $_SESSION['auth'];
+		}
+		else{
+			$auth = 1;
+		}
+		$lengkap = $this->cekMelengkapiPendaftaran($nama);
+		
+		return view::createView('halamanUtamaMember.php',["nama"=>$nama,"title"=>$title,"auth"=>$auth,"result"=>$result,"lengkap"=>$lengkap]);
+	}
 
 	public function view_lengkap(){
 		$nama = $_SESSION['nama'];  
@@ -332,10 +351,24 @@ class UserController{
 				WHERE `namaUser` like '$nama' ";
 		$query_result =$this->db->executeNonSelectQuery($query);
 		$_SESSION['nama'] = $nama1;  
-		// $_SESSION['nama']=$nama1;
-		// $_SESSION['email']=$email;
-		// $_SESSION['noHp']=$telepon1;
-		// $_SESSION['alamat']=$alamat1; 
+		
+	}
+
+	public function getPencarian(){
+		$negara = $_GET['country'];
+
+		$query = "SELECT user.namaUser, himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
+		as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
+		FROM kota inner join (SELECT provinsi.namaProvinsi, provinsi.idNegara, himpKota.idTrip, himpKota.waktuAwal, himpKota.waktuAkhir, himpKota.statusTrip, himpKota.gambarTrip, himpKota.idKota1, himpKota.idKota2, himpKota.idKota, himpKota.namaKota FROM provinsi inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota WHERE statusTrip = 'verified') 
+		as himpKota on provinsi.idProvinsi = himpKota.idProvinsi WHERE idNegara = (SELECT idNegara FROM negara WHERE namaNegara = '$negara'))
+		as himpA on kota.idKota = himpA.idKota2 inner join post on post.idTrip = himpA.idTrip 
+		inner join user on user.idUser= post.idUser";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result=[];
+        foreach($query_result as $key =>$value){
+            $result[] = new Trip($value['namaUser'],null, null, $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan'],null);
+        }   
+        return $result;  
 	}
 }
 
