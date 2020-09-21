@@ -8,7 +8,7 @@
         padding:1%;
     }
     .select2-container--default .select2-selection--single{
-        border: 1px solid #ccc !important; 
+        border: 1px solid #6699cc !important; 
         border-radius: 5px !important; 
     }
 </style>
@@ -265,7 +265,7 @@
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
 	        </select>
-                <input style="height:40px;font-size:15px;border-radius: 25px;border: 2px solid #6ca0dc;color:#6ca0dc;background-color:white;" type="submit" value="Submit">    
+                <input style="height:40px;font-size:15px;border-radius: 3px;border: 2px solid #6ca0dc;color:white;background-color:#6699cc;" type="submit" value="Submit">    
 	    </form>
         <h6>Tambahkan Perjalanan <a id="trip" href="" onclick="myFungsi()" style="color:#b74449;">+trip</a></h6>
  	</div>
@@ -538,20 +538,21 @@
                 echo"<tr>";
                     echo"<form id='myForm' method='GET' action='profileTraveller'";
                     echo"<input type='hidden' name='nama' value='".$value->namaUser."'>";
-                    echo"<td><div id='nama'><b>".$value->namaUser."</b></div></td>";  
+                    echo"<td style='font-size:14px'><div id='nama'><b>".$value->namaUser."</b></div></td>";  
                     echo"</form>";
                     echo"<td></td>"; 
                     echo"<td></td>";
-                    echo"<td rowspan='3'><a href='titipBarang'><div class='w3-btn w3-theme-l1' style='float:right;width: 120px; padding:15px;'>Titip Barang</div></a></td>";
+                    echo"<td rowspan='3'><a href='titipBarang'><div style='float:right;width: 130px; padding:15px;font-size:12px; color:#6699cc'>Titip Barang
+                    <i class='fas fa-shopping-cart' style='font-size:20px'></i></div></a></td>";
                 echo"</tr>";
                 echo"<tr>";
-                    echo"<td>".$value->kotaAwal."</td>";
+                    echo"<td style='font-size:12px'>".$value->kotaAwal."</td>";
                     echo"<td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:24px'></i></td>";    
-                    echo"<td>".$value->kotaTujuan."</td>";
+                    echo"<td style='font-size:12px'>".$value->kotaTujuan."</td>";
                 echo"</tr>";
                 echo"<tr>";
-                    echo"<td>".$value->waktuAwal."</td>";  
-                    echo"<td>".$value->waktuAkhir."</td>";     
+                    echo"<td style='font-size:12px'>".$value->waktuAwal."</td>";  
+                    echo"<td style='font-size:12px'>".$value->waktuAkhir."</td>";     
                 echo"</tr>";
             echo"</table>";
             echo"</div>";
