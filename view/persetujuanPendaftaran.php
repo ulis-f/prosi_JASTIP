@@ -12,7 +12,7 @@
     }
 
     tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: white;
     }
 </style>
 
@@ -56,7 +56,7 @@
                 </tr>";
             echo"</form>";
             }
-        ?>
+        ?>  
         </table>
     </div>
 </div>  
