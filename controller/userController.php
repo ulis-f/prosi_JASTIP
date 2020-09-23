@@ -73,7 +73,7 @@ class UserController{
 	public function view_Market(){
 		$nama = $_SESSION['nama'];
 		$title = "titipaja.com - Market";
-		return view::createView('wantedItem.php',["nama"=>$nama,"title"=>$title]);    
+		return view::createView('market.php',["nama"=>$nama,"title"=>$title]);    
 	}
 
 	public function view_profileUser(){

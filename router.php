@@ -78,7 +78,7 @@
 				$roleCtrl = new userController();
 				echo $roleCtrl->view_getPencarian();
 				break;
-			case $baseURL . '/wantedItem':    
+			case $baseURL . '/market':    
 				require_once "controller/userController.php";
 				$userctrl = new userController();
 				echo $userctrl->view_Market();
