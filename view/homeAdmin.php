@@ -34,7 +34,7 @@
                                 echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn w3-theme' value='Detail'></p>";
                             echo"</form>";
                         echo"</div>";
-                        echo "</div>";
+                        echo "</div>";  
                     }
 
                     elseif($i==2){

@@ -78,6 +78,11 @@
 				$roleCtrl = new userController();
 				echo $roleCtrl->view_getPencarian();
 				break;
+			case $baseURL . '/wantedItem':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_Market();
+				break;
 			default:
 				echo '404 Not Found';
 				break;

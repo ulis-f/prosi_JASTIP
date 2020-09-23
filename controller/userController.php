@@ -70,6 +70,12 @@ class UserController{
 		return view::createViewAdmin('homeAdmin.php',[]);
 	}
 
+	public function view_Market(){
+		$nama = $_SESSION['nama'];
+		$title = "titipaja.com - Market";
+		return view::createView('wantedItem.php',["nama"=>$nama,"title"=>$title]);    
+	}
+
 	public function view_profileUser(){
 		$nama = $_SESSION['nama'];
 		$foto = $this->getFotoProfile();
