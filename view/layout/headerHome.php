@@ -65,7 +65,7 @@
     </div>
     <div class="w3-bar-right w3-right">            
             <h4 class="w3-bar-item w3-display-inline w3-btn" >
-            <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Market</h4>
+            <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn" onclick="market()">Market</h4>
             <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Tracking</h4>
             <?php
                 if($nama==null){   
@@ -143,6 +143,9 @@
     }
     function btnLoginClose(){
         document.getElementById('login').style.display='none';
+    }
+    function market(){
+        location.href="market";
     }
 
 </script>

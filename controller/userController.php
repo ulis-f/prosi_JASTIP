@@ -71,9 +71,36 @@ class UserController{
 	}
 
 	public function view_Market(){
-		$nama = $_SESSION['nama'];
+		if(isset($_SESSION['nama']) && !empty($_SESSION['nama'])) {
+			$nama = $_SESSION['nama'];
+		}
+		else{
+			$nama = null;
+		}
 		$title = "titipaja.com - Market";
 		return view::createView('market.php',["nama"=>$nama,"title"=>$title]);    
+	}
+
+	public function view_marketWanted(){
+		if(isset($_SESSION['nama']) && !empty($_SESSION['nama'])) {
+			$nama = $_SESSION['nama'];
+		}
+		else{
+			$nama = null;
+		}
+		$title = "titipaja.com - Market";
+		return view::createView('wantedItem.php',["nama"=>$nama, "title"=>$title]);
+	}
+
+	public function view_marketOffer(){
+		if(isset($_SESSION['nama']) && !empty($_SESSION['nama'])) {
+			$nama = $_SESSION['nama'];
+		}
+		else{
+			$nama = null;
+		}
+		$title = "titipaja.com - Market";
+		return view::createView('marketOfferItem.php',["nama"=>$nama, "title"=>$title]);
 	}
 
 	public function view_profileUser(){
