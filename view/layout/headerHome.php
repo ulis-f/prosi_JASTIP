@@ -70,7 +70,7 @@
             <?php
                 if($nama==null){   
                     echo '
-                        <h3 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn" onclick="btnLogin()" >Daftar / Masuk</h3>
+                    <button id="loginButton" class="dropbtn  w3-theme" onclick="btnLogin()" style="padding:21px;"><h4>Daftar / Masuk</h4></button>
                         <div id="login" class="modal">
                             <div class="modal-content animate" >
                                 <div class="imgcontainer">

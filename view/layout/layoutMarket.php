@@ -1,9 +1,9 @@
 <?php
-    include "headerHome.php";
+    include "headerMarket.php";
 ?>
 <body>
     <?php
-        echo $content;
+        echo $content;   
     ?>
 </body>
 <?php

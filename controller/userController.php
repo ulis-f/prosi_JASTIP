@@ -78,7 +78,7 @@ class UserController{
 			$nama = null;
 		}
 		$title = "titipaja.com - Market";
-		return view::createView('market.php',["nama"=>$nama,"title"=>$title]);    
+		return view::createViewMarket('market.php',["nama"=>$nama,"title"=>$title]);    
 	}
 
 	public function view_marketWanted(){
@@ -89,7 +89,7 @@ class UserController{
 			$nama = null;
 		}
 		$title = "titipaja.com - Market";
-		return view::createView('wantedItem.php',["nama"=>$nama, "title"=>$title]);
+		return view::createViewMarket('wantedItem.php',["nama"=>$nama, "title"=>$title]);
 	}
 
 	public function view_marketOffer(){
@@ -99,8 +99,8 @@ class UserController{
 		else{
 			$nama = null;
 		}
-		$title = "titipaja.com - Market";
-		return view::createView('marketOfferItem.php',["nama"=>$nama, "title"=>$title]);
+		$title = "titipaja.com - Market"; 
+		return view::createViewMarket('marketOfferItem.php',["nama"=>$nama, "title"=>$title]);
 	}
 
 	public function view_profileUser(){
