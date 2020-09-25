@@ -1,5 +1,5 @@
 <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1050px; ">
+        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1000px; ">
             <h2>Penawaran Barang</h2>
             <br>
             <table>
@@ -36,11 +36,6 @@
                     <td>
                         <textarea name="" id="" cols="30" rows="5"></textarea>
                     </td>
-                </tr>
-                <tr>
-                    <td>Dapat ditemukan di</td>
-                    <td>:</td>
-                    <td><input type="text" placeholder="Ditemukan di" style="width: 255px;"></td>
                 </tr>
             </table>
             <br>
