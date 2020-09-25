@@ -93,6 +93,16 @@
 				$userctrl = new userController();
 				echo $userctrl->view_marketOffer();
 				break;
+			case $baseURL . '/addOfferMarket':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_addOffer();
+				break;
+			case $baseURL . '/addWantedMarket':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_addWanted(); 
+				break;
 			default:
 				echo '404 Not Found';
 				break;

@@ -1,5 +1,5 @@
 <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 750px; ">
+        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1050px; ">
             <h2>Penawaran Barang</h2>
             <br>
             <table>
@@ -7,6 +7,11 @@
                     <td style="width: 250px;">Nama Barang</td>
                     <td>:</td>
                     <td><input type="text" placeholder="Masukkan Nama Barang" style="width: 255px;"></td>
+                </tr>
+                <tr>
+                    <td style="width: 250px;">Kategori Barang</td>
+                    <td>:</td>
+                    <td><input type="text" placeholder="Masukkan Kategori Barang" style="width: 255px;"></td>
                 </tr>
                 <tr>
                     <td>Harga Dijual</td>
@@ -17,14 +22,13 @@
                     <td>Total Harga*</td>
                     <td>:</td>
                     <td><input class="w3-input w3-border w3-border-theme" type="text"></td>
-                    <tr>
+                    <br>
                         *Total harga sudah termasuk biaya ongkir dan akan dipotong 4% untuk biaya transaksi titipaja
-                    </tr>
                 </tr>
                 <tr>
-                    <td>Nama Negara</td>
+                    <td style="width: 250px;">Nama Negara</td>
                     <td>:</td>
-                    <td><input class="w3-input w3-border w3-border-theme" type="text"></td>
+                    <td><input type="text" placeholder="Masukkan Nama Negara" style="width: 255px;"></td>
                 </tr>
                 <tr>
                     <td>Deskripsi Barang</td>

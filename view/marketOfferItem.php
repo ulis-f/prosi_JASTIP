@@ -6,12 +6,13 @@
             <a class="nav-link text-center w3-text-theme" href="offerMarket" style="height: 100%; border-bottom: 4px solid red;">Offer Item</a>
         </li>
     </ul>
+
 <div style="margin-top:1%; margin-bottom:2%;margin-top:50px; padding-left:15px">
-    <h6>Want a offer <a id="wanted" href="" onclick="validasi()" style="color:#b74449;">+Offer</a></h6>
+    <h6>Want a offer <a id="offer" href="addOfferMarket" onclick="validasi()" style="color:#b74449;">+Offer</a></h6>
 </div>
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row">  
         <div class="col"> 
             <div class="w3-card w3-white">
                 <p align='left' style='padding:10px; background-color:#6699cc'><label style="color:white;">Nama Barang</label></p>

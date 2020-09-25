@@ -288,7 +288,7 @@
 </script>
 
 <div style="margin-top:1%; margin-bottom:2%;margin-top:50px; padding-left:15px">
-    <label><h5>Want a request <a id="wanted"  href="" onclick="validasi()" style="color:#b74449;">+Want</a></h5></label>
+    <label><h5>Want a request <a id="wanted"  href="addWantedMarket" onclick="validasi()" style="color:#b74449;">+Want</a></h5></label>
 </div>
    
 <div class="container-fluid">
