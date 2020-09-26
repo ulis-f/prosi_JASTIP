@@ -8,7 +8,7 @@
     </ul>
 
 <div style="margin-top:1%; margin-bottom:2%;margin-top:50px; padding-left:15px">
-    <h6>Want a offer <a id="offer" href="addOfferMarket" onclick="validasi()" style="color:#b74449;">+Offer</a></h6>
+    <h6>Want a offer <a id="offer" href="" onclick="validasi()" style="color:#b74449;">+Offer</a></h6>
 </div>
 
 <div class="container-fluid">
@@ -62,7 +62,7 @@
             
         }
         else{
-            echo "location.href='wantedMarket'";
+            echo " document.getElementById('offer').href='addOfferMarket';";
         }
         ?>
     }

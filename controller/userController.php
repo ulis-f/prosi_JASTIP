@@ -77,8 +77,14 @@ class UserController{
 		else{
 			$nama = null;
 		}
+		if(isset($_SESSION['auth']) && !empty($_SESSION['auth'])) {
+			$auth = $_SESSION['auth'];
+		}
+		else{
+			$auth = 1;
+		}
 		$title = "titipaja.com - Market";
-		return view::createViewMarket('market.php',["nama"=>$nama,"title"=>$title]);    
+		return view::createViewMarket('market.php',["nama"=>$nama,"title"=>$title,"auth"=>$auth]);    
 	}
 
 	public function view_marketWanted(){
@@ -110,8 +116,14 @@ class UserController{
 		else{
 			$nama = null;
 		}
+		if(isset($_SESSION['auth']) && !empty($_SESSION['auth'])) {
+			$auth = $_SESSION['auth'];
+		}
+		else{
+			$auth = 1;
+		}
 		$title = "titipaja.com - Market"; 
-		return view::createViewMarket('marketOfferItem.php',["nama"=>$nama, "title"=>$title]);
+		return view::createViewMarket('marketOfferItem.php',["nama"=>$nama, "title"=>$title,"auth"=>$auth]);
 	}
 
 	public function view_addOffer(){
