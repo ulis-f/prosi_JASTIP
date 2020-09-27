@@ -13,12 +13,12 @@
     }
 </style>
 <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1050px; ">
+        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1000px; ">
             <h2>Penawaran Barang</h2>
             <br>
             <table>
             <form action="offerKlik" method="POST" enctype="multipart/form-data">
-            <tr>
+                <tr>
                     <td><label for="tripAktif">Trip yang masih aktif</label></td>
                     <td>:</td>
                     <td>masukan disini</td>
@@ -41,14 +41,13 @@
                 <tr>
                     <td>Total Harga*</td>
                     <td>:</td>
-                    <td><input id="totalHarga" class="w3-input w3-border w3-border-theme" name="totalHarga" type="text"></td>
-                    <br>
-                        *Total harga sudah termasuk biaya ongkir dan akan dipotong 4% untuk biaya transaksi titipaja
+                    <td><input class="w3-input w3-border w3-border-theme" name="totalHarga" type="text"></td>
                 </tr>
                 <tr>
                     <td style="width: 250px;">Nama Negara</td>
                     <td>:</td>
-                    <td><form class="" action="cariNegara" method="GET">  
+                    <td>
+                    <form class="" action="cariNegara" method="GET">  
                         <select class="form-control select2" id="country" name="country" style="width:295px;">
                             <option value="Cari Negara">Pilih Negara</option>
                             <option value="Afganistan">Afghanistan</option>
@@ -299,6 +298,7 @@
                             <option value="Zimbabwe">Zimbabwe</option>
                         </select>
                     </form>
+                    
                     </td>
                 </tr>
                 <tr>
@@ -308,20 +308,13 @@
                         <textarea name="deskripsiBarang" id="" cols="30" rows="5"></textarea>
                     </td>
                 </tr>
-                <tr>
-                    <td>Dapat ditemukan di</td>
-                    <td>:</td>
-                    <td><input type="text" placeholder="Ditemukan di" name="ditemukan" style="width: 255px;"></td>
-                </tr>
-            
             </table>
             <br>
             <h4>Upload Gambar</h4>
-            <input type='file' name="gambar" id="gambar" accept='image/*'> 
-            
-            
+            <input type='file' name="gambar" id="gambar" accept='image/*'>   
             <br>
             <br>
+            <p style="color:red;font-size:13px;">*Total harga sudah termasuk biaya ongkir dan akan dipotong 4% untuk biaya transaksi titipaja</p>
             <br>
             <br> 
 

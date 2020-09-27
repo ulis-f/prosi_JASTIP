@@ -1,7 +1,7 @@
 <style>
     figure:hover{
     transform: scale(2.4);
-}
+} 
 </style>
   
     <div class="container">
