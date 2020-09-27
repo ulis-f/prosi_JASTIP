@@ -3,6 +3,7 @@ require_once "controller/services/mysqlDB.php";
 require_once "controller/services/view.php";
 require_once "model/user.php";
 require_once "model/trip.php";
+require_once "model/transaksi.php";
 
 class UserController{
 	protected $db;
@@ -110,6 +111,7 @@ class UserController{
 	}
 
 	public function view_marketOffer(){
+		$result = $this->getOffer();
 		if(isset($_SESSION['nama']) && !empty($_SESSION['nama'])) {
 			$nama = $_SESSION['nama'];
 		}
@@ -123,7 +125,7 @@ class UserController{
 			$auth = 1;
 		}
 		$title = "titipaja.com - Market"; 
-		return view::createViewMarket('marketOfferItem.php',["nama"=>$nama, "title"=>$title,"auth"=>$auth]);
+		return view::createViewMarket('marketOfferItem.php',["nama"=>$nama, "title"=>$title,"auth"=>$auth, "result"=>$result]);
 	}
 
 	public function view_addOffer(){
@@ -436,6 +438,16 @@ class UserController{
             $result[] = new Trip($value['namaUser'],null, null, $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan'],null);
         }   
         return $result;  
+	}
+
+	public function getOffer(){
+		$query = "SELECT * FROM transaksi WHERE statusBarang LIKE 'onMarket'";
+		$query_result = $this->db->executeSelectQuery($query);
+		$result=[];
+		foreach($query_result as $key=>$value){
+			$result[]= new transaksi(null,null,null,null,$value['hargaBarang'],null,null,$value['namaBarang'],null,null,$value['gambarBarang'],null,null);
+		}
+		return $result;
 	}
 }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2020 at 09:24 AM
+-- Generation Time: Sep 27, 2020 at 12:13 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -191,7 +191,7 @@ INSERT INTO `provinsi` (`idProvinsi`, `namaProvinsi`, `idNegara`) VALUES
 
 CREATE TABLE `transaksi` (
   `idUser1` int(11) NOT NULL,
-  `IdTrip` int(11) NOT NULL,
+  `IdTrip` int(11) DEFAULT NULL,
   `idUser2` int(11) DEFAULT NULL,
   `jumlahBarang` int(11) DEFAULT NULL,
   `hargaBarang` int(11) DEFAULT NULL,
@@ -218,7 +218,8 @@ INSERT INTO `transaksi` (`idUser1`, `IdTrip`, `idUser2`, `jumlahBarang`, `hargaB
 (3, 20, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (26, 21, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (27, 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(27, 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(27, 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1, NULL, NULL, 1, 250000, NULL, NULL, 'Sepatu Nike Air Force 1', 'onMarket', 'berwarna putih', 'air-force.jpg', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -285,7 +286,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`idUser`, `namaUser`, `email`, `password`, `nohp`, `alamat`, `rating`, `isTraveller`, `gambarKTP`, `swafoto`, `namaBank`, `norek`, `noKTP`, `idKelurahan`, `gambarProfile`) VALUES
 (1, 'quadrat nadji', '2017730068@student.unpar.ac.id', 'quadratnp', 9090909, 'jl BJ aja', '', '', 'ide.jpg', 'Qu.jpg', 'BCA', '', '', 5, NULL),
 (3, 'informatika', 'informatika@unpar.ac.id', 'informatika', 2147483647, 'ciumbuleauit', NULL, 'verified', 'shopping-bagsl.jpg', 'shopping-bagsl.jpg', 'OCBC', '902834162', '32467289', 13, ''),
-(14, 'test', 'test@test.com', 'test', 7364278, 'test', NULL, 'verified', 'ide.jpg', 'ide.jpg', 'BCA', '22122', '11113', 18, ''),
+(14, 'test', 'test@test.com', 'test', 12345, 'test', NULL, 'verified', 'ide.jpg', 'ide.jpg', 'BCA', '22122', '11113', 18, 'Qu.jpg'),
 (24, 'otto', 'ottowalada@gmail.com', 'ottoarab', 7564756, 'otto', NULL, 'pending', 'head.jpg', 'user.png', 'MANDIRI', '902343743', '2000000238231', 34, NULL),
 (25, 'cowo', 'cowo@gmail.com', 'cowo', 10052020, 'jl. BJ 12', NULL, 'verified', 'shopping-bagsl.jpg', 'shopping-bagsl.jpg', 'BRI', '1234-33323-121', '09876', 13, NULL),
 (26, 'byon nugraha', 'byon@gmail.com', 'byon', 2147483647, 'jalan haji hasbi no.22', NULL, 'verified', 'user.png', 'head.jpg', 'BCA', '3847281', '2837428', 5, NULL),
