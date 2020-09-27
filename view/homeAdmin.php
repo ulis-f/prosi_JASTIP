@@ -6,7 +6,7 @@
         <a class="nav-link text-center w3-text-theme" href="lengkapDaftar" style="height: 100%;">Lengkapi Pendaftaran</a>
     </li>
     <li class="nav-item w3-text-theme">
-        <a class="nav-link" href="#"  style="height: 100%;">Form Barang</a>
+        <a class="nav-link" href="persetujuanBarang"  style="height: 100%;">Form Barang</a>
     </li>
     <li class="nav-item w3-text-theme">
         <a class="nav-link" href="#" style="height: 100%;">Pembayaran</a>  

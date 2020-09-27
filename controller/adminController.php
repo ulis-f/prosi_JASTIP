@@ -3,6 +3,8 @@ require_once "controller/services/mysqlDB.php";
 require_once "controller/services/view.php";
 require_once "model/trip.php";
 require_once "model/user.php";
+require_once "model/transaksi.php";
+require_once "model/barang.php";
 
 class adminController{
 	protected $db;
@@ -20,6 +22,17 @@ class adminController{
         $id = $_GET['id'];
         $result = $this->getTrip($id);
         return view::createViewAdmin('persetujuanTrip.php',["result"=>$result]);
+    }
+
+    public function view_persetujuanBarang(){
+        $result = $this->getBarang();
+        return view::createViewAdmin("persetujuanBarang.php",["result"=>$result]);
+    }
+
+    public function view_detailBarang(){
+        $namaBarang = $_GET['namaBarang'];
+        $result = $this->getDetailBarang($namaBarang);
+        return view::createViewAdmin("detailPersetujuanBarang.php",["result"=>$result]);
     }
 
     public function view_getProfile(){
@@ -99,6 +112,26 @@ class adminController{
         $query = "UPDATE user SET isTraveller = '$verifikasi' WHERE idUser = '$iduser'";
         
         $query_result = $this->db->executeNonSelectQuery($query);
+    }
+
+    public function getBarang(){
+        $query="SELECT namaUser, email, namaBarang  FROM transaksi inner join user ON transaksi.idUser1 = user.idUser WHERE statusBarang = 'pending' ";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        foreach($query_result as $key => $value){
+            $result[] = new Barang($value['namaUser'],$value['email'],$value['namaBarang']);
+        }
+        return $result;
+    }
+
+    public function getDetailBarang($namaBarang){
+         $query = "SELECT * FROM transaksi inner join kategori on transaksi.idKategori = kategori.idKategori WHERE namaBarang LIKE '$namaBarang'";
+         $query_result = $this->db->executeSelectQuery($query);
+         $result = [];
+         foreach($query_result as $key => $value){
+             $result[] = new Transaksi(null,null,null,null,$value['hargaBarang'],null,null,$value['namaBarang'],null,$value['deskripsiBarang'],$value['gambarBarang'],null,$value['namaKategori']);
+         }
+         return $result;
     }
 }
 ?>

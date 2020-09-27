@@ -43,15 +43,17 @@
         <tr>
             <th>Nama</th>
             <th>Email</th>
+            <th>Nama Barang</th>
             <th>Persetujuan</th>
         </tr>
         <?php
             foreach($result as $key => $value){
             echo"<tr>";
-            echo"<form method='GET' action='detailDaftar'>";
-            echo"<input type='hidden' name='id' value='".$value->IDuser."'>";  
+            echo"<form method='GET' action='detailBarang'>";
+            echo"<input type='hidden' name='namaBarang' value='".$value->namaBarang."'>";  
             echo " <td>".$value->username."</td> ";
             echo " <td>".$value->email."</td>";
+            echo " <td>".$value->namaBarang."</td>";
             echo " <td class='text-center'><input class='btn btn-primary btn-sm' style='font-size:15px' type='submit' value='Detail'></td>
                 </tr>";
             echo"</form>";

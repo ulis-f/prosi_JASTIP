@@ -41,12 +41,16 @@
 				require_once "controller/adminController.php";
 				$userctrl = new adminController();
 				echo $userctrl->view_index();
-				break;  
-				break;
+				break; 
 			case $baseURL . '/persetujuan':
 				require_once "controller/adminController.php";
 				$userctrl = new adminController();
 				echo $userctrl->view_persetujuan();
+				break;
+			case $baseURL . '/persetujuanBarang':
+				require_once "controller/adminController.php";
+				$userctrl = new adminController();
+				echo $userctrl->view_persetujuanBarang();
 				break; 
 			case $baseURL . '/profileUser':
 				require_once "controller/userController.php";
@@ -72,6 +76,11 @@
 				require_once "controller/adminController.php";
 				$roleCtrl = new adminController();
 				echo $roleCtrl->view_getProfileLengkap();
+				break;
+			case $baseURL.'/detailBarang':
+				require_once "controller/adminController.php";
+				$roleCtrl = new adminController();
+				echo $roleCtrl->view_detailBarang();
 				break;
 			case $baseURL.'/cariNegara':
 				require_once "controller/userController.php";

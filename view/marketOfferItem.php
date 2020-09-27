@@ -19,36 +19,19 @@
                 <img src="image/sepatu.jpg" style="width:200px;height=150px">
                 <h4 align='left' style='padding-bottom:10px;padding-left:10px;color:#6699cc'>Rp. 200.000</h4>
             </div>
-        </div>
-        <div class="col">
-            <div class="w3-card w3-white">
-                <p align='left' style='padding:10px; background-color:#6699cc'><label style="color:white;">Nama Barang</label></p>
-                <img src="image/sepatu.jpg" style="width:200px;height=150px">
-                <h4 align='left' style='padding-bottom:10px;padding-left:10px;color:#6699cc'>Rp. 200.000</h4>
-            </div>
-        </div>
-        <div class="col">
-            <div class="w3-card w3-white">
-                <p align='left' style='padding:10px; background-color:#6699cc'><label style="color:white;">Nama Barang</label></p>
-                <img src="image/sepatu.jpg" style="width:200px;height=150px">
-                <h4 align='left' style='padding-bottom:10px;padding-left:10px;color:#6699cc'>Rp. 200.000</h4>
-            </div>
-        </div>
-        <div class="col">
-            <div class="w3-card w3-white">
-                <p align='left' style='padding:10px; background-color:#6699cc'><label style="color:white;">Nama Barang</label></p>
-                <img src="image/sepatu.jpg" style="width:200px;height=150px">
-                <h4 align='left' style='padding-bottom:10px;padding-left:10px;color:#6699cc'>Rp. 200.000</h4>
-            </div>
-        </div>
-        <div class="col">
-            <div class="w3-card w3-white">
-                <p align='left' style='padding:10px; background-color:#6699cc'><label style="color:white;">Nama Barang</label></p>
-                <img src="image/sepatu.jpg" style="width:200px;height=150px">
-                <h4 align='left' style='padding-bottom:10px;padding-left:10px;color:#6699cc'>Rp. 200.000</h4>
-            </div>
-        </div>  
+        </div> 
         <!-- break -->
+        <?php
+        foreach($result as $key => $value){
+            echo "<div class='col'>"; 
+            echo    "<div class='w3-card w3-white'>";
+            echo        "<p align='left' style='padding:10px; background-color:#6699cc'><label style='color:white;'>".$value->namaBarang."</label></p>";
+            echo        "<img src='image/market/".$value->gambarBarang."' style='width:200px;height=150px'>";
+            echo        "<h4 align='left' style='padding-bottom:10px;padding-left:10px;color:#6699cc'>RP".$value->hargaBarang."</h4>";
+            echo"    </div>
+            </div>";
+        }
+        ?>
     </div>
 </div>
 
