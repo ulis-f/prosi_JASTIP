@@ -21,7 +21,13 @@
                 <tr>
                     <td><label for="tripAktif">Trip yang masih aktif</label></td>
                     <td>:</td>
-                    <td>masukan disini</td>
+                    <?php
+                            echo "<select class='form-control select2' id='country' name='trip' style='width:280px;'>";
+                            echo "<option value='null'>Pilih Trip</option>";
+                            foreach($result as $key=>$value){
+                            echo "<option value='".$value->idTrip."'>".$value->kotaTujuan."->".$value->kotaAwal."</option>";
+                            }
+                    ?>
                 </tr>
                 <tr>
                     <td style="width: 250px;">Nama Barang</td>
@@ -41,9 +47,9 @@
                 <tr>
                     <td>Total Harga*</td>
                     <td>:</td>
-                    <td><input class="w3-input w3-border w3-border-theme" name="totalHarga" type="text"></td>
+                    <td><input id="totalHarga" class="w3-input w3-border w3-border-theme" name="totalHarga" type="text"></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td style="width: 250px;">Nama Negara</td>
                     <td>:</td>
                     <td>
@@ -300,7 +306,7 @@
                     </form>
                     
                     </td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td>Deskripsi Barang</td>
                     <td>:</td>

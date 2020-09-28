@@ -179,6 +179,12 @@
 				$roleCtrl->updateProfileUser();
 				header('Location: profileUser');
 				break;
+			case $baseURL.'/offerKlik':
+				require_once "controller/userController.php";
+				$roleCtrl = new userController();
+				$roleCtrl->insertBarangOffer();
+				header('Location: offerMarket');
+				break;
 			default:
 				echo '404 Not Found';
 				break;

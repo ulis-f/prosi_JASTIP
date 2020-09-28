@@ -129,6 +129,7 @@ class UserController{
 	}
 
 	public function view_addOffer(){
+		$result = $this->getTripSendiri();
 		if(isset($_SESSION['nama']) && !empty($_SESSION['nama'])) {
 			$nama = $_SESSION['nama'];
 		}
@@ -136,7 +137,7 @@ class UserController{
 			$nama = null;
 		}
 		$title = "titipaja.com - Market"; 
-		return view::createViewMarket('offerItem.php',["nama"=>$nama, "title"=>$title]);   
+		return view::createViewMarket('offerItem.php',["nama"=>$nama, "title"=>$title, "result"=>$result]);   
 	}  
 
 	public function view_profileUser(){
@@ -185,7 +186,7 @@ class UserController{
         $query_result = $this->db->executeSelectQuery($query);
         $result=[];
         foreach($query_result as $key =>$value){  
-            $result[] = new Trip(null,null, null, $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
+            $result[] = new Trip(null,null, $value['idTrip'], $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
         }   
         return $result;   
 	}
@@ -449,6 +450,32 @@ class UserController{
 		}
 		return $result;
 	}
+
+	public function insertBarangOffer(){
+		$nama = $_SESSION['nama'];
+		$idTrip = $_POST['trip'];
+		$namaBarang = $_POST['namaBarang'];
+		$kategori = $_POST['kartegoriBarang'];
+		$hargaDiJual = $_POST['hargaDiJual'];
+		$hargaTotal = $_POST['totalHarga'];
+		$hargaJasa = $hargaTotal - $hargaDiJual;
+		$deskripsiBarang = $_POST['deskripsiBarang'];
+		$gambar = $_FILES['gambar']['name'];
+
+		$oldnamegambar = $_FILES['gambar']['tmp_name'];
+		$newnamegambar = dirname(__DIR__) . "\\view\image\market\\" . $gambar;
+		move_uploaded_file($oldnamegambar, $newnamegambar);
+
+		$query_idUser = "SELECT * FROM user WHERE namaUser LIKE $nama";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);
+
+		$fk_idUser = $query_idUser_result[0]['idUser'];
+
+		$query = "INSERT INTO transaksi VALUES ('$fk_idUser',null,null,null,null,null,null,null,
+		null,null,null,null,null)";
+		$query_result = $this->db->executeNonSelectQuery($query);
+	}
+	
 }
 
 
