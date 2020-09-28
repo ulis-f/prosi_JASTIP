@@ -5,7 +5,7 @@
         height:40px !important;
         padding:1%;
         margin-bottom:5px;
-        width:295px;
+        width:250px;
     }
     .select2-container--default .select2-selection--single{
         border: 1px solid #6699cc !important; 
@@ -17,17 +17,19 @@
             <h2>Penawaran Barang</h2>
             <br>
             <table>
-            <form action="offerKlik" method="POST" enctype="multipart/form-data">
+            <form action="offerKlik" method="POST" enctype="multipart/form-data">  
                 <tr>
                     <td><label for="tripAktif">Trip yang masih aktif</label></td>
                     <td>:</td>
+                    <td>
                     <?php
-                            echo "<select class='form-control select2' id='country' name='trip' style='width:280px;'>";
+                            echo "<select class='form-control select2' id='country' name='trip' style='width:250px;'>";
                             echo "<option value='null'>Pilih Trip</option>";
                             foreach($result as $key=>$value){
                             echo "<option value='".$value->idTrip."'>".$value->kotaTujuan."->".$value->kotaAwal."</option>";
                             }
                     ?>
+                    </td>
                 </tr>
                 <tr>
                     <td style="width: 250px;">Nama Barang</td>

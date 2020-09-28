@@ -466,14 +466,14 @@ class UserController{
 		$newnamegambar = dirname(__DIR__) . "\\view\image\market\\" . $gambar;
 		move_uploaded_file($oldnamegambar, $newnamegambar);
 
-		$query_idUser = "SELECT * FROM user WHERE namaUser LIKE $nama";
-		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);
+		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);     
 
 		$fk_idUser = $query_idUser_result[0]['idUser'];
 
-		$query = "INSERT INTO transaksi VALUES ('$fk_idUser',null,null,null,null,null,null,null,
-		null,null,null,null,null)";
-		$query_result = $this->db->executeNonSelectQuery($query);
+		$query = "INSERT INTO transaksi(idUser1,idTrip,idUser2,jumlahBarang,hargaBarang,hargaOngkir,hargaJasa,namaBarang,statusBarang,deskripsiBarang,gambarBarang,noresi,idKategori) 
+		VALUES ('$fk_idUser',null,null,null,null,null,null,null,null,null,null,null,null)";
+		$query_result = $this->db->executeNonSelectQuery($query);    
 	}
 	
 }

@@ -28,7 +28,7 @@ class Transaksi{
         $this->deskripsiBarang = $deskripsiBarang;  
         $this->gambarBarang = $gambarBarang;  
         $this->noresi = $noresi;  
-        $this->idKategori = $idKategori;  
+        $this->idKategori = $idKategori;    
     }
 
 }
