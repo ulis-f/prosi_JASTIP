@@ -32,7 +32,8 @@ class adminController{
     public function view_detailBarang(){
         $namaBarang = $_GET['namaBarang'];
         $result = $this->getDetailBarang($namaBarang);
-        return view::createViewAdmin("detailPersetujuanBarang.php",["result"=>$result]);
+        $trip = $this->getTripSendiri($namaBarang);
+        return view::createViewAdmin("detailPersetujuanBarang.php",["result"=>$result,"trip"=>$trip]);
     }
 
     public function view_getProfile(){
@@ -115,7 +116,7 @@ class adminController{
     }
 
     public function getBarang(){
-        $query="SELECT namaUser, email, namaBarang  FROM transaksi inner join user ON transaksi.idUser1 = user.idUser WHERE statusBarang = 'pending' ";
+        $query="SELECT namaUser, email, namaBarang  FROM transaksi inner join user ON transaksi.idUser1 = user.idUser WHERE statusBarang = 'onPending' ";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach($query_result as $key => $value){
@@ -125,13 +126,43 @@ class adminController{
     }
 
     public function getDetailBarang($namaBarang){
-         $query = "SELECT * FROM transaksi inner join kategori on transaksi.idKategori = kategori.idKategori WHERE namaBarang LIKE '$namaBarang'";
+         $query = "SELECT * FROM transaksi inner join kategori on transaksi.idKategori = kategori.idKategori 
+                    WHERE namaBarang LIKE '$namaBarang'";
          $query_result = $this->db->executeSelectQuery($query);
          $result = [];
          foreach($query_result as $key => $value){
              $result[] = new Transaksi(null,null,null,null,$value['hargaBarang'],null,null,$value['namaBarang'],null,$value['deskripsiBarang'],$value['gambarBarang'],null,$value['namaKategori']);
          }
          return $result;
+    }
+    public function getTripSendiri($namaBarang){
+		$nama = $_SESSION['nama'];
+        $query = "SELECT * From transaksi inner JOIN (SELECT himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota
+         as 'kota_Awal', kota.namaKota as 'kota_tujuan' FROM kota inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota ) 
+         as himpA on kota.idKota = himpA.idKota2 inner join post on post.idTrip = himpA.idTrip inner join user 
+        on user.idUser= post.idUser) as himpBanyak on transaksi.IdTrip = himpBanyak.idTrip WHERE transaksi.namaBarang like '$namaBarang' LIMIT 1"; 
+        $query_result = $this->db->executeSelectQuery($query);
+        $result=[];
+        foreach($query_result as $key =>$value){  
+            $result[] = new Trip(null,null, $value['idTrip'], $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
+        }   
+        return $result;   
+    }
+    
+    public function verifikasiBarang(){
+        $namaBarang = $_POST['namaBarang'];
+        $verifikasi = $_POST['verified'];
+
+        if($verifikasi=='verified'){
+            $query = "UPDATE transaksi SET statusBarang = 'onMarket' WHERE namaBarang = '$namaBarang'";
+            $query_result = $this->db->executeNonSelectQuery($query);
+        }
+        else{
+            $query = "UPDATE transaksi SET statusBarang = 'onPending' WHERE namaBarang = '$namaBarang'";
+            $query_result = $this->db->executeNonSelectQuery($query);
+        }
+
+        
     }
 }
 ?>

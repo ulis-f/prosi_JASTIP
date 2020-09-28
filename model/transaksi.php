@@ -13,9 +13,9 @@ class Transaksi{
     public $deskripsiBarang;
     public $gambarBarang;
     public $noresi;
-    public $idKategori;
+    public $namaKategori;
 
-    public function __construct($idUser1, $idTrip, $idUser2, $jumlahBarang, $hargaBarang, $hargaOngkir, $hargaJasa, $namaBarang,$statusBarang,$deskripsiBarang,$gambarBarang, $noresi, $idKategori){
+    public function __construct($idUser1, $idTrip, $idUser2, $jumlahBarang, $hargaBarang, $hargaOngkir, $hargaJasa, $namaBarang,$statusBarang,$deskripsiBarang,$gambarBarang, $noresi, $namaKategori){
         $this->idUser1 = $idUser1;
         $this->idTrip = $idTrip;
         $this->idUser2 = $idUser2;
@@ -28,7 +28,7 @@ class Transaksi{
         $this->deskripsiBarang = $deskripsiBarang;  
         $this->gambarBarang = $gambarBarang;  
         $this->noresi = $noresi;  
-        $this->idKategori = $idKategori;    
+        $this->namaKategori = $namaKategori;  
     }
 
 }

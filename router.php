@@ -185,6 +185,12 @@
 				$roleCtrl->insertBarangOffer();
 				header('Location: offerMarket');
 				break;
+			case $baseURL.'/verifikasiBarang':
+				require_once "controller/adminController.php";
+				$roleCtrl = new adminController();
+				$roleCtrl->verifikasiBarang();
+				header('Location: persetujuanBarang');
+				break;
 			default:
 				echo '404 Not Found';
 				break;

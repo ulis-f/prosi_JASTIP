@@ -6,7 +6,6 @@
   
     <div class="container">
         <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1200px; margin-top: 15%;">
-            <form action="" method="POST">
                 <h2>Persetujuan Barang</h2> 
                 <form action="verifikasiBarang" method="POST">
                     <table>
@@ -16,6 +15,7 @@
                             <td>:</td>
                             <?php
                             foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='namaBarang' value='".$value->namaBarang."'>";
                                 echo "<td>".$value->namaBarang."</td>";
                             }
                             ?>
@@ -25,7 +25,7 @@
                             <td>:</td>
                             <?php
                             foreach($result as $key=>$value){
-                            echo "<td>".$value->kategoriBarang."</td>";
+                            echo "<td>".$value->namaKategori."</td>";
                             }
                             ?>
                         </tr>
@@ -39,9 +39,13 @@
                             ?>
                         </tr>
                         <tr>
-                            <td><label for="namaNegara">Nama Negara</label></td>
+                            <td><label for="trip">Trip</label></td>
                             <td>:</td>
-                            <td>nama negara di sini</td> 
+                            <?php
+                            foreach($trip as $key=>$value){
+                                echo "<td>".$value->kotaTujuan."->".$value->kotaAwal."</td>";
+                            } 
+                            ?>
                         </tr>
                         <tr>
                             <td><label for="deskripsiBarang">Deskripsi Barang</label></td>
@@ -53,7 +57,7 @@
                             ?>
                         </tr>
                     </table>
-                    </form>
+                    
                     <br>
                     <label for="gambarBarang">Gambar Barang</label>
                     <?php
@@ -67,8 +71,8 @@
                     <br>
                     <label for='note'>Note</label> <br>
                     <textarea name='' id='' cols='30' rows='5'></textarea>
-                    <br><br><br><br><br>";
-                    <input type='submit' class='w3-btn w3-right w3-theme'>
+                    <br><br><br><br><br>
+                    <input type='submit' class='w3-btn w3-right w3-theme' value='Submit'>
 
             </form>    
         </div>
