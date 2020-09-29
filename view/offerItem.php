@@ -19,13 +19,13 @@
             <table>
             <form action="offerKlik" method="POST" enctype="multipart/form-data">   
                 <tr>
-                    <td><label for="tripAktif">Trip yang masih aktif</label></td>
+                    <td><label for="trip">Trip yang masih aktif</label></td>
                     <td>:</td>
                     <td>
                     <?php
-                            echo "<select class='form-control select2' id='country' name='trip' style='width:250px;'>";
+                            echo "<select class='form-control select2' id='trip' name='trip' style='width:250px;'>";
                             foreach($result as $key=>$value){
-                            echo "<option value='".$value->idTrip."'>".$value->kotaTujuan."->".$value->kotaAwal."</option>";
+                            echo "<option value='".$value->idtrip."'>".$value->kotaTujuan."->".$value->kotaAwal."</option>";
                             }
                     ?>
                     </td>

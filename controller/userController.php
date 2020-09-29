@@ -472,7 +472,7 @@ class UserController{
 		$fk_idUser = $query_idUser_result[0]['idUser'];
 
 		$query = "INSERT INTO transaksi(idUser1,idTrip,idUser2,jumlahBarang,hargaBarang,hargaOngkir,hargaJasa,namaBarang,statusBarang,deskripsiBarang,gambarBarang,noresi,idKategori) 
-		VALUES ('$fk_idUser',null,null,null,null,null,null,null,null,null,null,null,null)";
+		VALUES ('$fk_idUser','$idTrip',null,null,'$hargaDiJual',null,'$hargaJasa','$namaBarang','onPending','$deskripsiBarang','$gambar',null,null)";
 		$query_result = $this->db->executeNonSelectQuery($query);    
 	}
 	
