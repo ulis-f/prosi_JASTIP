@@ -6,7 +6,7 @@
             <a class="nav-link text-center w3-text-theme" href="market" style="height: 100%; ">Wanted Item</a>
         </li>
         <li class="nav-item w3-text-theme">
-            <a class="nav-link text-center w3-text-theme" href="offerMarket" style="height: 100%; border-bottom: 4px solid red;">Offer Item</a>
+            <a class="nav-link text-center w3-text-theme" href="offerMarket" style="height: 100%; border-bottom: 4px solid red;">Item Offer</a>
         </li>
     </ul>
 
@@ -286,9 +286,9 @@
 </script>
 
 <div style="margin-top:1%; margin-bottom:2%; margin-top:50px; padding-left:15px">
-    <h4><label for="">Want a offer </label> <a id="offer" href="" onclick="validasi()" style="color:#b74449;">+Offer</a></h4>
+    <h4><label for="">Offer an Item</label> <a id="offer" href="" onclick="validasi()" style="color:#b74449;">+Offer</a></h4>
 </div>
-
+  
 <div class="w3-container">  
             <?php    
                 $i=1;

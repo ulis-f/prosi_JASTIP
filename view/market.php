@@ -7,9 +7,9 @@
             <a class="nav-link text-center w3-text-theme" href="market" style="height: 100%;border-bottom: 4px solid red; ">Wanted Item</a>
         </li>
         <li class="nav-item w3-text-theme">
-            <a class="nav-link text-center w3-text-theme" href="offerMarket" style="height: 100%; ">Offer Item</a>
+            <a class="nav-link text-center w3-text-theme" href="offerMarket" style="height: 100%; ">Item Offer</a>
         </li>
-    </ul>
+    </ul> 
 
 
 

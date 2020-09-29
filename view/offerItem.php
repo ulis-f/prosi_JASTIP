@@ -11,20 +11,19 @@
         border: 1px solid #6699cc !important; 
         border-radius: 5px !important; 
     }
-</style>
+</style>   
 <div class="container">
         <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1000px; ">
             <h2>Penawaran Barang</h2>
             <br>
             <table>
-            <form action="offerKlik" method="POST" enctype="multipart/form-data">  
+            <form action="offerKlik" method="POST" enctype="multipart/form-data">   
                 <tr>
                     <td><label for="tripAktif">Trip yang masih aktif</label></td>
                     <td>:</td>
                     <td>
                     <?php
                             echo "<select class='form-control select2' id='country' name='trip' style='width:250px;'>";
-                            echo "<option value='null'>Pilih Trip</option>";
                             foreach($result as $key=>$value){
                             echo "<option value='".$value->idTrip."'>".$value->kotaTujuan."->".$value->kotaAwal."</option>";
                             }
