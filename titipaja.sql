@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2020 at 12:13 PM
+-- Generation Time: Sep 30, 2020 at 10:52 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -32,6 +32,17 @@ CREATE TABLE `kategori` (
   `idKategori` int(11) NOT NULL,
   `namaKategori` varchar(75) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`idKategori`, `namaKategori`) VALUES
+(1, 'Fashion'),
+(2, 'Toys, Hobby & DIY'),
+(3, 'Electronics & media'),
+(4, 'Food & Personal Care'),
+(5, 'Furniture & Appliances');
 
 -- --------------------------------------------------------
 
@@ -219,7 +230,10 @@ INSERT INTO `transaksi` (`idUser1`, `IdTrip`, `idUser2`, `jumlahBarang`, `hargaB
 (26, 21, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (27, 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (27, 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1, NULL, NULL, 1, 250000, NULL, NULL, 'Sepatu Nike Air Force 1', 'onMarket', 'berwarna putih', 'air-force.jpg', NULL, 1);
+(3, 7, NULL, 1, 250000, NULL, NULL, 'Sepatu Nike Air Force 1', 'pending', 'berwarna putih', 'air-force.jpg', NULL, 1),
+(14, 10, NULL, NULL, 320000, NULL, 12800, 'sepatu', 'onMarket', 'berwarna putih', 'Nike-Air-Force-1-Low-White-07-Product.jpg', NULL, 1),
+(3, 20, NULL, NULL, 100000, NULL, 4000, 'Sepatu Keren', 'onMarket', 'berwarna Hitam', 'sepatu.jpg', NULL, 1),
+(3, 20, NULL, NULL, 27500, NULL, 1100, 'Shopping Bag', 'onMarket', 'warna yang beragam dan memiliki ukuran yang besar', 'shopping-bagsl.jpg', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -373,7 +387,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `idKategori` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idKategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `kecamatan`
