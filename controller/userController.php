@@ -4,6 +4,7 @@ require_once "controller/services/view.php";
 require_once "model/user.php";
 require_once "model/trip.php";
 require_once "model/transaksi.php";
+require_once "model/kategori.php";
 
 class UserController{
 	protected $db;
@@ -130,6 +131,7 @@ class UserController{
 
 	public function view_addOffer(){
 		$result = $this->getTripSendiri();
+		$kategori = $this->getKategori();
 		if(isset($_SESSION['nama']) && !empty($_SESSION['nama'])) {
 			$nama = $_SESSION['nama'];
 		}
@@ -137,7 +139,7 @@ class UserController{
 			$nama = null;
 		}
 		$title = "titipaja.com - Market"; 
-		return view::createViewMarket('offerItem.php',["nama"=>$nama, "title"=>$title, "result"=>$result]);   
+		return view::createViewMarket('offerItem.php',["nama"=>$nama, "title"=>$title, "result"=>$result, "kategori"=>$kategori]);   
 	}  
 
 	public function view_profileUser(){
@@ -441,6 +443,16 @@ class UserController{
         return $result;  
 	}
 
+	public function getKategori(){
+		$query = "SELECT * FROM kategori";
+		$query_result = $this->db->executeSelectQuery($query);
+		$result=[];
+		foreach($query_result as $key=>$value){
+			$result[] = new Kategori($value['idKategori'], $value['namaKategori']);
+		}
+		return $result;
+	}
+
 	public function getOffer(){
 		$query = "SELECT * FROM transaksi WHERE statusBarang LIKE 'onMarket'";
 		$query_result = $this->db->executeSelectQuery($query);
@@ -461,6 +473,7 @@ class UserController{
 		$hargaJasa = $hargaTotal - $hargaDiJual;
 		$deskripsiBarang = $_POST['deskripsiBarang'];
 		$gambar = $_FILES['gambar']['name'];
+		$idKategori = $_POST['kategori'];
 
 		$oldnamegambar = $_FILES['gambar']['tmp_name'];
 		$newnamegambar = dirname(__DIR__) . "\\view\image\market\\" . $gambar;
@@ -472,7 +485,7 @@ class UserController{
 		$fk_idUser = $query_idUser_result[0]['idUser'];
 
 		$query = "INSERT INTO transaksi(idUser1,idTrip,idUser2,jumlahBarang,hargaBarang,hargaOngkir,hargaJasa,namaBarang,statusBarang,deskripsiBarang,gambarBarang,noresi,idKategori) 
-		VALUES ('$fk_idUser','$idTrip',null,null,'$hargaDiJual',null,'$hargaJasa','$namaBarang','onPending','$deskripsiBarang','$gambar',null,null)";
+		VALUES ('$fk_idUser','$idTrip',null,null,'$hargaDiJual',null,'$hargaJasa','$namaBarang','onPending','$deskripsiBarang','$gambar',null,$idKategori)";
 		$query_result = $this->db->executeNonSelectQuery($query);    
 	}
 	
