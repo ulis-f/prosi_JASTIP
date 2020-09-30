@@ -36,9 +36,15 @@
                     <td><input type="text" placeholder="Masukkan Nama Barang" name="namaBarang" style="width: 255px;"></td>
                 </tr>
                 <tr>
-                    <td style="width: 250px;">Kategori Barang</td>
+                    <td><label for="kategori">Kategori Barang</label></td>
                     <td>:</td>
-                    <td><input type="text" placeholder="Masukkan Kategori Barang" name="kategoriBarang" style="width: 255px;"></td>
+
+                    <td><?php
+                            echo "<select class='form-control select2' id='kategori' name='kategori' style='width:250px;'>";
+                            foreach($kategori as $key=>$value){
+                            echo "<option value='".$value->id."'>".$value->nama."</option>";
+                            }
+                    ?></td>
                 </tr>
                 <tr>
                     <td>Harga Dijual</td>
