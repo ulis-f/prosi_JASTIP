@@ -2,10 +2,39 @@
     figure:hover{
         transform: scale(2.4); 
     }
+
+    body{
+        background-color:white;
+    }
 </style>
-  
+
+<ul class="nav" style="margin-top:7%; background-color:white; margin-left:2%;">
+    <li class="nav-item w3-text-theme w3-text-theme">
+        <a class="nav-link w3-text-theme" href="homeAdmin" style="height: 100%;">Post Trip</a>
+    </li>
+    <li class="nav-item w3-text-theme w3-text-theme">
+        <a class="nav-link w3-text-theme" href="lengkapDaftar" style="height: 100%;">Lengkapi Pendaftaran</a>
+    </li>
+    <li class="nav-item w3-text-theme w3-text-theme">
+        <a class="nav-link text-center " href="#"  style="height: 100%; border-bottom: 4px solid #6699cc; ">Form Barang</a>
+    </li>
+    <li class="nav-item w3-text-theme">
+        <a class="nav-link" href="#" style="height: 100%;">Pembayaran</a>  
+    </li>
+    <li class="nav-item w3-text-theme">
+        <a class="nav-link" href="#" style="height: 100%;">Mengirim Uang</a>
+    </li>
+</ul>
+
+<fieldset class="" style="margin-left:2%; margin-right:2%; border: #6699cc 1px solid">
+    <p class="" style="width:100%;border-bottom:1px solid #6699cc"> 
+        Sekarang anda berada di halaman :
+        <a class="" href="persetujuanBarang" style="text-decoration:none; ">Form Barang</a>
+        <i class="fa fa-angle-double-right" style=""></i>  
+        <a class="" href="#" style="text-decoration:none; color:#6699cc "><b>Detail Form Barang</b></a>
+    </p> 
     <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1200px; margin-top: 15%;">
+        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1200px; margin-top: 5%;">
                 <h2>Persetujuan Barang</h2> 
                 <form action="verifikasiBarang" method="POST">
                     <table>
@@ -83,3 +112,4 @@
             </form>    
         </div>
     </div>
+</fieldset>

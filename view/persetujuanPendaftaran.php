@@ -14,14 +14,18 @@
     tr:nth-child(even) {
     background-color: white;
     }
+
+    body{
+        background-color:white;
+    }
 </style>
 
-<ul class="nav nav-tabs justify-content-center" style="margin-top:6%; background-color:white;">
+<ul class="nav" style="margin-top:7%; margin-left:2%; background-color:white;">
     <li class="nav-item">
         <a class="nav-link w3-text-theme" href="homeAdmin" style="height: 100%;">Post Trip</a>
     </li>
     <li class="nav-item w3-text-theme">
-        <a class="nav-link text-center w3-text-theme" href="#" style="border-bottom: 4px solid red; height: 100%;">Lengkapi Pendaftaran</a>
+        <a class="nav-link text-center w3-text-theme" href="#" style="border-bottom: 4px solid #6699cc; height: 100%;">Lengkapi Pendaftaran</a>
     </li>
     <li class="nav-item w3-text-theme">
         <a class="nav-link" href="persetujuanBarang"  style="height: 100%;">Form Barang</a>
@@ -34,8 +38,14 @@
     </li>
 </ul>
 
-</p>
+<fieldset class="" style="margin-left:2%; margin-right:2%; border: #6699cc 1px solid">
 
+    <p class="" style="width:100%;border-bottom:1px solid #6699cc"> 
+        Sekarang anda berada di halaman :
+        <a class="" href="lengkapDaftar" style="text-decoration:none; color:#6699cc "><b>Lengkapi Pendaftaran</b></a>
+        <i class="fa fa-angle-double-right" style=""></i>  
+        <a class="" href="#" style="text-decoration:none; ">Detail Lengkapi Pendaftaran</a>
+    </p>
 <div class="container" style="margin-top:7%;">
     <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 700px; ">
         <h2>Lengkapi Pendaftaran</h2>        
@@ -59,4 +69,6 @@
         ?>  
         </table>
     </div>
-</div>  
+</div>
+
+</fieldset>
