@@ -44,6 +44,7 @@
             <th>Nama</th>
             <th>Email</th>
             <th>Nama Barang</th>
+            <th>Market</th>
             <th>Persetujuan</th>
         </tr>
         <?php
@@ -54,6 +55,13 @@
             echo " <td>".$value->username."</td> ";
             echo " <td>".$value->email."</td>";
             echo " <td>".$value->namaBarang."</td>";
+            if($value->market=="onPending"){
+                echo " <td>Offer</td>";
+            }
+            else{
+                echo " <td>Wanted</td>";
+                echo"<input type='hidden' name='market' value='".$value->market."'>";
+            }
             echo " <td class='text-center'><input class='btn btn-primary btn-sm' style='font-size:15px' type='submit' value='Detail'></td>
                 </tr>";
             echo"</form>";

@@ -185,6 +185,12 @@
 				$roleCtrl->insertBarangOffer();
 				header('Location: offerMarket');
 				break;
+			case $baseURL.'/wantedKlik':
+				require_once "controller/userController.php";
+				$roleCtrl = new userController();
+				$roleCtrl->insertBarangWanted();
+				header('Location: market');
+				break;
 			case $baseURL.'/verifikasiBarang':
 				require_once "controller/adminController.php";
 				$roleCtrl = new adminController();
