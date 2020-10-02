@@ -33,6 +33,7 @@
 
 <fieldset class="" style="margin-left:2%; margin-right:2%; border: #6699cc 1px solid">
 
+<<<<<<< HEAD
     <p class="" style="width:100%;border-bottom:1px solid #6699cc"> 
         Sekarang anda berada di halaman :
         <a class="" href="market" style="text-decoration:none; color:#6699cc"><b>Wanted Item</b></a>
@@ -306,6 +307,22 @@
    
     <div class="w3-container">
             <?php    
+=======
+<div style="margin-top:1%; margin-bottom:2%;margin-top:50px; padding-left:15px">
+    <label><h5>Want a request <a id="wanted"  href="addWantedMarket" onclick="validasi()" style="color:#b74449;">+Want</a></h5></label>
+</div>
+   
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="w3-card w3-white">
+                <p align='left' style='padding:10px; background-color:#6699cc'><label style="color:white;">Nama Barang</label></p>
+                <img src="image/sepatu.jpg" style="width:200px;height=150px">
+                <h4 align='left' style='padding-bottom:10px;padding-left:10px;color:#6699cc'>Rp. 200.000</h4>
+            </div>
+        </div>
+        <?php    
+>>>>>>> master
                 $i=1;
                 foreach($result as $key=>$value){
                     echo"<div style='width: 99%;margin-bottom:5%;' class=''>";
@@ -361,6 +378,10 @@
                     }
                 }
             ?>
+<<<<<<< HEAD
+=======
+        <!-- break -->
+>>>>>>> master
     </div>
 </fieldset>
 

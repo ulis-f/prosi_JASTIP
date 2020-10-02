@@ -48,7 +48,11 @@
                     <td>:</td>
                     <td>
                     <?php
+<<<<<<< HEAD
                             echo "<select class='form-control select2' id='trip' name='trip' style=''>";
+=======
+                            echo "<select class='form-control select2' id='trip' name='trip' style='width:250px;'>";
+>>>>>>> master
                             foreach($result as $key=>$value){
                             echo "<option value='".$value->idtrip."'>".$value->kotaTujuan."->".$value->kotaAwal."</option>";
                             }
@@ -65,7 +69,11 @@
                     <td>:</td>
 
                     <td><?php
+<<<<<<< HEAD
                             echo "<select class='form-control select2' id='kategori' name='kategori' style=''>";
+=======
+                            echo "<select class='form-control select2' id='kategori' name='kategori' style='width:250px;'>";
+>>>>>>> master
                             foreach($kategori as $key=>$value){
                             echo "<option value='".$value->id."'>".$value->nama."</option>";
                             }

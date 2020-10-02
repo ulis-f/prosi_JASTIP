@@ -49,7 +49,11 @@
                 <tr>
                     <td style="width: 250px;">Nama Barang</td>
                     <td>:</td>
+<<<<<<< HEAD
                     <td><input type="text" name="nama" placeholder="Masukkan Nama Barang"></td>
+=======
+                    <td><input type="text" name="nama" placeholder="Masukkan Nama Barang" style="width: 255px;"></td>
+>>>>>>> master
                 </tr>
                 <tr>
                     <td>Jumlah Barang</td>
@@ -61,7 +65,11 @@
                     <td><label for="kategori">Kategori Barang</label></td>
                     <td>:</td>
                     <td><?php
+<<<<<<< HEAD
                             echo "<select class='form-control select2' id='kategori' name='kategori' style=''>";
+=======
+                            echo "<select class='form-control select2' id='kategori' name='kategori' style='width:250px;'>";
+>>>>>>> master
                             foreach($kategori as $key=>$value){
                             echo "<option value='".$value->id."'>".$value->nama."</option>";
                             }

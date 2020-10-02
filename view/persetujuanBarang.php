@@ -38,6 +38,7 @@
     </li>
 </ul>
 
+<<<<<<< HEAD
 <fieldset class="" style="margin-left:2%; margin-right:2%; border: #6699cc 1px solid">
     <p class="" style="width:100%;border-bottom:1px solid #6699cc"> 
         Sekarang anda berada di halaman :
@@ -80,3 +81,41 @@
         </div>
     </div> 
 </fieldset>
+=======
+</p>
+
+<div class="container" style="margin-top:7%;">
+    <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 700px; ">
+        <h2>Post Barang</h2>        
+        <table class="table table-striped">
+        <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Nama Barang</th>
+            <th>Market</th>
+            <th>Persetujuan</th>
+        </tr>
+        <?php
+            foreach($result as $key => $value){
+            echo"<tr>";
+            echo"<form method='GET' action='detailBarang'>";
+            echo"<input type='hidden' name='namaBarang' value='".$value->namaBarang."'>";  
+            echo " <td>".$value->username."</td> ";
+            echo " <td>".$value->email."</td>";
+            echo " <td>".$value->namaBarang."</td>";
+            if($value->market=="onPending"){
+                echo " <td>Offer</td>";
+            }
+            else{
+                echo " <td>Wanted</td>";
+                echo"<input type='hidden' name='market' value='".$value->market."'>";
+            }
+            echo " <td class='text-center'><input class='btn btn-primary btn-sm' style='font-size:15px' type='submit' value='Detail'></td>
+                </tr>";
+            echo"</form>";
+            }   
+        ?>    
+        </table>
+    </div>
+</div>  
+>>>>>>> master
