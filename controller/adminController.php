@@ -31,7 +31,13 @@ class adminController{
 
     public function view_detailBarang(){
         $namaBarang = $_GET['namaBarang'];
-        $result = $this->getDetailBarang($namaBarang);
+        $wanted = $_GET['market'];
+        if($wanted == 'wanted'){
+            $result = $this->getDetailBarangMarket($namaBarang, $wanted);
+        }
+        else{
+            $result = $this->getDetailBarang($namaBarang);
+        }
         $trip = $this->getTripSendiri($namaBarang);
         return view::createViewAdmin("detailPersetujuanBarang.php",["result"=>$result,"trip"=>$trip]);
     }
@@ -116,11 +122,11 @@ class adminController{
     }
 
     public function getBarang(){
-        $query="SELECT namaUser, email, namaBarang  FROM transaksi inner join user ON transaksi.idUser1 = user.idUser WHERE statusBarang = 'onPending' ";
+        $query="SELECT namaUser, email, namaBarang, statusBarang  FROM transaksi inner join user ON transaksi.idUser1 = user.idUser WHERE statusBarang = 'onPendingWanted' OR statusBarang = 'onPending' ";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach($query_result as $key => $value){
-            $result[] = new Barang($value['namaUser'],$value['email'],$value['namaBarang']);
+            $result[] = new Barang($value['namaUser'],$value['email'],$value['namaBarang'],$value['statusBarang']);
         }
         return $result;
     }
@@ -131,7 +137,7 @@ class adminController{
          $query_result = $this->db->executeSelectQuery($query);
          $result = [];
          foreach($query_result as $key => $value){
-             $result[] = new Transaksi(null,null,null,null,$value['hargaBarang'],null,null,$value['namaBarang'],null,$value['deskripsiBarang'],$value['gambarBarang'],null,$value['namaKategori']);
+             $result[] = new Transaksi(null,null,null,null,$value['hargaBarang'],null,null,$value['namaBarang'],$value['statusBarang'],$value['deskripsiBarang'],$value['gambarBarang'],null,$value['namaKategori']);
          }
          return $result;
     }
@@ -152,17 +158,35 @@ class adminController{
     public function verifikasiBarang(){
         $namaBarang = $_POST['namaBarang'];
         $verifikasi = $_POST['verified'];
+        $statusBarang = $_POST['market'];
 
         if($verifikasi=='verified'){
-            $query = "UPDATE transaksi SET statusBarang = 'onMarket' WHERE namaBarang = '$namaBarang'";
-            $query_result = $this->db->executeNonSelectQuery($query);
+            if($statusBarang =='onPending'){
+                $query = "UPDATE transaksi SET statusBarang = 'onMarketOffer' WHERE namaBarang = '$namaBarang'AND statusBarang='$statusBarang'";
+                $query_result = $this->db->executeNonSelectQuery($query);
+            }
+            else{
+                $query = "UPDATE transaksi SET statusBarang = 'onMarketWanted' WHERE namaBarang = '$namaBarang'AND statusBarang='$statusBarang'";
+                $query_result = $this->db->executeNonSelectQuery($query);
+            }
         }
         else{
-            $query = "UPDATE transaksi SET statusBarang = 'onPending' WHERE namaBarang = '$namaBarang'";
+            $query = "UPDATE transaksi SET statusBarang = 'onPending' WHERE namaBarang = '$namaBarang'AND statusBarang='$statusBarang'";
             $query_result = $this->db->executeNonSelectQuery($query);
         }
 
         
+    }
+
+    public function getDetailBarangMarket($namaBarang, $wanted){
+        $query = "SELECT * FROM transaksi inner join kategori on transaksi.idKategori = kategori.idKategori 
+                    WHERE namaBarang LIKE '$namaBarang' AND statusBarang LIKE '$wanted'";
+         $query_result = $this->db->executeSelectQuery($query);
+         $result = [];
+         foreach($query_result as $key => $value){
+             $result[] = new Transaksi(null,null,null,null,null,null,null,$value['namaBarang'],$value['statusBarang'],$value['deskripsiBarang'],$value['gambarBarang'],null,$value['namaKategori']);
+         }
+         return $result;
     }
 }
 ?>

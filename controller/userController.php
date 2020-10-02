@@ -73,6 +73,7 @@ class UserController{
 	}
 
 	public function view_Market(){
+		$result = $this->getWanted();
 		if(isset($_SESSION['nama']) && !empty($_SESSION['nama'])) {
 			$nama = $_SESSION['nama'];
 		}
@@ -86,7 +87,7 @@ class UserController{
 			$auth = 1;
 		}
 		$title = "titipaja.com - Market";
-		return view::createViewMarket('market.php',["nama"=>$nama,"title"=>$title,"auth"=>$auth]);    
+		return view::createViewMarket('market.php',["nama"=>$nama,"title"=>$title,"auth"=>$auth, "result"=>$result]);    
 	}
 
 	public function view_marketWanted(){
@@ -101,6 +102,7 @@ class UserController{
 	}
 
 	public function view_addWanted(){
+		$kategori = $this->getKategori();
 		if(isset($_SESSION['nama']) && !empty($_SESSION['nama'])) {
 			$nama = $_SESSION['nama'];
 		}
@@ -108,7 +110,7 @@ class UserController{
 			$nama = null;  
 		}
 		$title = "titipaja.com - Market";
-		return view::createViewMarket('wantedItem.php',["nama"=>$nama, "title"=>$title]);
+		return view::createViewMarket('wantedItem.php',["nama"=>$nama, "title"=>$title, "kategori"=>$kategori]);
 	}
 
 	public function view_marketOffer(){
@@ -454,11 +456,21 @@ class UserController{
 	}
 
 	public function getOffer(){
-		$query = "SELECT * FROM transaksi WHERE statusBarang LIKE 'onMarket'";
+		$query = "SELECT * FROM transaksi WHERE statusBarang LIKE 'onMarketOffer'";
 		$query_result = $this->db->executeSelectQuery($query);
 		$result=[];
 		foreach($query_result as $key=>$value){
 			$result[]= new transaksi(null,null,null,null,$value['hargaBarang'],null,null,$value['namaBarang'],null,null,$value['gambarBarang'],null,null);
+		}
+		return $result;
+	}
+
+	public function getWanted(){
+		$query = "SELECT * FROM transaksi WHERE statusBarang LIKE 'onMarketWanted'";
+		$query_result = $this->db->executeSelectQuery($query);
+		$result=[];
+		foreach($query_result as $key=>$value){
+			$result[]= new transaksi(null,null,null,null,null,null,null,$value['namaBarang'],null,null,$value['gambarBarang'],null,null);
 		}
 		return $result;
 	}
@@ -487,6 +499,28 @@ class UserController{
 		$query = "INSERT INTO transaksi(idUser1,idTrip,idUser2,jumlahBarang,hargaBarang,hargaOngkir,hargaJasa,namaBarang,statusBarang,deskripsiBarang,gambarBarang,noresi,idKategori) 
 		VALUES ('$fk_idUser','$idTrip',null,null,'$hargaDiJual',null,'$hargaJasa','$namaBarang','onPending','$deskripsiBarang','$gambar',null,$idKategori)";
 		$query_result = $this->db->executeNonSelectQuery($query);    
+	}
+
+	public function insertBarangWanted(){
+		$nama = $_SESSION['nama'];
+		$namaBarang = $_POST['nama'];
+		$jumlah = $_POST['jumlah'];
+		$deskripsi = $_POST['deskripsi'];
+		$kategori = $_POST['kartegoriBarang'];
+		$gambar = $_FILES['gambar']['name'];
+
+		$oldnamegambar = $_FILES['gambar']['tmp_name'];
+		$newnamegambar = dirname(__DIR__) . "\\view\image\market\\" . $gambar;
+		move_uploaded_file($oldnamegambar, $newnamegambar);
+
+		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);     
+
+		$fk_idUser = $query_idUser_result[0]['idUser'];
+
+		$query = "INSERT INTO transaksi(idUser1,idTrip,idUser2,jumlahBarang,hargaBarang,hargaOngkir,hargaJasa,namaBarang,statusBarang,deskripsiBarang,gambarBarang,noresi,idKategori) 
+		VALUES ('$fk_idUser',null,null,'$jumlah',null,null,null,'$namaBarang','onPendingWanted','$deskripsi','$gambar',null,$kategori)";
+		$query_result = $this->db->executeNonSelectQuery($query);
 	}
 	
 }

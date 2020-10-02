@@ -29,24 +29,30 @@
                             }
                             ?>
                         </tr>
-                        <tr>
-                            <td><label for="hargaBarang">Harga Barang</label></td>
-                            <td>:</td>
-                            <?php
+                        <?php
+                        echo"<input type='hidden' name='market' value='".$value->statusBarang."'>";
+                        if($value->statusBarang=="onPending"){
+                            echo "<tr>
+                            <td><label for='hargaBarang'>Harga Barang</label></td>
+                            <td>:</td>";
+                            
                             foreach($result as $key=>$value){
                             echo "<td>".$value->hargaBarang."</td>";
                             }
-                            ?>
-                        </tr>
-                        <tr>
-                            <td><label for="trip">Trip</label></td>
-                            <td>:</td>
-                            <?php
-                            foreach($trip as $key=>$value){
-                                echo "<td>".$value->kotaTujuan."->".$value->kotaAwal."</td>";
-                            } 
-                            ?>
-                        </tr>
+                            
+                            echo "</tr>
+                            <tr>
+                                <td><label for='trip'>Trip</label></td>
+                                <td>:</td>
+                                ";
+                                foreach($trip as $key=>$value){
+                                    echo "<td>".$value->kotaTujuan."->".$value->kotaAwal."</td>";
+                                } 
+                                
+                            echo "</tr>";
+                        }
+                        ?>
+                        
                         <tr>
                             <td><label for="deskripsiBarang">Deskripsi Barang</label></td>
                             <td>:</td>
