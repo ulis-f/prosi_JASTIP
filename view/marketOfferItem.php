@@ -39,9 +39,9 @@
         <i class="fa fa-angle-double-right" style=""></i>
         <a class="" href="addOfferMarket" style="text-decoration:none;">Offer an Item</a>
     </p>
-
+ 
     <div class="container"> 
-        <div style="text-align: center; margin-bottom:5%; margin-top:10%;">
+        <div style="text-align: center; margin-bottom:5%; margin-top:5%;">
             <form class="" action="cariNegara" method="GET">
                 <select class="form-control select2" id="country" name="country" style="width:40%;">
                     <option value="Cari Negara">Pilih Negara</option>
@@ -300,64 +300,71 @@
         $('.select2').select2();
     </script>
 
-    <div style="margin-top:1%; margin-bottom:2%; margin-top:50px; padding-left:15px">
+    <div style="margin-top:1%; margin-bottom:1%; margin-top:50px; padding-left:15px">
         <h4><label for="">Offer an Item<a id="offer" href="" onclick="validasi()" style="color:#6699cc;">+Offer</a></label></h4>
     </div>
     
-    <div class="w3-container">  
+    <div class="w3-container"> 
+        <div id="" class="tabs"> 
             <?php    
                 $i=1;
                 foreach($result as $key=>$value){
-                    echo"<div style='width: 99%;margin-bottom:5%;' class=''>";
+                    echo"<div style='width: 100%;margin-bottom:1%;' class=''>";
                     if($i==1){
-                        echo"<div class='w3-card-4 w3-white' style='width:19.2%; float: left;margin-right: 1%; height:350px;'>";
+                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:350px;margin-bottom:3%; border-radius:3%;'>";
                         echo"<div class=''>";
-                        echo        "<p align='left' style='padding:10px; background-color:#6699cc'><label style='color:white;'>".$value->namaBarang."</label></p>";
-                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:230px'>";
-                        echo        "<h4 align='left' style='padding-bottom:10px;padding-left:10px;color:#6699cc'>RP".$value->hargaBarang."</h4>";
+                        echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
+                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
+                        echo        "<h5 align='left' style='padding-left:15px;color:#6699cc'>RP".$value->hargaBarang."</h5>";
+                        echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
                         echo"</div>";
                         echo "</div>";  
                     }
 
                     elseif($i==2){
-                        echo"<div class='w3-card-4 w3-white' style='width:19.2%; float: left;margin-right: 1%; height:170px;'>";
+                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:350px;margin-bottom:3%; border-radius:3%;'>";
                         echo"<div class=''>";
-                        echo        "<p align='left' style='padding:10px; background-color:#6699cc'><label style='color:white;'>".$value->namaBarang."</label></p>";
-                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px'>";
-                        echo        "<h4 align='left' style='padding-bottom:10px;padding-left:10px;color:#6699cc'>RP".$value->hargaBarang."</h4>";
+                        echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
+                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
+                        echo        "<h5 align='left' style='padding-left:15px;color:#6699cc'>RP".$value->hargaBarang."</h5>";
+                        echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
                         echo"</div>";
-                        echo "</div>"; 
+                        echo "</div>";
                     }
 
                     elseif($i==3){
-                        echo"<div class='w3-card-4 w3-white' style='width:19.2%; float: left;margin-right: 1%; height:150px;'>";
+                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:350px;margin-bottom:3%; border-radius:3%;'>";
                         echo"<div class=''>";
-                        echo        "<p align='left' style='padding:10px; background-color:#6699cc'><label style='color:white;'>".$value->namaBarang."</label></p>";
-                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px'>";
-                        echo        "<h4 align='left' style='padding-bottom:10px;padding-left:10px;color:#6699cc'>RP".$value->hargaBarang."</h4>";
+                        echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
+                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
+                        echo        "<h5 align='left' style='padding-left:15px;color:#6699cc'>RP".$value->hargaBarang."</h5>";
+                        echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
                         echo"</div>";
-                        echo "</div>"; 
+                        echo "</div>";
                     }
 
                     elseif($i==4){
-                        echo"<div class='w3-card-4 w3-white' style='width:19.2%; float: left;margin-right: 1%; height:150px;'>";
+                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:350px;margin-bottom:3%; border-radius:3%;'>";
                         echo"<div class=''>";
-                        echo        "<p align='left' style='padding:10px; background-color:#6699cc'><label style='color:white;'>".$value->namaBarang."</label></p>";
-                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px'>";
-                        echo        "<h4 align='left' style='padding-bottom:10px;padding-left:10px;color:#6699cc'>RP".$value->hargaBarang."</h4>";
+                        echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
+                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
+                        echo        "<h5 align='left' style='padding-left:15px;color:#6699cc'>RP".$value->hargaBarang."</h5>";
+                        echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
+                        echo"</div>";
+                        echo "</div>";
+                    }
+
+                    else{
+                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left; height:350px;margin-bottom:3%; border-radius:3%;'>";
+                        echo"<div class=''>";
+                        echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
+                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
+                        echo        "<h5 align='left' style='padding-left:15px;color:#6699cc'>RP".$value->hargaBarang."</h5>";
+                        echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
                         echo"</div>";
                         echo "</div>"; 
                     }
 
-                    else{
-                        echo"<div class='w3-card-4 w3-white' style='width:19.2%; float: left; height:150px;'>";
-                        echo"<div class=''>";
-                        echo        "<p align='left' style='padding:10px; background-color:#6699cc'><label style='color:white;'>".$value->namaBarang."</label></p>";
-                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px'>";
-                        echo        "<h4 align='left' style='padding-bottom:10px;padding-left:10px;color:#6699cc'>RP".$value->hargaBarang."</h4>";
-                        echo"</div>";
-                        echo "</div>"; 
-                    }
                     echo"</div>";
                     $i++;
                     if($i>5){  
@@ -365,7 +372,8 @@
                         $i=1;
                     }
                 }
-            ?>  
+            ?> 
+        </div> 
     </div>
 </fieldset>
 
