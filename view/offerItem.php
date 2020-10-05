@@ -1,6 +1,3 @@
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-
 
     <ul class="nav" style="width:100%;"> 
         <li class="nav-item" style="margin-left:2%;">
@@ -13,16 +10,6 @@
 
 
 <style>
-    .select2-container .select2-selection--single{
-        height:50px !important;
-        padding-top:2%;
-    }
-    .select2-container--default .select2-selection--single{
-        border: 1px solid #6699cc !important; 
-        /* border-radius: 5px !important;  */
-        padding-top:2%;
-    }
-
     body{
         background-color:white;
     }
@@ -56,7 +43,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 250px;">Nama Barang</td>
+                    <td style="width: 250px;"> Nama Barang</td>
                     <td>:</td>
                     <td><input type="text" placeholder="Masukkan Nama Barang" name="namaBarang" style=""></td>
                 </tr>
@@ -71,7 +58,7 @@
                             }
                     ?></td>
                 </tr>
-                <tr>
+                <tr> 
                     <td>Harga Dijual</td>
                     <td>:</td>
                     <td><input id="harga" class="w3-input w3-border w3-border-theme" name="hargaDiJual" type="text" onkeyup="hitung()"></td>
