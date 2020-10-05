@@ -506,7 +506,7 @@ class UserController{
 		$namaBarang = $_POST['nama'];
 		$jumlah = $_POST['jumlah'];
 		$deskripsi = $_POST['deskripsi'];
-		$kategori = $_POST['kartegoriBarang'];
+		$idkategori = $_POST['kategori'];
 		$gambar = $_FILES['gambar']['name'];
 
 		$oldnamegambar = $_FILES['gambar']['tmp_name'];
@@ -519,7 +519,7 @@ class UserController{
 		$fk_idUser = $query_idUser_result[0]['idUser'];
 
 		$query = "INSERT INTO transaksi(idUser1,idTrip,idUser2,jumlahBarang,hargaBarang,hargaOngkir,hargaJasa,namaBarang,statusBarang,deskripsiBarang,gambarBarang,noresi,idKategori) 
-		VALUES ('$fk_idUser',null,null,'$jumlah',null,null,null,'$namaBarang','onPendingWanted','$deskripsi','$gambar',null,$kategori)";
+		VALUES ('$fk_idUser',null,null,'$jumlah',null,null,null,'$namaBarang','onPendingWanted','$deskripsi','$gambar',null,$idkategori)";
 		$query_result = $this->db->executeNonSelectQuery($query);
 	}
 	
