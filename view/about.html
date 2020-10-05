@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ABOUT</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+    <style>
+        body {
+            font: 400 15px Lato, sans-serif;
+            line-height: 1.8;
+            color: #818181;
+        }
+        
+        h2 {
+            font-size: 24px;
+            text-transform: uppercase;
+            color: #303030;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        h4 {
+            font-size: 19px;
+            line-height: 1.375em;
+            color: #303030;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+        
+        .jumbotron {
+            color: #fff;
+            padding: 100px 25px;
+            font-family: Roboto;
+        }
+        
+        .container-fluid {
+            padding: 60px 50px;
+        }
+        
+        .bg-grey {
+            background-color: #f6f6f6;
+        }
+        
+        .navbar {
+            margin-bottom: 0;
+            z-index: 9999;
+            border: 0;
+            font-size: 12px !important;
+            line-height: 1.42857143 !important;
+            letter-spacing: 4px;
+            border-radius: 0;
+            font-family: Roboto;
+        }
+        
+        .navbar li a,
+        .navbar .navbar-brand {
+            color: #fff !important;
+        }
+        
+        .navbar-nav li a:hover,
+        .navbar-nav li.active a {
+            color: #4997c4 !important;
+            background-color: #fff !important; 
+        }
+        
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+            color: #fff !important;
+        }
+        
+        .slideanim {
+            visibility: hidden;
+        }
+        
+        .slide {
+            animation-name: slide;
+            -webkit-animation-name: slide;
+            animation-duration: 1s;
+            -webkit-animation-duration: 1s;
+            visibility: visible;
+        }
+        
+        @keyframes slide {  
+            0% {
+                opacity: 0;
+                transform: translateY(70%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0%);
+            }
+        }
+        
+        @-webkit-keyframes slide {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateY(70%);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: translateY(0%);
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .col-sm-4 {
+                text-align: center;
+                margin: 25px 0;
+            }
+            .btn-lg {
+                width: 100%;
+                margin-bottom: 35px;
+            }
+        }
+        
+        * {
+            font-family: Roboto;
+        }
+    </style>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+    <nav class="navbar navbar-default navbar-fixed-top w3-theme">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+                <a class="navbar-brand" href=""><b>titipaja</b></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#services">SERVICES</a></li>
+                    <li><a href="#payment">PAYMENT</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="jumbotron text-center w3-theme">
+        <h1>titipaja</h1>
+        <p>Trip Sambil Menghasilkan Uang</p>
+    </div>
+
+    <!-- Container (About Section) -->
+    <div id="about" class="container-fluid text-center">
+        <div class="row">
+            <div class="col-sm-13">
+                <h2>About Us</h2><br>
+                <p>
+                    jastip.com adalah perusahaan yang menyediakan kepada pengguna untuk membeli barang dari 
+                    luar negeri dan menjual barang sesuai dengan pengguna minta. Dalam jastip.com kamu tidak khawatir tentang keamanan, karena semua barang sudah terjamin aman dan mudah.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="faq" class="container-fluid text-center bg-grey">
+        <h2>FAQ</h2><br>
+        <div class="row slideanim">
+            <div class="col-sm-4">
+                <h4>Syarat apa saja jika ingin menjadi penjual?</h4>
+                <p class="">Harus menjadi seorang traveller dan mempost trip berepergian ke luar negeri untuk disetujui admin. 
+                        Sebelum mempost trip, user harus melengkapi pendaftaran terlebih dahulu.</p>
+            </div>
+            <div class="col-sm-4">
+                <h4>Syarat apa saja jika ingin menjadi traveller?</h4>
+                <p> Untuk menjadi seorang user harus melakukan pelengkapan pendaftaran dengan mengisi form Lengkapi pendaftaran
+                    untuk disetujui oleh admin. Setelah disetujui oleh admin, user dapat membuat trip dan mengisi form trip yang dilakukan untuk 
+                    disetujui oleh admin. Setelah tripnya disetujui oleh admin seorang user akan berstatus menjadi traveller.
+                </p>
+            </div>
+            <div class="col-sm-4">  
+                <h4>Berapa lama barang akan sampai?</h4>  
+                <p>Untuk waktunya tidak menentu karena tergantung pada posisi negara dimana user membeli barang.
+                    Kami akan berusaha agar dalam waktu tujuh hari(Maksimal) barang sudah diterima oleh user.
+                </p>
+            </div>  
+        </div>
+        <br><br>
+    </div>
+
+   
+
+    <!-- Container (Services Section) -->
+    <div id="services" class="container-fluid text-center">
+        <h2>SERVICES</h2>
+        <br>
+        <div class="row slideanim">
+            <div class="col-sm-4">
+                <h4>Wanted Market</h4>
+                <p>Layanan ini bertujuan untuk user yang ingin membeli barang di luar negeri. Dia dapat merequest barang tersebut dan akan dimasukkan ke fitur Market.
+                    Request tersebut akan diambil dan disetujui oleh traveller yang sedang atau akan melakukan perjalanan di Negara dimana user ingin membeli barangnya. </p>
+            </div>
+            <div class="col-sm-4">
+                <h4>Offer Market</h4>
+                <p>Layanan ini bertujuan bagi seorang user yang telah terdaftar menjadi seorang traveller untuk menjual barang miliknya yang dibeli di luar negeri.</p>
+            </div>
+            <div class="col-sm-4">  
+                <h4>Post Trip</h4>
+                <p>Layanan ini bertujuan bagi seorang user yang ingin menjadi traveller.</p>
+            </div>
+        </div>
+        <br><br>
+    </div>
+
+    <div id="payment" class="container-fluid text-center">
+        <h2>PAYMENT</h2>
+        <br>
+        <div class="row slideanim">
+            <div class="col-sm-2">
+                <img src="../view/image/bank/bca.png" alt="" style="width: 100px; height: 50px;">
+            </div>
+            <div class="col-sm-3">
+                <img src="../view/image/bank/bni.png" alt="" style="width: 100px; height: 50px;">
+            </div>
+            <div class="col-sm-2">  
+                <img src="../view/image/bank/bri.png" alt="" style="width: 100px; height: 50px;">
+            </div>
+            <div class="col-sm-3">  
+                <img src="../view/image/bank/mandiri.png" alt="" style="width: 100px; height: 50px;">
+            </div>
+            <div class="col-sm-2">  
+                <img src="../view/image/bank/ocbc.png" alt="" style="width: 100px; height: 50px;">
+            </div>
+        </div>
+        <br><br>
+    </div>
+
+    <!-- Container (Contact Section) -->
+    <div id="contact" class="container-fluid bg-grey">
+        <h2 class="text-center">CONTACT</h2>
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <span class="glyphicon glyphicon-map-marker" style="font-size:48px"></span>
+                    <p>Jl. Ciumbuleuit, Bandung, 40142, Indonesia</p>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <span class="glyphicon glyphicon-phone" style="font-size:48px"></span>
+                    <p>+62 22-123456</p>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <span class="glyphicon glyphicon-envelope" style="font-size:48px"></span>
+                    <p>titipaja@gmail.com</p>
+                </div>
+            </div>
+          
+    </div>
+
+    <footer class="container-fluid text-center">
+        <a href="#myPage" title="To Top">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+
+                    var hash = this.hash;
+
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 900, function() {
+
+                        window.location.hash = hash;
+                    });
+                }
+            });
+
+            $(window).scroll(function() {
+                $(".slideanim").each(function() {  
+                    var pos = $(this).offset().top;
+
+                    var winTop = $(window).scrollTop();
+                    if (pos < winTop + 600) {
+                        $(this).addClass("slide");
+                    }
+                });
+            });
+        })
+    </script>
+
+</body>
+
+</html>
+
+<script>
+    function myFunction(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else { 
+            x.className = x.className.replace(" w3-show", "");
+            }
+        }
+</script>
+
+<style>
+    
+</style>
