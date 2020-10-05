@@ -313,9 +313,13 @@
                     if($i==1){
                         echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:350px;margin-bottom:3%; border-radius:3%;'>";
                         echo"<div class=''>";
-                        echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
-                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
-                        echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
+                            echo"<form method='GET' action='detailBarangWanted'>";
+                            echo"<input type='hidden' name='id' value='".$value->idUser1."'>";
+                            echo"<input type='hidden' name='namaBarang' value='".$value->namaBarang."'>";
+                            echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
+                            echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
+                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
+                            echo"</form>";
                         echo"</div>";
                         echo "</div>";  
                     }
@@ -323,43 +327,59 @@
                     elseif($i==2){
                         echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:350px;margin-bottom:3%; border-radius:3%;'>";
                         echo"<div class=''>";
-                        echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
-                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
-                        echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
+                            echo"<form method='GET' action='detailBarangWanted'>";
+                            echo"<input type='hidden' name='id' value='".$value->idUser1."'>";
+                            echo"<input type='hidden' name='namaBarang' value='".$value->namaBarang."'>";
+                            echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
+                            echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
+                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
+                            echo"</form>";
                         echo"</div>";
-                        echo "</div>";
+                        echo "</div>"; 
                     }
 
                     elseif($i==3){
                         echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:350px;margin-bottom:3%; border-radius:3%;'>";
                         echo"<div class=''>";
-                        echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
-                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
-                        echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
+                            echo"<form method='GET' action='detailBarangWanted'>";
+                            echo"<input type='hidden' name='id' value='".$value->idUser1."'>";
+                            echo"<input type='hidden' name='namaBarang' value='".$value->namaBarang."'>";
+                            echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
+                            echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
+                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
+                            echo"</form>";
                         echo"</div>";
-                        echo "</div>";
+                        echo "</div>"; 
                     }
 
                     elseif($i==4){
                         echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:350px;margin-bottom:3%; border-radius:3%;'>";
                         echo"<div class=''>";
-                        echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
-                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
-                        echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
+                            echo"<form method='GET' action='detailBarangWanted'>";
+                            echo"<input type='hidden' name='id' value='".$value->idUser1."'>";
+                            echo"<input type='hidden' name='namaBarang' value='".$value->namaBarang."'>";
+                            echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
+                            echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
+                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
+                            echo"</form>";
                         echo"</div>";
-                        echo "</div>";
+                        echo "</div>"; 
                     }
 
                     else{
                         echo"<div class='w3-card w3-white' style='width:18.4%; float: left; height:350px;margin-bottom:3%; border-radius:3%;'>";
                         echo"<div class=''>";
-                        echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
-                        echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
-                        echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
+                            echo"<form method='GET' action='detailBarangWanted'>";
+                            echo"<input type='hidden' name='id' value='".$value->idUser1."'>";
+                            echo"<input type='hidden' name='namaBarang' value='".$value->namaBarang."'>";
+                            echo        "<p align='center' style='padding:20px; background-color:#6699cc;border-bottom-right-radius:50%; border-bottom-left-radius:0%;'><label style='color: white;'>".$value->namaBarang."</label></p>";
+                            echo        "<img src='image/market/".$value->gambarBarang."' style='width:100%;height:150px; padding-left:15px; padding-right:15px; '>";
+                            echo"<p align='center' style='padding:25px;'><input type='submit' class='w3-btn' style='background-color:#6699cc;color:white;' value='Detail'></p>";
+                            echo"</form>";
                         echo"</div>";
-                        echo "</div>"; 
+                        echo "</div>";  
                     }
-
+  
                     echo"</div>";
                     $i++;
                     if($i>5){  

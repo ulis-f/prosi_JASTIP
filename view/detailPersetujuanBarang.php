@@ -34,7 +34,7 @@
         <a class="" href="#" style="text-decoration:none; color:#6699cc "><b>Detail Form Barang</b></a>
     </p> 
     <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1200px; margin-top: 5%;">
+        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 900px; margin-top: 5%;">
                 <h2>Persetujuan Barang</h2> 
                 <form action="verifikasiBarang" method="POST">
                     <table>

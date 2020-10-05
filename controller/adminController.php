@@ -18,7 +18,7 @@ class adminController{
         return view::createViewAdmin('homeAdmin.php',["result"=>$result]);
     }
 
-    public function view_persetujuan(){
+    public function view_persetujuan(){   
         $id = $_GET['id'];
         $result = $this->getTrip($id);
         return view::createViewAdmin('persetujuanTrip.php',["result"=>$result]);
@@ -27,6 +27,14 @@ class adminController{
     public function view_persetujuanBarang(){
         $result = $this->getBarang();
         return view::createViewAdmin("persetujuanBarang.php",["result"=>$result]);
+    }
+
+    public function view_detailBarangMarketWanted(){
+        $namaBarang = $_GET['namaBarang'];
+        $wanted = $_GET['market'];
+        $idUser = $_GET['id'];
+        $result = $this->getDetailBarangMarket($namaBarang, $wanted, $idUser);
+        return view::createViewAdmin("detailBarangWanted.php",["result"=>$result]);  
     }
 
     public function view_detailBarang(){
@@ -122,13 +130,13 @@ class adminController{
     }
 
     public function getBarang(){
-        $query="SELECT namaUser, email, namaBarang, statusBarang  FROM transaksi inner join user ON transaksi.idUser1 = user.idUser WHERE statusBarang = 'onPendingWanted' OR statusBarang = 'onPending' ";
+        $query="SELECT idUser1, namaUser, email, namaBarang, statusBarang  FROM transaksi inner join user ON transaksi.idUser1 = user.idUser WHERE statusBarang = 'onPendingWanted' OR statusBarang = 'onPending' ";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach($query_result as $key => $value){
-            $result[] = new Barang($value['namaUser'],$value['email'],$value['namaBarang'],$value['statusBarang']);
+            $result[] = new Barang($value['idUser1'],$value['namaUser'],$value['email'],$value['namaBarang'],$value['statusBarang']);
         }
-        return $result;
+        return $result;   
     }
 
     public function getDetailBarang($namaBarang){
@@ -178,15 +186,15 @@ class adminController{
         
     }
 
-    public function getDetailBarangMarket($namaBarang, $wanted){
+    public function getDetailBarangMarket($namaBarang, $wanted, $idUser){
         $query = "SELECT * FROM transaksi inner join kategori on transaksi.idKategori = kategori.idKategori 
-                    WHERE namaBarang LIKE '$namaBarang' AND statusBarang LIKE '$wanted'";
+                    WHERE namaBarang LIKE '$namaBarang' AND statusBarang LIKE '$wanted' AND '$idUser'='idUser1'";
          $query_result = $this->db->executeSelectQuery($query);
          $result = [];
          foreach($query_result as $key => $value){
              $result[] = new Transaksi(null,null,null,null,null,null,null,$value['namaBarang'],$value['statusBarang'],$value['deskripsiBarang'],$value['gambarBarang'],null,$value['namaKategori']);
          }
-         return $result;
+         return $result;  
     }
 }
 ?>

@@ -5,8 +5,10 @@ class Barang{
     public $email;
     public $namaBarang;
     public $market;
+    public $idUser;
 
-    public function __construct($username, $email, $namaBarang, $market){
+    public function __construct($idUser, $username, $email, $namaBarang, $market){
+        $this->idUser = $idUser;
         $this->username = $username;
         $this->email = $email;
         $this->namaBarang = $namaBarang;

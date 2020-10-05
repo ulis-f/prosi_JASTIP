@@ -112,6 +112,11 @@
 				$userctrl = new userController();
 				echo $userctrl->view_addWanted(); 
 				break;
+			case $baseURL . '/detailBarangWanted':    
+				require_once "controller/adminController.php";
+				$userctrl = new adminController();
+				echo $userctrl->view_detailBarangMarketWanted(); 
+				break;
 			default:
 				echo '404 Not Found';
 				break;
@@ -197,7 +202,7 @@
 				$roleCtrl->verifikasiBarang();
 				header('Location: persetujuanBarang');
 				break;
-			default:
+			default:  
 				echo '404 Not Found';
 				break;
 		}
