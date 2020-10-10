@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2020 at 10:52 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: Oct 10, 2020 at 11:30 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -140,6 +140,29 @@ INSERT INTO `negara` (`idNegara`, `namaNegara`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notifikasi`
+--
+
+CREATE TABLE `notifikasi` (
+  `idUser` int(11) NOT NULL,
+  `idNotifikasi` int(11) NOT NULL,
+  `namaNotifikasi` varchar(250) NOT NULL,
+  `deskripsi` varchar(250) NOT NULL,
+  `statusView` int(1) NOT NULL,
+  `dateTime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notifikasi`
+--
+
+INSERT INTO `notifikasi` (`idUser`, `idNotifikasi`, `namaNotifikasi`, `deskripsi`, `statusView`, `dateTime`) VALUES
+(27, 1, 'Berhasil Upload', 'Anda telah berhasil mengupload barang', 1, '2020-03-03 12:00:00'),
+(27, 2, 'Berhasil Upload', 'Anda telah berhasil mengupload barang', 0, '2020-03-03 12:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `post`
 --
 
@@ -221,19 +244,22 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`idUser1`, `IdTrip`, `idUser2`, `jumlahBarang`, `hargaBarang`, `hargaOngkir`, `hargaJasa`, `namaBarang`, `statusBarang`, `deskripsiBarang`, `gambarBarang`, `noresi`, `idKategori`) VALUES
-(14, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 20, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (26, 21, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(27, 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(27, 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 7, NULL, 1, 250000, NULL, NULL, 'Sepatu Nike Air Force 1', 'pending', 'berwarna putih', 'air-force.jpg', NULL, 1),
-(14, 10, NULL, NULL, 320000, NULL, 12800, 'sepatu', 'onMarket', 'berwarna putih', 'Nike-Air-Force-1-Low-White-07-Product.jpg', NULL, 1),
-(3, 20, NULL, NULL, 100000, NULL, 4000, 'Sepatu Keren', 'onMarket', 'berwarna Hitam', 'sepatu.jpg', NULL, 1),
-(3, 20, NULL, NULL, 27500, NULL, 1100, 'Shopping Bag', 'onMarket', 'warna yang beragam dan memiliki ukuran yang besar', 'shopping-bagsl.jpg', NULL, 2);
+(1, NULL, NULL, 1, 250000, NULL, NULL, 'Sepatu Nike Air Force 1', 'onMarket', 'berwarna putih', 'air-force.jpg', NULL, 1),
+(27, 23, NULL, NULL, 250000, NULL, 10000, 'Sepatu Aja', 'onMarketOffer', 'Warna Hitam', 'Sepatu Hitam.jpg', NULL, 1),
+(27, 23, NULL, NULL, 250000, NULL, 10000, 'Sepatu Sneakers', 'onMarketOffer', 'Ukuran 43', 'sepatu.jpg', NULL, 1),
+(14, NULL, NULL, 1, NULL, NULL, NULL, 'Sepatu Olahraga', 'onMarketWanted', 'Warna Hitam', 'sepatu.jpg', NULL, 1),
+(14, NULL, NULL, 1, NULL, NULL, NULL, 'Sepatu c', 'onMarketWanted', 'Warna Putih ABu-abu', 'Sepatu Hitam.jpg', NULL, 1),
+(14, 5, NULL, NULL, 250000, NULL, 10000, 'Sepatu Abu-abu', 'onMarketOffer', 'Warna Abu-abu', 'Sepatu Hitam.jpg', NULL, 1),
+(27, 22, NULL, NULL, 250000, NULL, 10000, 'Sepatu e', 'onPending', 'Warna Hitam', 'sepatu.jpg', NULL, 1),
+(27, 22, NULL, NULL, 250, NULL, 10, 'sep', 'onPending', 'warna hitam', 'sepatu.jpg', NULL, 1),
+(27, 22, NULL, NULL, 250, NULL, 10, 'sep', 'onPending', 'warna hitam', 'sepatu.jpg', NULL, 1),
+(27, 22, NULL, NULL, 250, NULL, 10, 'sep', 'onPending', 'warna hitam', 'sepatu.jpg', NULL, 1),
+(27, 22, NULL, NULL, 250, NULL, 10, 'sep', 'onPending', 'warna hitam', 'sepatu.jpg', NULL, 1),
+(27, 22, NULL, NULL, 250, NULL, 10, 'Sepatu ehh', 'onPending', 'warna hitam', 'sepatu.jpg', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -344,6 +370,13 @@ ALTER TABLE `negara`
   ADD PRIMARY KEY (`idNegara`);
 
 --
+-- Indexes for table `notifikasi`
+--
+ALTER TABLE `notifikasi`
+  ADD PRIMARY KEY (`idNotifikasi`),
+  ADD KEY `FK_USER` (`idUser`);
+
+--
 -- Indexes for table `post`
 --
 ALTER TABLE `post`
@@ -411,7 +444,13 @@ ALTER TABLE `kota`
 -- AUTO_INCREMENT for table `negara`
 --
 ALTER TABLE `negara`
-  MODIFY `idNegara` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idNegara` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `notifikasi`
+--
+ALTER TABLE `notifikasi`
+  MODIFY `idNotifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `provinsi`
@@ -423,7 +462,7 @@ ALTER TABLE `provinsi`
 -- AUTO_INCREMENT for table `trip`
 --
 ALTER TABLE `trip`
-  MODIFY `idTrip` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idTrip` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `user`
