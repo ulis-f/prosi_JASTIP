@@ -5,6 +5,7 @@ require_once "model/user.php";
 require_once "model/trip.php";
 require_once "model/transaksi.php";
 require_once "model/kategori.php";
+require_once "model/notifikasi.php"; 
 
 class UserController{
 	protected $db;
@@ -28,7 +29,7 @@ class UserController{
 		else{
 			$auth = 1;
 		}
-		$lengkap = $this->cekMelengkapiPendaftaran($nama);
+		$lengkap = $this->cekMelengkapiPendaftaran($nama);  
 		
 		return view::createView('halamanUtamaMember.php',["nama"=>$nama,"title"=>$title,"auth"=>$auth,"result"=>$result,"lengkap"=>$lengkap]);
 	}
@@ -492,13 +493,17 @@ class UserController{
 		move_uploaded_file($oldnamegambar, $newnamegambar);
 
 		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
-		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);     
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
 
 		$fk_idUser = $query_idUser_result[0]['idUser'];
 
 		$query = "INSERT INTO transaksi(idUser1,idTrip,idUser2,jumlahBarang,hargaBarang,hargaOngkir,hargaJasa,namaBarang,statusBarang,deskripsiBarang,gambarBarang,noresi,idKategori) 
 		VALUES ('$fk_idUser','$idTrip',null,null,'$hargaDiJual',null,'$hargaJasa','$namaBarang','onPending','$deskripsiBarang','$gambar',null,$idKategori)";
 		$query_result = $this->db->executeNonSelectQuery($query);    
+
+		$query_notifikasi = "INSERT INTO Notifikasi(idUser,namaNotifikasi,deskripsi,statusView,dateTime)
+		VALUES ('$fk_idUser','Berhasil Upload', 'Anda telah berhasil mengupload barang', '0', '2020-03-03 12:00:00')";
+		$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);   
 	}
 
 	public function insertBarangWanted(){
@@ -521,6 +526,22 @@ class UserController{
 		$query = "INSERT INTO transaksi(idUser1,idTrip,idUser2,jumlahBarang,hargaBarang,hargaOngkir,hargaJasa,namaBarang,statusBarang,deskripsiBarang,gambarBarang,noresi,idKategori) 
 		VALUES ('$fk_idUser',null,null,'$jumlah',null,null,null,'$namaBarang','onPendingWanted','$deskripsi','$gambar',null,$idkategori)";
 		$query_result = $this->db->executeNonSelectQuery($query);
+	}
+
+	public function getNotifikasi(){
+		$nama = $_SESSION['nama'];
+		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);  
+
+		$idUser = $query_idUser_result[0]['idUser'];
+
+		$query = "SELECT * FROM notifikasi WHERE idUser = '$idUser'";
+		$query_result = $this->db->executeSelectQuery($query);
+		$result=[];
+		foreach($query_result as $key=>$value){
+			$result[]= new notifikasi(null,null,$value['namaNotifikasi'],$value['deskripsi'],null,$value['dateTime']);
+		}
+		return $result;	 
 	}
 	
 }

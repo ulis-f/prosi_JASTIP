@@ -63,8 +63,47 @@
     <div class="w3-bar-left w3-left">
         <a class="navbar-brand" href="index"><h1 style="size:10%;"><b>titipaja</b></h1></a>
     </div>
-    <div class="w3-bar-right w3-right">            
-            <h4 class="w3-bar-item w3-display-inline w3-btn" >
+    <?php
+        require_once "controller/services/mysqlDB.php";
+        require_once "controller/services/view.php";
+        require_once "model/user.php";
+        require_once "model/notifikasi.php";
+
+        $db = new MySQLDB("localhost","root","","titipaja");  
+        
+        $nama = $_SESSION['nama'];
+        $query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
+        $query_idUser_result = $db->executeSelectQuery($query_idUser);  
+
+        $idUser = $query_idUser_result[0]['idUser'];
+        $query = "SELECT * FROM notifikasi WHERE idUser = '$idUser'";
+        $query_result = $db->executeSelectQuery($query);
+        $result1=[];
+        foreach($query_result as $key=>$value){
+            $result1[]= new notifikasi(null,null,$value['namaNotifikasi'],$value['deskripsi'],null,$value['dateTime']);
+        }	  
+    ?>
+    <div class="w3-bar-right w3-right">   
+            <div class="dropdown">
+                <i class="fa fa-bell" style="font-size:24px"></i> 
+                <div id="myDropdown" class="dropdown-content" style="width:10%;">  
+                <?php
+                    foreach($result1 as $key => $value){
+                        echo"<div style='color:black; border-left: 5px solid; border-left-color:#febaad; padding:10px; background-color:#feeae6'>";
+                        echo"<br>";
+                        echo"<strong>$value->namaNotifikasi</strong><br/>";
+                        echo"<small><em>$value->deskripsi</em></small>";
+                        echo"<br>";
+                        echo"<small><em>$value->dateTime</em></small>";       
+                        echo"</div>";
+                        echo"<br>";
+
+                    }
+                ?>  
+                </div>
+
+            </div>
+                
             <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn" onclick="market()">Market</h4>
             <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Tracking</h4>
             <?php
@@ -127,7 +166,7 @@
 
             </header>
     </div>	
-    <script>
+<script>
 
     // Get the modal
     var modal = document.getElementById('login');
@@ -149,3 +188,5 @@
     }
 
 </script>
+
+

@@ -5,6 +5,7 @@ require_once "model/trip.php";
 require_once "model/user.php";
 require_once "model/transaksi.php";
 require_once "model/barang.php";
+require_once "model/notifikasi.php";
 
 class adminController{
 	protected $db;
