@@ -57,6 +57,10 @@
         color: white;
         }
 
+        #myDropdown-down{
+            width:40%:
+        }
+
     </style>
 </head>
 <header class="w3-top w3-theme">
@@ -75,12 +79,30 @@
         if($nama != null){
             $nama = $_SESSION['nama'];
             $idUser = $query_idUser_result[0]['idUser'];
-            $query = "SELECT * FROM notifikasi WHERE idUser = '$idUser'";
+            $query = "SELECT * FROM notifikasi WHERE idUser = '$idUser' AND statusView=0 ";
             $query_result = $db->executeSelectQuery($query);
             $result1=[];
             foreach($query_result as $key=>$value){
                 $result1[]= new notifikasi(null,null,$value['namaNotifikasi'],$value['deskripsi'],null,$value['dateTime']);
-            }	  
+            }	
+            
+            $query2 = "SELECT * FROM notifikasi WHERE idUser = '$idUser' ";
+            $query_result2 = $db->executeSelectQuery($query2);
+            $result2=[];
+            foreach($query_result2 as $key=>$value){
+                $result2[]= new notifikasi(null,null,$value['namaNotifikasi'],$value['deskripsi'],null,$value['dateTime']);
+            }
+
+            $query3 = "SELECT * FROM notifikasi WHERE idUser = '$idUser' AND statusView=1 ";
+            $query_result3 = $db->executeSelectQuery($query3);
+            $result3=[];
+            foreach($query_result3 as $key=>$value){
+                $result3[]= new notifikasi(null,null,$value['namaNotifikasi'],$value['deskripsi'],null,$value['dateTime']);
+            }
+
+            $query5 = "SELECT COUNT(statusView) FROM notifikasi WHERE idUser = '$idUser' AND statusView=0 ";
+            $query_result5 = $db->executeSelectQuery($query5);
+            $countNotifikasi = $query_result5[0]['COUNT(statusView)'];
         }
 
         
@@ -88,24 +110,147 @@
     ?>
     <div class="w3-bar-right w3-right">   
             <div class="dropdown">
-                <i class="fa fa-bell" style="font-size:24px"></i> 
-                <div id="myDropdown" class="dropdown-content" style="width:10%;">  
+                
+                <i class="fa fa-bell" onclick="myFunction()" style="font-size:24px"></i> 
+                <div id="myDropdown-down" class="dropdown-content" style="width:500px; padding:7px;">  
                 <?php
-                    foreach($result1 as $key => $value){
-                        echo"<div style='color:black; border-left: 5px solid; border-left-color:#febaad; padding:10px; background-color:#feeae6'>";
-                        echo"<br>";
-                        echo"<strong>$value->namaNotifikasi</strong><br/>";
-                        echo"<small><em>$value->deskripsi</em></small>";
-                        echo"<br>";
-                        echo"<small><em>$value->dateTime</em></small>";       
-                        echo"</div>";
-                        echo"<br>";
+                            if($result2!=null){
+                                $i=1;
+                                    if($result1!=null){
+                                        foreach($result1 as $key => $value){
+                                            echo"<div style='color:black; 
+                                            padding:10px; background-color:#feeae6; border-bottom:2px solid white;'>";
+                                            echo"<strong>$value->namaNotifikasi</strong><br/>";
+                                            echo"<small><em>$value->deskripsi</em></small>";
+                                            echo"<br>";
+                                            echo"<small><em>$value->dateTime</em></small>";       
+                                            echo"</div>";
+                                            $i++;
+                                            if($i==6){
+                                            
+                                                echo"<fieldset class='w3-theme' Style='background-color:'>";
+                                                echo"<div class='w3-left'>";
+                                                // echo"<a href='' style='font-size:12px; width:200px;'>Tampilkan Semua Notifikasi</a>";
+                                                // echo"</div>";
+                                                echo"<div class='w3-container w3-left'>
+                                                    <input type='submit' value='Lihat Semua Notifikasi' class='w3-btn' onclick="."document.getElementById('allNotifikasi').style.display='block'"." style='font-size:12px; width:160px;'>
+                                                    <div id='allNotifikasi' class='w3-modal'>
+                                                        <div class='w3-modal-content' style='width:40%; height:auto; margin-left: auto; margin-right: auto; padding-top:3%;'>
+                                                            <div class='w3-container'>
+                                                            <span onclick="."document.getElementById('allNotifikasi').style.display='none'"." class='w3-button w3-display-topright'>&times;</span> "; 
+                                                            echo"<h3 style='color:#f75939;'>Notifikasi-notifikasi Anda</h3>";
+                                                            foreach($result1 as $key => $value){
+                                                                echo"<div style='color:black; 
+                                                                padding:10px; background-color:#feeae6; border-bottom:2px solid white;'>";
+                                                                echo"<strong>$value->namaNotifikasi</strong><br/>";
+                                                                echo"<small><em>$value->deskripsi</em></small>";
+                                                                echo"<br>";
+                                                                echo"<small><em>$value->dateTime</em></small>";       
+                                                                echo"</div>";
+                                                            }
+                                                            
+                                                            foreach($result3 as $key => $value){
+                                                                echo"<div style='color:black; 
+                                                                padding:10px; background-color:white; border-bottom:2px solid #ddd;'>";
+                                                                echo"<strong>$value->namaNotifikasi</strong><br/>";
+                                                                echo"<small><em>$value->deskripsi</em></small>";
+                                                                echo"<br>";
+                                                                echo"<small><em>$value->dateTime</em></small>";       
+                                                                echo"</div>";
+                                                            }
+                                                                
+                                                        echo"</div>
+                                                        </div>
+                                                    </div>   
+                                                </div>";
+                                                echo"</div>";
+                                                
+                                                echo"<div class='w3-right'>";
+                                                // echo"<a href='' style='font-size:12px; width:150px;'>Tandai Telah Dibaca</a>";
+                                                // echo"</div>";
 
-                    }
+                                                echo"<form method='POST' action='C:\xampp\htdocs\prosi_JASTIP\view\layout\updateStatusView.php'>
+                                                    <input type='submit' class='w3-btn' value='Tandai Telah Dibaca ($countNotifikasi)' style='font-size:12px; width:200px; name='updateStatus'>
+                                                </form>";
+                                                echo"</fieldset>";
+
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if($result3!=null){
+                                        foreach($result3 as $key => $value){
+                                            echo"<div style='color:black; 
+                                            padding:10px; background-color:white; border-bottom:2px solid #ddd;'>";
+                                            echo"<strong>$value->namaNotifikasi</strong><br/>";
+                                            echo"<small><em>$value->deskripsi</em></small>";
+                                            echo"<br>";
+                                            echo"<small><em>$value->dateTime</em></small>";       
+                                            echo"</div>";
+                                            $i++;
+                                            if($i==6){
+                                            
+                                                echo"<fieldset class='w3-theme' Style='background-color:'>";
+                                                echo"<div class='w3-left'>";
+                                                // echo"<a href='' style='font-size:12px; width:200px;'>Tampilkan Semua Notifikasi</a>";
+                                                // echo"</div>";
+                                                echo"<div class='w3-container w3-left'>
+                                                    <input type='submit' value='Lihat Semua Notifikasi' class='w3-btn' onclick="."document.getElementById('allNotifikasi').style.display='block'"." style='font-size:12px; width:160px;'>
+                                                    <div id='allNotifikasi' class='w3-modal'>
+                                                        <div class='w3-modal-content' style='width:40%; height:auto; margin-left: auto; margin-right: auto; padding-top:3%;'>
+                                                            <div class='w3-container'>
+                                                            <span onclick="."document.getElementById('allNotifikasi').style.display='none'"." class='w3-button w3-display-topright'>&times;</span> "; 
+                                                            echo"<h3 style='color:#f75939;'>Notifikasi-notifikasi Anda</h3>";
+                                                            foreach($result1 as $key => $value){
+                                                                echo"<div style='color:black; 
+                                                                padding:10px; background-color:#feeae6; border-bottom:2px solid white;'>";
+                                                                echo"<strong>$value->namaNotifikasi</strong><br/>";
+                                                                echo"<small><em>$value->deskripsi</em></small>";
+                                                                echo"<br>";
+                                                                echo"<small><em>$value->dateTime</em></small>";       
+                                                                echo"</div>";
+                                                            }
+                                                            
+                                                            foreach($result3 as $key => $value){
+                                                                echo"<div style='color:black; 
+                                                                padding:10px; background-color:white; border-bottom:2px solid #ddd;'>";
+                                                                echo"<strong>$value->namaNotifikasi</strong><br/>";
+                                                                echo"<small><em>$value->deskripsi</em></small>";
+                                                                echo"<br>";
+                                                                echo"<small><em>$value->dateTime</em></small>";       
+                                                                echo"</div>";
+                                                            }
+                                                                
+                                                        echo"</div>
+                                                        </div>
+                                                    </div> 
+                                                </div>";
+                                                echo"</div>";
+                                                
+                                                echo"<div class='w3-right'>";
+                                                // echo"<a href='' style='font-size:12px; width:150px;'>Tandai Telah Dibaca</a>";
+                                                // echo"</div>";
+
+                                                echo"<form method='POST' action='C:\xampp\htdocs\prosi_JASTIP\view\layout\updateStatusView.php'>
+                                                    <input type='submit' class='w3-btn' value='Tandai Telah Dibaca ($countNotifikasi)' style='font-size:12px; width:200px; name='updateStatus'>
+                                                </form>";
+                                                echo"</fieldset>";
+
+                                                break;
+                                            }   
+                                        }
+                                    }
+                            }
+                            else{
+                                echo"<div style='color:black; border-left: 5px solid; border-left-color:#febaad; padding:10px; background-color:#feeae6'>";
+                                echo"<br>";
+                                echo"<h5>Anda tidak memiliki notifikasi</h5>"; 
+                                echo"<br>";
+                                echo"</div>";
+                            }
                 ?>  
-                </div>
-
             </div>
+        </div>
                 
             <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn" onclick="market()">Market</h4>
             <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Tracking</h4>
@@ -190,6 +335,42 @@
         location.href="market";
     }
 
+
+    function myFunction() {
+        document.getElementById("myDropdown-down").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
+    function updateStatusView() {
+        document.getElementById("demo").innerHTML = "Hello World";
+    }
+
 </script>
 
 
+                                    <!-- <div class='w3-container w3-left'>
+                                        <button onclick="document.getElementById('allNotifikasi').style.display='block'" style='font-size:12px; width:150px;'>Lihat Semua Notifikasi</button>
+                                        <div id='allNotifikasi' class='w3-modal'>
+                                            <div class='w3-modal-content' style='width:40%; height: 90%; margin-left: auto; margin-right: auto'>
+                                                <div class='w3-container'>
+                                                <span onclick="document.getElementById('allNotifikasi').style.display='none'" class='w3-button w3-display-topright'>&times;</span>        
+                                                </div>
+                                            </div>
+                                        </div>   
+                                    </div> -->
+
+                                
+        
