@@ -187,15 +187,6 @@ class adminController{
         
     }
 
-    public function getDetailBarangMarket($namaBarang, $wanted, $idUser){
-        $query = "SELECT * FROM transaksi inner join kategori on transaksi.idKategori = kategori.idKategori 
-                    WHERE namaBarang LIKE '$namaBarang' AND statusBarang LIKE '$wanted' AND '$idUser'='idUser1'";
-         $query_result = $this->db->executeSelectQuery($query);
-         $result = [];
-         foreach($query_result as $key => $value){
-             $result[] = new Transaksi(null,null,null,null,null,null,null,$value['namaBarang'],$value['statusBarang'],$value['deskripsiBarang'],$value['gambarBarang'],null,$value['namaKategori']);
-         }
-         return $result;  
-    }
+    
 }
 ?>

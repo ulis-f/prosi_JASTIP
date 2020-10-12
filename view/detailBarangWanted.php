@@ -22,7 +22,11 @@
                         <tr>
                             <td><label for="jumlahBarang">Jumlah Barang</label></td>
                             <td>:</td>
-                            <td>Nama barangnya di sini</td>
+                            <td><?php
+                            foreach($result as $key=>$value){
+                                echo "<td>".$value->jumlahBarang."</td>";
+                            }
+                            ?></td>
                         </tr>
                         <tr>
                             <td><label for="kategoriBarang">Kategori Barang</label></td>

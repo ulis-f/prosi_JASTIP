@@ -6,7 +6,7 @@ require_once "model/trip.php";
 require_once "model/transaksi.php";
 require_once "model/kategori.php";
 require_once "model/notifikasi.php"; 
-
+require_once "model/detailOffer.php"; 
 class UserController{
 	protected $db;
 
@@ -133,7 +133,7 @@ class UserController{
 	}
 
 	public function view_addOffer(){
-		$result = $this->getTripSendiri();
+		$result = $this->getTripSendiriOffer();
 		$kategori = $this->getKategori();
 		if(isset($_SESSION['nama']) && !empty($_SESSION['nama'])) {
 			$nama = $_SESSION['nama'];
@@ -144,6 +144,21 @@ class UserController{
 		$title = "titipaja.com - Market"; 
 		return view::createViewMarket('offerItem.php',["nama"=>$nama, "title"=>$title, "result"=>$result, "kategori"=>$kategori]);   
 	}  
+
+	public function view_detailBarangMarketWanted(){
+		$nama = $_SESSION['nama'];
+        $namaBarang = $_GET['namaBarang'];
+        $idUser = $_GET['id'];
+        $result = $this->getDetailBarangMarket($namaBarang, $idUser);
+        return view::createViewMarket("detailBarangWanted.php",["nama"=>$nama, "result"=>$result]);  
+    }
+	public function view_detailBarangMarketOffer(){
+		$nama = $_SESSION['nama'];
+        $namaBarang = $_GET['namaBarang'];
+        $idUser = $_GET['id'];
+        $result = $this->getDetailBarangOffer($namaBarang, $idUser);
+        return view::createViewMarket("detailBarangOffer.php",["nama"=>$nama, "result"=>$result]);  
+    }
 
 	public function view_profileUser(){
 		$nama = $_SESSION['nama'];
@@ -196,6 +211,21 @@ class UserController{
         return $result;   
 	}
 	
+	public function getTripSendiriOffer(){
+		$nama = $_SESSION['nama'];
+        $query = "SELECT himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
+			as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
+			FROM kota inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota ) 
+			as himpA on kota.idKota = himpA.idKota2 inner join post on post.idTrip = himpA.idTrip 
+			inner join user on user.idUser= post.idUser WHERE user.namaUser like '$nama' "; 
+        $query_result = $this->db->executeSelectQuery($query);
+        $result=[];
+        foreach($query_result as $key =>$value){  
+            $result[] = new Trip(null,null, $value['idTrip'], $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
+        }   
+        return $result;   
+	}
+
 	public function getProfileSendiri(){
 		$nama = $_SESSION['nama'];
 		$query = "SELECT namaUser,email,nohp,alamat FROM user WHERE namaUser like '$nama' ";
@@ -461,7 +491,7 @@ class UserController{
 		$query_result = $this->db->executeSelectQuery($query);
 		$result=[];
 		foreach($query_result as $key=>$value){
-			$result[]= new transaksi(null,null,null,null,$value['hargaBarang'],null,null,$value['namaBarang'],null,null,$value['gambarBarang'],null,null);
+			$result[]= new transaksi($value['idUser1'],null,null,null,$value['hargaBarang'],null,null,$value['namaBarang'],null,null,$value['gambarBarang'],null,null);
 		}
 		return $result;
 	}
@@ -471,7 +501,7 @@ class UserController{
 		$query_result = $this->db->executeSelectQuery($query);
 		$result=[];
 		foreach($query_result as $key=>$value){
-			$result[]= new transaksi(null,null,null,null,null,null,null,$value['namaBarang'],null,null,$value['gambarBarang'],null,null);
+			$result[]= new transaksi($value['idUser1'],null,null,null,null,null,null,$value['namaBarang'],null,null,$value['gambarBarang'],null,null);
 		}
 		return $result;
 	}
@@ -543,6 +573,29 @@ class UserController{
 		}
 		return $result;	 
 	}
+
+	public function getDetailBarangMarket($namaBarang, $idUser){
+        $query = "SELECT * FROM transaksi inner join kategori on transaksi.idKategori = kategori.idKategori 
+		WHERE transaksi.namaBarang LIKE '$namaBarang' AND transaksi.statusBarang LIKE 'onMarketWanted' AND transaksi.idUser1='$idUser'";
+         $query_result = $this->db->executeSelectQuery($query);
+         $result = [];
+         foreach($query_result as $key => $value){
+             $result[] = new Transaksi(null,null,null,$value['jumlahBarang'],null,null,null,$value['namaBarang'],$value['statusBarang'],$value['deskripsiBarang'],$value['gambarBarang'],null,$value['namaKategori']);
+         }
+         return $result;  
+	}
+	
+	public function getDetailBarangOffer($namaBarang, $idUser){
+        $query = "SELECT kota.namaKota, trip.waktuAkhir, jumlahBarang, namaBarang, statusBarang, hargaBarang,gambarBarang,  deskripsiBarang, namaKategori FROM transaksi 
+		inner join kategori on transaksi.idKategori = kategori.idKategori inner join trip on trip.idTrip = transaksi.IdTrip inner join kota on kota.idKota = trip.idKota2
+		WHERE transaksi.namaBarang LIKE '$namaBarang' AND transaksi.statusBarang LIKE 'onMarketOffer' AND transaksi.idUser1='$idUser'";
+         $query_result = $this->db->executeSelectQuery($query);
+         $result = [];
+         foreach($query_result as $key => $value){
+             $result[] = new Offer($value['deskripsiBarang'],$value['namaKota'],$value['waktuAkhir'],$value['namaBarang'],$value['statusBarang'],$value['namaKategori'],$value['hargaBarang'],$value['gambarBarang']);
+         }
+         return $result;  
+    }
 	
 }
 

@@ -113,9 +113,14 @@
 				echo $userctrl->view_addWanted(); 
 				break;
 			case $baseURL . '/detailBarangWanted':    
-				require_once "controller/adminController.php";
-				$userctrl = new adminController();
+				require_once "controller/userController.php";
+				$userctrl = new userController();
 				echo $userctrl->view_detailBarangMarketWanted(); 
+				break;
+			case $baseURL . '/detailBarangOffer':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_detailBarangMarketOffer(); 
 				break;
 			default:
 				echo '404 Not Found';
