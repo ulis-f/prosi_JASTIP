@@ -70,18 +70,21 @@
         require_once "model/notifikasi.php";
 
         $db = new MySQLDB("localhost","root","","titipaja");  
-        
-        $nama = $_SESSION['nama'];
-        $query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
+        $query_idUser = "SELECT idUser FROM `user` WHERE `namaUser` LIKE '$nama'";
         $query_idUser_result = $db->executeSelectQuery($query_idUser);  
+        if($nama != null){
+            $nama = $_SESSION['nama'];
+            $idUser = $query_idUser_result[0]['idUser'];
+            $query = "SELECT * FROM notifikasi WHERE idUser = '$idUser'";
+            $query_result = $db->executeSelectQuery($query);
+            $result1=[];
+            foreach($query_result as $key=>$value){
+                $result1[]= new notifikasi(null,null,$value['namaNotifikasi'],$value['deskripsi'],null,$value['dateTime']);
+            }	  
+        }
 
-        $idUser = $query_idUser_result[0]['idUser'];
-        $query = "SELECT * FROM notifikasi WHERE idUser = '$idUser'";
-        $query_result = $db->executeSelectQuery($query);
-        $result1=[];
-        foreach($query_result as $key=>$value){
-            $result1[]= new notifikasi(null,null,$value['namaNotifikasi'],$value['deskripsi'],null,$value['dateTime']);
-        }	  
+        
+        
     ?>
     <div class="w3-bar-right w3-right">   
             <div class="dropdown">
