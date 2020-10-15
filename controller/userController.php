@@ -255,10 +255,16 @@ class UserController{
 			FROM kota inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota WHERE statusTrip = 'verified') 
 			as himpA on kota.idKota = himpA.idKota2 inner join post on post.idTrip = himpA.idTrip 
 			inner join user on user.idUser= post.idUser";
-        $query_result = $this->db->executeSelectQuery($query);
+		
+		$query_result = $this->db->executeSelectQuery($query);
         $result=[];
         foreach($query_result as $key =>$value){
-            $result[] = new Trip($value['namaUser'],null, null, $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan'],null);
+			$dateAwal = new DateTime($value['waktuAwal']);
+			$dateAkhir = new DateTime($value['waktuAkhir']);
+			$today = date("Y-m-d H:i:s");
+			if($dateAwal->format('Y-m-d H:i:s')>$today && $dateAkhir->format('Y-m-d H:i:s')<$today){
+				$result[] = new Trip($value['namaUser'],null, null, $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan'],null);
+			}
         }   
         return $result;   
     }
