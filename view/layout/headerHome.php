@@ -125,7 +125,7 @@
             <div class="dropdown">
                 
                 <i class="fa fa-bell" onclick="myFunction()" style="font-size:24px"></i> 
-                <div id="myDropdown-down" class="dropdown-content" style="width:500px; padding:7px; border-radius:3%;">  
+                <div id="myDropdown-down" class="dropdown-content" style="width:500px; padding:7px; border-radius:3%;background-color:white;">  
                 <?php
                         if($nama != null){
                             echo"<h3 style='color:#f75939;'>Notifikasi-notifikasi Anda</h3>";
