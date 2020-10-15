@@ -61,6 +61,11 @@
             width:40%:
         }
 
+        #notifikasi{
+            overflow-y: scroll;
+            height : 300px;
+        }
+
     </style>
 </head>
 <header class="w3-top w3-theme">
@@ -72,6 +77,7 @@
         require_once "controller/services/view.php";
         require_once "model/user.php";
         require_once "model/notifikasi.php";
+        
 
         $db = new MySQLDB("localhost","root","","titipaja");  
         $query_idUser = "SELECT idUser FROM `user` WHERE `namaUser` LIKE '$nama'";
@@ -103,6 +109,13 @@
             $query5 = "SELECT COUNT(statusView) FROM notifikasi WHERE idUser = '$idUser' AND statusView=0 ";
             $query_result5 = $db->executeSelectQuery($query5);
             $countNotifikasi = $query_result5[0]['COUNT(statusView)'];
+
+            if(isset($_POST['updateStatus'])){
+    
+            }
+            else{
+                include "updateStatusView.php";
+            }
         }
 
         
@@ -112,8 +125,10 @@
             <div class="dropdown">
                 
                 <i class="fa fa-bell" onclick="myFunction()" style="font-size:24px"></i> 
-                <div id="myDropdown-down" class="dropdown-content" style="width:500px; padding:7px;">  
+                <div id="myDropdown-down" class="dropdown-content" style="width:500px; padding:7px; border-radius:3%;">  
                 <?php
+                        if($nama != null){
+                            echo"<h3 style='color:#f75939;'>Notifikasi-notifikasi Anda</h3>";
                             if($result2!=null){
                                 $i=1;
                                     if($result1!=null){
@@ -168,10 +183,12 @@
                                                 echo"<div class='w3-right'>";
                                                 // echo"<a href='' style='font-size:12px; width:150px;'>Tandai Telah Dibaca</a>";
                                                 // echo"</div>";
+                                                echo"<input type='submit' class='w3-btn' id='updateStatus' value='Tandai Telah Dibaca ($countNotifikasi)' 
+                                                style='font-size:12px; width:200px; name='updateStatus'>";  
 
-                                                echo"<form method='POST' action='C:\xampp\htdocs\prosi_JASTIP\view\layout\updateStatusView.php'>
-                                                    <input type='submit' class='w3-btn' value='Tandai Telah Dibaca ($countNotifikasi)' style='font-size:12px; width:200px; name='updateStatus'>
-                                                </form>";
+                                                // echo"<form method='POST' action='C:\xampp\htdocs\prosi_JASTIP\view\layout\updateStatusView.php'>
+                                                //     <input type='submit' class='w3-btn' value='Tandai Telah Dibaca ($countNotifikasi)' style='font-size:12px; width:200px; name='updateStatus'>
+                                                // </form>";
                                                 echo"</fieldset>";
 
                                                 break;
@@ -197,10 +214,11 @@
                                                 echo"<div class='w3-container w3-left'>
                                                     <input type='submit' value='Lihat Semua Notifikasi' class='w3-btn' onclick="."document.getElementById('allNotifikasi').style.display='block'"." style='font-size:12px; width:160px;'>
                                                     <div id='allNotifikasi' class='w3-modal'>
-                                                        <div class='w3-modal-content' style='width:40%; height:auto; margin-left: auto; margin-right: auto; padding-top:3%;'>
+                                                        <div class='w3-modal-content' style='width:40%; height:auto; margin-left: auto; margin-right: auto; padding-top:3%; border-radius:3%;'>
                                                             <div class='w3-container'>
                                                             <span onclick="."document.getElementById('allNotifikasi').style.display='none'"." class='w3-button w3-display-topright'>&times;</span> "; 
                                                             echo"<h3 style='color:#f75939;'>Notifikasi-notifikasi Anda</h3>";
+                                                            echo"<div id='notifikasi'>";
                                                             foreach($result1 as $key => $value){
                                                                 echo"<div style='color:black; 
                                                                 padding:10px; background-color:#feeae6; border-bottom:2px solid white;'>";
@@ -220,7 +238,7 @@
                                                                 echo"<small><em>$value->dateTime</em></small>";       
                                                                 echo"</div>";
                                                             }
-                                                                
+                                                            echo"</div>"; 
                                                         echo"</div>
                                                         </div>
                                                     </div> 
@@ -230,11 +248,16 @@
                                                 echo"<div class='w3-right'>";
                                                 // echo"<a href='' style='font-size:12px; width:150px;'>Tandai Telah Dibaca</a>";
                                                 // echo"</div>";
+                                                echo"<input type='submit' class='w3-btn' id='updateStatus' value='Tandai Telah Dibaca ($countNotifikasi)' 
+                                                style='font-size:12px; width:200px; name='updateStatus'>";  
 
-                                                echo"<form method='POST' action='C:\xampp\htdocs\prosi_JASTIP\view\layout\updateStatusView.php'>
-                                                    <input type='submit' class='w3-btn' value='Tandai Telah Dibaca ($countNotifikasi)' style='font-size:12px; width:200px; name='updateStatus'>
-                                                </form>";
+                                                // echo"<form method='POST' action='C:\xampp\htdocs\prosi_JASTIP\view\layout\updateStatusView.php'>
+                                                // <input type='submit' class='w3-btn' id='updateStatus' value='Tandai Telah Dibaca ($countNotifikasi)' 
+                                                // style='font-size:12px; width:200px; name='updateStatus'>    
+                                                // </form>";
                                                 echo"</fieldset>";
+
+                                                
 
                                                 break;
                                             }   
@@ -248,6 +271,7 @@
                                 echo"<br>";
                                 echo"</div>";
                             }
+                        }
                 ?>  
             </div>
         </div>

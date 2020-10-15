@@ -12,6 +12,6 @@
         $idUser = $query_idUser_result[0]['idUser'];	
 
         $query4 = "UPDATE `notifikasi` SET `statusView`=1 WHERE idUser='$idUser'";
-        $query_result4 = $db->executeSelectQuery($query4);
+        $query_result4 = $db->executeNonSelectQuery($query4); 
     }
 ?>  
