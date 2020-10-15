@@ -532,6 +532,8 @@
     
     <?php
         foreach($result as $key=>$value){
+            
+            
         echo"<div class='w3-card w3-round w3-white' style='width:50%; margin: auto; margin-top:1%;'>";
             echo"<div class='w3-container w3-padding'>";
             echo"<table style='width:100%;'>";
@@ -551,8 +553,8 @@
                     echo"<td style='font-size:12px'>".$value->kotaTujuan."</td>";
                 echo"</tr>";
                 echo"<tr>";
-                    echo"<td style='font-size:12px'>".$value->waktuAwal."</td>";  
-                    echo"<td style='font-size:12px'>".$value->waktuAkhir."</td>";     
+                    echo"<td style='font-size:12px'>".date_format(date_create($value->waktuAwal), "d/m/Y")."</td>";  
+                    echo"<td style='font-size:12px'>".date_format(date_create($value->waktuAkhir), "d/m/Y")."</td>";     
                 echo"</tr>";
             echo"</table>";
             echo"</div>";
