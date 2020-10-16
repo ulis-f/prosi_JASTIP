@@ -14,7 +14,7 @@ class Notifikasi{
         $this->namaNotifikasi = $namaNotifikasi;
         $this->deskripsi = $deskripsi;
         $this->statusView = $statusView;
-        $this->dateTiem = $dateTime;
+        $this->dateTime = $dateTime;
     }
 
 }

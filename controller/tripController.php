@@ -25,6 +25,7 @@ class tripController{
         $asal = $_POST['asal'];
         $tujuan = $_POST['tujuan'];
         $fotoTiket = $_FILES['fotoTiket']['name'];
+        $nama = $_SESSION['nama'];
 
         $waktuAwal = new DateTime($_POST['waktuAsal']);
         $waktuA = $waktuAwal->format("Y-m-d H:i:s");
@@ -78,6 +79,17 @@ class tripController{
 
         $queryInsert1 = "INSERT INTO post(idUser,idTrip) VALUES ('$fk_user','$fk_trip')";
         $queryInsert_result1 = $this->db->executeNonSelectQuery($queryInsert1);
+
+        $query_idUser = "SELECT idUser FROM `user` WHERE `namaUser` LIKE '$nama'";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);
+		$idUser = $query_idUser_result[0]['idUser'];
+		$timezone = new DateTimeZone('Asia/Jakarta');
+		$date = new DateTime();
+		$date->setTimeZone($timezone);
+		$now = $date->format('Y-m-d H:i:s');
+
+		$queryNotifikasi = "INSERT INTO notifikasi VALUES('$idUser',null, 'Verifikasi Pending','Trip anda sedang diproses',0,'$now')";
+		$queryNotifikasi_result = $this->db->executeNonSelectQuery($queryNotifikasi);
     }
 }
 ?>

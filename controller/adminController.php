@@ -94,10 +94,22 @@ class adminController{
     public function verifikasi(){
         $idTrip = $_POST['id'];
         $verifikasi = $_POST['verified'];
+        $nama = $_SESSION['nama'];
 
         $query = "UPDATE trip SET statusTrip = '$verifikasi' WHERE idTrip = '$idTrip'";
         
         $query_result = $this->db->executeNonSelectQuery($query);
+
+        $query_idUser = "SELECT idUser FROM `user` WHERE `namaUser` LIKE '$nama'";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);
+		$idUser = $query_idUser_result[0]['idUser'];
+		$timezone = new DateTimeZone('Asia/Jakarta');
+		$date = new DateTime();
+		$date->setTimeZone($timezone);
+		$now = $date->format('Y-m-d H:i:s');
+
+		$queryNotifikasi = "INSERT INTO notifikasi VALUES('$idUser',null, 'Verifikasi Berhasil','Trip anda sudah diverifikasi',0,'$now')";
+		$queryNotifikasi_result = $this->db->executeNonSelectQuery($queryNotifikasi);
     }
 
     public function getProfile(){
@@ -124,10 +136,23 @@ class adminController{
     public function verifikasiDaftar(){
         $iduser = $_POST['id'];
         $verifikasi = $_POST['verified'];
+        $nama = $_SESSION['nama'];
 
         $query = "UPDATE user SET isTraveller = '$verifikasi' WHERE idUser = '$iduser'";
         
         $query_result = $this->db->executeNonSelectQuery($query);
+
+        $query_idUser = "SELECT idUser FROM `user` WHERE `namaUser` LIKE '$nama'";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);
+		$idUser = $query_idUser_result[0]['idUser'];
+        $timezone = new DateTimeZone('Asia/Jakarta');
+		$date = new DateTime();
+		$date->setTimeZone($timezone);
+		$now = $date->format('Y-m-d H:i:s');
+
+		$queryNotifikasi = "INSERT INTO notifikasi VALUES('$idUser',null, 'Verifikasi Berhasil','Kelengkapan profil anda sudah berhasil',0,'$now')";
+		$queryNotifikasi_result = $this->db->executeNonSelectQuery($queryNotifikasi);
+
     }
 
     public function getBarang(){

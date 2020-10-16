@@ -160,7 +160,7 @@
                                                                 echo"<strong>$value->namaNotifikasi</strong><br/>";
                                                                 echo"<small><em>$value->deskripsi</em></small>";
                                                                 echo"<br>";
-                                                                echo"<small><em>$value->dateTime</em></small>";       
+                                                                echo"<small><em>".date_format(date_create($value->dateTime))."</em></small>";       
                                                                 echo"</div>";
                                                             }
                                                             
@@ -170,7 +170,7 @@
                                                                 echo"<strong>$value->namaNotifikasi</strong><br/>";
                                                                 echo"<small><em>$value->deskripsi</em></small>";
                                                                 echo"<br>";
-                                                                echo"<small><em>$value->dateTime</em></small>";       
+                                                                echo"<small><em>".date_format(date_create($value->dateTime))."</em></small>";       
                                                                 echo"</div>";
                                                             }
                                                                 
@@ -381,6 +381,8 @@
     function updateStatusView() {
         document.getElementById("demo").innerHTML = "Hello World";
     }
+
+    
 
 </script>
 
