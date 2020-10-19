@@ -548,9 +548,13 @@ class UserController{
 		VALUES ('$fk_idUser','$idTrip',null,null,'$hargaDiJual',null,'$hargaJasa','$namaBarang','onPending','$deskripsiBarang','$gambar',null,$idKategori)";
 		$query_result = $this->db->executeNonSelectQuery($query);    
 
-		$query_notifikasi = "INSERT INTO Notifikasi(idUser,namaNotifikasi,deskripsi,statusView,dateTime)
-		VALUES ('$fk_idUser','Berhasil Upload', 'Anda telah berhasil mengupload barang', '0', '2020-03-03 12:00:00')";
-		$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);   
+		$timezone = new DateTimeZone('Asia/Jakarta');
+		$date = new DateTime();
+		$date->setTimeZone($timezone);
+		$now = $date->format('Y-m-d H:i:s');
+
+		$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Pending', 'Offer an Item Anda dengan nama $namaBarang sedang diproses', 0, '$now')";
+		$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);    
 	}
 
 	public function insertBarangWanted(){
@@ -573,6 +577,14 @@ class UserController{
 		$query = "INSERT INTO transaksi(idUser1,idTrip,idUser2,jumlahBarang,hargaBarang,hargaOngkir,hargaJasa,namaBarang,statusBarang,deskripsiBarang,gambarBarang,noresi,idKategori) 
 		VALUES ('$fk_idUser',null,null,'$jumlah',null,null,null,'$namaBarang','onPendingWanted','$deskripsi','$gambar',null,$idkategori)";
 		$query_result = $this->db->executeNonSelectQuery($query);
+
+		$timezone = new DateTimeZone('Asia/Jakarta');
+		$date = new DateTime();
+		$date->setTimeZone($timezone);
+		$now = $date->format('Y-m-d H:i:s');
+
+		$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Pending', 'Wanted Item Anda dengan nama $namaBarang sedang diproses', 0, '$now')";
+		$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);    
 	}
 
 	public function getNotifikasi(){

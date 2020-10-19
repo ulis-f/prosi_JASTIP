@@ -229,23 +229,47 @@ class adminController{
     }
     
     public function verifikasiBarang(){
+        $nama = $_SESSION['nama'];
         $namaBarang = $_POST['namaBarang'];
         $verifikasi = $_POST['verified'];
         $statusBarang = $_POST['market'];
+        $unverified = $_POST['unverified'];    
+
+        $query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";  
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
+
+		$fk_idUser = $query_idUser_result[0]['idUser'];
+
+        $timezone = new DateTimeZone('Asia/Jakarta');
+        $date = new DateTime();
+        $date->setTimeZone($timezone);
+        $now = $date->format('Y-m-d H:i:s');
 
         if($verifikasi=='verified'){
             if($statusBarang =='onPending'){
                 $query = "UPDATE transaksi SET statusBarang = 'onMarketOffer' WHERE namaBarang = '$namaBarang'AND statusBarang='$statusBarang'";
                 $query_result = $this->db->executeNonSelectQuery($query);
+        
+                $query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Berhasil', 'Offer an Item Anda dengan nama $namaBarang 
+                telah berhasil disetujui. Sekarang barang anda sudah ada di fitur Market (Offer an Item).', 0, '$now')";
+                $query_result1 = $this->db->executeNonSelectQuery($query_notifikasi); 
             }
             else{
                 $query = "UPDATE transaksi SET statusBarang = 'onMarketWanted' WHERE namaBarang = '$namaBarang'AND statusBarang='$statusBarang'";
                 $query_result = $this->db->executeNonSelectQuery($query);
+
+                $query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Berhasil', 'Wanted Item Anda dengan nama $namaBarang 
+                telah berhasil disetujui. Sekarang barang anda sudah ada di fitur Market (Wanted Item).', 0, '$now')";
+                $query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);   
             }
         }
         else{
             $query = "UPDATE transaksi SET statusBarang = 'onPending' WHERE namaBarang = '$namaBarang'AND statusBarang='$statusBarang'";
             $query_result = $this->db->executeNonSelectQuery($query);
+
+            $query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Gagal', 'Barang Anda dengan nama $namaBarang 
+            tidak berhasil disetujui karena $unverified. Anda diharapkan untuk mengisi ulang form.', 0, '$now')";
+            $query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);   
         }
 
         
