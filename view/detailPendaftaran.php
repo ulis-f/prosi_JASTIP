@@ -61,11 +61,11 @@
                     <br>";
                     echo"$value->norek";
                     echo"<br><br>";
-                    echo"<input type='radio' id='verified' name='verified' value='verified'>Verified<br>
-                    <input type='radio' id='unverifie' name='verified' value='unverified'>Unverified
+                    echo"<input type='radio' id='verified' name='verified' onclick='check(this.value)' value='verified'>Verified<br>
+                    <input type='radio' id='unverifie' name='verified' onclick='check(this.value)' value='unverified'>Unverified
                     <br> <br>
                     <label for='note'>Note</label> <br>
-                    <textarea name='' id='' cols='30' rows='5'></textarea>
+                    <textarea name='deskripsi' id='deskripsi' cols='30' rows='5'></textarea>
                     <br><br><br><br><br>
                     <input type='submit' class='w3-btn w3-right w3-theme' value='Submit'>  ";
                     }
@@ -74,3 +74,14 @@
         </div>
     </div>
 </fieldset>
+
+<script>
+    function check(browser) {
+        if(browser == 'verified'){
+            document.getElementById("deskripsi").placeholder='Kelengkapan profil anda sudah berhasil';
+        }
+        else{
+            document.getElementById("deskripsi").placeholder='Kelengkapan profil anda gagal';
+        }
+}
+</script>

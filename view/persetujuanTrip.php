@@ -59,11 +59,11 @@
                     echo"</tr>";
                     echo"</table>";
                     echo"<br>";
-                    echo"<input type='radio' id='verified' name='verified' value='verified'>Verified<br>";
-                    echo"<input type='radio' id='unverified' name='verified' value='unverified'>Unverified";
+                    echo"<input type='radio' id='verified' name='verified' onclick='check(this.value)' value='verified'>Verified<br>";
+                    echo"<input type='radio' id='unverified' name='verified' onclick='check(this.value)' value='unverified'>Unverified";
                     echo"<br> <br>";
                     echo"<label for='note'>Note</label> <br>";
-                    echo"<textarea name='' id='' cols='30' rows='5'></textarea>";
+                    echo"<textarea name='deskripsi' id='deskripsi' cols='30' rows='5'></textarea>";
                     echo"<br><br><br><br><br>";
                     echo"<input type='submit' class='w3-btn w3-right w3-theme'>";
                     }
@@ -72,3 +72,14 @@
         </div>
     </div>
 </fieldset>
+
+<script>
+    function check(browser) {
+        if(browser == 'verified'){
+            document.getElementById("deskripsi").placeholder='Trip anda sudah diverifikasi';
+        }
+        else{
+            document.getElementById("deskripsi").placeholder='Trip anda gagal untuk diverifikasi';
+        }
+}
+</script>

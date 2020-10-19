@@ -95,6 +95,7 @@ class adminController{
         $idTrip = $_POST['id'];
         $verifikasi = $_POST['verified'];
         $nama = $_SESSION['nama'];
+        $deskripsi = $_POST['deskripsi'];
 
         $query = "UPDATE trip SET statusTrip = '$verifikasi' WHERE idTrip = '$idTrip'";
         
@@ -108,8 +109,27 @@ class adminController{
 		$date->setTimeZone($timezone);
 		$now = $date->format('Y-m-d H:i:s');
 
-		$queryNotifikasi = "INSERT INTO notifikasi VALUES('$idUser',null, 'Verifikasi Berhasil','Trip anda sudah diverifikasi',0,'$now')";
-		$queryNotifikasi_result = $this->db->executeNonSelectQuery($queryNotifikasi);
+        if($verifikasi == 'verified'){
+            if($deskripsi!=''){
+                $queryNotifikasi = "INSERT INTO notifikasi VALUES('$idUser',null, 'Verifikasi Berhasil','$deskripsi',0,'$now')";
+                $queryNotifikasi_result = $this->db->executeNonSelectQuery($queryNotifikasi);
+            }
+            else{
+                $queryNotifikasi = "INSERT INTO notifikasi VALUES('$idUser',null, 'Verifikasi Berhasil','Trip anda sudah diverifikasi',0,'$now')";
+                $queryNotifikasi_result = $this->db->executeNonSelectQuery($queryNotifikasi);
+            }
+        }
+        else{
+            if($deskripsi!=''){
+                $queryNotifikasi = "INSERT INTO notifikasi VALUES('$idUser',null, 'Verifikasi Gagal','$deskripsi',0,'$now')";
+                $queryNotifikasi_result = $this->db->executeNonSelectQuery($queryNotifikasi);
+            }
+            else{
+                $queryNotifikasi = "INSERT INTO notifikasi VALUES('$idUser',null, 'Verifikasi Gagal','Trip anda gagal untuk diverifikasi',0,'$now')";
+                $queryNotifikasi_result = $this->db->executeNonSelectQuery($queryNotifikasi);
+            }
+        }
+
     }
 
     public function getProfile(){
@@ -137,6 +157,7 @@ class adminController{
         $iduser = $_POST['id'];
         $verifikasi = $_POST['verified'];
         $nama = $_SESSION['nama'];
+        $deskripsi = $_POST['deskripsi'];
 
         $query = "UPDATE user SET isTraveller = '$verifikasi' WHERE idUser = '$iduser'";
         
@@ -150,8 +171,26 @@ class adminController{
 		$date->setTimeZone($timezone);
 		$now = $date->format('Y-m-d H:i:s');
 
-		$queryNotifikasi = "INSERT INTO notifikasi VALUES('$idUser',null, 'Verifikasi Berhasil','Kelengkapan profil anda sudah berhasil',0,'$now')";
-		$queryNotifikasi_result = $this->db->executeNonSelectQuery($queryNotifikasi);
+        if($verifikasi == 'verified'){
+            if($deskripsi!=''){
+                $queryNotifikasi = "INSERT INTO notifikasi VALUES('$idUser',null, 'Verifikasi Berhasil','$deskripsi',0,'$now')";
+                $queryNotifikasi_result = $this->db->executeNonSelectQuery($queryNotifikasi);
+            }
+            else{
+                $queryNotifikasi = "INSERT INTO notifikasi VALUES('$idUser',null, 'Verifikasi Berhasil','Kelengkapan profil anda sudah berhasil',0,'$now')";
+                $queryNotifikasi_result = $this->db->executeNonSelectQuery($queryNotifikasi);
+            }
+        }
+        else{
+            if($deskripsi!=''){
+                $queryNotifikasi = "INSERT INTO notifikasi VALUES('$idUser',null, 'Verifikasi Gagal','$deskripsi',0,'$now')";
+                $queryNotifikasi_result = $this->db->executeNonSelectQuery($queryNotifikasi);
+            }
+            else{
+                $queryNotifikasi = "INSERT INTO notifikasi VALUES('$idUser',null, 'Verifikasi Gagal','Kelengkapan profil anda gagal',0,'$now')";
+                $queryNotifikasi_result = $this->db->executeNonSelectQuery($queryNotifikasi);
+            }
+        }
 
     }
 
