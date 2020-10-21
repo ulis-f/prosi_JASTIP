@@ -41,7 +41,7 @@
                             <td>:</td>
                             <td><?php
                             foreach($result as $key=>$value){
-                                echo "<td>".$value->waktuAkhir."->".$value->idKota2."</td>";
+                                echo "<td>".$value->kotaAwal."->".$value->kotaTujuan."</td>";
                             }
                             ?></td> 
                         </tr>

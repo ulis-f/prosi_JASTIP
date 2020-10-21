@@ -1,8 +1,8 @@
 <?php
 
 class Offer{
-    public $idKota2;
-    public $waktuAkhir;
+    public $kotaAwal;
+    public $kotaTujuan;
     public $namaBarang;
     public $statusBarang;
     public $deskripsiBarang;
@@ -10,10 +10,10 @@ class Offer{
     public $hargaBarang;
     public $gambarBarang;
 
-    public function __construct($deskripsiBarang, $idKota2, $waktuAkhir, $namaBarang, $statusBarang, $namaKategori, $hargaBarang, $gambarBarang){
+    public function __construct($kotaAwal, $kotaTujuan, $namaBarang,  $statusBarang, $deskripsiBarang, $namaKategori, $hargaBarang, $gambarBarang){
         $this->deskripsiBarang = $deskripsiBarang;
-        $this->idKota2 = $idKota2;
-        $this->waktuAkhir = $waktuAkhir;
+        $this->kotaAwal = $kotaAwal;
+        $this->kotaTujuan = $kotaTujuan;
         $this->namaBarang = $namaBarang;
         $this->statusBarang = $statusBarang;
         $this->namaKategori = $namaKategori;

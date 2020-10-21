@@ -615,13 +615,19 @@ class UserController{
 	}
 	
 	public function getDetailBarangOffer($namaBarang, $idUser){
-        $query = "SELECT kota.namaKota, trip.waktuAkhir, jumlahBarang, namaBarang, statusBarang, hargaBarang,gambarBarang,  deskripsiBarang, namaKategori FROM transaksi 
-		inner join kategori on transaksi.idKategori = kategori.idKategori inner join trip on trip.idTrip = transaksi.IdTrip inner join kota on kota.idKota = trip.idKota2
-		WHERE transaksi.namaBarang LIKE '$namaBarang' AND transaksi.statusBarang LIKE 'onMarketOffer' AND transaksi.idUser1='$idUser'";
+        $query = "SELECT kotaAwal, namaKota, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori
+		FROM(SELECT idKota2, namaKota as 'kotaAwal', namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori
+				from(select idKota1, idKota2, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori
+						from (SELECT  IdTrip, transaksi.idKategori, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, kategori.namaKategori
+								FROM transaksi inner join kategori on transaksi.idKategori = kategori.idKategori 
+								where transaksi.idUser1 = '$idUser' AND transaksi.statusBarang = 'onMarketOffer' AND transaksi.namaBarang = '$namaBarang') as himpA
+						inner join trip where trip.idTrip = himpA.idTrip) as himpB
+				 inner join kota on kota.idKota = himpB.idKota1)as himpC
+		inner join kota on kota.idKota = himpC.idKota2";
          $query_result = $this->db->executeSelectQuery($query);
          $result = [];
          foreach($query_result as $key => $value){
-             $result[] = new Offer($value['deskripsiBarang'],$value['namaKota'],$value['waktuAkhir'],$value['namaBarang'],$value['statusBarang'],$value['namaKategori'],$value['hargaBarang'],$value['gambarBarang']);
+             $result[] = new Offer($value['kotaAwal'],$value['namaKota'],$value['namaBarang'],$value['statusBarang'], $value['deskripsiBarang'],$value['namaKategori'],$value['hargaBarang'],$value['gambarBarang']);
          }
          return $result;  
     }
