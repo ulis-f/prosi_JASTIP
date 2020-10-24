@@ -122,6 +122,26 @@
 				$userctrl = new userController();
 				echo $userctrl->view_detailBarangMarketOffer(); 
 				break;
+			case $baseURL . '/profileUserWantedItem':
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_profileUserWantedItem();   
+				break; 
+			case $baseURL . '/profileUserOfferItem':
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_profileUserOfferItem();   
+				break; 
+			case $baseURL . '/detailWantedItemProfile':    
+				require_once "controller/userController.php";  
+				$userctrl = new userController();
+				echo $userctrl->view_detailBarangMarketWantedProfile(); 
+				break;
+			case $baseURL . '/detailOfferOItemProfile':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_detailBarangMarketOfferProfile(); 
+				break;  
 			default:
 				echo '404 Not Found';
 				break;

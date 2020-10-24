@@ -151,13 +151,30 @@ class UserController{
         $idUser = $_GET['id'];
         $result = $this->getDetailBarangMarket($namaBarang, $idUser);
         return view::createViewMarket("detailBarangWanted.php",["nama"=>$nama, "result"=>$result]);  
-    }
+	}
+	
 	public function view_detailBarangMarketOffer(){
 		$nama = $_SESSION['nama'];
         $namaBarang = $_GET['namaBarang'];
         $idUser = $_GET['id'];
         $result = $this->getDetailBarangOffer($namaBarang, $idUser);
         return view::createViewMarket("detailBarangOffer.php",["nama"=>$nama, "result"=>$result]);  
+	}
+	
+	public function view_detailBarangMarketWantedProfile(){
+		$nama = $_SESSION['nama'];
+        $namaBarang = $_GET['namaBarang'];
+        $idUser = $_GET['id'];
+        $result = $this->getDetailBarangMarket($namaBarang, $idUser);
+        return view::createViewMarket("detailWantedItemProfile.php",["nama"=>$nama, "result"=>$result]);  
+	}   
+	
+	public function view_detailBarangMarketOfferProfile(){
+		$nama = $_SESSION['nama'];
+        $namaBarang = $_GET['namaBarang'];
+        $idUser = $_GET['id'];
+        $result = $this->getDetailBarangOffer($namaBarang, $idUser);  
+        return view::createViewMarket("detailOfferItemProfile.php",["nama"=>$nama, "result"=>$result]);  
     }
 
 	public function view_profileUser(){
@@ -167,6 +184,22 @@ class UserController{
 		$resultA = $this->getProfileSendiri();
 		$title = "titipaja.com - Profile User";
 		return view::createView('profileUser.php',["nama"=>$nama, "title"=>$title, "result"=>$result, "resultA"=>$resultA, "foto"=>$foto]);
+	}  
+
+	public function view_profileUserWantedItem(){
+		$nama = $_SESSION['nama'];
+		$foto = $this->getFotoProfile();
+		$resultA = $this->getProfileSendiri();
+		$title = "titipaja.com - Profile User";
+		return view::createView('wantedItemProfile.php',["nama"=>$nama, "title"=>$title, "resultA"=>$resultA, "foto"=>$foto]);
+	}
+
+	public function view_profileUserOfferItem(){
+		$nama = $_SESSION['nama'];
+		$foto = $this->getFotoProfile();
+		$resultA = $this->getProfileSendiri();
+		$title = "titipaja.com - Profile User";
+		return view::createView('itemOfferProfile.php',["nama"=>$nama, "title"=>$title, "resultA"=>$resultA, "foto"=>$foto]);
 	}
 
 	public function view_profileTraveller(){

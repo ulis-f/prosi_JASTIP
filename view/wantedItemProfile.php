@@ -4,12 +4,28 @@ body{
     background-color:white;
 }
 
-#tripAktif{
+#wantedItem{
     overflow-y: scroll;
-    height :425px;
+    height :475px;
 }   
 
-</style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+
+    tr:nth-child(even) {
+    background-color: white;
+}
+
+</style>  
 
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:5%;">    
     <div class="w3-row">
@@ -131,49 +147,42 @@ body{
 
 
     <fieldset class="" style="margin-left:5%; border: #6699cc 1px solid">
-        <ul class="nav" style="width:100%;border-bottom:1px solid #6699cc"> 
+        <ul class="nav" style="width:100%;border-bottom:1px solid #6699cc">   
             <li class="nav-item" style="">
-                <a class="nav-link text-center w3-text-theme" href="#" style="height: 100%;border-bottom: 4px solid #6699cc; ">Trip Aktif</a>
+                <a class="nav-link text-center w3-text-theme" href="profileUser" style="height: 100%; ">Trip Aktif</a>
             </li>
             <li class="nav-item w3-text-theme">
-                <a class="nav-link text-center w3-text-theme" href="profileUserWantedItem" style="height: 100%; ">Wanted Item</a>
+                <a class="nav-link text-center w3-text-theme" href="#" style="height: 100%; border-bottom: 4px solid #6699cc;">Wanted Item</a>
             </li>
             <li class="nav-item w3-text-theme">
                 <a class="nav-link text-center w3-text-theme" href="profileUserOfferItem" style="height: 100%; ">Item Offer</a>
-            </li>  
+            </li>
         </ul> 
 
         <div class="w3-row-padding">  
             <div class="w3-col m12">
-            <h4>Pejalanan yang Masih Aktif</h4>
+            <h4></h4>
                 <?php
-                echo"<div id='tripAktif'>";
-                    if($result==null){
-                        echo"<div class='w3-card w3-round w3-white' style='width:80%; padding:20px; margin-top:5%;'>";
-                            echo"Anda belum memiliki trip";  
-                        echo"</div>";
-                    }
-                    else{
-                        foreach($result as $key=>$value){
-                        echo"<div class='w3-card w3-round w3-white' style='width:80%; margin-top:5%;'>";
-                            echo"<div class='w3-container w3-padding'>";
-                            echo"<table>";
-                                echo"</tr>";  
-                                echo"<tr>";
-                                    echo"<td>".$value->kotaAwal."</td>";
-                                    echo"<td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:24px'></i></td>";
-                                    echo"<td>".$value->kotaTujuan."</td>";
-
-                                echo"</tr>";
-                                echo"<tr>";
-                                    echo"<td>".$value->waktuAwal."</td>";  
-                                    echo"<td>".$value->waktuAkhir."</td>";     
-                                echo"</tr>";
-                            echo"</table>";
-                            echo"</div>";
-                        echo"</div>";
-                        }  
-                    }
+                echo"<div id='wantedItem'>";
+                    echo"<table class='table table-striped'> 
+                        <tr>
+                            <th style='width:5px;'>No</th>
+                            <th>Nama Barang</th>
+                            <th>Detail</th>
+                        </tr>";
+                        $i=1;
+                        foreach($result as $key => $value){
+                            echo"<tr>";
+                            echo"<form method='GET' action=''>";
+                            echo"<input type='hidden' name='' value=''>";  
+                            echo "<td>".$i."</td> ";
+                            echo " <td>".'nama barang di sini'."</td>";
+                            echo " <td class='text-center'><input class='btn btn-primary btn-sm' style='font-size:15px' type='submit' value='Detail'></td>
+                                </tr>";
+                            echo"</form>";
+                            $i++;
+                        }
+                        echo"</table>";   
                 echo"</div>";
                 ?>
             </div>

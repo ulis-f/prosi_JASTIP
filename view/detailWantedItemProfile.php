@@ -8,8 +8,9 @@
         <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 700px; margin-top: 5%;">
             <form action="" method="POST">
                 <h2>Penitipan Barang</h2> 
+                    <h4>Lihat Profile Traveller</h4>    
                     <table>
-                        <tr>
+                        <tr>    
                             <td><label for="namaBarang">Nama Barang</label></td>
                             <td>:</td>
                             <td>
@@ -58,9 +59,6 @@
                         echo"<figure><img src='image/market/".$value->gambarBarang."'width=250px height=150px></figure><br>"; 
                     }
                     ?>
-                    <br> 
-                    <br><br><br><br><br>
-                    <input type='submit' class='w3-btn w3-right w3-theme' value='Titip Barang'>  
             </form>    
         </div>
     </div>

@@ -5,7 +5,7 @@
 </style>
   
     <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1200px; margin-top: 15%;">
+        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 750px; margin-top: 5%;">
             <form action="" method="POST">
                 <h2>Penitipan Barang</h2> 
                     <table>
