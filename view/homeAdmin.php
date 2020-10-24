@@ -50,7 +50,7 @@
                             echo"</form>";
                         echo"</div>";
                         echo "</div>";  
-                    } 
+                    }
 
                     elseif($i==2){
                         echo"<div class='w3-card-4 w3-white' style='width:30%; float:left; height:70%;margin-bottom:5%;'>";

@@ -25,7 +25,6 @@ class tripController{
         $asal = $_POST['asal'];
         $tujuan = $_POST['tujuan'];
         $fotoTiket = $_FILES['fotoTiket']['name'];
-        $nama = $_SESSION['nama'];
 
         $waktuAwal = new DateTime($_POST['waktuAsal']);
         $waktuA = $waktuAwal->format("Y-m-d H:i:s");

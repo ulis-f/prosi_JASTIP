@@ -268,7 +268,7 @@ class adminController{
             $query_result = $this->db->executeNonSelectQuery($query);
 
             $query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Gagal', 'Barang Anda dengan nama $namaBarang 
-            tidak berhasil disetujui karena $unverified. Anda diharapkan untuk mengisi ulang form.', 0, '$now')";
+            tidak berhasil disetujui. Anda diharapkan untuk mengisi ulang form.', 0, '$now')";
             $query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);   
         }
 

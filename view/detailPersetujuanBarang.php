@@ -94,7 +94,7 @@
                     </table>
                     
                     <br>
-                    <label for="gambarBarang">Gambar Barang</label>
+                    <label for="gambarBarang">Gambar Barang</label>  
                     <?php
                     foreach($result as $key=>$value){
                     echo"<figure><img src='image/market/".$value->gambarBarang."'width=250px height=150px></figure><br>"; 
