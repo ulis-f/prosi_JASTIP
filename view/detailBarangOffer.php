@@ -5,7 +5,7 @@
 </style>
   
     <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 850px; margin-top: 5%;">
+        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 950px; margin-top: 5%;">
             <form action="beliBarangOffer" method="GET">
                 <h2>Penitipan Barang</h2> 
                     <table>
@@ -80,12 +80,15 @@
                         echo"<figure><img src='image/market/".$value->gambarBarang."'width=250px height=150px></figure><br>"; 
                     }
                     ?><br> 
-                    <br><br><br><br><br>
-                    <div class="w3-right" style="padding-top: 100px; padding-right:1%"> 
-                    <input type='submit' class="btn btn-danger btn-sm" name="profile" style="font-size:17px;" value='Lihat Profile Traveler'>
-                    <input type='submit' class="btn btn-primary btn-sm" name="beliBarang" style="font-size:17px;" value='Beli Barang'>
+                    
+                    <p style="color:red; font-size:12px;">Note : <br>Sebelum melakukan pembelian barang, silakan menghubungi traveller terlebih dahulu
+                    untuk negosiasi harga (Harga Ongkir). Untuk kontak traveller bisa dilihat pada profilenya.</p>
+                    <div class="w3-right" style="padding-top: 100px; padding-right:1%">    
+                    <br><br><br><br><br> 
+                    <input type='submit' class="w3-btn w3-theme" name="beliBarang" style="" value='Beli Barang'>
                 </div>   
-            </form>    
+            </form>     
+            <input type='submit' class="btn btn-danger btn-sm" name="profile" style="font-size:12px;" value='Lihat Profile Traveler'>
         </div>
     </div>
 </div>

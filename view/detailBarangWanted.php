@@ -5,7 +5,7 @@
 </style>
   
     <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 700px; margin-top: 5%;">
+        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 950px; margin-top: 5%;">
             <form action="" method="POST">
                 <h2>Penitipan Barang</h2> 
                     <table>
@@ -59,8 +59,15 @@
                     }
                     ?>
                     <br> 
-                    <br><br><br><br><br>
-                    <input type='submit' class='w3-btn w3-right w3-theme' value='Titip Barang'>  
-            </form>    
+                    <br><br><br>
+                    <p style="color:red; font-size:12px;">Note : <br>Sebelum melakukan pembelian barang, silakan menghubungi customer terlebih dahulu
+                    untuk negosiasi harga (Harga Ongkir dan Harga Barang). Untuk kontak customer bisa dilihat pada profilenya.</p>
+                    <div class="w3-right" style="padding-top: 100px; padding-right:1%">    
+                    <br><br><br><br><br> 
+                    <input type='submit' class="w3-btn w3-theme" name="beliBarang" style="" value='Accept'>
+                    
+                </div>     
+            </form> 
+            <input type='submit' class="btn btn-danger btn-sm" name="profile" style="" value='Lihat Profile Customer'>   
         </div>
     </div>

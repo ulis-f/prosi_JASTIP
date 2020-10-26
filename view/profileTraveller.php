@@ -23,7 +23,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                         echo"<p style='margin-bottom:1%; margin-top:1%;'><i class='fa fa-phone fa-fw w3-margin-right w3-text-theme'></i>".$value->noHp."</p>";
                         echo"<p style='margin-bottom:1%; margin-top:1%;'><i class='fa fa-envelope fa-fw w3-margin-right w3-text-theme'></i>".$value->email."</p>";
                         echo"<p style='margin-bottom:1%; margin-top:1%;'><i class='fa fa-home fa-fw w3-margin-right w3-text-theme'></i>".$value->alamat."</p>";
-                        }
+                    }
             ?>   
         </div>
     </div>
