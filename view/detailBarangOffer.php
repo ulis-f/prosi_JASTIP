@@ -5,7 +5,7 @@
 </style>
   
     <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 750px; margin-top: 5%;">
+        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 850px; margin-top: 5%;">
             <form action="" method="POST">
                 <h2>Penitipan Barang</h2> 
                     <table>
@@ -37,11 +37,20 @@
                             ?></td>
                         </tr>
                         <tr>
-                            <td><label for="namaNegara">Nama Negara</label></td>
+                            <td><label for="namaNegara">Kota asal - Kota Tujuan</label></td>  
                             <td>:</td>
                             <td><?php
                             foreach($result as $key=>$value){
                                 echo "<td>".$value->kotaAwal."->".$value->kotaTujuan."</td>";
+                            }
+                            ?></td> 
+                        </tr>
+                        <tr>
+                            <td><label for="waktu">Waktu</label></td>
+                            <td>:</td>
+                            <td><?php
+                            foreach($result as $key=>$value){
+                                echo "<td>".$value->waktuAwal."->".$value->waktuAkhir."</td>";
                             }
                             ?></td> 
                         </tr>
@@ -63,7 +72,11 @@
                     }
                     ?><br> 
                     <br><br><br><br><br>
-                    <input type='submit' class='w3-btn w3-right w3-theme' value='Titip Barang'>  
+                    <div class="w3-right" style="padding-top: 100px; padding-right:1%"> 
+                    <button class="btn btn-danger btn-sm" style="font-size:17px;">Lihat Profile Traveler</button>
+                    <button class="btn btn-primary btn-sm" style="font-size:17px;">Beli Barang</button>
+                </div>   
             </form>    
         </div>
     </div>
+</div>
