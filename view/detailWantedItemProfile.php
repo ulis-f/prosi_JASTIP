@@ -8,7 +8,7 @@
         <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 700px; margin-top: 5%;">
             <form action="" method="POST">
                 <h2>Penitipan Barang</h2> 
-                    <h4>Lihat Profile Traveller</h4>    
+
                     <table>
                         <tr>    
                             <td><label for="namaBarang">Nama Barang</label></td>

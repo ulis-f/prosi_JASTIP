@@ -6,8 +6,8 @@
   
     <div class="container">
         <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 750px; margin-top: 5%;">
-            <form action="" method="POST">
-                <h4>Lihat Profile Penitip</h4>    
+            <form action="" method="POST">  
+                    <h2>Barang yang dijual</h2>
                     <table>
                         <tr>
                             <td><label for="namaBarang">Nama Barang</label></td>
@@ -37,7 +37,7 @@
                             ?></td>
                         </tr>
                         <tr>
-                            <td><label for="namaNegara">Nama Negara</label></td>
+                            <td><label for="namaNegara">Kota asal- Kota tujuan</label></td>
                             <td>:</td>
                             <td><?php
                             foreach($result as $key=>$value){
