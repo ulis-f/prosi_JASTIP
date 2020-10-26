@@ -142,11 +142,16 @@
 				$userctrl = new userController();
 				echo $userctrl->view_detailBarangMarketWantedProfile(); 
 				break;
-			case $baseURL . '/detailOfferOItemProfile':    
+			case $baseURL . '/detailOfferItemProfile':    
 				require_once "controller/userController.php";
 				$userctrl = new userController();
 				echo $userctrl->view_detailBarangMarketOfferProfile(); 
 				break;  
+			case $baseURL . '/beliBarangOffer':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_beliBarangOffer(); 
+				break;   
 			default:
 				echo '404 Not Found';
 				break;

@@ -173,7 +173,7 @@ table {
                         $i=1;
                         foreach($result as $key => $value){
                             echo"<tr>";
-                            echo"<form method='GET' action='detailBarangOffer'>";
+                            echo"<form method='GET' action='detailOfferItemProfile'>";
                             echo"<input type='hidden' name='id' value=".$value->idUser.">";  
                             echo"<input type='hidden' name='namaBarang' value='".$value->namaBarang."'>";  
                             echo "<td>".$i."</td> ";
