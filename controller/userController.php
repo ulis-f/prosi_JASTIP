@@ -6,7 +6,6 @@ require_once "model/trip.php";
 require_once "model/transaksi.php";
 require_once "model/kategori.php";
 require_once "model/notifikasi.php"; 
-require_once "model/barang.php"; 
 require_once "model/detailOffer.php"; 
 class UserController{
 	protected $db;
@@ -52,18 +51,6 @@ class UserController{
 		$lengkap = $this->cekMelengkapiPendaftaran($nama);
 		
 		return view::createView('halamanUtamaMember.php',["nama"=>$nama,"title"=>$title,"auth"=>$auth,"result"=>$result,"lengkap"=>$lengkap]);
-	}
-
-	public function view_getPencarianOffer(){
-		$title = "titipaja.com - index";
-		$result = $this->getPencarianOffer();
-		if(isset($_SESSION['nama']) && !empty($_SESSION['nama'])) {
-			$nama = $_SESSION['nama'];
-		}
-		else{
-			$nama = null;
-		}
-		return view::createView('marketOfferItem.php',["nama"=>$nama, "title"=>$title,"result"=>$result]);
 	}
 
 	public function view_lengkap(){
@@ -173,13 +160,6 @@ class UserController{
         $result = $this->getDetailBarangOffer($namaBarang, $idUser);
         return view::createViewMarket("detailBarangOffer.php",["nama"=>$nama, "result"=>$result]);  
 	}
-	public function view_detailBarangMarketOfferProfile(){
-		$nama = $_SESSION['nama'];
-        $namaBarang = $_GET['namaBarang'];
-        $idUser = $_GET['id'];
-        $result = $this->getDetailBarangOffer($namaBarang, $idUser);
-        return view::createViewMarket("detailOfferItemProfile.php",["nama"=>$nama, "result"=>$result]);  
-	}
 	
 	public function view_detailBarangMarketWantedProfile(){
 		$nama = $_SESSION['nama'];
@@ -189,6 +169,13 @@ class UserController{
         return view::createViewMarket("detailWantedItemProfile.php",["nama"=>$nama, "result"=>$result]);  
 	}   
 	
+	public function view_detailBarangMarketOfferProfile(){
+		$nama = $_SESSION['nama'];
+        $namaBarang = $_GET['namaBarang'];
+        $idUser = $_GET['id'];
+        $result = $this->getDetailBarangOffer($namaBarang, $idUser);  
+        return view::createViewMarket("detailOfferItemProfile.php",["nama"=>$nama, "result"=>$result]);  
+    }
 
 	public function view_profileUser(){
 		$nama = $_SESSION['nama'];
@@ -203,18 +190,16 @@ class UserController{
 		$nama = $_SESSION['nama'];
 		$foto = $this->getFotoProfile();
 		$resultA = $this->getProfileSendiri();
-		$result = $this->getWantedSendiri();
 		$title = "titipaja.com - Profile User";
-		return view::createView('wantedItemProfile.php',["nama"=>$nama, "title"=>$title, "resultA"=>$resultA, "foto"=>$foto, "result"=>$result]);
+		return view::createView('wantedItemProfile.php',["nama"=>$nama, "title"=>$title, "resultA"=>$resultA, "foto"=>$foto]);
 	}
 
 	public function view_profileUserOfferItem(){
 		$nama = $_SESSION['nama'];
 		$foto = $this->getFotoProfile();
 		$resultA = $this->getProfileSendiri();
-		$result = $this->getOfferSendiri();
 		$title = "titipaja.com - Profile User";
-		return view::createView('itemOfferProfile.php',["nama"=>$nama, "title"=>$title, "resultA"=>$resultA, "foto"=>$foto, "result"=>$result]);
+		return view::createView('itemOfferProfile.php',["nama"=>$nama, "title"=>$title, "resultA"=>$resultA, "foto"=>$foto]);
 	}
 
 	public function view_profileTraveller(){
@@ -309,12 +294,8 @@ class UserController{
         foreach($query_result as $key =>$value){
 			$dateAwal = new DateTime($value['waktuAwal']);
 			$dateAkhir = new DateTime($value['waktuAkhir']);
-			$timezone = new DateTimeZone('Asia/Jakarta');
-			$date = new DateTime("now");
-			$date->setTimeZone($timezone);
-			
-			
-			if($dateAwal>$date){
+			$today = date("Y-m-d H:i:s");
+			if($dateAwal->format('Y-m-d H:i:s')>$today){
 				$result[] = new Trip($value['namaUser'],null, null, $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan'],null);
 			}
         }   
@@ -531,44 +512,16 @@ class UserController{
 	public function getPencarian(){
 		$negara = $_GET['country'];
 
-		$query = "select namaUser, idTrip, gambarTrip, waktuAwal, waktuAkhir, kota_awal, kota_tujuan
-		from(SELECT user.namaUser, himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
-					as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
-					FROM kota inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota WHERE statusTrip = 'verified') 
-					as himpA on kota.idKota = himpA.idKota2 inner join post on post.idTrip = himpA.idTrip 
-					inner join user on user.idUser= post.idUser) as himpAA
-					inner join (SELECT idKota, namaKota
-								from(SELECT idProvinsi
-									 from negara inner join provinsi 
-									 on provinsi.idNegara = negara.idNegara 
-									 where namaNegara = '$negara') as himpP inner join kota on himpP.idProvinsi = kota.idProvinsi
-								) as himpAB on himpAA.kota_tujuan = himpAB.namaKota";
+		$query = "SELECT user.namaUser, himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
+		as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
+		FROM kota inner join (SELECT provinsi.namaProvinsi, provinsi.idNegara, himpKota.idTrip, himpKota.waktuAwal, himpKota.waktuAkhir, himpKota.statusTrip, himpKota.gambarTrip, himpKota.idKota1, himpKota.idKota2, himpKota.idKota, himpKota.namaKota FROM provinsi inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota WHERE statusTrip = 'verified') 
+		as himpKota on provinsi.idProvinsi = himpKota.idProvinsi WHERE idNegara = (SELECT idNegara FROM negara WHERE namaNegara = '$negara'))
+		as himpA on kota.idKota = himpA.idKota2 inner join post on post.idTrip = himpA.idTrip 
+		inner join user on user.idUser= post.idUser";
         $query_result = $this->db->executeSelectQuery($query);
         $result=[];
         foreach($query_result as $key =>$value){
             $result[] = new Trip($value['namaUser'],null, null, $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan'],null);
-        }   
-        return $result;  
-	}
-
-	public function getPencarianOffer(){
-		$negara = $_GET['country'];
-
-		$query = "select himpA.idUser1, hargaBarang, namaBarang, gambarBarang
-		from (select idUser1, hargaBarang, namaBarang, gambarBarang, trip.idKota2
-			 from transaksi inner join trip 
-			 on transaksi.IdTrip = trip.idTrip 
-			 where transaksi.statusBarang = 'onMarketOffer') as himpA
-		inner join (SELECT idKota, namaKota
-										from(SELECT idProvinsi
-											 from negara inner join provinsi 
-											 on provinsi.idNegara = negara.idNegara 
-											 where namaNegara = '$negara') as himpP inner join kota on himpP.idProvinsi = kota.idProvinsi
-										) as himpB on himpA.idKota2 = himpB.idKota";
-        $query_result = $this->db->executeSelectQuery($query);
-        $result=[];
-        foreach($query_result as $key =>$value){
-            $result[]= new transaksi($value['idUser1'],null,null,null,$value['hargaBarang'],null,null,$value['namaBarang'],null,null,$value['gambarBarang'],null,null);
         }   
         return $result;  
 	}
@@ -695,9 +648,9 @@ class UserController{
 	}
 	
 	public function getDetailBarangOffer($namaBarang, $idUser){
-        $query = "SELECT kotaAwal, namaKota, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, waktuAkhir, waktuAwal
-		FROM(SELECT idKota2, namaKota as 'kotaAwal', namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, waktuAwal, waktuAkhir
-				from(select idKota1, idKota2, waktuAwal, waktuAkhir, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori
+        $query = "SELECT kotaAwal, namaKota, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori
+		FROM(SELECT idKota2, namaKota as 'kotaAwal', namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori
+				from(select idKota1, idKota2, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori
 						from (SELECT  IdTrip, transaksi.idKategori, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, kategori.namaKategori
 								FROM transaksi inner join kategori on transaksi.idKategori = kategori.idKategori 
 								where transaksi.idUser1 = '$idUser' AND transaksi.statusBarang = 'onMarketOffer' AND transaksi.namaBarang = '$namaBarang') as himpA
@@ -707,46 +660,10 @@ class UserController{
          $query_result = $this->db->executeSelectQuery($query);
          $result = [];
          foreach($query_result as $key => $value){
-			 $awal = $value['waktuAwal'];
-			 $sec = strtotime($awal);
-			$newAwal = date("d/m/yy", $sec);
-			$akhir= $value['waktuAkhir'];
-			 $ces = strtotime($akhir);
-			$newAkhir = date("d/m/yy", $ces);			
-             $result[] = new Offer($value['kotaAwal'],$value['namaKota'],$newAwal,$newAkhir,$value['namaBarang'],$value['statusBarang'], $value['deskripsiBarang'],$value['namaKategori'],$value['hargaBarang'],$value['gambarBarang']);
+             $result[] = new Offer($value['kotaAwal'],$value['namaKota'],$value['namaBarang'],$value['statusBarang'], $value['deskripsiBarang'],$value['namaKategori'],$value['hargaBarang'],$value['gambarBarang']);
          }
          return $result;  
-	}
-	
-	public function getWantedSendiri(){
-		$nama = $_SESSION['nama'];
-		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
-		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);  
-
-		$idUser = $query_idUser_result[0]['idUser'];
-		$query = "SELECT idUser1, namaBarang from transaksi where idUser1 = '$idUser' AND statusBarang = 'onMarketWanted'";
-		$query_result = $this->db->executeSelectQuery($query);
-		$result = [];
-		foreach($query_result as $key => $value){
-			$result[] = new Barang($value['idUser1'], null, null,$value['namaBarang'],null);
-		}
-		return $result;
-	}
-
-	public function getOfferSendiri(){
-		$nama = $_SESSION['nama'];
-		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
-		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);  
-
-		$idUser = $query_idUser_result[0]['idUser'];
-		$query = "SELECT idUser1, namaBarang from transaksi where idUser1 = '$idUser' AND statusBarang = 'onMarketOffer'";
-		$query_result = $this->db->executeSelectQuery($query);
-		$result = [];
-		foreach($query_result as $key => $value){
-			$result[] = new Barang($value['idUser1'], null, null,$value['namaBarang'],null);
-		}
-		return $result;
-	}
+    }
 	
 }
 

@@ -173,11 +173,10 @@ table {
                         $i=1;
                         foreach($result as $key => $value){
                             echo"<tr>";
-                            echo"<form method='GET' action='detailBarangWantedProfile'>";
-                            echo"<input type='hidden' name='id' value='".$value->idUser."'>";  
-                            echo"<input type='hidden' name='namaBarang' value='".$value->namaBarang."'>";  
+                            echo"<form method='GET' action=''>";
+                            echo"<input type='hidden' name='' value=''>";  
                             echo "<td>".$i."</td> ";
-                            echo " <td>".$value->namaBarang."</td>";
+                            echo " <td>".'nama barang di sini'."</td>";
                             echo " <td class='text-center'><input class='btn btn-primary btn-sm' style='font-size:15px' type='submit' value='Detail'></td>
                                 </tr>";
                             echo"</form>";

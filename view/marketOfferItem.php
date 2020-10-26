@@ -42,9 +42,9 @@
  
     <div class="container"> 
         <div style="text-align: center; margin-bottom:5%; margin-top:5%;">
-            <form class="" action="cariNegaraOffer" method="GET">
+            <form class="" action="cariNegara" method="GET">
                 <select class="form-control select2" id="country" name="country" style="width:40%;">
-                    <option value="">Pilih Negara</option>
+                    <option value="Cari Negara">Pilih Negara</option>
                     <option value="Afganistan">Afghanistan</option>
                     <option value="Albania">Albania</option>
                     <option value="Algeria">Algeria</option>
