@@ -218,9 +218,22 @@ class UserController{
 	}
 
 	public function view_profileTraveller1(){
-		$nama = $_GET['nama'];
+		$nama = $_SESSION['nama'];
+		$title = "titipaja.com - Profile";
         $result = $this->getProfileTraveller($nama);    
-		return view::createView('profileTraveller.php',["title"=>$title, "result"=>$result]);  
+		return view::createView('profileTraveller.php',["nama"=>$nama, "title"=>$title, "result"=>$result]);  
+	}
+	public function view_beliBarangOffer(){
+		if(isset($_GET['profile'])){
+			$this->view_profileTraveller();
+		}
+		else if(isset($_GET['beliBarang'])){
+			$nama = $_SESSION['nama'];
+			$title = "titipaja.com - Beli Barang"; 
+			$result = $this->getBeliBarangOffer();
+			return view::createView('beliBarang.php',["title"=>$title, "result"=>$result, "nama"=>$nama]);
+		}
+		
 	}
 
 	public function getProfileTraveller($nama){
@@ -738,6 +751,21 @@ class UserController{
 		foreach($query_result as $key => $value){
 			$result[] = new Barang($value['idUser1'], null, null,$value['namaBarang'],null);
 		}
+		return $result;
+	}
+
+	public function getBeliBarangOffer(){
+		$namaBarang = $_GET['namaBarang'];
+		$hargaBarang = $_GET['hargaBarang'];
+		$namaKategori = $_GET['namaKategori'];
+		$kotaAwal = $_GET['kotaAwal'];
+		$kotaTujuan = $_GET['kotaTujuan'];
+		$waktuAwal = $_GET['waktuAwal'];
+		$waktuAkhir = $_GET['waktuAkhir'];
+		$deskripsi = $_GET['deskripsi'];
+		$gambar = $_GET['gambar'];
+		$result=[];
+		$result[] = new Offer($kotaAwal,$kotaTujuan,$waktuAwal,$waktuAkhir,$namaBarang,null, $deskripsi,$namaKategori,$hargaBarang,$gambar);
 		return $result;
 	}
 	
