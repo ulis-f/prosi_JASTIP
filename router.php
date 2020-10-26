@@ -142,7 +142,7 @@
 				$userctrl = new userController();
 				echo $userctrl->view_detailBarangMarketWantedProfile(); 
 				break;
-			case $baseURL . '/detailOfferOItemProfile':    
+			case $baseURL . '/detailOfferItemProfile':    
 				require_once "controller/userController.php";
 				$userctrl = new userController();
 				echo $userctrl->view_detailBarangMarketOfferProfile(); 

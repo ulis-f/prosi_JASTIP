@@ -173,6 +173,13 @@ class UserController{
         $result = $this->getDetailBarangOffer($namaBarang, $idUser);
         return view::createViewMarket("detailBarangOffer.php",["nama"=>$nama, "result"=>$result]);  
 	}
+	public function view_detailBarangMarketOfferProfile(){
+		$nama = $_SESSION['nama'];
+        $namaBarang = $_GET['namaBarang'];
+        $idUser = $_GET['id'];
+        $result = $this->getDetailBarangOffer($namaBarang, $idUser);
+        return view::createViewMarket("detailOfferItemProfile.php",["nama"=>$nama, "result"=>$result]);  
+	}
 	
 	public function view_detailBarangMarketWantedProfile(){
 		$nama = $_SESSION['nama'];
