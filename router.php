@@ -87,6 +87,11 @@
 				$roleCtrl = new userController();
 				echo $roleCtrl->view_getPencarian();
 				break;
+			case $baseURL.'/cariNegaraOffer':
+				require_once "controller/userController.php";
+				$roleCtrl = new userController();
+				echo $roleCtrl->view_getPencarianOffer();
+				break;
 			case $baseURL . '/market':    
 				require_once "controller/userController.php";
 				$userctrl = new userController();
@@ -117,10 +122,20 @@
 				$userctrl = new userController();
 				echo $userctrl->view_detailBarangMarketWanted(); 
 				break;
+			case $baseURL . '/detailBarangWantedProfile':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_detailBarangMarketWantedProfile(); 
+				break;
 			case $baseURL . '/detailBarangOffer':    
 				require_once "controller/userController.php";
 				$userctrl = new userController();
 				echo $userctrl->view_detailBarangMarketOffer(); 
+				break;
+			case $baseURL . '/detailBarangOfferProfile':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_detailBarangMarketOfferProfile(); 
 				break;
 			case $baseURL . '/profileUserWantedItem':
 				require_once "controller/userController.php";

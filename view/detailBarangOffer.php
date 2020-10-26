@@ -37,11 +37,20 @@
                             ?></td>
                         </tr>
                         <tr>
-                            <td><label for="namaNegara">Nama Negara</label></td>
+                            <td><label for="namaNegara">Negara</label></td>
                             <td>:</td>
                             <td><?php
                             foreach($result as $key=>$value){
                                 echo "<td>".$value->kotaAwal."->".$value->kotaTujuan."</td>";
+                            }
+                            ?></td> 
+                        </tr>
+                        <tr>
+                            <td><label for="waktu">Waktu</label></td>
+                            <td>:</td>
+                            <td><?php
+                            foreach($result as $key=>$value){
+                                echo "<td>".$value->waktuAwal."->".$value->waktuAkhir."</td>";
                             }
                             ?></td> 
                         </tr>
