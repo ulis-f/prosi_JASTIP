@@ -258,7 +258,12 @@ class UserController{
 	}
 	
 	public function getTripSendiri(){
-		$nama = $_SESSION['nama'];
+		$nama = $_SESSION['nama']; 
+		$timezone = new DateTimeZone('Asia/Jakarta');
+		$date = new DateTime();
+		$date->setTimeZone($timezone);
+		$now = $date->format('Y-m-d H:i:s');
+
         $query = "SELECT himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
 			as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
 			FROM kota inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota ) 
@@ -267,13 +272,21 @@ class UserController{
         $query_result = $this->db->executeSelectQuery($query);
         $result=[];
         foreach($query_result as $key =>$value){  
-            $result[] = new Trip(null,null, $value['idTrip'], $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
-        }   
+			if($value['waktuAkhir']>$now){
+            	$result[] = new Trip(null,null, $value['idTrip'], $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
+			} 
+		}  
         return $result;   
 	}
 	
 	public function getTripSendiriOffer(){
 		$nama = $_SESSION['nama'];
+
+		$timezone = new DateTimeZone('Asia/Jakarta');
+		$date = new DateTime();
+		$date->setTimeZone($timezone);
+		$now = $date->format('Y-m-d H:i:s');
+		
         $query = "SELECT himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
 			as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
 			FROM kota inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota ) 
@@ -282,7 +295,9 @@ class UserController{
         $query_result = $this->db->executeSelectQuery($query);
         $result=[];
         foreach($query_result as $key =>$value){  
-            $result[] = new Trip(null,null, $value['idTrip'], $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
+            if($value['waktuAkhir']>$now){
+            	$result[] = new Trip(null,null, $value['idTrip'], $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
+			} 
         }   
         return $result;   
 	}
