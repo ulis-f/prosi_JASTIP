@@ -16,7 +16,7 @@ body{
         <!-- Left Column -->
         <div class="w3-col m3">
         <!-- Profile -->  
-            <div class="w3-card w3-round w3-white">
+            <div class="w3-card-4 w3-round w3-white" style="height:550px;">
                 <div class="w3-container">
                 <h4 class="w3-center">Profile Saya</h4>
                 <p class="w3-center">
@@ -130,7 +130,7 @@ body{
     <div class="w3-col m7">
 
 
-    <fieldset class="" style="margin-left:5%; border: #6699cc 1px solid">
+    <fieldset class="" style="margin-left:5%; height:550px; border: #6699cc 1px solid">
         <ul class="nav" style="width:100%;border-bottom:1px solid #6699cc"> 
             <li class="nav-item" style="">
                 <a class="nav-link text-center w3-text-theme" href="#" style="height: 100%;border-bottom: 4px solid #6699cc; ">Trip Aktif</a>
