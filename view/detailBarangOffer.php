@@ -87,8 +87,17 @@
                     <br><br><br><br><br> 
                     <input type='submit' class="w3-btn w3-theme" name="beliBarang" style="" value='Beli Barang'>
                 </div>   
-            </form>     
+            </form>
+            <form action="profileTravellerMarket" method="GET">
+            <?php
+            foreach($result as $key => $value){
+                echo"<input type='hidden' name='namaUser' value='$value->namaUser'>";
+                echo "<p>".$value->namaUser."</p>";
+            }
+            ?>
+            <p></p>     
             <input type='submit' class="btn btn-danger btn-sm" name="profile" style="font-size:12px;" value='Lihat Profile Traveler'>
+            </form>
         </div>
     </div>
 </div>

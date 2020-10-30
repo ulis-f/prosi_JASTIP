@@ -67,6 +67,11 @@
 				$userctrl = new userController();
 				echo $userctrl->view_profileTraveller();    
 				break;  
+			case $baseURL . '/profileTravellerMarket':
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_profileTravellerMarket();    
+				break;  
 			case $baseURL.'/lengkapDaftar':
 				require_once "controller/adminController.php";
 				$roleCtrl = new adminController();
