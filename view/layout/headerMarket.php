@@ -92,21 +92,21 @@
                 $result1[]= new notifikasi(null,null,$value['namaNotifikasi'],$value['deskripsi'],null,$value['dateTime']);
             }	
             
-            $query2 = "SELECT * FROM notifikasi WHERE idUser = '$idUser' ";
+            $query2 = "SELECT * FROM notifikasi WHERE idUser = '$idUser' ORDER BY dateTime DESC";
             $query_result2 = $db->executeSelectQuery($query2);
             $result2=[];
             foreach($query_result2 as $key=>$value){
                 $result2[]= new notifikasi(null,null,$value['namaNotifikasi'],$value['deskripsi'],null,$value['dateTime']);
             }
 
-            $query3 = "SELECT * FROM notifikasi WHERE idUser = '$idUser' AND statusView=1 ";
+            $query3 = "SELECT * FROM notifikasi WHERE idUser = '$idUser' AND statusView=1 ORDER BY dateTime DESC";
             $query_result3 = $db->executeSelectQuery($query3);
             $result3=[];
             foreach($query_result3 as $key=>$value){
                 $result3[]= new notifikasi(null,null,$value['namaNotifikasi'],$value['deskripsi'],null,$value['dateTime']);
             }
 
-            $query5 = "SELECT COUNT(statusView) FROM notifikasi WHERE idUser = '$idUser' AND statusView=0 ";
+            $query5 = "SELECT COUNT(statusView) FROM notifikasi WHERE idUser = '$idUser' AND statusView=0 ORDER BY dateTime DESC";
             $query_result5 = $db->executeSelectQuery($query5);
             $countNotifikasi = $query_result5[0]['COUNT(statusView)'];
 
@@ -116,7 +116,7 @@
 
             if(isset($_POST['updateStatus'])){
     
-            }
+            }  
             else{
                 include "updateStatusView.php";
             }
@@ -132,14 +132,14 @@
                 <div id="myDropdown-down" class="dropdown-content" style="width:500px; padding:7px; border-radius:3%;background-color:white;">  
                 <?php
                         if($nama != null){
-                            echo"<h6 style='color:#f75939;padding-left:10px;'>Notifikasi-notifikasi Anda</h6>";
+                            echo"<h4 style='color:#f75939;padding-left:10px;'>Notifikasi-notifikasi Anda</h4>";
                             if($result2!=null){
                                 $i=1;
                                     if($result1!=null){
                                         foreach($result1 as $key => $value){
                                             echo"<div style='color:black; 
-                                            padding:10px; background-color:#feeae6; border-bottom:2px solid white;'>";
-                                            echo"<h7>$value->namaNotifikasi</h7><br/>";
+                                            padding-left:10px; padding-right:10px; background-color:#feeae6; border-bottom:2px solid white;'>";
+                                            echo"<h7>$value->namaNotifikasi</h7>";
                                             echo"<div style='font-size:10px;'>$value->dateTime</div>"; 
                                             echo"<small>$value->deskripsi</small>";
                                             echo"</div>";
@@ -167,7 +167,7 @@
                                                             foreach($result1 as $key => $value){
                                                                 echo"<div style='color:black; 
                                                                 padding:10px; background-color:#feeae6; border-bottom:2px solid white;'>";
-                                                                echo"<h7>$value->namaNotifikasi</h7><br/>";
+                                                                echo"<h7>$value->namaNotifikasi</h7>";
                                                                 echo"<div style='font-size:10px;'>$value->dateTime</div>"; 
                                                                 echo"<small>$value->deskripsi</small>";
                                                                 echo"</div>";
@@ -176,7 +176,7 @@
                                                             foreach($result3 as $key => $value){
                                                                 echo"<div style='color:black; 
                                                                 padding:10px; background-color:white; border-bottom:2px solid #ddd;'>";
-                                                                echo"<h7>$value->namaNotifikasi</h7><br/>";
+                                                                echo"<h7>$value->namaNotifikasi</h7>";
                                                                 echo"<div style='font-size:10px;'>$value->dateTime</div>"; 
                                                                 echo"<small>$value->deskripsi</small>";
                                                                 echo"</div>";
@@ -206,8 +206,8 @@
                                     if($result3!=null){
                                         foreach($result3 as $key => $value){
                                             echo"<div style='color:black; 
-                                            padding:10px; background-color:white; border-bottom:2px solid #ddd;'>";
-                                            echo"<h7>$value->namaNotifikasi</h7><br/>";
+                                            padding-left:10px; padding-right:10px; background-color:white; border-bottom:2px solid #ddd;'>";
+                                            echo"<h7>$value->namaNotifikasi</h7>";
                                             echo"<div style='font-size:10px;'>$value->dateTime</div>"; 
                                             echo"<small>$value->deskripsi</small>";
                                             echo"</div>";
@@ -235,7 +235,7 @@
                                                             foreach($result1 as $key => $value){
                                                                 echo"<div style='color:black; 
                                                                 padding:10px; background-color:#feeae6; border-bottom:2px solid white;'>";
-                                                                echo"<h7>$value->namaNotifikasi</h7><br/>";
+                                                                echo"<h7>$value->namaNotifikasi</h7>";
                                                                 echo"<div style='font-size:10px;'>$value->dateTime</div>"; 
                                                                 echo"<small>$value->deskripsi</small>";
                                                                 echo"</div>";
@@ -244,7 +244,7 @@
                                                             foreach($result3 as $key => $value){
                                                                 echo"<div style='color:black; 
                                                                 padding:10px; background-color:white; border-bottom:2px solid #ddd;'>";
-                                                                echo"<h7>$value->namaNotifikasi</h7><br/>";
+                                                                echo"<h7>$value->namaNotifikasi</h7>";
                                                                 echo"<div style='font-size:10px;'>$value->dateTime</div>"; 
                                                                 echo"<small>$value->deskripsi</small>";
                                                                 echo"</div>";
@@ -389,12 +389,7 @@
         }
     }
 
-    function updateStatusView() {
-        document.getElementById("demo").innerHTML = "Hello World";
-    }
-
 </script>
-
 
                                 
         

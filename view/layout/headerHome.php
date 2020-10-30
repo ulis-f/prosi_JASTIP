@@ -114,12 +114,9 @@
             $query_result6 = $db->executeSelectQuery($query6);
             $countAll = $query_result6[0]['COUNT(statusView)'];
 
-            if(isset($_POST['updateStatus'])){
-    
-            }  
-            else{
+            if(!isset($_POST['updateStatus'])){
                 include "updateStatusView.php";
-            }
+            }  
         }
 
         
@@ -151,11 +148,8 @@
                                                 </div>";  
                                             }
                                             if($i==6){
-                                            
                                                 echo"<fieldset class='w3-theme' Style='border-radius:10px;'>";
                                                 echo"<div class='w3-left'>";
-                                                // echo"<a href='' style='font-size:12px; width:200px;'>Tampilkan Semua Notifikasi</a>";
-                                                // echo"</div>";
                                                 echo"<div class='w3-container w3-left'>
                                                     <input type='submit' value='Lihat Semua Notifikasi' class='w3-btn' onclick="."document.getElementById('allNotifikasi').style.display='block'"." style='font-size:12px; width:200px;'>
                                                     <div id='allNotifikasi' class='w3-modal'>
@@ -189,14 +183,11 @@
                                                 echo"</div>";
                                                 
                                                 echo"<div class='w3-right'>";
-                                                // echo"<a href='' style='font-size:12px; width:150px;'>Tandai Telah Dibaca</a>";
-                                                // echo"</div>";
+                                                echo"<form method='POST' action='C:\xampp\htdocs\prosi_JASTIP\view\layout\updateStatusView.php'>";
                                                 echo"<input type='submit' class='w3-btn' id='updateStatus' value='Tandai Telah Dibaca ($countNotifikasi)' 
                                                 style='font-size:12px; width:200px; name='updateStatus'>";  
+                                                echo"</form>"; 
 
-                                                // echo"<form method='POST' action='C:\xampp\htdocs\prosi_JASTIP\view\layout\updateStatusView.php'>
-                                                //     <input type='submit' class='w3-btn' value='Tandai Telah Dibaca ($countNotifikasi)' style='font-size:12px; width:200px; name='updateStatus'>
-                                                // </form>";
                                                 echo"</fieldset>";
 
                                                 break;
@@ -219,11 +210,8 @@
                                                 </div>";  
                                             }
                                             if($i==6){
-                                            
                                                 echo"<fieldset class='w3-theme' Style='border-radius:10px;'>";
-                                                echo"<div class='w3-left'>";
-                                                // echo"<a href='' style='font-size:12px; width:200px;'>Tampilkan Semua Notifikasi</a>";
-                                                // echo"</div>";
+                                                echo"<div class='w3-left'>";                                              
                                                 echo"<div class='w3-container w3-left'>
                                                     <input type='submit' value='Lihat Semua Notifikasi' class='w3-btn' onclick="."document.getElementById('allNotifikasi').style.display='block'"." style='font-size:12px; width:200px;'>
                                                     <div id='allNotifikasi' class='w3-modal'>
@@ -257,19 +245,11 @@
                                                 echo"</div>";
                                                 
                                                 echo"<div class='w3-right'>";
-                                                // echo"<a href='' style='font-size:12px; width:150px;'>Tandai Telah Dibaca</a>";
-                                                // echo"</div>";
+                                                echo"<form method='POST' action='C:\xampp\htdocs\prosi_JASTIP\view\layout\updateStatusView.php'>";
                                                 echo"<input type='submit' class='w3-btn' id='updateStatus' value='Tandai Telah Dibaca ($countNotifikasi)' 
                                                 style='font-size:12px; width:200px; name='updateStatus'>";  
-
-                                                // echo"<form method='POST' action='C:\xampp\htdocs\prosi_JASTIP\view\layout\updateStatusView.php'>
-                                                // <input type='submit' class='w3-btn' id='updateStatus' value='Tandai Telah Dibaca ($countNotifikasi)' 
-                                                // style='font-size:12px; width:200px; name='updateStatus'>    
-                                                // </form>";
+                                                echo"</form>";
                                                 echo"</fieldset>";
-
-                                                
-
                                                 break;
                                             }   
                                         }
@@ -390,18 +370,6 @@
     }
 
 </script>
-
-
-                                    <!-- <div class='w3-container w3-left'>
-                                        <button onclick="document.getElementById('allNotifikasi').style.display='block'" style='font-size:12px; width:150px;'>Lihat Semua Notifikasi</button>
-                                        <div id='allNotifikasi' class='w3-modal'>
-                                            <div class='w3-modal-content' style='width:40%; height: 90%; margin-left: auto; margin-right: auto'>
-                                                <div class='w3-container'>
-                                                <span onclick="document.getElementById('allNotifikasi').style.display='none'" class='w3-button w3-display-topright'>&times;</span>        
-                                                </div>
-                                            </div>
-                                        </div>   
-                                    </div> -->
 
                                 
         
