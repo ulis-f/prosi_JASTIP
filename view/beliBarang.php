@@ -102,7 +102,7 @@
                     </div>
 
                     <div class="w3-right" style="padding-top: 25%; padding-right:1%"> 
-                    <button class="w3-btn w3-theme" style="font-size:17px;">Beli Barang</button>
+                    <button class="w3-btn w3-theme" style="font-size:17px;">Beli Barang</button>   
                 </div>   
             </form>    
         </div>

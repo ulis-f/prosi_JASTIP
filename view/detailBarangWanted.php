@@ -2,12 +2,24 @@
     figure:hover{
         transform: scale(2.4); 
     }
+
+    /* Create two equal columns that sits next to each other */
+    .column {
+        width: 50%;
+        float :left;
+    }
+
+    .column1 {
+        width : 50%;
+        float : right;
+    }
 </style>
   
     <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 950px; margin-top: 5%;">
+        <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 950px; margin-top: 5%;">
             <form action="" method="POST">
                 <h2>Penitipan Barang</h2> 
+                    <div class="column1">
                     <table>
                         <tr>
                             <td><label for="namaBarang">Nama Barang</label></td>
@@ -65,7 +77,7 @@
                     <div class="w3-right" style="padding-top: 100px; padding-right:1%">    
                     <br><br><br><br><br> 
                     <input type='submit' class="w3-btn w3-theme" name="beliBarang" style="" value='Accept'>
-                    
+                    </div>
                 </div>     
             </form> 
             <input type='submit' class="btn btn-danger btn-sm" name="profile" style="" value='Lihat Profile Customer'>   

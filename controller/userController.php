@@ -738,10 +738,10 @@ class UserController{
 	}
 	
 	public function getDetailBarangOffer($namaBarang, $idUser){
-        $query = "SELECT kotaAwal, namaKota, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, waktuAkhir, waktuAwal, namaUser
-		FROM(SELECT idKota2, namaKota as 'kotaAwal', namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, waktuAwal, waktuAkhir, namaUser
-				from(select idKota1, idKota2, waktuAwal, waktuAkhir, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, namaUser
-						from (SELECT  user.namaUser, IdTrip, transaksi.idKategori, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, kategori.namaKategori
+        $query = "SELECT kotaAwal, namaKota, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, waktuAkhir, waktuAwal, namaUser,  nohp, alamat, gambarProfile
+		FROM(SELECT idKota2, namaKota as 'kotaAwal', namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, waktuAwal, waktuAkhir, namaUser,  nohp, alamat, gambarProfile
+				from(select idKota1, idKota2, waktuAwal, waktuAkhir, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, namaUser,  nohp, alamat, gambarProfile
+						from (SELECT  user.namaUser, user.nohp, user.alamat, user.gambarProfile, IdTrip, transaksi.idKategori, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, kategori.namaKategori
 								FROM transaksi inner join kategori on transaksi.idKategori = kategori.idKategori inner join user on transaksi.idUser1 = user.idUser
 								where transaksi.idUser1 = '$idUser' AND transaksi.statusBarang = 'onMarketOffer' AND transaksi.namaBarang = '$namaBarang') as himpA
 						inner join trip where trip.idTrip = himpA.idTrip) as himpB
@@ -756,7 +756,7 @@ class UserController{
 			$akhir= $value['waktuAkhir'];
 			 $ces = strtotime($akhir);
 			$newAkhir = date("d/m/yy", $ces);			
-             $result[] = new Offer($value['namaUser'], $value['kotaAwal'],$value['namaKota'],$newAwal,$newAkhir,$value['namaBarang'],$value['statusBarang'], $value['deskripsiBarang'],$value['namaKategori'],$value['hargaBarang'],$value['gambarBarang']);
+             $result[] = new Offer($value['namaUser'],$value['nohp'], $value['alamat'], $value['gambarProfile'], $value['kotaAwal'],$value['namaKota'],$newAwal,$newAkhir,$value['namaBarang'],$value['statusBarang'], $value['deskripsiBarang'],$value['namaKategori'],$value['hargaBarang'],$value['gambarBarang']);
          }
          return $result;  
 	}
@@ -802,7 +802,7 @@ class UserController{
 		$deskripsi = $_GET['deskripsi'];
 		$gambar = $_GET['gambar'];
 		$result=[];
-		$result[] = new Offer($kotaAwal,$kotaTujuan,$waktuAwal,$waktuAkhir,$namaBarang,null, $deskripsi,$namaKategori,$hargaBarang,$gambar);
+		$result[] = new Offer(null,null,null,null,$kotaAwal,$kotaTujuan,$waktuAwal,$waktuAkhir,$namaBarang,null, $deskripsi,$namaKategori,$hargaBarang,$gambar);
 		return $result;
 	}
 	

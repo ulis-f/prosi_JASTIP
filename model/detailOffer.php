@@ -2,6 +2,9 @@
 
 class Offer{
     public $namaUser;
+    public $nohp;
+    public $alamat;
+    public $fotoProfile;
     public $kotaAwal;
     public $kotaTujuan;
     public $waktuAwal;
@@ -13,7 +16,7 @@ class Offer{
     public $hargaBarang;
     public $gambarBarang;
 
-    public function __construct($namaUser, $kotaAwal, $kotaTujuan,$waktuAwal, $waktuAkhir, $namaBarang,  $statusBarang, $deskripsiBarang, $namaKategori, $hargaBarang, $gambarBarang){
+    public function __construct($namaUser,$nohp,$alamat, $fotoProfile, $kotaAwal, $kotaTujuan,$waktuAwal, $waktuAkhir, $namaBarang,  $statusBarang, $deskripsiBarang, $namaKategori, $hargaBarang, $gambarBarang){
         $this->deskripsiBarang = $deskripsiBarang;
         $this->kotaAwal = $kotaAwal;
         $this->kotaTujuan = $kotaTujuan;
@@ -25,6 +28,9 @@ class Offer{
         $this->hargaBarang = $hargaBarang;
         $this->gambarBarang = $gambarBarang;
         $this->namaUser = $namaUser;
+        $this->nohp = $nohp;
+        $this->alamat = $alamat;
+        $this->fotoProfile = $fotoProfile;
     }
 
 }
