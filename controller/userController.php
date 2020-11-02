@@ -8,6 +8,7 @@ require_once "model/kategori.php";
 require_once "model/notifikasi.php"; 
 require_once "model/barang.php"; 
 require_once "model/detailOffer.php"; 
+require_once "model/wanted.php"; 
 class UserController{
 	protected $db;
 
@@ -727,12 +728,14 @@ class UserController{
 	}
 
 	public function getDetailBarangMarket($namaBarang, $idUser){
-        $query = "SELECT * FROM transaksi inner join kategori on transaksi.idKategori = kategori.idKategori 
-		WHERE transaksi.namaBarang LIKE '$namaBarang' AND transaksi.statusBarang LIKE 'onMarketWanted' AND transaksi.idUser1='$idUser'";
+        $query = "SELECT user.namaUser, user.nohp, user.alamat, user.gambarProfile, jumlahBarang, namaBarang, statusBarang, deskripsiBarang, gambarBarang, namaKategori
+		FROM (SELECT idUser1, jumlahBarang, namaBarang, statusBarang, deskripsiBarang, gambarBarang, namaKategori FROM transaksi inner join kategori on transaksi.idKategori = kategori.idKategori 
+				WHERE transaksi.namaBarang LIKE '$namaBarang' AND transaksi.statusBarang LIKE 'onMarketWanted' AND transaksi.idUser1='$idUser') as himpA
+				inner join user on himpA.idUser1 = user.idUser";
          $query_result = $this->db->executeSelectQuery($query);
          $result = [];
          foreach($query_result as $key => $value){
-             $result[] = new Transaksi(null,null,null,$value['jumlahBarang'],null,null,null,$value['namaBarang'],$value['statusBarang'],$value['deskripsiBarang'],$value['gambarBarang'],null,$value['namaKategori']);
+             $result[] = new Wanted($value['namaUser'],$value['nohp'],$value['alamat'],$value['gambarProfile'],$value['namaBarang'],$value['statusBarang'],$value['deskripsiBarang'],$value['namaKategori'],$value['gambarBarang'],$value['jumlahBarang']);
          }
          return $result;  
 	}

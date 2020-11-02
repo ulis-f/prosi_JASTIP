@@ -80,6 +80,15 @@
                     </div>
                 </div>     
             </form> 
+            <?php
+            foreach($result as $key => $value){
+                echo $value->namaUser;
+                echo $value->nohp;
+                echo $value->alamat;
+                echo $value->fotoProfile;
+
+            }
+            ?>
             <input type='submit' class="btn btn-danger btn-sm" name="profile" style="" value='Lihat Profile Customer'>   
         </div>
     </div>
