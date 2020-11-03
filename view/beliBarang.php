@@ -24,7 +24,7 @@
   
     <div class="container">
         <div class="w3-card-4 w3-white" style="padding: 50px; height: 800px; margin-top: 5%;">
-            <form action="" method="POST">
+            <form action="persetujuanTravellerOffer" method="GET">
                 <h2>Penitipan Barang</h2> 
                 <br>
                     <div class="column">
@@ -102,7 +102,7 @@
                     </div>
 
                     <div class="w3-right" style="padding-top: 25%; padding-right:1%"> 
-                    <button class="w3-btn w3-theme" style="font-size:17px;">Beli Barang</button>   
+                    <button class="w3-btn w3-theme" name="persetujuanTraveller" style="font-size:17px;">Beli Barang</button>   
                 </div>   
             </form>    
         </div>

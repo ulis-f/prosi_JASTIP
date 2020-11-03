@@ -13,18 +13,17 @@
 
 
 <style>
-    .select2-container .select2-selection--single{
-        height:50px !important;
-        padding-top:2%;
-    }
-    .select2-container--default .select2-selection--single{
-        border: 1px solid #6699cc !important; 
-        /* border-radius: 5px !important;  */
-        padding-top:2%;
-    }
-
     body{
         background-color:white;
+    }
+
+    .container input[type=text],
+    input[type=password] {
+        width: 100%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border: #6699cc;
+
     }
     
 </style>
@@ -45,14 +44,14 @@
             <table>
             <form action="wantedKlik" method="POST" enctype="multipart/form-data">  
                 <tr>
-                    <td style="width: 250px;">Nama Barang</td>
+                    <td style="width: 250px;"><label for="">Nama Barang</label></td>
                     <td>:</td>
-                    <td><input type="text" name="nama" placeholder="Masukkan Nama Barang" style=""></td>
+                    <td><input required class="w3-input w3-border w3-border-theme" type="text" name="nama" style=""></td>
                 </tr>
                 <tr>
-                    <td><br>Jumlah Barang</td>
+                    <td><br><label for="">Jumlah Barang</label> </td>
                     <td><br>:</td>
-                    <td> <br><input class="w3-input w3-border w3-border-theme" name="jumlah" type="number" value="1"></td>
+                    <td><br><input required class="w3-input w3-border w3-border-theme" name="jumlah" type="number" value="1"></td>
                 </tr>
                 <br>
                 <tr>
@@ -66,16 +65,16 @@
                     ?></td>
                 </tr>
                 <tr>
-                    <td><br> Deskripsi Barang*</td>
+                    <td><br><label for=""> Deskripsi Barang*</label></td>
                     <td><br>:</td>
                     <td> <br>
-                        <textarea name="deskripsi" id="" cols="30" rows="5"></textarea>
+                        <textarea required name="deskripsi" id="" cols="30" rows="5"></textarea>
                     </td>
                 </tr>
             </table>
             <br>
             <h4>Upload Gambar</h4>
-            <input type='file' name="gambar" id="gambar" accept='image/*'>
+            <input required type='file' name="gambar" id="gambar" accept='image/*'>
             <br>
             <br>
             <p style="color:red;font-size:13px;">*Harus disertakan kondisi barang dan lokasi barang</p>

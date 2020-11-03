@@ -16,9 +16,10 @@
 </style>
   
     <div class="container">
-        <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 950px; margin-top: 5%;">
+        <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 1000px; margin-top: 5%;">
             <form action="" method="POST">
                 <h2>Penitipan Barang</h2> 
+                <br><br>
                     <div class="column1">
                     <table>
                         <tr>
@@ -79,16 +80,37 @@
                     <input type='submit' class="w3-btn w3-theme" name="beliBarang" style="" value='Accept'>
                     </div>
                 </div>     
-            </form> 
-            <?php
-            foreach($result as $key => $value){
-                echo $value->namaUser;
-                echo $value->nohp;
-                echo $value->alamat;
-                echo $value->fotoProfile;
+            </form>
 
-            }
-            ?>
-            <input type='submit' class="btn btn-danger btn-sm" name="profile" style="" value='Lihat Profile Customer'>   
+
+            <div class="column">
+            <form action="profileTravellerMarket" method="GET">
+                <fieldset style="width:70%">
+                    <div class="w3-container">
+                    <h4 class="w3-center">Profile Customer</h4>  
+                        <div class="w3-center">
+                        <?php
+                            foreach($result as $key => $value){    
+                                if($value->fotoProfile!=null){
+                                    echo "<img src='../view/image/".$value->fotoProfile."' class='w3-circle' style='height:106px;width:106px' alt='Avatar'></p>";
+                                }
+                                else{
+                                    echo "<img src='../view/image/user.png' class='w3-circle' style='height:106px;width:106px' alt='Avatar'></p>";
+                                }
+                            }    
+                        ?>
+                        </div> 
+                            <hr>
+                            <?php  
+                                foreach($result as $key=>$value){
+                                    echo"<p style='margin-bottom:1%; margin-top:1%;'><i class='fa fa-user fa-fw w3-margin-right w3-text-theme'></i>".$value->namaUser."</p>";
+                                    echo"<p style='margin-bottom:1%; margin-top:1%;'><i class='fa fa-phone fa-fw w3-margin-right w3-text-theme'></i>".$value->nohp."</p>";
+                                    echo"<p style='margin-bottom:1%; margin-top:1%;'><i class='fa fa-home fa-fw w3-margin-right w3-text-theme'></i>".$value->alamat."</p>";
+                                }
+                            ?>   
+                    </div>
+                </fieldset>
+            </form>  
+            </div>
         </div>
     </div>

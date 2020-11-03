@@ -349,7 +349,9 @@
     function market(){
         location.href="market";
     }
-
+    function persetujuanTraveller(){
+        location.href="persetujuanTravellerOffer";   
+    }
 
     function myFunction() {
         document.getElementById("myDropdown-down").classList.toggle("show");

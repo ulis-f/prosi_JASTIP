@@ -156,6 +156,11 @@
 				require_once "controller/userController.php";
 				$userctrl = new userController();
 				echo $userctrl->view_beliBarangOffer(); 
+				break;
+			case $baseURL . '/persetujuanTravellerOffer':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_persetujuanTravellerOffer(); 
 				break;   
 			default:
 				echo '404 Not Found';

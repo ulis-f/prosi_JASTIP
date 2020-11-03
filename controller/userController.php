@@ -675,14 +675,14 @@ class UserController{
 		$timezone = new DateTimeZone('Asia/Jakarta');
 		$date = new DateTime();
 		$date->setTimeZone($timezone);
-		$now = $date->format('Y-m-d H:i:s');
-
+		$now = $date->format('Y-m-d H:i:s');    
+	
 		$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Pending', 'Offer an Item Anda dengan nama $namaBarang sedang diproses', 0, '$now')";
 		$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);    
 	}
 
 	public function insertBarangWanted(){
-		$nama = $_SESSION['nama'];
+		$nama = $_SESSION['nama'];  
 		$namaBarang = $_POST['nama'];
 		$jumlah = $_POST['jumlah'];
 		$deskripsi = $_POST['deskripsi'];
@@ -808,6 +808,32 @@ class UserController{
 		$result[] = new Offer(null,null,null,null,$kotaAwal,$kotaTujuan,$waktuAwal,$waktuAkhir,$namaBarang,null, $deskripsi,$namaKategori,$hargaBarang,$gambar);
 		return $result;
 	}
+
+	public function inserBarangOfferPersetujuan(){
+		$timezone = new DateTimeZone('Asia/Jakarta');
+		$date = new DateTime();
+		$date->setTimeZone($timezone);
+		$now = $date->format('Y-m-d H:i:s');    
+		$link = '<p id="persetujuanTraveller" style="color:#4997c4;" class="w3-bar-item w3-display-inline  w3-btn" onclick="persetujuanTraveller()">Klik di Sini Untuk Persetujuan Penitipan</p>';
+
+		$nama = $_SESSION['nama'];
+		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
+
+		$fk_idUser = $query_idUser_result[0]['idUser'];
+
+		$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Pending', 'Offer an Item Anda dengan nama $namaBarang sedang diproses $link', 0, '$now')";
+		$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi); 
+	}
+   
+	public function view_persetujuanTravellerOffer(){
+		if(isset($_GET['persetujuanTraveller'])){      
+			$nama = $_SESSION['nama'];
+			$title = "titipaja.com - Beli Barang"; 
+			$result = $this->inserBarangOfferPersetujuan();      
+			return view::createView('persetujuanTravellerOffer.php',["title"=>$title, "result"=>$result, "nama"=>$nama]);
+		}
+	}  
 	
 }
 
