@@ -31,27 +31,28 @@
                             <td><label for="hargaBarang">Harga Barang</label></td>
                             <td>:</td>
                             <td><?php
-                            foreach($result as $key=>$value){
-                                echo "<td>".$value->hargaBarang."</td>";
-                            }
-                            ?></td>
-                        </tr>
-                        <tr>
-                            <td><label for="hargaBarang">Harga Jasa</label></td>
-                            <td>:</td>
-                            <td><?php
-                            foreach($result as $key=>$value){
-                                echo "<td>".$value->hargaBarang."</td>";
-                            }
+                            
+                                echo "<td>".$hargaDiJual."</td>";
+                            
                             ?></td>
                         </tr>
                         <tr>
                             <td><label for="hargaBarang">Harga Ongkir</label></td>
                             <td>:</td>
                             <td><?php
-                            foreach($result as $key=>$value){
-                                echo "<td>".$value->hargaBarang."</td>";
-                            }
+                            
+                                echo "<td>".$hargaOngkir."</td>";
+                            
+                            ?></td>
+                        </tr>
+                        <tr>
+                        <tr>
+                            <td><label for="hargaBarang">Harga Total</label></td>
+                            <td>:</td>
+                            <td><?php
+                            
+                                echo "<td>".$totalHarga."</td>";
+                            
                             ?></td>
                         </tr>
                         <tr>

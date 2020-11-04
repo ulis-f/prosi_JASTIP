@@ -804,8 +804,11 @@ class UserController{
 		$waktuAkhir = $_GET['waktuAkhir'];
 		$deskripsi = $_GET['deskripsi'];
 		$gambar = $_GET['gambar'];
+		$namaUser = $_GET['namaUser'];
+		$nohp = $_GET['nohp'];
+		$alamat = $_GET['alamat'];
 		$result=[];
-		$result[] = new Offer(null,null,null,null,$kotaAwal,$kotaTujuan,$waktuAwal,$waktuAkhir,$namaBarang,null, $deskripsi,$namaKategori,$hargaBarang,$gambar);
+		$result[] = new Offer($namaUser,$nohp,$alamat,null,$kotaAwal,$kotaTujuan,$waktuAwal,$waktuAkhir,$namaBarang,null, $deskripsi,$namaKategori,$hargaBarang,$gambar);
 		return $result;
 	}
 
@@ -813,27 +816,66 @@ class UserController{
 		$timezone = new DateTimeZone('Asia/Jakarta');
 		$date = new DateTime();
 		$date->setTimeZone($timezone);
-		$now = $date->format('Y-m-d H:i:s');    
-		$link = '<p id="persetujuanTraveller" style="color:#4997c4;" class="w3-bar-item w3-display-inline  w3-btn" onclick="persetujuanTraveller()">Klik di Sini Untuk Persetujuan Penitipan</p>';
+		$now = $date->format('Y-m-d H:i:s');  
+		$namaBarang = $_POST['namaBarang'];  
+		$namaKategori = $_POST['namaKategori'];
+		$hargaDiJual = $_POST['hargaDiJual'];
+		$hargaOngkir = $_POST['hargaOngkir'];
+		$totalHarga = $_POST['totalHarga'];
+		$deskripsi = $_POST['deskripsi'];
+		$kotaAwal = $_POST['kotaAwal'];
+		$kotaTujuan = $_POST['kotaTujuan'];
+		$gambar = $_POST['gambar'];
+		$link = '<form action="persetujuanTraveller" method="GET">
+				<button  id="persetujuanTraveller" style="color:#4997c4;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Persetujuan Penitipan</button>
+				<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
+				<input type="hidden" name="namaKategori" value="'.$namaKategori.'">
+				<input type="hidden" name="hargaDiJual" value="'.$hargaDiJual.'">
+				<input type="hidden" name="hargaOngkir" value="'.$hargaOngkir.'">
+				<input type="hidden" name="totalHarga" value="'.$totalHarga.'">
+				<input type="hidden" name="deskripsi" value="'.$deskripsi.'">
+				<input type="hidden" name="kotaAwal" value="'.$kotaAwal.'">
+				<input type="hidden" name="kotaTujuan" value="'.$kotaTujuan.'">
+				<input type="hidden" name="gambar" value="'.$gambar.'">
+				</form>';
 
-		$nama = $_SESSION['nama'];
+		$nama = $_POST['namaUser'];
 		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
 		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
 
 		$fk_idUser = $query_idUser_result[0]['idUser'];
+		$namaBarang = $_POST['namaBarang'];
 
-		$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Pending', 'Offer an Item Anda dengan nama $namaBarang sedang diproses $link', 0, '$now')";
+		$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Pending', 'Ada yang memesan barang $link', 0, '$now')";
 		$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi); 
 	}
    
 	public function view_persetujuanTravellerOffer(){
-		if(isset($_GET['persetujuanTraveller'])){      
+
 			$nama = $_SESSION['nama'];
 			$title = "titipaja.com - Beli Barang"; 
-			$result = $this->inserBarangOfferPersetujuan();      
-			return view::createView('persetujuanTravellerOffer.php',["title"=>$title, "result"=>$result, "nama"=>$nama]);
-		}
-	}  
+			$hargaDiJual = $_GET['hargaDiJual'];
+			$hargaOngkir = $_GET['hargaOngkir'];
+			$totalHarga = $_GET['totalHarga'];
+			$result = $this->getPersetujuanTravellerOffer();      
+			return view::createView('persetujuanTravellerOffer.php',["title"=>$title, "result"=>$result, "nama"=>$nama, "hargaDiJual"=>$hargaDiJual, "hargaOngkir"=>$hargaOngkir, "totalHarga"=>$totalHarga]);
+		
+	}
+	
+	public function getPersetujuanTravellerOffer(){
+		$namaBarang = $_GET['namaBarang'];
+		$namaKategori = $_GET['namaKategori'];
+		$hargaDiJual = $_GET['hargaDiJual'];
+		$hargaOngkir = $_GET['hargaOngkir'];
+		$totalHarga = $_GET['totalHarga'];
+		$deskripsi = $_GET['deskripsi'];
+		$kotaAwal = $_GET['kotaAwal'];
+		$kotaTujuan = $_GET['kotaTujuan'];
+		$gambar = $_GET['gambar'];
+		$result=[];
+		$result[] = new Offer(null,null,null,null,$kotaAwal,$kotaTujuan,null,null,$namaBarang,null, $deskripsi,$namaKategori,null,$gambar);
+		return $result;
+	}
 	
 }
 

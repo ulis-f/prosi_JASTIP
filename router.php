@@ -157,11 +157,12 @@
 				$userctrl = new userController();
 				echo $userctrl->view_beliBarangOffer(); 
 				break;
-			case $baseURL . '/persetujuanTravellerOffer':    
+			case $baseURL . '/persetujuanTraveller':    
 				require_once "controller/userController.php";
 				$userctrl = new userController();
 				echo $userctrl->view_persetujuanTravellerOffer(); 
-				break;   
+				break;
+			 
 			default:
 				echo '404 Not Found';
 				break;
@@ -247,6 +248,12 @@
 				$roleCtrl->verifikasiBarang();
 				header('Location: persetujuanBarang');
 				break;
+			case $baseURL . '/persetujuanTravellerOffer':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				$userctrl->inserBarangOfferPersetujuan(); 
+				header('Location: market');
+				break;  
 			default:  
 				echo '404 Not Found';
 				break;
