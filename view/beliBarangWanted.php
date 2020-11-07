@@ -51,15 +51,6 @@
                         </tr>
                         
                         <tr>
-                            <td><label for="waktu">Waktu</label></td>
-                            <td>:</td>
-                            <td><?php
-                            foreach($result as $key=>$value){
-                                echo "<td>".$value->waktuAwal."->".$value->waktuAkhir."</td>";
-                            }
-                            ?></td> 
-                        </tr>
-                        <tr>
                             <td><label for="deskripsiBarang">Deskripsi Barang</label></td>
                             <td>:</td>
                             <td><?php
@@ -71,15 +62,27 @@
                         </tr>
                         
                         <tr>
-                            <td><label for="namaNegara">Kota asal - Kota Tujuan</label></td>  
-                            <td>:</td>
-                            <td><?php
-                            foreach($result as $key=>$value){
-                                echo"<input type='hidden' name='kotaAwal' value='$value->kotaAwal'>";
-                                echo"<input type='hidden' name='kotaTujuan' value='$value->kotaTujuan'>";
-                                echo "<td>".$value->kotaAwal."->".$value->kotaTujuan."</td>";
-                            }
-                            ?></td> 
+                        <td><label for="trip">Trip yang masih aktif</label></td>
+                        <td>:</td>
+                            <td>
+                            <?php
+                                    echo "<select class='form-control' id='trip' name='trip' style=''>";
+                                    foreach($result as $key=>$value){
+                                    $jamAkhir = date_create($value->waktuAkhir);
+                                    $jamAwal = date_create($value->waktuAwal);
+                                    echo "<option value='".$value->idtrip."'>
+                                    
+                                        ".$value->kotaTujuan."->
+                                        
+                                        ".$value->kotaAwal." 
+                                        
+                                        ".date_format($jamAkhir, "d/m/Y")."->
+                                        
+                                        ".date_format($jamAwal, "d/m/Y")."  
+                                        </option>";
+                                    }        
+                            ?>
+                            </td>
                         </tr>
                     </table>
                     <br>
