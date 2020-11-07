@@ -845,7 +845,7 @@ class UserController{
 				<input type="hidden" name="kotaTujuan" value="'.$kotaTujuan.'">
 				<input type="hidden" name="gambar" value="'.$gambar.'">
 				<input type="hidden" name="idUser" value="'.$fk_idUser.'">
-				</form>';  
+				</form>';
 
 		$nama = $_POST['namaUser'];
 		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
