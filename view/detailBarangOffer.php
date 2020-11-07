@@ -90,6 +90,9 @@
                     <?php
                     foreach($result as $key=>$value){
                         echo"<input type='hidden' name='gambar' value='$value->gambarBarang'>";
+                        echo"<input type='hidden' name='namaUser' value='$value->namaUser'>";
+                        echo"<input type='hidden' name='nohp' value='$value->nohp'>";
+                        echo"<input type='hidden' name='alamat' value='$value->alamat'>";
                         echo"<figure><img src='image/market/".$value->gambarBarang."'width=250px height=150px></figure><br>"; 
                     }
                     ?><br> 

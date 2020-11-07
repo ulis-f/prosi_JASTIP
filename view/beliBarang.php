@@ -24,7 +24,7 @@
   
     <div class="container">
         <div class="w3-card-4 w3-white" style="padding: 50px; height: 800px; margin-top: 5%;">
-            <form action="persetujuanTravellerOffer" method="GET">
+            <form action="persetujuanTravellerOffer" method="POST">
                 <h2>Penitipan Barang</h2> 
                 <br>
                     <div class="column">
@@ -34,6 +34,7 @@
                             <td>:</td>
                             <td><?php
                             foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='namaBarang' value='$value->namaBarang'>";
                                 echo "<td>".$value->namaBarang."</td>";
                             }  
                             ?></td>
@@ -43,6 +44,7 @@
                             <td>:</td>
                             <td><?php
                             foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='namaKategori' value='$value->namaKategori'>";
                                 echo "<td>".$value->namaKategori."</td>";
                             }
                             ?></td>
@@ -62,6 +64,7 @@
                             <td>:</td>
                             <td><?php
                             foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='deskripsi' value='$value->deskripsiBarang'>";
                                 echo "<td>".$value->deskripsiBarang."</td>";
                             }
                             ?></td>
@@ -72,6 +75,8 @@
                             <td>:</td>
                             <td><?php
                             foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='kotaAwal' value='$value->kotaAwal'>";
+                                echo"<input type='hidden' name='kotaTujuan' value='$value->kotaTujuan'>";
                                 echo "<td>".$value->kotaAwal."->".$value->kotaTujuan."</td>";
                             }
                             ?></td> 
@@ -81,6 +86,10 @@
                     <label for="gambarBarang">Gambar Barang</label>
                     <?php
                     foreach($result as $key=>$value){
+                        echo"<input type='hidden' name='namaUser' value='$value->namaUser'>";
+                        echo"<input type='hidden' name='nohp' value='$value->nohp'>";
+                        echo"<input type='hidden' name='alamat' value='$value->alamat'>";
+                        echo"<input type='hidden' name='gambar' value='$value->gambarBarang'>";
                         echo"<figure><img src='image/market/".$value->gambarBarang."'width=250px height=150px></figure><br>"; 
                     }
                     ?>
