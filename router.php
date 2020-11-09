@@ -157,10 +157,20 @@
 				$userctrl = new userController();
 				echo $userctrl->view_beliBarangOffer(); 
 				break;
+			case $baseURL . '/beliBarangWanted':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_beliBarangWanted(); 
+				break;
 			case $baseURL . '/persetujuanTraveller':    
 				require_once "controller/userController.php";
 				$userctrl = new userController();
 				echo $userctrl->view_persetujuanTravellerOffer(); 
+				break;
+			case $baseURL . '/persetujuanTravellerWanted':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_persetujuanTravellerWanted(); 
 				break;
 			 
 			default:

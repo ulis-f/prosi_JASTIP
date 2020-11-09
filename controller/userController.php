@@ -250,6 +250,14 @@ class UserController{
 		
 	}
 
+	public function view_beliBarangWanted(){
+		$nama = $_SESSION['nama'];
+		$title = "titipaja.com - Beli Barang"; 
+		$trip = $this->getTripSendiriOffer();
+		$result = $this->getBeliBarangWanted();
+		return view::createView('beliBarangWanted.php',["title"=>$title, "result"=>$result, "nama"=>$nama, "trip"=>$trip]);
+	}
+
 	public function getProfileTraveller($nama){
         $query = "SELECT himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
 			as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
@@ -812,6 +820,20 @@ class UserController{
 		return $result;
 	}
 
+	public function getBeliBarangWanted(){
+		$namaBarang = $_GET['namaBarang'];
+		$jumlahBarang = $_GET['jumlahBarang'];
+		$namaKategori = $_GET['namaKategori'];
+		$deskripsi = $_GET['deskripsi'];
+		$gambar = $_GET['gambar'];
+		$namaUser = $_GET['namaUser'];
+		$nohp = $_GET['nohp'];
+		$alamat = $_GET['alamat'];
+		$result=[];
+		$result[] = new Wanted($namaUser, $nohp, $alamat, null, $namaBarang, null, $deskripsi, $namaKategori, $gambar, $jumlahBarang);
+		return $result;
+	}
+
 	public function inserBarangOfferPersetujuan(){
 		$timezone = new DateTimeZone('Asia/Jakarta');
 		$date = new DateTime();
@@ -832,8 +854,9 @@ class UserController{
 		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
 		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
 		$fk_idUser = $query_idUser_result[0]['idUser'];
-
-		$link = '<form action="persetujuanTraveller" method="GET">
+		
+		if($_POST['jumlahBarang']!=null && $_POST['trip']!=null){
+			$link = '<form action="persetujuanTravellerWanted" method="GET">
 				<button  id="persetujuanTraveller" style="color:#4997c4;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Persetujuan Penitipan</button>
 				<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
 				<input type="hidden" name="namaKategori" value="'.$namaKategori.'">
@@ -844,8 +867,26 @@ class UserController{
 				<input type="hidden" name="kotaAwal" value="'.$kotaAwal.'">
 				<input type="hidden" name="kotaTujuan" value="'.$kotaTujuan.'">
 				<input type="hidden" name="gambar" value="'.$gambar.'">
+				<input type="hidden" name="jumlahBarang" value="'.$_POST['jumlahBarang'].'">
+				<input type="hidden" name="idTrip" value="'.$_POST['trip'].'">
 				<input type="hidden" name="idUser" value="'.$fk_idUser.'">
 				</form>';
+		}
+		else{
+			$link = '<form action="persetujuanTraveller" method="GET">
+					<button  id="persetujuanTraveller" style="color:#4997c4;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Persetujuan Penitipan</button>
+					<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
+					<input type="hidden" name="namaKategori" value="'.$namaKategori.'">
+					<input type="hidden" name="hargaDiJual" value="'.$hargaDiJual.'">
+					<input type="hidden" name="hargaOngkir" value="'.$hargaOngkir.'">
+					<input type="hidden" name="totalHarga" value="'.$totalHarga.'">
+					<input type="hidden" name="deskripsi" value="'.$deskripsi.'">
+					<input type="hidden" name="kotaAwal" value="'.$kotaAwal.'">
+					<input type="hidden" name="kotaTujuan" value="'.$kotaTujuan.'">
+					<input type="hidden" name="gambar" value="'.$gambar.'">
+					<input type="hidden" name="idUser" value="'.$fk_idUser.'">
+					</form>';
+		}
 
 		$nama = $_POST['namaUser'];
 		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
@@ -869,6 +910,18 @@ class UserController{
 			return view::createView('persetujuanTravellerOffer.php',["title"=>$title, "result"=>$result, "nama"=>$nama, "hargaDiJual"=>$hargaDiJual, "hargaOngkir"=>$hargaOngkir, "totalHarga"=>$totalHarga]);
 		
 	}
+	public function view_persetujuanTravellerWanted(){
+
+			$nama = $_SESSION['nama'];
+			$title = "titipaja.com - Beli Barang"; 
+			$trip = $this->getTrip();
+			$hargaDiJual = $_GET['hargaDiJual'];
+			$hargaOngkir = $_GET['hargaOngkir'];
+			$totalHarga = $_GET['totalHarga'];
+			$result = $this->getPersetujuanTravellerWanted();      
+			return view::createView('persetujuanTravellerWanted.php',["title"=>$title, "result"=>$result, "nama"=>$nama, "hargaDiJual"=>$hargaDiJual, "hargaOngkir"=>$hargaOngkir, "totalHarga"=>$totalHarga,"trip"=>$trip]);
+		
+	}
 	
 	public function getPersetujuanTravellerOffer(){
 		$namaBarang = $_GET['namaBarang'];
@@ -884,6 +937,34 @@ class UserController{
 		$result=[];
 		$result[] = new Offer($namaUser,null,null,null,$kotaAwal,$kotaTujuan,null,null,$namaBarang,null, $deskripsi,$namaKategori,null,$gambar);
 		return $result;
+	}
+	public function getPersetujuanTravellerWanted(){
+		$namaBarang = $_GET['namaBarang'];
+		$namaKategori = $_GET['namaKategori'];
+		$hargaDiJual = $_GET['hargaDiJual'];
+		$hargaOngkir = $_GET['hargaOngkir'];
+		$totalHarga = $_GET['totalHarga'];
+		$jumlahBarang = $_GET['jumlahBarang'];
+		$deskripsi = $_GET['deskripsi'];
+		$gambar = $_GET['gambar'];
+		$namaUser = $_GET['idUser'];
+		$result=[];
+		$result[] = new Wanted($namaUser, null, null, null, $namaBarang, null, $deskripsi, $namaKategori, $gambar, $jumlahBarang);
+		return $result;
+	}
+
+	public function getTrip(){
+		$id = $_GET['idTrip'];
+		$query = "SELECT himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,
+		himpA.namaKota as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
+		FROM kota inner join (SELECT * FROM trip inner join kota on trip.idKota1 = kota.idKota where idTrip = '$id' )
+		 as himpA on kota.idKota = himpA.idKota2 inner join post on post.idTrip = himpA.idTrip";
+		$query_result = $this->db->executeSelectQuery($query);
+		$result=[];
+        foreach($query_result as $key =>$value){  
+            $result[] = new Trip(null,null, null, null, null, $value['kota_Awal'], $value['kota_tujuan']);
+        }   
+        return $result;
 	}
 
 	public function persetujuanPenitipan(){
@@ -903,11 +984,20 @@ class UserController{
 			$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
 			$idUser_traveller = $query_idUser_result[0]['idUser'];
 
-			$link = '<form action="detailBarangOffer" method="GET">
-			<button  id="persetujuanTraveller" style="color:#4997c4;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Menuju Market</button>
-			<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
-			<input type="hidden" name="id" value="'.$idUser_traveller.'">
-			</form>';
+			if($_POST['jumlahBarang']!=null){
+				$link = '<form action="detailBarangWanted" method="GET">
+				<button  id="persetujuanTraveller" style="color:#4997c4;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Menuju Market</button>
+				<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
+				<input type="hidden" name="id" value="'.$idUser_traveller.'">
+				</form>';
+			}
+			else{
+				$link = '<form action="detailBarangOffer" method="GET">
+				<button  id="persetujuanTraveller" style="color:#4997c4;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Menuju Market</button>
+				<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
+				<input type="hidden" name="id" value="'.$idUser_traveller.'">
+				</form>';
+			}
 			
 			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Gagal', 'Permintaan anda ditolak $link', 0, '$now')";
 			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi); 
