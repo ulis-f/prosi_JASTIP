@@ -7,7 +7,7 @@
     <div class="container">
         <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1050px; margin-top: 5%;">
             <form action="persetujuanPenitipan" method="POST">  
-                    <h2>Persetujuan Penitipan Barang</h2>  
+                    <h2>Persetujuan Penitipan Barang</h2><br>
                     <table>
                         <tr>
                             <td><label for="namaBarang">Nama Barang</label></td>

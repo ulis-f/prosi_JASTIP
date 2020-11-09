@@ -857,7 +857,7 @@ class UserController{
 		
 		if($_POST['jumlahBarang']!=null && $_POST['trip']!=null){
 			$link = '<form action="persetujuanTravellerWanted" method="GET">
-				<button  id="persetujuanTraveller" style="color:#4997c4;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Persetujuan Penitipan</button>
+				<button  id="persetujuanTraveller" style="color:#f3310a;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Persetujuan Penitipan</button>
 				<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
 				<input type="hidden" name="namaKategori" value="'.$namaKategori.'">
 				<input type="hidden" name="hargaDiJual" value="'.$hargaDiJual.'">
@@ -874,7 +874,7 @@ class UserController{
 		}
 		else{
 			$link = '<form action="persetujuanTraveller" method="GET">
-					<button  id="persetujuanTraveller" style="color:#4997c4;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Persetujuan Penitipan</button>
+					<button  id="persetujuanTraveller" style="color:#f3310a;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Persetujuan Penitipan</button>
 					<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
 					<input type="hidden" name="namaKategori" value="'.$namaKategori.'">
 					<input type="hidden" name="hargaDiJual" value="'.$hargaDiJual.'">

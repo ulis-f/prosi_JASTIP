@@ -70,13 +70,15 @@
                             }
                             ?></td>
                         </tr>
-                        
+                    </table>
+
+                    <table>
                         <tr>
                         <td><label for="trip">Trip yang masih aktif</label></td>
                         <td>:</td>
                             <td>
                             <?php
-                                    echo "<select class='form-control' id='trip' name='trip' style=''>";
+                                    echo "<select class='form-control' id='trip' style='width:250px;' name='trip' style=''>";
                                     foreach($trip as $key=>$value){
                                     $jamAkhir = date_create($value->waktuAkhir);
                                     $jamAwal = date_create($value->waktuAwal);
