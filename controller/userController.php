@@ -636,11 +636,18 @@ class UserController{
 	}
 
 	public function getOffer(){
-		$query = "SELECT * FROM transaksi WHERE statusBarang LIKE 'onMarketOffer'";
+		$query = "SELECT * FROM transaksi inner join trip on transaksi.idTrip = trip.idTrip 
+		WHERE transaksi.statusBarang LIKE 'onMarketOffer'";
 		$query_result = $this->db->executeSelectQuery($query);
 		$result=[];
+		$timezone = new DateTimeZone('Asia/Jakarta');
+		$date = new DateTime();
+		$date->setTimeZone($timezone);
+		$now = $date->format('Y-m-d H:i:s');
 		foreach($query_result as $key=>$value){
-			$result[]= new transaksi($value['idUser1'],null,null,null,$value['hargaBarang'],null,null,$value['namaBarang'],null,null,$value['gambarBarang'],null,null);
+			if($value['waktuAkhir']>$now){
+				$result[]= new transaksi($value['idUser1'],null,null,null,$value['hargaBarang'],null,null,$value['namaBarang'],null,null,$value['gambarBarang'],null,null);
+			}
 		}
 		return $result;
 	}
