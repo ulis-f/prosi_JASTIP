@@ -83,9 +83,13 @@
                             <td>:</td>
                             <td><?php
                             foreach($trip as $key=>$value){
+                                $sec = strtotime($value->waktuAwal);
+                                $newAwal = date("d/m/yy", $sec);
+                                $ces = strtotime($value->waktuAkhir);
+                                $newAkhir = date("d/m/yy", $ces);
                                 echo"<input type='hidden' name='waktuAwal' value='$value->waktuAwal'>";
                                 echo"<input type='hidden' name='waktuAkhir' value='$value->waktuAkhir'>";
-                                echo "<td>".$value->waktuAwal."->".$value->waktuAkhir."</td>";
+                                echo "<td>".$newAwal."->".$newAkhir."</td>";
                             }
                             ?></td> 
                         </tr>
