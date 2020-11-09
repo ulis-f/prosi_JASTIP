@@ -969,7 +969,7 @@ class UserController{
 		$query_result = $this->db->executeSelectQuery($query);
 		$result=[];
         foreach($query_result as $key =>$value){  
-            $result[] = new Trip(null,null, null, null, null, $value['kota_Awal'], $value['kota_tujuan']);
+            $result[] = new Trip(null,null, null, $value['waktuAwal'], $value['waktuAkhir'], $value['kota_Awal'], $value['kota_tujuan']);
         }   
         return $result;
 	}
@@ -990,6 +990,8 @@ class UserController{
 			$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama' ";
 			$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
 			$idUser_traveller = $query_idUser_result[0]['idUser'];
+
+			
 
 			if($_POST['jumlahBarang']!=null){
 				$link = '<form action="detailBarangWanted" method="GET">
