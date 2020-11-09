@@ -69,6 +69,21 @@
                             ?></td> 
                         </tr>
                         <tr>
+                            <td><label for="namaNegara">Waktu awal - Waktu akhir</label></td>
+                            <td>:</td>
+                            <td><?php
+                            foreach($trip as $key=>$value){
+                                $sec = strtotime($value->waktuAwal);
+                                $newAwal = date("d/m/yy", $sec);
+                                $ces = strtotime($value->waktuAkhir);
+                                $newAkhir = date("d/m/yy", $ces);
+                                echo"<input type='hidden' name='waktuAwal' value='$value->waktuAwal'>";
+                                echo"<input type='hidden' name='waktuAkhir' value='$value->waktuAkhir'>";
+                                echo "<td>".$newAwal."->".$newAkhir."</td>";
+                            }
+                            ?></td> 
+                        </tr>
+                        <tr>
                             <td><label for="deskripsiBarang">Deskripsi Barang</label></td>
                             <td>:</td>
                             <td><?php

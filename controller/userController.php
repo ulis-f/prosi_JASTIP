@@ -861,6 +861,12 @@ class UserController{
 		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
 		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
 		$fk_idUser = $query_idUser_result[0]['idUser'];
+
+		$nama = $_POST['namaUser'];
+		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
+
+		$fk_idUser = $query_idUser_result[0]['idUser'];
 		
 		if($_POST['jumlahBarang']!=null && $_POST['trip']!=null){
 			$link = '<form action="persetujuanTravellerWanted" method="GET">
@@ -878,6 +884,9 @@ class UserController{
 				<input type="hidden" name="idTrip" value="'.$_POST['trip'].'">
 				<input type="hidden" name="idUser" value="'.$fk_idUser.'">
 				</form>';
+			
+			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Penitipan Barang(Wanted Item)', 'Ada traveller yang ingin membelikan barang anda, dengan nama $namaBarang $link', 0, '$now')";
+			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);
 		}
 		else{
 			$link = '<form action="persetujuanTraveller" method="GET">
@@ -892,18 +901,11 @@ class UserController{
 					<input type="hidden" name="kotaTujuan" value="'.$kotaTujuan.'">
 					<input type="hidden" name="gambar" value="'.$gambar.'">
 					<input type="hidden" name="idUser" value="'.$fk_idUser.'">
-					</form>';
-		}
+					</form>';  
 
-		$nama = $_POST['namaUser'];
-		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
-		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
-
-		$fk_idUser = $query_idUser_result[0]['idUser'];
-		$namaBarang = $_POST['namaBarang'];
-
-		$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Pending', 'Ada yang memesan barang $link', 0, '$now')";
-		$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi); 
+			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Penitipan Barang(Offer Item)', 'Ada customer yang memesan barang anda, dengan nama $namaBarang $link', 0, '$now')";
+			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);
+		} 
 	}
    
 	public function view_persetujuanTravellerOffer(){
@@ -995,14 +997,14 @@ class UserController{
 
 			if($_POST['jumlahBarang']!=null){
 				$link = '<form action="detailBarangWanted" method="GET">
-				<button  id="persetujuanTraveller" style="color:#4997c4;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Menuju Market</button>
+				<button  id="persetujuanTraveller" style="color:#f3310a;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Menuju Market</button>
 				<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
 				<input type="hidden" name="id" value="'.$idUser_traveller.'">
 				</form>';
 			}
 			else{
 				$link = '<form action="detailBarangOffer" method="GET">
-				<button  id="persetujuanTraveller" style="color:#4997c4;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Menuju Market</button>
+				<button  id="persetujuanTraveller" style="color:#f3310a;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Menuju Market</button>
 				<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
 				<input type="hidden" name="id" value="'.$idUser_traveller.'">
 				</form>';

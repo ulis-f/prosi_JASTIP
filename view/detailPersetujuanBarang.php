@@ -75,11 +75,11 @@
                                 <td>:</td>
                                 ";
                                 foreach($trip as $key=>$value){
-                                    echo "<td>".$value->kotaTujuan."->".$value->kotaAwal."</td>";
+                                    echo "<td>".$value->kotaAwal."->".$value->kotaTujuan."</td>";
                                 } 
                                 
                             echo "</tr>";
-                        }
+                        }  
                         ?>
                         
                         <tr>
