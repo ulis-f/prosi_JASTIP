@@ -60,6 +60,16 @@
                             }
                             ?></td>
                         </tr>
+                        <tr>
+                            <td><label for="jumlahBarang">Jumlah Barang</label></td>
+                            <td>:</td>
+                            <td><?php
+                            foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='jumlahBarang' value='$value->jumlahBarang'>";
+                                echo "<td>".$value->jumlahBarang."</td>";
+                            }
+                            ?></td>
+                        </tr>
                         
                         <tr>
                         <td><label for="trip">Trip yang masih aktif</label></td>
@@ -67,7 +77,7 @@
                             <td>
                             <?php
                                     echo "<select class='form-control' id='trip' name='trip' style=''>";
-                                    foreach($result as $key=>$value){
+                                    foreach($trip as $key=>$value){
                                     $jamAkhir = date_create($value->waktuAkhir);
                                     $jamAwal = date_create($value->waktuAwal);
                                     echo "<option value='".$value->idtrip."'>

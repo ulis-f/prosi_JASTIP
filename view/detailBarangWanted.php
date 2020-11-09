@@ -17,7 +17,7 @@
   
     <div class="container">
         <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 1000px; margin-top: 5%;">
-            <form action="" method="POST">
+            <form action="beliBarangWanted" method="GET">
                 <h2>Penitipan Barang</h2> 
                 <br><br>
                     <div class="column1">
@@ -28,6 +28,7 @@
                             <td>
                             <?php
                             foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='namaBarang' value='$value->namaBarang'>";
                                 echo "<td>".$value->namaBarang."</td>";
                             }
                             ?></td>
@@ -37,6 +38,7 @@
                             <td>:</td>
                             <td><?php
                             foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='jumlahBarang' value='$value->jumlahBarang'>";
                                 echo "<td>".$value->jumlahBarang."</td>";
                             }
                             ?></td>
@@ -47,6 +49,7 @@
                             <td>
                             <?php
                             foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='namaKategori' value='$value->namaKategori'>";
                                 echo "<td>".$value->namaKategori."</td>";
                             }
                             ?>
@@ -58,6 +61,7 @@
                             <td>
                             <?php
                             foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='deskripsi' value='$value->deskripsiBarang'>";
                                 echo "<td>".$value->deskripsiBarang."</td>";
                             }
                             ?>
@@ -68,6 +72,10 @@
                     <label for="gambarBarang">Gambar Barang</label>
                     <?php
                     foreach($result as $key=>$value){
+                        echo"<input type='hidden' name='gambar' value='$value->gambarBarang'>";
+                        echo"<input type='hidden' name='namaUser' value='$value->namaUser'>";
+                        echo"<input type='hidden' name='nohp' value='$value->nohp'>";
+                        echo"<input type='hidden' name='alamat' value='$value->alamat'>";
                         echo"<figure><img src='image/market/".$value->gambarBarang."'width=250px height=150px></figure><br>"; 
                     }
                     ?>
