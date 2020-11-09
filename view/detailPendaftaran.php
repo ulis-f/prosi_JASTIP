@@ -45,9 +45,9 @@
                     foreach($result as $key=>$value){
                     echo"<input type='hidden' name='id' value='".$value->IDuser."'>";
                     echo"<label for=''><b>Foto KTP</b></label> <br>";
-                    echo"<figure><img src='image/trip/".$value->gambarktp."'width=250px height=150px></figure><br>";
+                    echo"<figure><img src='image/".$value->gambarktp."'width=250px height=150px></figure><br>";
                     echo"<label for=''><b>Swafoto</b></label> <br>";
-                    echo"<figure><img src='image/trip/".$value->swafoto."'width=250px height=150px></figure>";
+                    echo"<figure><img src='image/".$value->swafoto."'width=250px height=150px></figure>";
                     echo "<br>
                     <label for=''><b> NIK</b></label>
                     <br>";
