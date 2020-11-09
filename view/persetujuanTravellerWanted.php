@@ -79,6 +79,17 @@
                             ?></td> 
                         </tr>
                         <tr>
+                            <td><label for="namaNegara">Waktu awal - Waktu akhir</label></td>
+                            <td>:</td>
+                            <td><?php
+                            foreach($trip as $key=>$value){
+                                echo"<input type='hidden' name='waktuAwal' value='$value->waktuAwal'>";
+                                echo"<input type='hidden' name='waktuAkhir' value='$value->waktuAkhir'>";
+                                echo "<td>".$value->waktuAwal."->".$value->waktuAkhir."</td>";
+                            }
+                            ?></td> 
+                        </tr>
+                        <tr>
                             <td><label for="deskripsiBarang">Deskripsi Barang</label></td>
                             <td>:</td>
                             <td><?php
