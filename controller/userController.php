@@ -862,11 +862,6 @@ class UserController{
 		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
 		$fk_idUser = $query_idUser_result[0]['idUser'];
 
-		$nama = $_POST['namaUser'];
-		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
-		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
-
-		$fk_idUser = $query_idUser_result[0]['idUser'];
 		
 		if($_POST['jumlahBarang']!=null && $_POST['trip']!=null){
 			$link = '<form action="persetujuanTravellerWanted" method="GET">
@@ -884,8 +879,13 @@ class UserController{
 				<input type="hidden" name="idTrip" value="'.$_POST['trip'].'">
 				<input type="hidden" name="idUser" value="'.$fk_idUser.'">
 				</form>';
-			
-			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Penitipan Barang(Wanted Item)', 'Ada traveller yang ingin membelikan barang anda, dengan nama $namaBarang $link', 0, '$now')";
+			$nama = $_POST['namaUser'];
+			$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
+			$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
+		
+			$fk_idUser = $query_idUser_result[0]['idUser'];
+
+			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Penitipan Barang(Wanted Item)', 'Ada traveller yang ingin membelikan barang anda dengan nama $namaBarang $link', 0, '$now')";
 			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);
 		}
 		else{
@@ -903,7 +903,13 @@ class UserController{
 					<input type="hidden" name="idUser" value="'.$fk_idUser.'">
 					</form>';  
 
-			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Penitipan Barang(Offer Item)', 'Ada customer yang memesan barang anda, dengan nama $namaBarang $link', 0, '$now')";
+			$nama = $_POST['namaUser'];
+			$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama'";
+			$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
+			
+			$fk_idUser = $query_idUser_result[0]['idUser'];
+
+			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$fk_idUser',null,'Verifikasi Penitipan Barang(Offer Item)', 'Ada customer yang memesan barang anda dengan nama $namaBarang $link', 0, '$now')";
 			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);
 		} 
 	}

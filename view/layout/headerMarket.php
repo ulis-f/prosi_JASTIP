@@ -66,6 +66,10 @@
             height : 300px;
         }
 
+        #myDropdown-down{
+            overflow-y: scroll;  
+        }
+
     </style>
 </head>
 <header class="w3-top w3-theme">

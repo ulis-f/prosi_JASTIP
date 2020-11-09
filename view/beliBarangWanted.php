@@ -83,14 +83,14 @@
                                     $jamAkhir = date_create($value->waktuAkhir);
                                     $jamAwal = date_create($value->waktuAwal);
                                     echo "<option value='".$value->idtrip."'>
-                                    
-                                        ".$value->kotaTujuan."->
+                                       
+                                        ".$value->kotaAwal." ->
+
+                                        ".$value->kotaTujuan."
                                         
-                                        ".$value->kotaAwal." 
-                                        
-                                        ".date_format($jamAkhir, "d/m/Y")."->
-                                        
-                                        ".date_format($jamAwal, "d/m/Y")."  
+                                        ".date_format($jamAwal, "d/m/Y")." ->   
+
+                                        ".date_format($jamAkhir, "d/m/Y")."
                                         </option>";
                                     }        
                             ?>

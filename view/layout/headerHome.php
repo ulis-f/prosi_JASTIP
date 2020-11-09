@@ -66,6 +66,10 @@
             height : 300px;
         }
 
+        #myDropdown-down{
+            overflow-y: scroll;  
+        }  
+
     </style>
 </head>
 <header class="w3-top w3-theme">
@@ -126,7 +130,7 @@
             <div class="dropdown">
                 
                 <i class="fa fa-bell" onclick="myFunction()" style="font-size:24px"></i> 
-                <div id="myDropdown-down" class="dropdown-content" style="width:500px; padding:7px; border-radius:3%;background-color:white;">  
+                <div id="myDropdown-down" class="dropdown-content" style="width:500px; height:; padding:7px; border-radius:3%;background-color:white;">  
                 <?php
                         if($nama != null){
                             echo"<h4 style='color:#f75939;padding-left:10px;'>Notifikasi-notifikasi Anda</h4>";
@@ -136,9 +140,9 @@
                                         foreach($result1 as $key => $value){
                                             echo"<div style='color:black; 
                                             padding-left:10px; padding-right:10px; background-color:#feeae6; border-bottom:2px solid white;'>";
-                                            echo"<h7>$value->namaNotifikasi</h7>";
+                                            echo"<div style='font-size:14px;'>$value->namaNotifikasi</div>";
                                             echo"<div style='font-size:10px;'>$value->dateTime</div>"; 
-                                            echo"<small>$value->deskripsi</small>";
+                                            echo"<small>$value->deskripsi</small>";  
                                             echo"</div>";
                                             $i++;
                                             if($i==$countAll+1 && $i<6){
@@ -161,7 +165,7 @@
                                                             foreach($result1 as $key => $value){
                                                                 echo"<div style='color:black; 
                                                                 padding:10px; background-color:#feeae6; border-bottom:2px solid white;'>";
-                                                                echo"<h7>$value->namaNotifikasi</h7>";
+                                                                echo"<div style='font-size:14px;'>$value->namaNotifikasi</div>";
                                                                 echo"<div style='font-size:10px;'>$value->dateTime</div>"; 
                                                                 echo"<small>$value->deskripsi</small>";
                                                                 echo"</div>";
@@ -170,7 +174,7 @@
                                                             foreach($result3 as $key => $value){
                                                                 echo"<div style='color:black; 
                                                                 padding:10px; background-color:white; border-bottom:2px solid #ddd;'>";
-                                                                echo"<h7>$value->namaNotifikasi</h7>";
+                                                                echo"<div style='font-size:14px;'>$value->namaNotifikasi</div>";
                                                                 echo"<div style='font-size:10px;'>$value->dateTime</div>"; 
                                                                 echo"<small>$value->deskripsi</small>";
                                                                 echo"</div>";
@@ -198,7 +202,7 @@
                                         foreach($result3 as $key => $value){
                                             echo"<div style='color:black; 
                                             padding-left:10px; padding-right:10px; background-color:white; border-bottom:2px solid #ddd;'>";
-                                            echo"<h7>$value->namaNotifikasi</h7>";
+                                            echo"<div style='font-size:14px;'>$value->namaNotifikasi</div>";
                                             echo"<div style='font-size:10px;'>$value->dateTime</div>"; 
                                             echo"<small>$value->deskripsi</small>";
                                             echo"</div>";
@@ -223,7 +227,7 @@
                                                             foreach($result1 as $key => $value){
                                                                 echo"<div style='color:black; 
                                                                 padding:10px; background-color:#feeae6; border-bottom:2px solid white;'>";
-                                                                echo"<h7>$value->namaNotifikasi</h7>";
+                                                                echo"<div style='font-size:14px;'>$value->namaNotifikasi</div>";
                                                                 echo"<div style='font-size:10px;'>$value->dateTime</div>"; 
                                                                 echo"<small>$value->deskripsi</small>";
                                                                 echo"</div>";
@@ -232,7 +236,7 @@
                                                             foreach($result3 as $key => $value){
                                                                 echo"<div style='color:black; 
                                                                 padding:10px; background-color:white; border-bottom:2px solid #ddd;'>";
-                                                                echo"<h7>$value->namaNotifikasi</h7>";
+                                                                echo"<div style='font-size:14px;'>$value->namaNotifikasi</div>";
                                                                 echo"<div style='font-size:10px;'>$value->dateTime</div>"; 
                                                                 echo"<small>$value->deskripsi</small>";
                                                                 echo"</div>";
