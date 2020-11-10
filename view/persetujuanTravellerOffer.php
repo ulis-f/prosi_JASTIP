@@ -68,7 +68,7 @@
                             }
                             ?></td> 
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td><label for="namaNegara">Waktu awal - Waktu akhir</label></td>
                             <td>:</td>
                             <td><?php
@@ -82,7 +82,7 @@
                                 echo "<td>".$newAwal."->".$newAkhir."</td>";
                             }
                             ?></td> 
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td><label for="deskripsiBarang">Deskripsi Barang</label></td>
                             <td>:</td>

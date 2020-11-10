@@ -628,7 +628,7 @@ class UserController{
 				$result[]= new transaksi($value['idUser1'],null,null,null,$value['hargaBarang'],null,null,$value['namaBarang'],null,null,$value['gambarBarang'],null,null);
 			}
         }   
-        return $result;  
+        return $result;     
 	}
 
 	public function getKategori(){
@@ -989,41 +989,45 @@ class UserController{
 	}
 
 	public function persetujuanPenitipan(){
-		if($_POST['verified'] == 'unverified'){
-			$timezone = new DateTimeZone('Asia/Jakarta');
-			$date = new DateTime();
-			$date->setTimeZone($timezone);
-			$now = $date->format('Y-m-d H:i:s'); 
-			$idCustomer = $_POST['idUser'];
-			$query_idUser = "SELECT * FROM `user` WHERE `idUser` LIKE '$idCustomer' ";
-			$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
-			$idUser_customer = $query_idUser_result[0]['idUser'];
-			
-			$namaBarang = $_POST['namaBarang'];
-			$nama = $_SESSION['nama'];
-			$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama' ";
-			$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
-			$idUser_traveller = $query_idUser_result[0]['idUser'];
+		$timezone = new DateTimeZone('Asia/Jakarta');
+		$date = new DateTime();
+		$date->setTimeZone($timezone);
+		$now = $date->format('Y-m-d H:i:s'); 
+		$idCustomer = $_POST['idUser'];
+		$query_idUser = "SELECT * FROM `user` WHERE `idUser` LIKE '$idCustomer' ";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
+		$idUser_customer = $query_idUser_result[0]['idUser'];
+		
+		$namaBarang = $_POST['namaBarang'];
+		$nama = $_SESSION['nama'];
+		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama' ";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
+		$idUser_traveller = $query_idUser_result[0]['idUser'];
 
-			
+		
 
-			if($_POST['jumlahBarang']!=null){
-				$link = '<form action="detailBarangWanted" method="GET">
-				<button  id="persetujuanTraveller" style="color:#f3310a;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Menuju Market</button>
-				<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
-				<input type="hidden" name="id" value="'.$idUser_traveller.'">
-				</form>';
-			}
-			else{
-				$link = '<form action="detailBarangOffer" method="GET">
-				<button  id="persetujuanTraveller" style="color:#f3310a;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Menuju Market</button>
-				<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
-				<input type="hidden" name="id" value="'.$idUser_traveller.'">
-				</form>';
-			}
-			
+		if($_POST['jumlahBarang']!=null){
+			$link = '<form action="detailBarangWanted" method="GET">
+			<button  id="persetujuanTraveller" style="color:#f3310a;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Menuju Market</button>
+			<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
+			<input type="hidden" name="id" value="'.$idUser_traveller.'">
+			</form>';
+		}
+		else{
+			$link = '<form action="detailBarangOffer" method="GET">
+			<button  id="persetujuanTraveller" style="color:#f3310a;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Menuju Market</button>
+			<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
+			<input type="hidden" name="id" value="'.$idUser_traveller.'">
+			</form>';
+		}
+
+		if($_POST['verified'] == 'unverified'){		
 			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Gagal', 'Permintaan anda ditolak $link', 0, '$now')";
 			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi); 
+		}
+		else{  
+			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Berhasil', 'Permintaan anda berhasil diterima', 0, '$now')";
+			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);     
 		}
 	}
 	
