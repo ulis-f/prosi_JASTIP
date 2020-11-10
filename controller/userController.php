@@ -606,8 +606,8 @@ class UserController{
 	public function getPencarianOffer(){
 		$negara = $_GET['country'];
 
-		$query = "select himpA.idUser1, hargaBarang, namaBarang, gambarBarang
-		from (select idUser1, hargaBarang, namaBarang, gambarBarang, trip.idKota2
+		$query = "select himpA.idUser1, hargaBarang, namaBarang, gambarBarang, waktuAwal, waktuAkhir
+		from (select idUser1, hargaBarang, namaBarang, gambarBarang, trip.idKota2, trip.waktuAwal, trip.waktuAkhir
 			 from transaksi inner join trip 
 			 on transaksi.IdTrip = trip.idTrip 
 			 where transaksi.statusBarang = 'onMarketOffer') as himpA
@@ -618,9 +618,15 @@ class UserController{
 											 where namaNegara = '$negara') as himpP inner join kota on himpP.idProvinsi = kota.idProvinsi
 										) as himpB on himpA.idKota2 = himpB.idKota";
         $query_result = $this->db->executeSelectQuery($query);
-        $result=[];
+		$result=[];
+		$timezone = new DateTimeZone('Asia/Jakarta');
+		$date = new DateTime();
+		$date->setTimeZone($timezone);
+		$now = $date->format('Y-m-d H:i:s');
         foreach($query_result as $key =>$value){
-            $result[]= new transaksi($value['idUser1'],null,null,null,$value['hargaBarang'],null,null,$value['namaBarang'],null,null,$value['gambarBarang'],null,null);
+			if($value['waktuAkhir']>$now){
+				$result[]= new transaksi($value['idUser1'],null,null,null,$value['hargaBarang'],null,null,$value['namaBarang'],null,null,$value['gambarBarang'],null,null);
+			}
         }   
         return $result;  
 	}
