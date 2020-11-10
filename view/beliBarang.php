@@ -20,6 +20,64 @@
         padding-top: 3px;
         padding-bottom: 3px;
     }
+
+    /* Popup container - can be anything you want */
+    .popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    }
+
+    /* The actual popup */
+    .popup .popuptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #feeae6;
+    color: #f75e3f;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+    }
+
+    /* Popup arrow */
+    .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+    }
+
+    /* Toggle this class - hide and show the popup */
+    .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+    }
+
+    /* Add animation (fade in the popup) */
+    @-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+    }
+
+    @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+    }
+
 </style>
   
     <div class="container">
@@ -111,7 +169,13 @@
                     </div>
 
                     <div class="w3-right" style="padding-top: 25%; padding-right:1%"> 
-                    <button class="w3-btn w3-theme" name="persetujuanTraveller" style="font-size:17px;">Beli Barang</button>   
+                    <div class="popup" onclick="myFunctionPopUp()">
+                    <button class="w3-btn w3-theme" name="persetujuanTraveller" style="font-size:17px;">Beli Barang</button>  
+                        <span class="popuptext" id="myPopup">Pesanan anda sedang dalam tahap untuk diverifikasi traveller.
+                        Silakan tunggu beberapa saat. <br> <br><br>
+                        <button class="w3-btn w3-red" style="font-size:14px;">Ok</button>
+                        </span>
+                    </div>  
                 </div>   
             </form>    
         </div>
@@ -125,4 +189,15 @@
             var result = document.getElementById('totalHarga');  
             result.value =  parseInt(hargaOngkir)+parseInt(harga)+(parseInt(harga)*(4/100)); 
         }
+
+    function myFunctionPopUp() {
+        var harga = document.getElementById('harga').value;
+        var hargaOngkir = document.getElementById('hargaOngkir').value;
+        var result = document.getElementById('totalHarga'); 
+
+        if(parseInt(hargaOngkir)>0 && parseInt(harga)>0){  
+            var popup = document.getElementById("myPopup");    
+            popup.classList.toggle("show");
+        }  
+    } 
     </script>
