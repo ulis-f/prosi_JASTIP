@@ -71,7 +71,8 @@
                         <!-- <tr>
                             <td><label for="namaNegara">Waktu awal - Waktu akhir</label></td>
                             <td>:</td>
-                            <td><?php
+                            <td>
+                            <?php  
                             foreach($trip as $key=>$value){
                                 $sec = strtotime($value->waktuAwal);
                                 $newAwal = date("d/m/yy", $sec);
@@ -81,7 +82,8 @@
                                 echo"<input type='hidden' name='waktuAkhir' value='$value->waktuAkhir'>";
                                 echo "<td>".$newAwal."->".$newAkhir."</td>";
                             }
-                            ?></td> 
+                            ?>
+                            </td> 
                         </tr> -->
                         <tr>
                             <td><label for="deskripsiBarang">Deskripsi Barang</label></td>
@@ -109,7 +111,7 @@
                     <input type='radio' id='unverified' name='verified' value='unverified'>Unverified<br>      
                     <br>
                     <label for='note'>Note</label> <br>
-                    <textarea name='' id='' cols='30' rows='5'></textarea>
+                    <textarea name='note' id='note' cols='30' rows='5'></textarea>  
                     <br><br><br><br><br>
                     <input type='submit' class='w3-btn w3-right w3-theme' value='Submit'>   
             </form>    

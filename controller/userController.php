@@ -1021,8 +1021,10 @@ class UserController{
 			</form>';
 		}
 
+		$note = $_POST['note'];  
+
 		if($_POST['verified'] == 'unverified'){		
-			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Gagal', 'Permintaan anda ditolak $link', 0, '$now')";
+			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Gagal', '$note $link', 0, '$now')";
 			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi); 
 		}
 		else{  
