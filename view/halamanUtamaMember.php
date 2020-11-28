@@ -295,7 +295,7 @@
                     echo"</form>";
                     echo"<td></td>"; 
                     echo"<td></td>";
-                    echo"<td rowspan='3'><a href='titipBarang'><div style='float:right;width: 130px; padding:15px;font-size:12px; color:#6699cc'>Titip Barang
+                    echo"<td rowspan='3'><a href='titipBarang' style='display:none;'><div style='float:right;width: 130px; padding:15px;font-size:12px; color:#6699cc'>Titip Barang
                     <i class='fas fa-shopping-cart' style='font-size:20px'></i></div></a></td>";
                 echo"</tr>";
                 echo"<tr>";
