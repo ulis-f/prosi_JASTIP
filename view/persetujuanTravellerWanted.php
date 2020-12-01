@@ -6,7 +6,7 @@
   
     <div class="container">
         <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1050px; margin-top: 5%;">
-            <form action="persetujuanPenitipan" method="POST">  
+            <form action="pembayaranMarketWanted" method="GET">  
                     <h2>Persetujuan Penitipan Barang</h2>  <br>
                     <table>
                         <tr>
@@ -74,6 +74,7 @@
                             foreach($trip as $key=>$value){
                                 echo"<input type='hidden' name='kotaAwal' value='$value->kotaAwal'>";
                                 echo"<input type='hidden' name='kotaTujuan' value='$value->kotaTujuan'>";
+                                echo"<input type='hidden' name='idTrip' value='$value->idtrip'>";
                                 echo "<td>".$value->kotaAwal."->".$value->kotaTujuan."</td>";
                             }
                             ?></td> 
@@ -109,6 +110,7 @@
                     <?php
                     foreach($result as $key=>$value){
                         echo"<input type='hidden' name='idUser' value='$value->namaUser'>";
+                        
                         echo"<input type='hidden' name='gambar' value='$value->gambarBarang'>";
                         echo"<figure><img src='image/market/".$value->gambarBarang."'width=250px height=150px></figure><br>"; 
                     }
