@@ -1,142 +1,126 @@
 <style>
     #waktuTersisa{
-        margin-left: auto;
-        margin-right: auto;
-    }
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        body {
+            background-color: #f9f9f9;
+        }
+
+        label {
+            font-weight: normal !important;
+        }
+
+        .column {
+            width: 48%;
+            float :left;
+        }
+
+        .column1 {
+            width : 48%;
+            float : right;
+        }
 </style>   
 
 <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: auto; margin-top: 5%;">
-            <form action="" method="POST">
-                <h2>Pembayaran</h2> 
-                    <br>
-                    <div>
-                    <table id="waktuTersisa">
-                        <td><h5>Waktu tersisa pembayaran</h5></td>
-                        <td> : </td>
-                        <td><h5><div id="demo"></div></h5></td>
-                    </table>  
-                    </div>
-
+        <div class="w3-card-4 w3-white" style="padding: 50px; height: 800px; margin-top: 5%;">
+            <form action=" " method="">
+                <div class="column">
+                    <h2>Ringkasan Belanja</h2> 
                     <br><br>
                     <table>
-                        <tr>    
-                            <td><label for="namaBarang">Nama Barang</label></td>
-                            <td>:</td>
-                            <?php
-                            foreach($result as $key=>$value){
-                                echo "<td>".$value->namaBarang."</td>";
-                            }
-                            ?>
+                        <tr>
+                            <td>kotaAwal</td>
+                            <td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:24px'></i></td>    
+                            <td>Kota Tujuan</td>
                         </tr>
                         <tr>
-                            <td><label for="jumlahBarang">Jumlah Barang</label></td>
-                            <td>:</td>
-                            <?php
-                            foreach($result as $key=>$value){
-                                echo "<td>".$value->jumlahBarang."</td>";
-                            }
-                            ?>
-                        </tr>
-                        <tr>
-                            <td><label for="totalHarga">Total Harga</label></td>
-                            <td>:</td>
-                            <?php
-                            foreach($result as $key=>$value){
-                                echo "<td>".$value->hargaBarang."</td>";
-                            }
-                            ?>
-                        </tr>
-                        <tr>
-                            <td><label for="bank">Pilih Bank</label></td>
-                            <td>:</td>
-                            <td><select name="jenisBank" id="jenisBank">
-                                <option value="bca" onclick="pilihBank()">BCA</option>
-                                <option value="bni" onclick="pilihBank()">BNI</option>
-                                <option value="bri" onclick="pilihBank()">BRI</option>
-                                <option value="mandiri" onclick="pilihBank()">MANDIRI</option>
-                            </select></td>
+                            <td>Waktu awal</td>
+                            <td>Waktu akhir</td>
                         </tr>
                     </table>
-            </form> 
-            <br>
-            <BUtton onclick="pilihBank()" class="btn btn-primary btn-sm">Lihat Cara Pembayaran!</BUtton>
-            <br><br>
+                    <br><br>
 
-            <p id="bank"></p>
-            <!-- <h7>ATM BCA</h7>
-                <ol>
-                    <li>Pilih menu <b>Transaksi Lainnya</b> > <b>Transfer</b> > <b>ke Rekening BCA Virtual Account</b></li>
-                    <li>Pilih ke Rekening BCA > Masukkan nomor Virtual Account BCA 12345678</li>
-                    <li>Masukkan nominal transfer Rp. TOTAL HARGA DI SINI > Pilih Benar</li>
-                    <li>Periksa detail transaksi > Pilih Ya</li>
-                </ol>
+                    <div>
+                        <div style="width: 40%; float: left;">
+                            <img src='' width=100% height=150px>
+                        </div>
 
-            <h7>ATM LAIN</h7>
-                <ol>
-                    <li>Pilih Transfer > Transfer ke Bank Lain</li>
-                    <li>Masukkan 014 sebagai kode BCA</li>
-                    <li>Masukkan nomor Virtual Account BCA 12345678</li>
-                    <li>Masukkan Jumlah Pembayaran > Pilih Konfirmasi</li>
-                </ol>
+                        <div style="width: 60%; float: right; padding-left: 20%; height: 150px;">
+                            <h4>Nama Barang</h4>
+                            <p>Deskripsi</p>
+                        </div>
+                    </div>
 
-            <h7>ATM BNI</h7>
-                <ol>
-                    <li>Pilih Menu Lain > Transfer > Dari Rekening Tabungan</li>
-                    <li>Pilih ke Rekening BNI > Masukkan nomor Virtual Account BNI 12345678</li>
-                    <li>Masukkan nominal transfer Rp. TOTOAL HARGA DI SINI > Pilih Benar</li>
-                    <li>Periksa detail transaksi > Pilih Ya</li>
-                </ol>
+                    <br> <br>
+                    <table>
+                        <tr>
+                            <td>Harga Barang</td>
+                            <td>Rp</td>
+                            <td>-----</td>
+                        </tr>
+                        <tr>
+                            <td>Tip Traveller</td>
+                            <td>Rp</td>
+                            <td>-----</td>
+                        </tr>
+                        <tr>
+                            <td>TitipAja Fee</td>
+                            <td>Rp</td>
+                            <td>-----</td>
+                        </tr>
+                        <tr>
+                            <td>Kode Unik Transaksi</td>
+                            <td>Rp</td>
+                            <td>-----</td>
+                        </tr>
+    
+                    </table>
+                    <br>
+                    <p class="" style="width:100%;border-bottom:2px solid #6699cc"></p>
+                    <table>
+                        <tr>
+                            <td><b>Total Harga</b></td>
+                            <td>Rp</td>
+                            <td>----</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                
+                <div class="column1">
+                        <h2>Pembayaran</h2> 
+                        <table id="waktuTersisa" style="color:red;">  
+                            <td>Waktu tersisa pembayaran</td>
+                            <td> : </td>
+                            <td><div id="demo"></div></td>
+                        </table> 
+                        <br><br> 
+                        <div class="col-sm-4">
+                            <img src="../view/image/bank/bni.png" alt="" style="width: 100px; height: 50px;">
+                        </div>
+                        <div class="col-sm-4">  
+                            <img src="../view/image/bank/bri.png" alt="" style="width: 100px; height: 50px;">
+                        </div>
+                        <div class="col-sm-4">  
+                            <img src="../view/image/bank/mandiri.png" alt="" style="width: 100px; height: 50px;">
+                        </div>
 
-            <h7>ATM LAIN</h7>
-                <ol>
-                    <li>Pilih Transfer > Transfer ke Bank Lain</li>
-                    <li>Masukkan 009 sebagai kode BNI</li>
-                    <li>Masukkan nomor Virtual Account BNI 12345678</li>
-                    <li>Masukkan Jumlah Pembayaran > Pilih Konfirmasi</li>
-                </ol> 
-            
-            <h7>ATM BRI</h7>
-                <ol>
-                    <li>Pilih menu <b>Transaksi Lain</b>, kemudian pilih menu <b>Pembayaran</b></li>
-                    <li>Setelah itu klik Menu <b>Lainnya</b>, lalu pilih menu <b>Briva</b></li>
-                    <li>Masukkan nomor rekening dengan nomor Virtual Account Anda (contoh: 7810202001539202)
-                        dan pilih <b>Benar</b></li>
-                    <li>Periksa detail transaksi > Pilih <b>Ya</b></li>
-                </ol>
-
-            <h7>ATM LAIN</h7>
-                <ol>
-                    <li>Pilih menu <b>Transaksi Lain</b>, kemudian pilih menu <b>Transfer</b></li>
-                    <li>Setelah itu pilih menu <b>Ke Rek Bank Lain</b></li>
-                    <li>Masukkan Kode Bank Tujuan: BRI (Kode Bank: 002). Lalu klik <b>Benar</b></li>
-                    <li>Masukkan jumlah pembayaran sesuai tagihan. Klik <b>Benar</b></li>
-                    <li>Sistem akan memverifikasi data yang dimasukkan. Pilih <b>Benar</b> untuk memproses pembayaran</li>
-                </ol>
-
-            <h7>ATM MANDIRI</h7>
-                <ol>
-                    <li>Pilih Menu Lain > Transfer > Dari Rekening Tabungan</li>
-                    <li>Pilih ke Rekening MANDIRI > Masukkan nomor Virtual Account MANDIRI 12345678</li>
-                    <li>Masukkan nominal transfer Rp. TOTAL HARGA DI SINI > Pilih Benar</li>
-                    <li>Periksa detail transaksi > Pilih Ya</li>
-                </ol>
-
-            <h7>ATM LAIN</h7>
-                <ol>
-                    <li>Pilih Transfer > Transfer ke Bank Lain</li>
-                    <li>Masukkan 008 sebagai kode MANDIRI</li>
-                    <li>Masukkan nomor Virtual Account MANDIRI 12345678</li>  
-                    <li>Masukkan Jumlah Pembayaran > Pilih Konfirmasi</li>
-                </ol> -->
-            <br><br>
-            <a href="" style="text-decoration-line: underline; color:#6699cc; float:right">Klik di sini jika pembayaran telah dilakukan</a> 
+                        <p>Silahkan mengunduh bukti pembayaran</p><br>
+                        
+                        
+                        <input type="submit" class="w3-btn w3-theme" style="width:100%;" value="Submit">
+                </div>  
+                
+                
+            </form>    
         </div>
     </div>
 
-<script>
+    <script>
     // Set the date we're counting down to
-    var countDownDate = new Date("Dec 3, 2020 15:37:25").getTime();
+    var countDownDate = new Date("Dec 10, 2020 10:37:25").getTime();
 
     // Update the count down every 1 second
     var x = setInterval(function() {
@@ -225,4 +209,4 @@
                 "</ol>";
         }
     }
-</script>    
+</script> 
