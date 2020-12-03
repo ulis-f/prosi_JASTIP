@@ -31,25 +31,49 @@
                     <br><br>
                     <table>
                         <tr>
-                            <td>kotaAwal</td>
-                            <td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:24px'></i></td>    
-                            <td>Kota Tujuan</td>
+                        <?php
+                        foreach($result as $key=>$value){
+                            echo"<input type='hidden' name='kotaAwal' value='$value->kotaAwal'>";
+                            echo"<td>".$value->kotaAwal."</td>";
+                            echo"<td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:24px'></i></td>";  
+                            echo"<td>".$value->kotaTujuan."</td>";
+                        }
+                        ?>
                         </tr>
                         <tr>
-                            <td>Waktu awal</td>
-                            <td>Waktu akhir</td>
+                        <?php
+                        foreach($result as $key=>$value){
+                           echo "<td>".$value->waktuAwal."</td>";
+                           echo "<td>".$value->waktuAkhir."</td>";
+                                
+                        }
+                        ?>
                         </tr>
                     </table>
                     <br><br>
 
                     <div>
                         <div style="width: 40%; float: left;">
-                            <img src='' width=100% height=150px>
+                        <?php
+                        foreach($result as $key=>$value){
+                            echo"<figure><img src='image/market/".$value->gambar."'width=100% height=150px></figure><br>"; 
+                        }
+                        ?>
                         </div>
 
                         <div style="width: 60%; float: right; padding-left: 20%; height: 150px;">
-                            <h4>Nama Barang</h4>
-                            <p>Deskripsi</p>
+                        <?php
+                        foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='namaBarang' value='$value->namaBarang'>";
+                                echo "<h4>".$value->namaBarang."</h4>";     
+                            }
+                            ?>
+                        <?php
+                        foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='deskripsi' value='$value->deskripsi'>";
+                                echo "<p>".$value->deskripsi."</p>";     
+                            }
+                            ?>
                         </div>
                     </div>
 
@@ -58,22 +82,42 @@
                         <tr>
                             <td>Harga Barang</td>
                             <td>Rp</td>
-                            <td>-----</td>
+                            <?php
+                            foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='hargaBarang' value='$value->hargaBarang'>";
+                                echo "<td>".$value->hargaBarang."</td>";
+                            }
+                            ?>
                         </tr>
                         <tr>
                             <td>Tip Traveller</td>
                             <td>Rp</td>
-                            <td>-----</td>
+                            <?php
+                            foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='tip' value='$value->tipTraveller'>";
+                                echo "<td>".$value->tipTraveller."</td>";
+                            }
+                            ?>
                         </tr>
                         <tr>
                             <td>TitipAja Fee</td>
                             <td>Rp</td>
-                            <td>-----</td>
+                            <?php
+                            foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='fee' value='$value->fee'>";
+                                echo "<td>".$value->fee."</td>";
+                            }
+                            ?>
                         </tr>
                         <tr>
                             <td>Kode Unik Transaksi</td>
                             <td>Rp</td>
-                            <td>-----</td>
+                            <?php
+                            foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='kodeUnik' value='$value->kodeUnik'>";
+                                echo "<td>".$value->kodeUnik."</td>";
+                            }
+                            ?>
                         </tr>
     
                     </table>
@@ -83,7 +127,12 @@
                         <tr>
                             <td><b>Total Harga</b></td>
                             <td>Rp</td>
-                            <td>----</td>
+                            <?php
+                            foreach($result as $key=>$value){
+                                echo"<input type='hidden' name='totalHarga' value='$value->totalHarga'>";
+                                echo "<td>".$value->totalHarga."</td>";
+                            }
+                            ?>
                         </tr>
                     </table>
                 </div>

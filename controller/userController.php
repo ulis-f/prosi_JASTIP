@@ -9,6 +9,7 @@ require_once "model/notifikasi.php";
 require_once "model/barang.php"; 
 require_once "model/detailOffer.php"; 
 require_once "model/wanted.php"; 
+require_once "model/pembayaran.php"; 
 class UserController{
 	protected $db;
 
@@ -281,7 +282,7 @@ class UserController{
 
 		$idTrip = $_GET['idTrip'];
 		if($_GET['verified'] == 'verified'){
-			$result = $this->getPembayaran();
+			$result = $this->getPembayaranWanted();
 			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Berhasil', 'Permintaan anda berhasil diterima', 0, '$now')";
 			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi); 
 			$query_transaksi = "UPDATE transaksi SET idTrip = '$idTrip', idUser2 = '$idUser_customer' WHERE idUser1 = '$idUser_traveller' AND namaBarang ='$namaBarang'";
@@ -1107,12 +1108,23 @@ class UserController{
 	// 	}
 	// }
 
-	public function getPembayaran(){
+	public function getPembayaranWanted(){
+		
 		$namaBarang = $_GET['namaBarang'];
 		$jumlahBarang = $_GET['jumlahBarang'];
 		$totalHarga = $_GET['totalHarga'];
+		$kotaAwal = $_GET['kotaAwal'];
+		$kotaTujuan = $_GET['kotaTujuan'];
+		$waktuAwal = $_GET['waktuAwal'];
+		$waktuAkhir = $_GET['waktuAkhir'];
+		$deskripsi = $_GET['deskripsi'];
+		$tipTraveller = $_GET['hargaOngkir'];
+		$hargaBarang = $_GET['hargaBarang'];
+		$gambar = $_GET['gambar'];
+		$fee = ($totalHarga - ($totalHarga*(4/100)))+$tipTraveller;
+		$kodeUnik = rand(100,999);
 		$result=[];
-		$result[] = new Transaksi (null,null,null,$jumlahBarang,$totalHarga, null,null,$namaBarang,null,null,null,null,null);
+		$result[] = new Pembayaran ($kotaAwal,$kotaTujuan,$waktuAwal,$waktuAkhir,$namaBarang,$deskripsi,$hargaBarang,$tipTraveller,$fee,$kodeUnik,$totalHarga,$gambar);
 		return $result;
 		
 	}
