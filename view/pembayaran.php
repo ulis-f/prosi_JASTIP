@@ -1,26 +1,54 @@
+
 <style>
+    figure:hover{
+        transform: scale(2.4); 
+    }
+
+    figure{
+        margin: 0px;
+	    float: left;
+        height: 130px;    
+    }
+
     #waktuTersisa{
-            margin-left: auto;
-            margin-right: auto;
-        }
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-        body {
-            background-color: #f9f9f9;
-        }
+    body {
+        background-color: #f9f9f9;
+    }
 
-        label {
-            font-weight: normal !important;
-        }
+    label {
+        font-weight: normal !important;
+    }
 
-        .column {
-            width: 48%;
-            float :left;
-        }
+    .column {
+        width: 48%;
+        float :left;
+    }
 
-        .column1 {
-            width : 48%;
-            float : right;
-        }
+    .column1 {
+        width : 48%;
+        float : right;
+    }
+
+    .table1 {
+        width : 100%;
+    }
+
+    .table1.td{
+        width : 33%;
+    }
+    .table2 {
+        width : 100%;
+    }
+
+    .table2.td{
+        width : 33%;
+    }
+
+
 </style>   
 
 <div class="container">
@@ -53,10 +81,10 @@
                     <br><br>
 
                     <div>
-                        <div style="width: 40%; float: left;">
+                        <div style="width: 40%; float: left; height: 150px;">
                         <?php
                         foreach($result as $key=>$value){
-                            echo"<figure><img src='image/market/".$value->gambar."'width=100% height=150px></figure><br>"; 
+                            echo"<figure><img src='image/market/".$value->gambar."'width=100% height=100%;></figure><br>"; 
                         }
                         ?>
                         </div>
@@ -74,18 +102,19 @@
                                 echo "<p>".$value->deskripsi."</p>";     
                             }
                             ?>
+                            <p class="" style="width:100%;border-bottom:2px solid #dddddd"></p>
                         </div>
                     </div>
 
                     <br> <br>
-                    <table>
+                    <table class="table1">
                         <tr>
                             <td>Harga Barang</td>
                             <td>Rp</td>
                             <?php
                             foreach($result as $key=>$value){
                                 echo"<input type='hidden' name='hargaBarang' value='$value->hargaBarang'>";
-                                echo "<td>".$value->hargaBarang."</td>";
+                                echo "<td style='float: right;'>".$value->hargaBarang."</td>";
                             }
                             ?>
                         </tr>
@@ -95,7 +124,7 @@
                             <?php
                             foreach($result as $key=>$value){
                                 echo"<input type='hidden' name='tip' value='$value->tipTraveller'>";
-                                echo "<td>".$value->tipTraveller."</td>";
+                                echo "<td style='float: right;'>".$value->tipTraveller."</td>";
                             }
                             ?>
                         </tr>
@@ -105,7 +134,7 @@
                             <?php
                             foreach($result as $key=>$value){
                                 echo"<input type='hidden' name='fee' value='$value->fee'>";
-                                echo "<td>".$value->fee."</td>";
+                                echo "<td style='float: right;'>".$value->fee."</td>";
                             }
                             ?>
                         </tr>
@@ -115,22 +144,23 @@
                             <?php
                             foreach($result as $key=>$value){
                                 echo"<input type='hidden' name='kodeUnik' value='$value->kodeUnik'>";
-                                echo "<td>".$value->kodeUnik."</td>";
+                                echo "<td style='float: right;'>".$value->kodeUnik."</td>";
                             }
                             ?>
                         </tr>
     
                     </table>
                     <br>
-                    <p class="" style="width:100%;border-bottom:2px solid #6699cc"></p>
-                    <table>
+                    <p class="" style="width:100%;border-bottom:2px solid #dddddd"></p>
+            
+                    <table class="table2">
                         <tr>
-                            <td><b>Total Harga</b></td>
+                            <td style="width:66%;"><b>Total Harga</b></td>
                             <td>Rp</td>
                             <?php
                             foreach($result as $key=>$value){
                                 echo"<input type='hidden' name='totalHarga' value='$value->totalHarga'>";
-                                echo "<td>".$value->totalHarga."</td>";
+                                echo "<td style='float: right; width:30%:'>".$value->totalHarga."</td>";
                             }
                             ?>
                         </tr>
@@ -146,17 +176,23 @@
                             <td><div id="demo"></div></td>
                         </table> 
                         <br><br> 
-                        <div class="col-sm-4">
-                            <img src="../view/image/bank/bni.png" alt="" style="width: 100px; height: 50px;">
-                        </div>
-                        <div class="col-sm-4">  
-                            <img src="../view/image/bank/bri.png" alt="" style="width: 100px; height: 50px;">
-                        </div>
-                        <div class="col-sm-4">  
-                            <img src="../view/image/bank/mandiri.png" alt="" style="width: 100px; height: 50px;">
-                        </div>
+                        <div>
+                            <div class="col-sm-4">    
+                                <img src="../view/image/bank/bca.png" name="jenisBank1" id="jenisBank1"  value="bca" onclick="pilihBank()" alt="" style="width: 100%; border: 2px solid #dddddd; padding:8px;">
+                            </div>
 
+                            <div class="col-sm-4">  
+                                <img src="../view/image/bank/BRI.png" name="jenisBank2" id="jenisBank2" value="bri" onclick="pilihBank()" alt="" style="width: 100%;  border: 2px solid #dddddd;">
+                            </div>
+
+                            <div class="col-sm-4">  
+                                <img src="../view/image/bank/mandiri.png" name="jenisBank3" id="jenisBank3" value="mandiri" onclick="pilihBank() "alt="" style="width: 100%;  border: 2px solid #dddddd; padding:8px;">
+                            </div>
+                        </div>
+                        <p id="bank"></p>
+                        <br><br><br>
                         <p>Silahkan mengunduh bukti pembayaran</p><br>
+                        
                         
                         
                         <input type="submit" class="w3-btn w3-theme" style="width:100%;" value="Submit">
@@ -197,22 +233,23 @@
     }
     }, 1000);
 
+    var bank = document.getElementById('jenisBank1').value;
+    var bank2 = document.getElementById('jenisBank2').value;
+    var bank3 = document.getElementById('jenisBank3').value;
 
-    function pilihBank() {
-        var bank = document.getElementById('jenisBank').value;
-        if (bank=="mandiri") {
-            document.getElementById("bank").innerHTML = "<h7>ATM MANDIRI</h7>"+
+
+    bank.onclick = function(){
+        document.getElementById("bank").innerHTML = "<h7>ATM BCA</h7>"+
                 "<ol>"+
-                    "<li>Pilih Menu <b>Bayar/Beli</b> kemudian pilih menu <b>Lainnya</b></li>"+
-                    "<li>Kemudian pilih menu <b>Lainnya</b>, hingga menemukan menu <b>Multipayment</b></li>"+
-                    "<li>Masukkan kode biller TitipAja 8870, lalu pilih <b>Benar</b></li>"+
-                    "<li>Masukkan <b>Nomor Virtual Account</b> TitipAja, lalu pilih tombol <b>Benar</b></li>"+
-                    "<li>Masukkan Angka <b>1</b> untuk memilih tagihan, lalu pilih tombol <b>Ya</b></li>"+
-                    "<li>Akan muncul konfirmasi pembayaran, lalu pilih tombol <b>Ya</b></li>"
-                "</ol>";    
-        }
-        else if (bank=="bri") {
-            document.getElementById("bank").innerHTML = "<h7>ATM BRI</h7>"+
+                    "<li>Pilih menu <b>Transaksi Lainnya</b> > <b>Transfer</b> > <b>ke Rekening BCA Virtual Account</b></li>"+
+                    "<li>Masukkan 5 angka kode perusahaan untuk Tokopedia (80777) dan Nomor HP yang kamu daftarkan di akun Tokopedia (Contoh: 80777081316951940)</li>"+
+                    "<li>Di halaman konfirmasi, pastikan detil pembayaran sudah sesuai</li>"+
+                    "<li>Jika sudah benar > Pilih <b>Ya</b></li>"+
+                "</ol>";
+    }
+
+    bank.onclick()= function{
+        document.getElementById("bank").innerHTML = "<h7>ATM BRI</h7>"+
                 "<ol>"+
                     "<li>Pilih menu <b>Transaksi Lain</b>, kemudian pilih menu <b>Pembayaran</b></li>"+
                     "<li>Setelah itu klik Menu <b>Lainnya</b>, lalu pilih menu <b>Briva</b></li>"+
@@ -227,35 +264,61 @@
                     "<li>Masukkan Kode Bank Tujuan: BRI (Kode Bank: 002). Lalu klik <b>Benar</b></li>"+
                     "<li>Masukkan jumlah pembayaran sesuai tagihan. Klik <b>Benar</b></li>"+
                     "<li>Sistem akan memverifikasi data yang dimasukkan. Pilih <b>Benar</b> untuk memproses pembayaran</li>"+
-                "</ol>";  
-        }
-        else if (bank=="bni") {
-            document.getElementById("bank").innerHTML = "<h7>ATM BNI</h7>"+
-                "<ol>"+
-                    "<li>Pilih menu <b>Transaksi Lain</b>, kemudian pilih menu <b>Pembayaran</b></li>"+
-                    "<li>Setelah itu klik Menu <b>Lainnya</b>, lalu pilih menu <b>Transfer</b></li>"+
-                    "<li>Pilih <b>Virtual Account Billing</b> Masukkan nomor rekening dengan nomor Virtual Account Anda (contoh: 8277087781881441) dan pilih <b>Benar</b></li>"+
-                    "<li>Periksa detail transaksi > Pilih <b>Ya</b></li>"+
-                "</ol>"
-                +
-                "<h7>ATM LAIN</h7>"+
-                "<ol>"+
-                    "<li>Pilih menu <b>Transfer antar bank</b></li>"+
-                    "<li>Masukkan kode bank BNI (009) atau pilih bank yang dituju yaitu BNI</li>"+
-                    "<li>Masukan 16 Digit Nomor Virtual Account pada kolom rekening tujuan (Contoh: 8277087781881441)"+
-                    "<li>Masukkan nominal transfer sesuai tagihan Anda. Nominal yang berbeda tidak dapat diproses</li>"+
-                    "<li>Masukkan jumlah pembayaran</li>"
-                    "<li>Periksa detail transaksi > Pilih <b>Ya</b></li>"
-                "</ol>";  
-        }
-        else{
-            document.getElementById("bank").innerHTML = "<h7>ATM BCA</h7>"+
-                "<ol>"+
-                    "<li>Pilih menu <b>Transaksi Lainnya</b> > <b>Transfer</b> > <b>ke Rekening BCA Virtual Account</b></li>"+
-                    "<li>Masukkan 5 angka kode perusahaan untuk Tokopedia (80777) dan Nomor HP yang kamu daftarkan di akun Tokopedia (Contoh: 80777081316951940)</li>"+
-                    "<li>Di halaman konfirmasi, pastikan detil pembayaran sudah sesuai</li>"+
-                    "<li>Jika sudah benar > Pilih <b>Ya</b></li>"+
                 "</ol>";
-        }
+
+    }
+
+    bank3.onclick = function(){
+        document.getElementById("bank").innerHTML = "<h7>ATM MANDIRI</h7>"+
+                "<ol>"+
+                    "<li>Pilih Menu <b>Bayar/Beli</b> kemudian pilih menu <b>Lainnya</b></li>"+
+                    "<li>Kemudian pilih menu <b>Lainnya</b>, hingga menemukan menu <b>Multipayment</b></li>"+
+                    "<li>Masukkan kode biller TitipAja 8870, lalu pilih <b>Benar</b></li>"+
+                    "<li>Masukkan <b>Nomor Virtual Account</b> TitipAja, lalu pilih tombol <b>Benar</b></li>"+
+                    "<li>Masukkan Angka <b>1</b> untuk memilih tagihan, lalu pilih tombol <b>Ya</b></li>"+
+                    "<li>Akan muncul konfirmasi pembayaran, lalu pilih tombol <b>Ya</b></li>"
+                "</ol>"; 
+    }
+
+    // function pilihBank() {
+        
+    //     if (bank3) {
+    //         document.getElementById("bank").innerHTML = "<h7>ATM MANDIRI</h7>"+
+    //             "<ol>"+
+    //                 "<li>Pilih Menu <b>Bayar/Beli</b> kemudian pilih menu <b>Lainnya</b></li>"+
+    //                 "<li>Kemudian pilih menu <b>Lainnya</b>, hingga menemukan menu <b>Multipayment</b></li>"+
+    //                 "<li>Masukkan kode biller TitipAja 8870, lalu pilih <b>Benar</b></li>"+
+    //                 "<li>Masukkan <b>Nomor Virtual Account</b> TitipAja, lalu pilih tombol <b>Benar</b></li>"+
+    //                 "<li>Masukkan Angka <b>1</b> untuk memilih tagihan, lalu pilih tombol <b>Ya</b></li>"+
+    //                 "<li>Akan muncul konfirmasi pembayaran, lalu pilih tombol <b>Ya</b></li>"
+    //             "</ol>";    
+    //     }
+    //     // else if (bank2=="bri") {  
+    //         document.getElementById("bank").innerHTML = "<h7>ATM BRI</h7>"+
+    //             "<ol>"+
+    //                 "<li>Pilih menu <b>Transaksi Lain</b>, kemudian pilih menu <b>Pembayaran</b></li>"+
+    //                 "<li>Setelah itu klik Menu <b>Lainnya</b>, lalu pilih menu <b>Briva</b></li>"+
+    //                 "<li>Masukkan nomor rekening dengan nomor Virtual Account Anda (contoh: 7810202001539202) dan pilih <b>Benar</b></li>"+
+    //                 "<li>Periksa detail transaksi > Pilih <b>Ya</b></li>"+
+    //             "</ol>"
+    //             +
+    //             "<h7>ATM LAIN</h7>"+
+    //             "<ol>"+
+    //                 "<li>Pilih menu <b>Transaksi Lain</b>, kemudian pilih menu <b>Transfer</b></li>"+
+    //                 "<li>Setelah itu pilih menu <b>Ke Rek Bank Lain</b></li>"+
+    //                 "<li>Masukkan Kode Bank Tujuan: BRI (Kode Bank: 002). Lalu klik <b>Benar</b></li>"+
+    //                 "<li>Masukkan jumlah pembayaran sesuai tagihan. Klik <b>Benar</b></li>"+
+    //                 "<li>Sistem akan memverifikasi data yang dimasukkan. Pilih <b>Benar</b> untuk memproses pembayaran</li>"+
+    //             "</ol>";  
+    //     //}
+    //     // else{
+    //         document.getElementById("bank").innerHTML = "<h7>ATM BCA</h7>"+
+    //             "<ol>"+
+    //                 "<li>Pilih menu <b>Transaksi Lainnya</b> > <b>Transfer</b> > <b>ke Rekening BCA Virtual Account</b></li>"+
+    //                 "<li>Masukkan 5 angka kode perusahaan untuk Tokopedia (80777) dan Nomor HP yang kamu daftarkan di akun Tokopedia (Contoh: 80777081316951940)</li>"+
+    //                 "<li>Di halaman konfirmasi, pastikan detil pembayaran sudah sesuai</li>"+
+    //                 "<li>Jika sudah benar > Pilih <b>Ya</b></li>"+
+    //             "</ol>";
+    //     // }
     }
 </script> 
