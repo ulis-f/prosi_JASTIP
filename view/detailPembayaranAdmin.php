@@ -51,7 +51,7 @@
             <a class="" href="#" style="text-decoration:none ; color:#6699cc; ">Detail Pembayaran</a>
         </p>
         <div class="container">
-            <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 1000px; margin-top: 5%;">
+            <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 1100px; margin-top: 5%;">
                 <form action="persetujuanPembayaran" method="POST">
                     <h3><b>Detail Pembayaran</b></h3> <br>
                         <div class="column1">

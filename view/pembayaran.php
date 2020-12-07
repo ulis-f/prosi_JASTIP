@@ -264,12 +264,13 @@
                         <input type="submit" class="w3-btn w3-theme" style="width:100%;" value="Submit">
                 </div>  
                 
-                
             </form>    
         </div>
     </div>
 
-    <script>
+
+<script>
+        
     // Set the date we're counting down to
     var countDownDate = new Date("Dec 10, 2020 10:37:25").getTime();
 
@@ -327,9 +328,29 @@
           div.style.display = "block";
         } else {
           div.style.display = "none";
-        }
+        }   
       }
     }
 
     $('.file-upload').file_upload();
+
+    document.getElementById("gameStart").addEventListener("click", function(){
+    setInterval(function time(){
+
+    var d = new Date();
+    var hours = 23 - d.getHours();
+    var min = 60 - d.getMinutes();
+    if((min + '').length == 1){
+        min = '0' + min;
+    }
+    var sec = 60 - d.getSeconds();
+    if((sec + '').length == 1){
+            sec = '0' + sec;
+    }
+    jQuery('#the-final-countdown p').html(hours+':'+min+':'+sec)
+    }, 1000);
+
+    console.log(countdown);
+    });
+    
 </script> 
