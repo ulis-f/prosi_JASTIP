@@ -97,7 +97,7 @@
 
 <div class="container">
         <div class="w3-card w3-white" style="padding: 50px; height: 800px; margin-top: 3%;">
-            <form action=" " method="">
+            <form action="pembayaranKeAdmin" method="POST">
                 <div class="column">
                     <h3><b>Ringkasan Belanja</b></h3> 
                     <br> 
@@ -203,7 +203,8 @@
                             <?php
                             foreach($result as $key=>$value){
                                 echo"<input type='hidden' name='totalHarga' value='$value->totalHarga'>";
-                                echo "<td style='float: right; width:30%: color:#ffa500'><b style='color:#ffa500'>".$value->totalHarga."</b></td>";
+                                $total = ($value->totalHarga)-($value->kodeUnik);
+                                echo "<td style='float: right; width:30%: color:#ffa500'><b style='color:#ffa500'>".$total."</b></td>";
                             }
                             ?>
                         </tr>
@@ -246,15 +247,15 @@
                         </div>
                 
                         <div class="">
-                            <form method="post" action="#" id="#">
+                            
                                 <div class="form-group files color">
                                     <p style="font-size:12px;">Silahkan mengunduh bukti transfer Anda di bawah ini dengan jumlah yang sesuai
                                         dengan jumlah yang sesuai dengan yang tertulis pada ringkasan belanja, jika jumlah
                                         uang yang diterima tidak sesuai, pihak TitipAja berhak menolak proses pembayaran.
                                     </p>
-                                    <input type="file" class="form-control" multiple="">
+                                    <input type='file' class ="form-control" name="buktiPembayaran" id="buktiPembayaran" accept='image/*' multiple="" required> 
                                 </div>
-                            </form> 
+                            
                         </div>
                         
                         <input type="submit" class="w3-btn w3-theme" style="width:100%;" value="Submit">
@@ -328,4 +329,8 @@
     }
 
     $('.file-upload').file_upload();
+
+    public function msg(){
+        alert("Pembayaran Anda Sedang Dalam Proses");
+    }
 </script> 

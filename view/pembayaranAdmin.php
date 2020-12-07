@@ -47,21 +47,30 @@
     </p>
     <div class="container" style="margin-top:7%;">
         <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 700px; ">
+        <form method="GET" action="detailPembayaran">
             <h2>Pembayaran</h2>        
             <table class="table table-striped">
             <tr>
-                <th>Nama</th>
-                <th>Email</th>
+                <th>Nama Pembeli</th>
+                <th>Nama Penerima</th>
                 <th>Status Pembayaran</th>
                 <th>Detail</th>
             </tr>
             <tr>
-                <td>nama</td>
-                <td>email</td>
-                <td>status pembayaran</td>
-                <td class='text-center'><input class='btn btn-primary btn-sm' style='font-size:15px' type='submit' value='Detail'></td>
+            <?php
+            foreach($result as $key=>$value){
+                echo"<input type='hidden' name='namaPembeli' value='$value->username'>";
+                echo"<input type='hidden' name='namaPenerima' value='$value->idUser'>";
+                echo"<input type='hidden' name='idTrip' value='$value->market'>";
+                echo "<td>".$value->namaBarang."</td>";
+                echo "<td>".$value->email."</td>";
+                echo "<td>Pending</td>";
+                echo "<td class='text-center'><input class='btn btn-primary btn-sm' style='font-size:15px' type='submit' value='Detail'></td>";
+            }
+            ?>
             </tr>
             </table>
+        </form>
         </div>
     </div> 
 </fieldset>

@@ -52,6 +52,16 @@
 				$userctrl = new adminController();
 				echo $userctrl->view_persetujuanBarang();
 				break; 
+			case $baseURL . '/pembayaranAdmin':
+				require_once "controller/adminController.php";
+				$userctrl = new adminController();
+				echo $userctrl->view_pembayaran();
+				break; 
+			case $baseURL . '/detailPembayaran':
+				require_once "controller/adminController.php";
+				$userctrl = new adminController();
+				echo $userctrl->view_detailPembayaran();
+				break; 
 			case $baseURL . '/profileUser':
 				require_once "controller/userController.php";
 				$userctrl = new userController();
@@ -178,6 +188,13 @@
 				echo $userctrl->view_pembayaranMarketWanted(); 
 				break;
 			
+			case $baseURL . '/pembayaranOffer':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_pembayaranOffer(); 
+				break;
+			
+			
 			
 			 
 			default:
@@ -271,6 +288,24 @@
 				$userctrl->inserBarangOfferPersetujuan(); 
 				header('Location: market');
 				break;  
+			case $baseURL . '/pembayaranMarketOffer':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				$userctrl->getPembayaranOffer();
+				header('location: index'); 
+				break;
+			case $baseURL . '/pembayaranKeAdmin':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				$userctrl->insertPembayaranKeAdmin();
+				header('location: index'); 
+				break;
+			case $baseURL . '/persetujuanPembayaran':    
+				require_once "controller/adminController.php";
+				$userctrl = new adminController();
+				$userctrl->updatePembayaran();
+				header('location: pembayaranAdmin'); 
+				break;
 			 
 			default:  
 				echo '404 Not Found';

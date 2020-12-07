@@ -259,10 +259,16 @@ class UserController{
 		return view::createView('beliBarangWanted.php',["title"=>$title, "result"=>$result, "nama"=>$nama, "trip"=>$trip]);
 	}
 
+	public function view_PembayaranOffer(){
+		$nama = $_SESSION['nama'];
+		$result = $this->getPembayaranOfferDua();
+		return view::createView('pembayaran.php',["nama"=>$nama,"result"=>$result]);
+	}
+
 	
 	public function view_pembayaranMarketWanted(){
 		// kalau wanted, idCustomer adalah yang memposting gambar wanted, idTraveller adalah yang membelikan barang di luar negeri
-	 	// kalau offer, idCustomer adalah yang memposting gambar offer, idTraveller adalah yang membayar barang offer tersebut
+	 	// kalau offer, idCustomer adalah yang membayar barang offer, idTraveller adalah yang memposting barang offer
 		$timezone = new DateTimeZone('Asia/Jakarta');
 		$date = new DateTime();
 		$date->setTimeZone($timezone);
@@ -323,6 +329,45 @@ class UserController{
 			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi); 
 			return view::createViewMarket('market.php',["nama"=>$nama,"title"=>$title,"auth"=>$auth, "result"=>$result]);
 		}
+	}
+
+	public function view_pembayaranMarketOffer(){
+		$timezone = new DateTimeZone('Asia/Jakarta');
+		$date = new DateTime();
+		$date->setTimeZone($timezone);
+		$now = $date->format('Y-m-d H:i:s'); 
+		$idCustomer = $_GET['idUser'];
+		$query_idUser = "SELECT * FROM `user` WHERE `idUser` LIKE '$idCustomer' ";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
+		$idUser_customer = $query_idUser_result[0]['idUser'];
+		
+		$namaBarang = $_GET['namaBarang'];
+		$nama = $_SESSION['nama'];
+		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama' ";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
+		$idUser_traveller = $query_idUser_result[0]['idUser'];
+
+		$nama = $_SESSION['nama'];
+		if($_GET['verified'] == 'verified'){
+			$link = '<form action="pembayaranOffer" method="GET">
+			<button  id="pembayaranOffer" style="color:#f3310a;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Pembayaran</button>
+			<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
+			<input type="hidden" name="totalHarga" value="'.$namaKategori.'">
+			<input type="hidden" name="kotaAwal" value="'.$hargaDiJual.'">
+			<input type="hidden" name="kotaTujuan" value="'.$hargaOngkir.'">
+			<input type="hidden" name="waktuAwal" value="'.$totalHarga.'">
+			<input type="hidden" name="waktuAkhir" value="'.$deskripsi.'">
+			<input type="hidden" name="deskripsi" value="'.$kotaAwal.'">
+			<input type="hidden" name="tipTraveller" value="'.$kotaTujuan.'">
+			<input type="hidden" name="gambar" value="'.$gambar.'">
+			<input type="hidden" name="fee" value="'.($totalHarga*(4/100)).'">
+			<input type="hidden" name="kodeUnik" value="'.rand(100,999).'">
+			</form>'; 
+			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Berhasil', 'Permintaan anda berhasil diterima $link', 0, '$now')";
+			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi); 
+			$query_transaksi = "UPDATE transaksi SET  idUser2 = '$idUser_customer', statusBarang = 'onPayment', jumlahBarang = '1', hargaOngkir = '$hargaOngkir', hargaBarang = '$hargaBarang' WHERE idUser1 = '$idUser_traveller' AND namaBarang ='$namaBarang'";
+			$query_result2 = $this->db->executeNonSelectQuery($query_transaksi);
+		}		
 	}
 
 	public function getProfileTraveller($nama){
@@ -829,7 +874,7 @@ class UserController{
 	}
 	
 	public function getDetailBarangOffer($namaBarang, $idUser){
-        $query = "SELECT kotaAwal, namaKota, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, waktuAkhir, waktuAwal, namaUser,  nohp, alamat, gambarProfile
+        $query = "SELECT kotaAwal, namaKota, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, waktuAkhir, waktuAwal, namaUser,  nohp, alamat, gambarProfile, idTrip
 		FROM(SELECT idKota2, namaKota as 'kotaAwal', namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, waktuAwal, waktuAkhir, namaUser,  nohp, alamat, gambarProfile
 				from(select idKota1, idKota2, waktuAwal, waktuAkhir, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, namaUser,  nohp, alamat, gambarProfile
 						from (SELECT  user.namaUser, user.nohp, user.alamat, user.gambarProfile, IdTrip, transaksi.idKategori, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, kategori.namaKategori
@@ -1128,6 +1173,94 @@ class UserController{
 		return $result;
 		
 	}
+
+	public function getPembayaranOffer()
+	{
+		$namaBarang = $_POST['namaBarang'];
+		$totalHarga = $_POST['totalHarga'];
+		$kotaAwal = $_POST['kotaAwal'];
+		$kotaTujuan = $_POST['kotaTujuan'];
+		$waktuAwal = $_POST['waktuAwal'];
+		$waktuAkhir = $_POST['waktuAkhir'];
+		$deskripsi = $_POST['deskripsi'];
+		$tipTraveller = $_POST['hargaOngkir'];
+		$hargaBarang = $_POST['hargaBarang'];
+		$gambar = $_POST['gambar'];
+		$fee = ($hargaBarang*(4/100));
+		$kodeUnik = rand(100,999);
+		$timezone = new DateTimeZone('Asia/Jakarta');
+		$date = new DateTime();
+		$date->setTimeZone($timezone);
+		$now = $date->format('Y-m-d H:i:s'); 
+		$idCustomer = $_POST['idUser'];
+		$query_idUser = "SELECT * FROM `user` WHERE `idUser` LIKE '$idCustomer' ";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
+		$idUser_customer = $query_idUser_result[0]['idUser'];
+		
+		$namaBarang = $_POST['namaBarang'];
+		$nama = $_SESSION['nama'];
+		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama' ";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
+		$idUser_traveller = $query_idUser_result[0]['idUser'];
+
+		$nama = $_SESSION['nama'];
+			
+			$link = '<form action="pembayaranOffer" method="GET">
+					<button  id="pembayaranOffer" style="color:#f3310a;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Pembayaran</button>
+					<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
+					<input type="hidden" name="totalHarga" value="'.$totalHarga.'">
+					<input type="hidden" name="hargaBarang" value="'.$hargaBarang.'">
+					<input type="hidden" name="kotaAwal" value="'.$kotaAwal.'">
+					<input type="hidden" name="kotaTujuan" value="'.$kotaTujuan.'">
+					<input type="hidden" name="waktuAwal" value="'.$waktuAwal.'">
+					<input type="hidden" name="waktuAkhir" value="'.$waktuAkhir.'">
+					<input type="hidden" name="deskripsi" value="'.$deskripsi.'">
+					<input type="hidden" name="tipTraveller" value="'.$tipTraveller.'">
+					<input type="hidden" name="gambar" value="'.$gambar.'">
+					<input type="hidden" name="fee" value="'.$fee.'">
+					<input type="hidden" name="kodeUnik" value="'.$kodeUnik.'">
+					</form>'; 
+			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Berhasil', 'Permintaan anda berhasil diterima $namaBarang $link', 0, '$now')";
+			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi); 
+			$query_transaksi = "UPDATE transaksi SET  idUser2 = '$idUser_customer', statusBarang = 'onPayment', jumlahBarang = '1', hargaBarang = '$hargaBarang', hargaOngkir = '$tipTraveller', hargaJasa = '$fee' WHERE idUser1 = '$idUser_traveller' AND namaBarang ='$namaBarang'";
+			$query_result2 = $this->db->executeNonSelectQuery($query_transaksi);
+	}
+	
+	public function getPembayaranOfferDua(){
+		$namaBarang = $_GET['namaBarang'];
+		$totalHarga = $_GET['totalHarga'];
+		$kotaAwal = $_GET['kotaAwal'];
+		$kotaTujuan = $_GET['kotaTujuan'];
+		$waktuAwal = $_GET['waktuAwal'];
+		$waktuAkhir = $_GET['waktuAkhir'];
+		$deskripsi = $_GET['deskripsi'];
+		$tipTraveller = $_GET['tipTraveller'];
+		$hargaBarang = $_GET['hargaBarang'];
+		$gambar = $_GET['gambar'];
+		$fee = $_GET['fee'];
+		$kodeUnik = $_GET['kodeUnik'];
+		$result=[];
+		$result[] = new Pembayaran ($kotaAwal,$kotaTujuan,$waktuAwal,$waktuAkhir,$namaBarang,$deskripsi,$hargaBarang,$tipTraveller,$fee,$kodeUnik,$totalHarga,$gambar);
+		return $result;
+	}
+
+	public function insertPembayaranKeAdmin(){
+		$buktiPembayaran = $_FILES['buktiPembayaran']['name'];
+		$namaBarang = $_POST['namaBarang'];
+		$nama = $_SESSION['nama'];
+		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama' ";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
+		$idUser = $query_idUser_result[0]['idUser'];
+
+		
+		
+		$oldname = $_FILES['buktiPembayaran']['tmp_name'];
+		$newname = dirname(__DIR__) . "\\view\image\\" . $buktiPembayaran;
+		move_uploaded_file($oldname, $newname);
+		
+		$query = "UPDATE transaksi SET buktiPembayaran ='$buktiPembayaran', statusBarang = 'onPaymentProgress' WHERE idUser2 = '$idUser' AND namaBarang = '$namaBarang' ";
+		$query_result = $this->db->executeNonSelectQuery($query);
+    }
 	
 }
 

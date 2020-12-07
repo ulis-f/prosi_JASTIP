@@ -6,7 +6,7 @@
   
     <div class="container">
         <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1050px; margin-top: 5%;">
-            <form action="persetujuanPenitipan" method="POST">  
+            <form action="pembayaranMarketOffer" method="POST">  
                     <h2>Persetujuan Penitipan Barang</h2><br>
                     <table>
                         <tr>
@@ -66,14 +66,16 @@
                                 echo"<input type='hidden' name='kotaTujuan' value='$value->kotaTujuan'>";
                                 echo "<td>".$value->kotaAwal."->".$value->kotaTujuan."</td>";
                             }
+
+                            
                             ?></td> 
                         </tr>
-                        <!-- <tr>
+                         <tr>
                             <td><label for="namaNegara">Waktu awal - Waktu akhir</label></td>
                             <td>:</td>
                             <td>
                             <?php  
-                            foreach($trip as $key=>$value){
+                            foreach($result as $key=>$value){
                                 $sec = strtotime($value->waktuAwal);
                                 $newAwal = date("d/m/yy", $sec);
                                 $ces = strtotime($value->waktuAkhir);
@@ -84,7 +86,7 @@
                             }
                             ?>
                             </td> 
-                        </tr> -->
+                        </tr> 
                         <tr>
                             <td><label for="deskripsiBarang">Deskripsi Barang</label></td>
                             <td>:</td>

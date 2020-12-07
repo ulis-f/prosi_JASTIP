@@ -62,6 +62,22 @@ class adminController{
         return view::createViewAdmin('detailPendaftaran.php', ["result"=>$result]);
     }
 
+    public function view_pembayaran(){
+        $result = $this->getListPembayaran();
+        return view::createViewAdmin('pembayaranAdmin.php', ["result"=>$result]);
+    }
+
+    public function view_detailPembayaran(){
+        $idPenerima = $_GET['namaPenerima'];
+        $idPembeli = $_GET['namaPembeli'];
+        $idTrip = $_GET['idTrip'];
+        $trip = $this->getTrip($idTrip);
+        $user1 = $this->getProfilePembayaran($idPenerima);
+        $user2 = $this->getProfilePembayaran($idPembeli);
+        $hasil = $this->getDetailPembayaran($idPenerima, $idPembeli);
+        return view::createViewAdmin('detailPembayaranAdmin.php', ["trip"=>$trip, "user1"=>$user1, "user2"=>$user2, "hasil"=>$hasil]);
+    }
+
     public function getPostTrip(){
         // $nama = $_POST['nama'];
         $result =[];
@@ -274,6 +290,51 @@ class adminController{
 
         
     }
+
+    public function getListPembayaran(){
+        $query = "select himpA.idUser1, himpA.idUser2, himpA.namaSatu, user.namaUser, himpA.idTrip
+        from(select idUser1,idTrip, idUser2, user.namaUser as 'namaSatu'
+        from transaksi inner join user 
+        on user.idUser = transaksi.idUser1
+            where statusBarang = 'onPaymentProgress') as himpA inner join user on himpA.idUser2 = user.idUser";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+         foreach($query_result as $key => $value){
+             $result[] = new Barang($value['idUser1'], $value['idUser2'],$value['namaSatu'],$value['namaUser'],$value['idTrip']);
+         }
+         return $result;
+    }
+    
+    public function getDetailPembayaran($idPenerima,$idPembeli){
+        
+        $query = "SELECT * from transaksi where idUser1 = '$idPenerima' AND idUser2 = '$idPembeli'";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        foreach($query_result as $key =>$value){
+            $totalHarga = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa'] ) - $value['kodeUnik'];
+            $result[] = new transaksi($value['idUser1'],$value['kodeUnik'],$value['idUser2'],null,$value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $value['namaBarang'], null, $value['deskripsiBarang'], $value['gambarBarang'],$totalHarga,$value['buktiPembayaran']);
+        }
+        return $result;
+    }
+
+    public function getProfilePembayaran($id){
+        $query = "SELECT * FROM user WHERE idUser = '$id'";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        foreach($query_result as $key => $value){
+            $result[] = new user(null,$value['namaUser'], null, $value['alamat'], $value['nohp'],null,null,null,null,$value['norek'],null,$value['gambarProfile']);
+        }
+        return $result;
+    }
+
+    public function updatePembayaran(){
+        $idPenerima = $_POST['idPenerima'];
+        $idPembeli = $_POST['idPembeli'];
+        $query = "update transaksi set statusBarang = 'onDelivery' where idUser1 = '$idPenerima' and idUser2 = '$idPembeli'";
+        $query_result = $this->db->executeNonSelectQuery($query);
+    }
+
+    
 
     
 }
