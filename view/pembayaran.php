@@ -215,6 +215,9 @@
                 <div class="column1">
                         <h3 style="float:left"><b>Pembayaran</b></h3>
                         <h3><b><div id="demo" style="float:right;color:red;"></div></h3></b>
+                        <!-- <h3><div class="countdown" style="float:right;color:red;">
+                            <span id="time"><b>24:00:00</b></span>
+                        </div></h3> -->
                         <br><br><br>
                         <div class="container">
                             <div class="col-sm-4">    
@@ -233,15 +236,15 @@
 
                         <div class="inner_div">
                             <div id="bank">
-                                <h4>No. Rekening : 731 025 4675</h4>
+                                <h4>No. Rekening BCA : 731 025 4675</h4>
                                 <p>(Titip Aja)</p>
                             </div>
                             <div id="bank1" style="display: none;">
-                                <h4>No. Rekening : 034 025 467 432 098</h4>
+                                <h4>No. Rekening BRI : 034 025 467 432 098</h4>
                                 <p>(Titip Aja)</p>
                             </div>
                             <div id="bank2" style="display: none;">
-                                <h4>No. Rekening : 3034 025 467 432</h4>
+                                <h4>No. Rekening Mandiri : 3034 025 467 432</h4>
                                 <p>(Titip Aja)</p>  
                             </div>
                         </div>
@@ -261,12 +264,13 @@
                         <input type="submit" class="w3-btn w3-theme" style="width:100%;" value="Submit">
                 </div>  
                 
-                
             </form>    
         </div>
     </div>
 
+
 <script>
+        
     // Set the date we're counting down to
     var countDownDate = new Date("Dec 10, 2020 10:37:25").getTime();
 
@@ -324,13 +328,29 @@
           div.style.display = "block";
         } else {
           div.style.display = "none";
-        }
+        }   
       }
     }
 
     $('.file-upload').file_upload();
 
-    public function msg(){
-        alert("Pembayaran Anda Sedang Dalam Proses");
+    document.getElementById("gameStart").addEventListener("click", function(){
+    setInterval(function time(){
+
+    var d = new Date();
+    var hours = 23 - d.getHours();
+    var min = 60 - d.getMinutes();
+    if((min + '').length == 1){
+        min = '0' + min;
     }
+    var sec = 60 - d.getSeconds();
+    if((sec + '').length == 1){
+            sec = '0' + sec;
+    }
+    jQuery('#the-final-countdown p').html(hours+':'+min+':'+sec)
+    }, 1000);
+
+    console.log(countdown);
+    });
+    
 </script> 
