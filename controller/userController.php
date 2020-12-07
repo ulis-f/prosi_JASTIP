@@ -874,7 +874,7 @@ class UserController{
 	}
 	
 	public function getDetailBarangOffer($namaBarang, $idUser){
-        $query = "SELECT kotaAwal, namaKota, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, waktuAkhir, waktuAwal, namaUser,  nohp, alamat, gambarProfile, idTrip
+        $query = "SELECT kotaAwal, namaKota, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, waktuAkhir, waktuAwal, namaUser,  nohp, alamat, gambarProfile
 		FROM(SELECT idKota2, namaKota as 'kotaAwal', namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, waktuAwal, waktuAkhir, namaUser,  nohp, alamat, gambarProfile
 				from(select idKota1, idKota2, waktuAwal, waktuAkhir, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, namaKategori, namaUser,  nohp, alamat, gambarProfile
 						from (SELECT  user.namaUser, user.nohp, user.alamat, user.gambarProfile, IdTrip, transaksi.idKategori, namaBarang, deskripsiBarang, statusBarang, hargaBarang, gambarBarang, kategori.namaKategori
@@ -1204,7 +1204,7 @@ class UserController{
 		$idUser_traveller = $query_idUser_result[0]['idUser'];
 
 		$nama = $_SESSION['nama'];
-			
+			if($_POST['verified'] == 'verified'){
 			$link = '<form action="pembayaranOffer" method="GET">
 					<button  id="pembayaranOffer" style="color:#f3310a;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Pembayaran</button>
 					<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
@@ -1224,6 +1224,8 @@ class UserController{
 			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi); 
 			$query_transaksi = "UPDATE transaksi SET  idUser2 = '$idUser_customer', statusBarang = 'onPayment', jumlahBarang = '1', hargaBarang = '$hargaBarang', hargaOngkir = '$tipTraveller', hargaJasa = '$fee' WHERE idUser1 = '$idUser_traveller' AND namaBarang ='$namaBarang'";
 			$query_result2 = $this->db->executeNonSelectQuery($query_transaksi);
+		}
+		
 	}
 	
 	public function getPembayaranOfferDua(){
@@ -1255,7 +1257,7 @@ class UserController{
 		
 		
 		$oldname = $_FILES['buktiPembayaran']['tmp_name'];
-		$newname = dirname(__DIR__) . "\\view\image\\" . $buktiPembayaran;
+		$newname = dirname(__DIR__) . "\\view\image\pembayaran\\" . $buktiPembayaran;
 		move_uploaded_file($oldname, $newname);
 		
 		$query = "UPDATE transaksi SET buktiPembayaran ='$buktiPembayaran', statusBarang = 'onPaymentProgress' WHERE idUser2 = '$idUser' AND namaBarang = '$namaBarang' ";
