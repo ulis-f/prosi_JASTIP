@@ -23,6 +23,21 @@
         width : 60%;
         float : right;
     }
+
+    .table1 {
+        width : 100%;
+    }
+
+    .table1.td{
+        width : 33%;
+    }
+    .table2 {
+        width : 100%;
+    }
+
+    .table2.td{
+        width : 33%;
+    }
 </style>
 
 <ul class="nav" style="margin-top:7%; background-color:white; margin-left:2%;">
@@ -52,10 +67,15 @@
         </p>
         <div class="container">
             <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 1100px; margin-top: 5%;">
-                <form action="persetujuanPembayaran" method="POST">
-                    <h3><b>Detail Pembayaran</b></h3> <br>
-                        <div class="column1">
-                            <table style="width:100%;border-collapse: collapse;">
+                <h3><b>Detail Pembayaran</b></h3> <br>
+                    <div class="column1">
+                    <button onclick="document.getElementById('detailBarang').style.display='block'" class="btn btn-primary btn-sm">Lihat Detail Pemesanan</button>
+
+                    <div id="detailBarang" class="w3-modal">
+                        <div class="w3-modal-content">  
+                        <div class="w3-container">
+                            <span onclick="document.getElementById('detailBarang').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                            <table style="width:100%;border-collapse: collapse; margin-top:5%;">
                                 <tr>
                                 <?php
                                 foreach($trip as $key=>$value){
@@ -102,8 +122,7 @@
                                     <p class="" style="width:100%;border-bottom:2px solid #dddddd"></p>
                                 </div>
                             </div>
-        
-                            <br> <br>
+
                             <table class="table1">
                                 <tr>
                                     <td>Harga Barang</td>
@@ -150,8 +169,8 @@
                             <br>
                             <p class="" style="width:100%;border-bottom:2px solid #dddddd"></p>
                     
-                            <table class="table2">
-                                <tr>
+                            <table class="table2" style="margin-bottom:5%;">
+                                <tr> 
                                     <td style="width:66%;"><b>Total Harga</b></td>
                                     <td>Rp</td>
                                     <?php
@@ -164,18 +183,44 @@
                                     ?>
                                 </tr>
                             </table> 
-                            
-                            <label for="">Bukti Transfer</label> <br>
-                            <figure><img src=''width=250px height=150px></figure>
+                        
+                        </div>
+                        </div>
+                    </div>
 
-                            <div class="w3-right" style="margin-top: 40%; padding-right:1%"> 
-                                <input type="submit" class="btn btn-danger btn-sm" style="font-size:17px;" value="Persetujuan Pendaftaran">
-                                <!-- <input id="submit" type="submit" class="btn btn-primary btn-sm" style="font-size:17px;" value="Submit"> -->
+                    <form action="persetujuanPembayaran" method="POST">
+                            <table>
+                                <tr>
+                                    <td><h4>Bank yang dituju</h4></td>
+                                    <td>:</td>
+                                    <td><h4>Nama Bank di sini</h4></td>
+                                </tr>
+                                <tr>
+                                    <td>Total Harga</td>
+                                    <td>:</td>
+                                    <td>Total Harga di Sini</td>
+                                </tr>
+                            </table>
+                            <br><br>
+                            <div style="float:left">
+                                <label for="">Bukti Transfer</label> <br>
+                                <figure><img src='' width=250px height=150px></figure>
+                            </div>
+                            
+                            <div style="float:right">
+                                <label for='note'>Note :</label> <br>
+                                <textarea name='' id='' cols='30' rows='5' style="height:150px;"></textarea> <br> <br>
+                                <input type='radio' id='verified' name='verified' value='verified'>Verified <div style="float:right;">
+                                <input type='radio' id='unverified' name='unverified' value='unverified'>Unverified<br> </div>   
                             </div>
 
-                        </div>
-                </form>
-    
+                           
+                            <input type="submit" class="btn btn-danger btn-sm" style="font-size:17px; margin-top:20%; width:100%;" value="Submit">
+                            <!-- <input id="submit" type="submit" class="btn btn-primary btn-sm" style="font-size:17px;" value="Submit"> -->
+                            
+                    </form>
+                </div>
+
                 <div class="column">
                     <form action="profileTravellerMarket" method="GET">
                         <fieldset style="width: 70%;">
@@ -196,10 +241,10 @@
                                     <hr>
                                     <?php  
                                         foreach($user1 as $key=>$value){
-                                            echo"<p style='margin-bottom:1%; margin-top:1%;'><i class='fa fa-user fa-fw w3-margin-right w3-text-theme'></i>".$value->username."</p>";
-                                            echo"<p style='margin-bottom:1%; '><i class='fa fa-phone fa-fw w3-margin-right w3-text-theme'></i>".$value->noHp."</p>";
-                                            echo"<p style='margin-bottom:1%; '><i class='fa fa-credit-card fa-fw w3-margin-right w3-text-theme'></i>".$value->norek."</p>";
-                                            echo"<p style='margin-bottom:1%; '><i class='fa fa-home fa-fw w3-margin-right w3-text-theme'></i>".$value->alamat."</p>";
+                                            echo"<p style=''><i class='fa fa-user fa-fw w3-margin-right w3-text-theme'></i>".$value->username."</p>";
+                                            echo"<p style=''><i class='fa fa-phone fa-fw w3-margin-right w3-text-theme'></i>".$value->noHp."</p>";
+                                            echo"<p style=''><i class='fa fa-credit-card fa-fw w3-margin-right w3-text-theme'></i>".$value->norek."</p>";
+                                            echo"<p style=''><i class='fa fa-home fa-fw w3-margin-right w3-text-theme'></i>".$value->alamat."</p>";
                                         }
                                     ?>   
                             </div>
@@ -220,10 +265,10 @@
                                     <hr>
                                     <?php  
                                         foreach($user2 as $key=>$value){
-                                            echo"<p style='margin-bottom:1%; margin-top:1%;'><i class='fa fa-user fa-fw w3-margin-right w3-text-theme'></i>".$value->username."</p>";
-                                            echo"<p style='margin-bottom:1%; '><i class='fa fa-phone fa-fw w3-margin-right w3-text-theme'></i>".$value->noHp."</p>";
-                                            echo"<p style='margin-bottom:1%; '><i class='fa fa-credit-card fa-fw w3-margin-right w3-text-theme'></i>".$value->norek."</p>";
-                                            echo"<p style='margin-bottom:1%; '><i class='fa fa-home fa-fw w3-margin-right w3-text-theme'></i>".$value->alamat."</p>";
+                                            echo"<p style='margin-bottom:0; margin-top:0;'><i class='fa fa-user fa-fw w3-margin-right w3-text-theme'></i>".$value->username."</p>";
+                                            echo"<p style='margin-bottom:0; margin-top:0;'><i class='fa fa-phone fa-fw w3-margin-right w3-text-theme'></i>".$value->noHp."</p>";
+                                            echo"<p style='margin-bottom:0; margin-top:0;'><i class='fa fa-credit-card fa-fw w3-margin-right w3-text-theme'></i>".$value->norek."</p>";
+                                            echo"<p style='margin-bottom:0; margin-top:0;'><i class='fa fa-home fa-fw w3-margin-right w3-text-theme'></i>".$value->alamat."</p>";
                                         }
                                     ?>   
                             </div>
@@ -234,3 +279,7 @@
             </div>
         </div>  
     </fieldset>
+
+
+
+

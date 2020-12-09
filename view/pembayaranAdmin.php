@@ -51,21 +51,24 @@
             <h2>Pembayaran</h2>        
             <table class="table table-striped">
             <tr>
-                <th>Nama Pembeli</th>
-                <th>Nama Penerima</th>
-                <th>Status Pembayaran</th>
+                <th>No</th>
+                <th>Nama Pengirim</th>
+                <th>Email Pengirim</th>
+                <th>Waktu Pengiriman</th>
                 <th>Detail</th>
             </tr>
             <tr>
             <?php
+            $i=1;
             foreach($result as $key=>$value){
                 echo"<input type='hidden' name='namaPembeli' value='$value->username'>";
-                echo"<input type='hidden' name='namaPenerima' value='$value->idUser'>";
                 echo"<input type='hidden' name='idTrip' value='$value->market'>";
-                echo "<td>".$value->namaBarang."</td>";
+                echo"<td>$i</td>";
+                echo "<td>Nama Pengirim</td>";
                 echo "<td>".$value->email."</td>";
-                echo "<td>Pending</td>";
+                echo "<td>Waktu Pengiriman</td>";
                 echo "<td class='text-center'><input class='btn btn-primary btn-sm' style='font-size:15px' type='submit' value='Detail'></td>";
+                $i++;
             }
             ?>
             </tr>
