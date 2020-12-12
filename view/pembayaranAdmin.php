@@ -31,7 +31,7 @@
         <a class="nav-link text-center " href="persetujuanBarang"  style="height: 100%;">Form Barang</a>
     </li>
     <li class="nav-item w3-text-theme">
-        <a class="nav-link text-center" href="#" style="height: 100%; border-bottom: 4px solid #6699cc;">Pembayaran</a>  
+        <a class="nav-link text-center" href="pembayaranAdmin" style="height: 100%; border-bottom: 4px solid #6699cc;">Pembayaran</a>  
     </li>
     <li class="nav-item w3-text-theme">
         <a class="nav-link" href="#" style="height: 100%;">Mengirim Uang</a>
