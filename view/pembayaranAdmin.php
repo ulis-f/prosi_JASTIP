@@ -18,6 +18,39 @@
     body{
         background-color:white;
     }
+
+    ul {
+        list-style-type: none;
+        margin-bottom: 5%;
+        padding: 0;
+        overflow: hidden;
+        background-color: #DCDCDC;
+        text-decoration:none;
+    }
+
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: #607d8b;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        text-decoration:none;
+    }
+
+    li a:hover:not(.active) {
+        background-color: ##DCDCDC;
+        text-decoration:none
+    }  
+
+    .active {
+        background-color: #607d8b;
+        color: white;
+        text-decoration:none;  
+    }
 </style>
 
 <ul class="nav" style="margin-top:7%; background-color:white; margin-left:2%;">
@@ -47,8 +80,14 @@
     </p>
     <div class="container" style="margin-top:7%;">
         <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 700px; ">
-        <form method="GET" action="detailPembayaran">
-            <h2>Pembayaran</h2>        
+
+        <ul>
+            <li><a href="#pending" class="active">Pending</a></li>
+            <li><a href="#verified" style="">Verified</a></li>
+            <li><a href="#unverified" style="">Unverified</a></li>
+        </ul>
+
+        <form method="GET" action="detailPembayaran">    
             <table class="table table-striped">
             <tr>
                 <th>No</th>
