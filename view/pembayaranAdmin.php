@@ -96,10 +96,11 @@
                 <th>Waktu Pengiriman</th>
                 <th>Detail</th>
             </tr>
-            <tr>
+           
             <?php
             $i=1;
             foreach($result as $key=>$value){
+                echo"<tr>";
                 echo"<input type='hidden' name='namaPembeli' value='$value->username'>";
                 echo"<input type='hidden' name='idTrip' value='$value->market'>";
                 echo"<td>$i</td>";
@@ -107,10 +108,10 @@
                 echo "<td>".$value->email."</td>";
                 echo "<td>Waktu Pengiriman</td>";
                 echo "<td class='text-center'><input class='btn btn-primary btn-sm' style='font-size:15px' type='submit' value='Detail'></td>";
+                echo"</tr>";
                 $i++;
             }
             ?>
-            </tr>
             </table>
         </form>
         </div>
