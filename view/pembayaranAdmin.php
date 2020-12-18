@@ -1,3 +1,4 @@
+
 <style>
     table {
     font-family: arial, sans-serif;
@@ -17,39 +18,6 @@
 
     body{
         background-color:white;
-    }
-
-    ul {
-        list-style-type: none;
-        margin-bottom: 5%;
-        padding: 0;
-        overflow: hidden;
-        background-color: #DCDCDC;
-        text-decoration:none;
-    }
-
-    li {
-        float: left;
-    }
-
-    li a {
-        display: block;
-        color: #607d8b;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        text-decoration:none;
-    }
-
-    li a:hover:not(.active) {
-        background-color: ##DCDCDC;
-        text-decoration:none
-    }  
-
-    .active {
-        background-color: #607d8b;
-        color: white;
-        text-decoration:none;  
     }
 </style>
 
@@ -81,39 +49,73 @@
     <div class="container" style="margin-top:7%;">
         <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 700px; ">
 
-        <ul>
-            <li><a href="#pending" class="active">Pending</a></li>
-            <li><a href="#verified" style="">Verified</a></li>
-            <li><a href="#unverified" style="">Unverified</a></li>
-        </ul>
+        <div class="w3-bar w3-theme-l3" style="margin-bottom:5%;">
+            <button class=" tablink w3-bar-item w3-button w3-light-grey" onclick="openContent(this,'Pending')" >Pending</button>
+            <button class=" tablink w3-bar-item w3-button" onclick="openContent(this,'Verified')">Verified</button>
+            <button class=" tablink w3-bar-item w3-button"  onclick="openContent(this,'Unverified')">Unverified</button>
+        </div>  
+            
+                <div id="Pending" class="tabs">
+                    <form method="GET" action="detailPembayaran">    
+                        <table class="table table-striped">
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Pengirim</th>
+                            <th>Email Pengirim</th>
+                            <th>Waktu Pengiriman</th>
+                            <th>Detail</th>
+                        </tr>
+                    
+                        <?php
+                        $i=1;
+                        foreach($result as $key=>$value){ 
+                            echo"<tr>";
+                            echo"<input type='hidden' name='namaPembeli' value='$value->username'>";
+                            echo"<input type='hidden' name='idTrip' value='$value->market'>";
+                            echo"<td>$i</td>";
+                            echo "<td>Nama Pengirim</td>";
+                            echo "<td>".$value->email."</td>";
+                            echo "<td>Waktu Pengiriman</td>";
+                            echo "<td class='text-center'><input class='btn btn-primary btn-sm' style='font-size:15px' type='submit' value='Detail'></td>";
+                            echo"</tr>";
+                            $i++;
+                        }
+                        ?>
+                        </table>
+                    </form>
+                </div>
 
-        <form method="GET" action="detailPembayaran">    
-            <table class="table table-striped">
-            <tr>
-                <th>No</th>
-                <th>Nama Pengirim</th>
-                <th>Email Pengirim</th>
-                <th>Waktu Pengiriman</th>
-                <th>Detail</th>
-            </tr>
-           
-            <?php
-            $i=1;
-            foreach($result as $key=>$value){
-                echo"<tr>";
-                echo"<input type='hidden' name='namaPembeli' value='$value->username'>";
-                echo"<input type='hidden' name='idTrip' value='$value->market'>";
-                echo"<td>$i</td>";
-                echo "<td>Nama Pengirim</td>";
-                echo "<td>".$value->email."</td>";
-                echo "<td>Waktu Pengiriman</td>";
-                echo "<td class='text-center'><input class='btn btn-primary btn-sm' style='font-size:15px' type='submit' value='Detail'></td>";
-                echo"</tr>";
-                $i++;
-            }
-            ?>
-            </table>
-        </form>
+                <div id="Verified" class="tabs" style="display: none;">
+                    ini halaman verified
+                </div>
+            
+                <div id="Unverified" class="tabs" style="display: none">
+                    Ini Halaman Unverified
+                </div>  
+
+            
         </div>
     </div> 
 </fieldset>
+
+<script>
+    function openContent(obj, idContentContainer){
+        var i,x,tablinks;
+
+        x=document.getElementsByClassName("tabs");
+        for(i=0; i<x.length;i++){
+            x[i].style.display="none";
+            x[i].style.color="black";
+        }
+
+        tablinks = document.getElementsByClassName("tablink");
+        for(i=0; i<tablinks.length;i++){
+            tablinks[i].className= tablinks[i].className.replace("w3-light-grey","");
+        }
+        
+        document.getElementById(idContentContainer).style.display='block';
+
+        obj.className+="w3-light-grey";
+        
+    }
+</script>
