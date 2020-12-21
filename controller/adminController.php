@@ -63,8 +63,10 @@ class adminController{
     }
 
     public function view_pembayaran(){
-        $result = $this->getListPembayaran();
-        return view::createViewAdmin('pembayaranAdmin.php', ["result"=>$result]);
+        $result  = $this->getListPembayaran('pending');
+        $result2 = $this->getListPembayaran('verified');
+        $result3 = $this->getListPembayaran('unverified');
+        return view::createViewAdmin('pembayaranAdmin.php', ["result"=>$result, "result2"=>$result2, "result3"=>$result3]);
     }
 
     public function view_detailPembayaran(){
@@ -291,12 +293,12 @@ class adminController{
         
     }
 
-    public function getListPembayaran(){
+    public function getListPembayaran($param){
         $query = "select himpA.idUser1, himpA.idUser2, himpA.namaSatu, user.namaUser, himpA.idTrip
         from(select idUser1,idTrip, idUser2, user.namaUser as 'namaSatu'
         from transaksi inner join user 
         on user.idUser = transaksi.idUser1
-            where statusBarang = 'onPaymentProgress') as himpA inner join user on himpA.idUser2 = user.idUser";
+            where statusPembayaran = '$param') as himpA inner join user on himpA.idUser2 = user.idUser";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
          foreach($query_result as $key => $value){
@@ -328,10 +330,35 @@ class adminController{
     }
 
     public function updatePembayaran(){
-        $idPenerima = $_POST['idPenerima'];
-        $idPembeli = $_POST['idPembeli'];
-        $query = "update transaksi set statusBarang = 'onDelivery' where idUser1 = '$idPenerima' and idUser2 = '$idPembeli'";
-        $query_result = $this->db->executeNonSelectQuery($query);
+        $verified = $_POST['verified'];
+        if($verified == 'verified'){
+            $idPenerima = $_POST['idPenerima'];
+            $idPembeli = $_POST['idPembeli'];
+            $timezone = new DateTimeZone('Asia/Jakarta');
+            $date = new DateTime();
+            $date->setTimeZone($timezone);
+            $now = $date->format('Y-m-d H:i:s'); 
+            $query = "UPDATE transaksi SET statusBarang = 'onDelivery', statusPembayaran = 'verified' WHERE idUser1 = '$idPenerima' AND idUser2 = '$idPembeli'";
+            $query_result = $this->db->executeNonSelectQuery($query);
+            $query_notifikasi1 = "INSERT INTO Notifikasi VALUES ('$idPembeli',null,'Pembayaran Berhasil', 'Cek barang anda di tracking kami', 0, '$now')";
+            $query_result1 = $this->db->executeNonSelectQuery($query_notifikasi1); 
+            $query_notifikasi2 = "INSERT INTO Notifikasi VALUES ('$idPenerima',null,'Pembayaran Berhasil', 'Silahkan diproses barang yang akan dibeli', 0, '$now')";
+            $query_result2 = $this->db->executeNonSelectQuery($query_notifikasi2); 
+        }
+        else{
+            $idPenerima = $_POST['idPenerima'];
+            $idPembeli = $_POST['idPembeli'];
+            $timezone = new DateTimeZone('Asia/Jakarta');
+            $date = new DateTime();
+            $date->setTimeZone($timezone);
+            $now = $date->format('Y-m-d H:i:s'); 
+            $query = "UPDATE transaksi SET statusBarang = 'onDelivery', statusPembayaran = 'unverified' WHERE idUser1 = '$idPenerima' AND idUser2 = '$idPembeli'";
+            $query_result = $this->db->executeNonSelectQuery($query);
+            $query_notifikasi1 = "INSERT INTO Notifikasi VALUES ('$idPembeli',null,'Pembayaran Gagal', 'Silahkan pilih barang ulang di market', 0, '$now')";
+            $query_result1 = $this->db->executeNonSelectQuery($query_notifikasi1); 
+            $query_notifikasi2 = "INSERT INTO Notifikasi VALUES ('$idPenerima',null,'Pembayaran Pembeli Gagal', 'Barang anda akan tertampil lagi di market ', 0, '$now')";
+            $query_result2 = $this->db->executeNonSelectQuery($query_notifikasi2); 
+        }
     }
 
     

@@ -159,8 +159,8 @@
                                     <td>Rp</td>
                                     <?php
                                     foreach($hasil as $key=>$value){
-                                        echo"<input type='hidden' name='kodeUnik' value='$value->idUser1'>";
-                                        echo "<td style='float: right;'>".$value->idUser1."</td>";
+                                        echo"<input type='hidden' name='kodeUnik' value='$value->idTrip'>";
+                                        echo "<td style='float: right;'>".$value->idTrip."</td>";
                                     }
                                     ?>
                                 </tr>
@@ -175,10 +175,9 @@
                                     <td>Rp</td>
                                     <?php
                                     foreach($hasil as $key=>$value){
-                                        echo"<input type='hidden' name='totalHarga' value='$value->idTrip'>";
-                                        echo"<input type='hidden' name='idPenerima' value='$value->idUser1'>";
-                                        echo"<input type='hidden' name='idPembeli' value='$value->idUser2'>";
-                                        echo "<td style='float: right; width:30%: color:#ffa500'><b style='color:#ffa500'>".$value->idTrip."</b></td>";
+                                        echo"<input type='hidden' name='totalHarga' value='$value->noresi'>";
+                                        
+                                        echo "<td style='float: right; width:30%: color:#ffa500'><b style='color:#ffa500'>".$value->noresi."</b></td>";
                                     }
                                     ?>
                                 </tr>
@@ -198,20 +197,32 @@
                                 <tr>
                                     <td>Total Harga</td>
                                     <td>:</td>
-                                    <td>Total Harga di Sini</td>
+                                    <?php
+                                    foreach($hasil as $key =>$value){
+                                        echo"<td>".$value->noresi."</td>";   
+                                        echo"<input type='hidden' name='idPenerima' value='$value->idUser1'>";
+                                        echo"<input type='hidden' name='idPembeli' value='$value->idUser2'>";
+                                    }
+                                    ?>
                                 </tr>
                             </table>
                             <br><br>
                             <div style="float:left">
                                 <label for="">Bukti Transfer</label> <br>
-                                <figure><img src='' width=250px height=150px></figure>
+                                <figure>
+                                <?php
+                                foreach($hasil as $key =>$value){
+                                    echo "<img src='image/pembayaran/".$value->namaKategori."' width=250px height=150px>";
+                                }
+                                ?>
+                                </figure>
                             </div>
                             
                             <div style="float:right">
                                 <label for='note'>Note :</label> <br>
                                 <textarea name='' id='' cols='30' rows='5' style="height:150px;"></textarea> <br> <br>
                                 <input type='radio' id='verified' name='verified' value='verified'>Verified <div style="float:right;">
-                                <input type='radio' id='unverified' name='unverified' value='unverified'>Unverified<br> </div>   
+                                <input type='radio' id='unverified' name='verified' value='unverified'>Unverified<br> </div>   
                             </div>
 
                            

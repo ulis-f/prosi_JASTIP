@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2020 at 11:30 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
+-- Generation Time: Dec 21, 2020 at 07:04 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -64,7 +63,10 @@ INSERT INTO `kecamatan` (`idKecamatan`, `namaKecamatan`, `idKota`) VALUES
 (5, 'jatinegara', 5),
 (11, 'test', 5),
 (12, 'kec', 10),
-(31, 'otto', 37);
+(31, 'otto', 37),
+(32, 'Cidadap', 39),
+(33, 'Cihampelas', 39),
+(34, 'Wonocolo', 10);
 
 -- --------------------------------------------------------
 
@@ -86,7 +88,10 @@ INSERT INTO `kelurahan` (`idKelurahan`, `namaKelurahan`, `idKecamatan`) VALUES
 (5, 'bidara cina', 5),
 (13, 'kel', 12),
 (18, 'test', 11),
-(34, 'otto', 31);
+(34, 'otto', 31),
+(35, 'Ciumbuleuit', 32),
+(36, 'Cihampelas', 33),
+(37, 'Margorejo', 34);
 
 -- --------------------------------------------------------
 
@@ -105,18 +110,18 @@ CREATE TABLE `kota` (
 --
 
 INSERT INTO `kota` (`idKota`, `namaKota`, `idProvinsi`) VALUES
-(5, 'jakarta', 19),
-(10, 'kot', 23),
+(5, 'Jakarta', 19),
+(10, 'Surabaya', 23),
 (12, 'kottest', 24),
-(15, 'a', 26),
-(17, 'test', 27),
 (23, 'Houston', 33),
 (24, 'Dallas', 33),
 (25, 'Los Angeles', 32),
 (26, 'Sacramento', 32),
-(30, 'qw', 37),
 (37, 'otto', 45),
-(38, 'kota', 23);
+(39, 'Bandung', 46),
+(40, 'Paris', 47),
+(41, 'Beijing', 48),
+(42, 'Shanghai', 49);
 
 -- --------------------------------------------------------
 
@@ -135,7 +140,10 @@ CREATE TABLE `negara` (
 
 INSERT INTO `negara` (`idNegara`, `namaNegara`) VALUES
 (1, 'Indonesia'),
-(3, 'Amerika');
+(3, 'United States of America'),
+(4, 'France'),
+(5, '\r\nNetherlands'),
+(6, 'China');
 
 -- --------------------------------------------------------
 
@@ -147,7 +155,7 @@ CREATE TABLE `notifikasi` (
   `idUser` int(11) NOT NULL,
   `idNotifikasi` int(11) NOT NULL,
   `namaNotifikasi` varchar(250) NOT NULL,
-  `deskripsi` varchar(250) NOT NULL,
+  `deskripsi` varchar(1500) NOT NULL,
   `statusView` int(1) NOT NULL,
   `dateTime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -157,8 +165,48 @@ CREATE TABLE `notifikasi` (
 --
 
 INSERT INTO `notifikasi` (`idUser`, `idNotifikasi`, `namaNotifikasi`, `deskripsi`, `statusView`, `dateTime`) VALUES
-(27, 1, 'Berhasil Upload', 'Anda telah berhasil mengupload barang', 1, '2020-03-03 12:00:00'),
-(27, 2, 'Berhasil Upload', 'Anda telah berhasil mengupload barang', 0, '2020-03-03 12:00:00');
+(29, 721, 'Verifikasi Penitipan Barang(Offer Item)', 'Ada customer yang memesan barang anda dengan nama Topi New York <form action=\"persetujuanTraveller\" method=\"GET\">\r\n					<button  id=\"persetujuanTraveller\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Persetujuan Penitipan</button>\r\n					<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n					<input type=\"hidden\" name=\"namaKategori\" value=\"Fashion\">\r\n					<input type=\"hidden\" name=\"hargaDiJual\" value=\"100000\">\r\n					<input type=\"hidden\" name=\"hargaOngkir\" value=\"10000\">\r\n					<input type=\"hidden\" name=\"totalHarga\" value=\"114000\">\r\n					<input type=\"hidden\" name=\"deskripsi\" value=\"Warna Hitam\">\r\n					<input type=\"hidden\" name=\"kotaAwal\" value=\"Bandung\">\r\n					<input type=\"hidden\" name=\"kotaTujuan\" value=\"Paris\">\r\n					<input type=\"hidden\" name=\"gambar\" value=\"topi.jpg\">\r\n					<input type=\"hidden\" name=\"idUser\" value=\"14\">\r\n					</form>', 1, '2020-12-06 10:05:05'),
+(14, 722, 'Verifikasi Gagal', ' <form action=\"detailBarangOffer\" method=\"GET\">\r\n			<button  id=\"persetujuanTraveller\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Menuju Market</button>\r\n			<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n			<input type=\"hidden\" name=\"id\" value=\"29\">\r\n			</form>', 1, '2020-12-06 10:17:58'),
+(14, 723, 'Verifikasi Gagal', ' <form action=\"detailBarangOffer\" method=\"GET\">\r\n			<button  id=\"persetujuanTraveller\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Menuju Market</button>\r\n			<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n			<input type=\"hidden\" name=\"id\" value=\"29\">\r\n			</form>', 1, '2020-12-06 10:17:58'),
+(14, 724, 'Verifikasi Gagal', ' <form action=\"detailBarangOffer\" method=\"GET\">\r\n			<button  id=\"persetujuanTraveller\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Menuju Market</button>\r\n			<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n			<input type=\"hidden\" name=\"id\" value=\"29\">\r\n			</form>', 1, '2020-12-06 10:20:01'),
+(14, 725, 'Verifikasi Gagal', ' <form action=\"detailBarangOffer\" method=\"GET\">\r\n			<button  id=\"persetujuanTraveller\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Menuju Market</button>\r\n			<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n			<input type=\"hidden\" name=\"id\" value=\"29\">\r\n			</form>', 1, '2020-12-06 10:20:05'),
+(14, 726, 'Verifikasi Gagal', ' <form action=\"detailBarangOffer\" method=\"GET\">\r\n			<button  id=\"persetujuanTraveller\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Menuju Market</button>\r\n			<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n			<input type=\"hidden\" name=\"id\" value=\"29\">\r\n			</form>', 1, '2020-12-06 10:32:08'),
+(14, 727, 'Verifikasi Gagal', ' <form action=\"detailBarangOffer\" method=\"GET\">\r\n			<button  id=\"persetujuanTraveller\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Menuju Market</button>\r\n			<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n			<input type=\"hidden\" name=\"id\" value=\"29\">\r\n			</form>', 1, '2020-12-06 10:32:11'),
+(14, 728, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima', 1, '2020-12-06 10:32:21'),
+(14, 729, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima', 1, '2020-12-06 10:32:21'),
+(14, 730, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima', 1, '2020-12-06 10:34:44'),
+(14, 731, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima', 1, '2020-12-06 10:34:44'),
+(14, 732, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima', 1, '2020-12-06 10:37:23'),
+(14, 733, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima', 1, '2020-12-06 10:37:25'),
+(14, 734, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima', 1, '2020-12-06 10:37:28'),
+(14, 735, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima', 1, '2020-12-06 10:37:28'),
+(14, 736, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima', 1, '2020-12-06 10:37:34'),
+(14, 737, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima', 1, '2020-12-06 10:37:34'),
+(14, 738, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima 0\">\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"659\">\r\n					</form>', 1, '2020-12-06 11:07:57'),
+(14, 739, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima 0\">\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"313\">\r\n					</form>', 1, '2020-12-06 11:07:59'),
+(14, 740, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima 10000\">\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"268\">\r\n					</form>', 1, '2020-12-06 11:17:19'),
+(14, 741, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima Topi New York 10000\">\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"323\">\r\n					</form>', 1, '2020-12-06 11:18:38'),
+(14, 742, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima Topi New York <form action=\"pembayaranOffer\" method=\"GET\">\r\n					<button  id=\"pembayaranOffer\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Pembayaran</button>\r\n					<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n					<input type=\"hidden\" name=\"totalHarga\" value=\"\">\r\n					<input type=\"hidden\" name=\"kotaAwal\" value=\"\">\r\n					<input type=\"hidden\" name=\"kotaTujuan\" value=\"\">\r\n					<input type=\"hidden\" name=\"waktuAwal\" value=\"114000\">\r\n					<input type=\"hidden\" name=\"waktuAkhir\" value=\"Warna Hitam\">\r\n					<input type=\"hidden\" name=\"deskripsi\" value=\"Bandung\">\r\n					<input type=\"hidden\" name=\"tipTraveller\" value=\"Paris\">\r\n					<input type=\"hidden\" name=\"gambar\" value=\"topi.jpg\">\r\n					\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"661\">\r\n					</form>', 1, '2020-12-06 11:21:14'),
+(14, 743, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima Topi New York <form action=\"pembayaranOffer\" method=\"GET\">\r\n					<button  id=\"pembayaranOffer\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Pembayaran</button>\r\n					<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n					<input type=\"hidden\" name=\"totalHarga\" value=\"\">\r\n					<input type=\"hidden\" name=\"kotaAwal\" value=\"\">\r\n					<input type=\"hidden\" name=\"kotaTujuan\" value=\"\">\r\n					<input type=\"hidden\" name=\"waktuAwal\" value=\"114000\">\r\n					<input type=\"hidden\" name=\"waktuAkhir\" value=\"Warna Hitam\">\r\n					<input type=\"hidden\" name=\"deskripsi\" value=\"Bandung\">\r\n					<input type=\"hidden\" name=\"tipTraveller\" value=\"Paris\">\r\n					<input type=\"hidden\" name=\"gambar\" value=\"topi.jpg\">\r\n					<input type=\"hidden\" name=\"fee\" value=\"119440\">\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"910\">\r\n					</form>', 1, '2020-12-06 11:21:58'),
+(14, 744, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima Topi New York <form action=\"pembayaranOffer\" method=\"GET\">\r\n					<button  id=\"pembayaranOffer\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Pembayaran</button>\r\n					<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n					<input type=\"hidden\" name=\"totalHarga\" value=\"114000\">\r\n					<input type=\"hidden\" name=\"kotaAwal\" value=\"Bandung\">\r\n					<input type=\"hidden\" name=\"kotaTujuan\" value=\"Paris\">\r\n					<input type=\"hidden\" name=\"waktuAwal\" value=\"\">\r\n					<input type=\"hidden\" name=\"waktuAkhir\" value=\"\">\r\n					<input type=\"hidden\" name=\"deskripsi\" value=\"Warna Hitam\">\r\n					<input type=\"hidden\" name=\"tipTraveller\" value=\"10000\">\r\n					<input type=\"hidden\" name=\"gambar\" value=\"topi.jpg\">\r\n					<input type=\"hidden\" name=\"fee\" value=\"119440\">\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"763\">\r\n					</form>', 1, '2020-12-06 11:34:09'),
+(14, 745, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima Topi New York <form action=\"pembayaranOffer\" method=\"GET\">\r\n					<button  id=\"pembayaranOffer\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Pembayaran</button>\r\n					<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n					<input type=\"hidden\" name=\"totalHarga\" value=\"114000\">\r\n					<input type=\"hidden\" name=\"hargaBarang\" value=\"100000\">\r\n					<input type=\"hidden\" name=\"kotaAwal\" value=\"Bandung\">\r\n					<input type=\"hidden\" name=\"kotaTujuan\" value=\"Paris\">\r\n					<input type=\"hidden\" name=\"waktuAwal\" value=\"\">\r\n					<input type=\"hidden\" name=\"waktuAkhir\" value=\"\">\r\n					<input type=\"hidden\" name=\"deskripsi\" value=\"Warna Hitam\">\r\n					<input type=\"hidden\" name=\"tipTraveller\" value=\"10000\">\r\n					<input type=\"hidden\" name=\"gambar\" value=\"topi.jpg\">\r\n					<input type=\"hidden\" name=\"fee\" value=\"119440\">\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"869\">\r\n					</form>', 1, '2020-12-06 11:37:20'),
+(14, 746, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima Topi New York <form action=\"pembayaranOffer\" method=\"GET\">\r\n					<button  id=\"pembayaranOffer\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Pembayaran</button>\r\n					<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n					<input type=\"hidden\" name=\"totalHarga\" value=\"114000\">\r\n					<input type=\"hidden\" name=\"hargaBarang\" value=\"100000\">\r\n					<input type=\"hidden\" name=\"kotaAwal\" value=\"Bandung\">\r\n					<input type=\"hidden\" name=\"kotaTujuan\" value=\"Paris\">\r\n					<input type=\"hidden\" name=\"waktuAwal\" value=\"\">\r\n					<input type=\"hidden\" name=\"waktuAkhir\" value=\"\">\r\n					<input type=\"hidden\" name=\"deskripsi\" value=\"Warna Hitam\">\r\n					<input type=\"hidden\" name=\"tipTraveller\" value=\"10000\">\r\n					<input type=\"hidden\" name=\"gambar\" value=\"topi.jpg\">\r\n					<input type=\"hidden\" name=\"fee\" value=\"119440\">\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"570\">\r\n					</form>', 1, '2020-12-06 11:40:43'),
+(14, 747, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima Topi New York <form action=\"pembayaranOffer\" method=\"GET\">\r\n					<button  id=\"pembayaranOffer\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Pembayaran</button>\r\n					<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n					<input type=\"hidden\" name=\"totalHarga\" value=\"114000\">\r\n					<input type=\"hidden\" name=\"hargaBarang\" value=\"100000\">\r\n					<input type=\"hidden\" name=\"kotaAwal\" value=\"Bandung\">\r\n					<input type=\"hidden\" name=\"kotaTujuan\" value=\"Paris\">\r\n					<input type=\"hidden\" name=\"waktuAwal\" value=\"\">\r\n					<input type=\"hidden\" name=\"waktuAkhir\" value=\"\">\r\n					<input type=\"hidden\" name=\"deskripsi\" value=\"Warna Hitam\">\r\n					<input type=\"hidden\" name=\"tipTraveller\" value=\"10000\">\r\n					<input type=\"hidden\" name=\"gambar\" value=\"topi.jpg\">\r\n					<input type=\"hidden\" name=\"fee\" value=\"4560\">\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"554\">\r\n					</form>', 1, '2020-12-06 11:47:21'),
+(14, 748, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima Topi New York <form action=\"pembayaranOffer\" method=\"GET\">\r\n					<button  id=\"pembayaranOffer\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Pembayaran</button>\r\n					<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n					<input type=\"hidden\" name=\"totalHarga\" value=\"114000\">\r\n					<input type=\"hidden\" name=\"hargaBarang\" value=\"100000\">\r\n					<input type=\"hidden\" name=\"kotaAwal\" value=\"Bandung\">\r\n					<input type=\"hidden\" name=\"kotaTujuan\" value=\"Paris\">\r\n					<input type=\"hidden\" name=\"waktuAwal\" value=\"\">\r\n					<input type=\"hidden\" name=\"waktuAkhir\" value=\"\">\r\n					<input type=\"hidden\" name=\"deskripsi\" value=\"Warna Hitam\">\r\n					<input type=\"hidden\" name=\"tipTraveller\" value=\"10000\">\r\n					<input type=\"hidden\" name=\"gambar\" value=\"topi.jpg\">\r\n					<input type=\"hidden\" name=\"fee\" value=\"4000\">\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"215\">\r\n					</form>', 1, '2020-12-06 11:48:34'),
+(0, 749, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima Topi New York <form action=\"pembayaranOffer\" method=\"GET\">\r\n					<button  id=\"pembayaranOffer\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Pembayaran</button>\r\n					<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n					<input type=\"hidden\" name=\"totalHarga\" value=\"114000\">\r\n					<input type=\"hidden\" name=\"hargaBarang\" value=\"100000\">\r\n					<input type=\"hidden\" name=\"kotaAwal\" value=\"Bandung\">\r\n					<input type=\"hidden\" name=\"kotaTujuan\" value=\"\">\r\n					<input type=\"hidden\" name=\"waktuAwal\" value=\"\">\r\n					<input type=\"hidden\" name=\"waktuAkhir\" value=\"\">\r\n					<input type=\"hidden\" name=\"deskripsi\" value=\"Warna Hitam\">\r\n					<input type=\"hidden\" name=\"tipTraveller\" value=\"\">\r\n					<input type=\"hidden\" name=\"gambar\" value=\"\">\r\n					<input type=\"hidden\" name=\"fee\" value=\"4000\">\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"942\">\r\n					</form>', 0, '2020-12-07 21:47:09'),
+(0, 750, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima Topi New York <form action=\"pembayaranOffer\" method=\"GET\">\r\n					<button  id=\"pembayaranOffer\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Pembayaran</button>\r\n					<input type=\"hidden\" name=\"namaBarang\" value=\"Topi New York\">\r\n					<input type=\"hidden\" name=\"totalHarga\" value=\"114000\">\r\n					<input type=\"hidden\" name=\"hargaBarang\" value=\"100000\">\r\n					<input type=\"hidden\" name=\"kotaAwal\" value=\"Bandung\">\r\n					<input type=\"hidden\" name=\"kotaTujuan\" value=\"\">\r\n					<input type=\"hidden\" name=\"waktuAwal\" value=\"\">\r\n					<input type=\"hidden\" name=\"waktuAkhir\" value=\"\">\r\n					<input type=\"hidden\" name=\"deskripsi\" value=\"Warna Hitam\">\r\n					<input type=\"hidden\" name=\"tipTraveller\" value=\"\">\r\n					<input type=\"hidden\" name=\"gambar\" value=\"\">\r\n					<input type=\"hidden\" name=\"fee\" value=\"4000\">\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"205\">\r\n					</form>', 0, '2020-12-07 21:48:33'),
+(3, 751, 'Verifikasi Pending', 'Trip anda sedang diproses', 1, '2020-12-08 04:44:44'),
+(3, 752, 'Verifikasi Pending', 'Trip anda sedang diproses', 1, '2020-12-08 04:46:20'),
+(14, 753, 'Verifikasi Pending', 'Trip anda sedang diproses', 1, '2020-12-08 04:48:45'),
+(14, 754, 'Verifikasi Berhasil', 'Trip anda sudah diverifikasi', 1, '2020-12-08 04:48:56'),
+(14, 755, 'Verifikasi Pending', 'Offer an Item Anda dengan nama tas jalan sedang diproses', 1, '2020-12-08 04:49:53'),
+(14, 756, 'Verifikasi Berhasil', 'Offer an Item Anda dengan nama tas jalan \r\n                telah berhasil disetujui. Sekarang barang anda sudah ada di fitur Market (Offer an Item).', 1, '2020-12-08 04:50:04'),
+(14, 757, 'Verifikasi Penitipan Barang(Offer Item)', 'Ada customer yang memesan barang anda dengan nama tas jalan <form action=\"persetujuanTraveller\" method=\"GET\">\r\n					<button  id=\"persetujuanTraveller\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Persetujuan Penitipan</button>\r\n					<input type=\"hidden\" name=\"namaBarang\" value=\"tas jalan\">\r\n					<input type=\"hidden\" name=\"namaKategori\" value=\"Fashion\">\r\n					<input type=\"hidden\" name=\"hargaDiJual\" value=\"450000\">\r\n					<input type=\"hidden\" name=\"hargaOngkir\" value=\"25000\">\r\n					<input type=\"hidden\" name=\"totalHarga\" value=\"493000\">\r\n					<input type=\"hidden\" name=\"deskripsi\" value=\"tas berwarna hitam \">\r\n					<input type=\"hidden\" name=\"kotaAwal\" value=\"Surabaya\">\r\n					<input type=\"hidden\" name=\"kotaTujuan\" value=\"Paris\">\r\n					<input type=\"hidden\" name=\"gambar\" value=\"tas.jpg\">\r\n					<input type=\"hidden\" name=\"idUser\" value=\"14\">\r\n					</form>', 1, '2020-12-08 04:54:26'),
+(14, 758, 'Verifikasi Penitipan Barang(Offer Item)', 'Ada customer yang memesan barang anda dengan nama tas jalan <form action=\"persetujuanTraveller\" method=\"GET\">\r\n					<button  id=\"persetujuanTraveller\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Persetujuan Penitipan</button>\r\n					<input type=\"hidden\" name=\"namaBarang\" value=\"tas jalan\">\r\n					<input type=\"hidden\" name=\"namaKategori\" value=\"Fashion\">\r\n					<input type=\"hidden\" name=\"hargaDiJual\" value=\"450000\">\r\n					<input type=\"hidden\" name=\"hargaOngkir\" value=\"25000\">\r\n					<input type=\"hidden\" name=\"totalHarga\" value=\"493000\">\r\n					<input type=\"hidden\" name=\"deskripsi\" value=\"tas berwarna hitam \">\r\n					<input type=\"hidden\" name=\"kotaAwal\" value=\"Surabaya\">\r\n					<input type=\"hidden\" name=\"kotaTujuan\" value=\"Paris\">\r\n					<input type=\"hidden\" name=\"gambar\" value=\"tas.jpg\">\r\n					<input type=\"hidden\" name=\"idUser\" value=\"27\">\r\n					</form>', 1, '2020-12-08 04:56:31'),
+(27, 759, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima tas jalan <form action=\"pembayaranOffer\" method=\"GET\">\r\n					<button  id=\"pembayaranOffer\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Pembayaran</button>\r\n					<input type=\"hidden\" name=\"namaBarang\" value=\"tas jalan\">\r\n					<input type=\"hidden\" name=\"totalHarga\" value=\"493000\">\r\n					<input type=\"hidden\" name=\"hargaBarang\" value=\"450000\">\r\n					<input type=\"hidden\" name=\"kotaAwal\" value=\"Surabaya\">\r\n					<input type=\"hidden\" name=\"kotaTujuan\" value=\"Paris\">\r\n					<input type=\"hidden\" name=\"waktuAwal\" value=\"\">\r\n					<input type=\"hidden\" name=\"waktuAkhir\" value=\"\">\r\n					<input type=\"hidden\" name=\"deskripsi\" value=\"tas berwarna hitam \">\r\n					<input type=\"hidden\" name=\"tipTraveller\" value=\"25000\">\r\n					<input type=\"hidden\" name=\"gambar\" value=\"tas.jpg\">\r\n					<input type=\"hidden\" name=\"fee\" value=\"18000\">\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"586\">\r\n					</form>', 1, '2020-12-08 05:00:15'),
+(27, 760, 'Verifikasi Berhasil', 'Permintaan anda berhasil diterima tas jalan <form action=\"pembayaranOffer\" method=\"GET\">\r\n					<button  id=\"pembayaranOffer\" style=\"color:#f3310a;\" class=\"w3-bar-item w3-display-inline  w3-btn\" >Klik di Sini Untuk Pembayaran</button>\r\n					<input type=\"hidden\" name=\"namaBarang\" value=\"tas jalan\">\r\n					<input type=\"hidden\" name=\"totalHarga\" value=\"493000\">\r\n					<input type=\"hidden\" name=\"hargaBarang\" value=\"450000\">\r\n					<input type=\"hidden\" name=\"kotaAwal\" value=\"Surabaya\">\r\n					<input type=\"hidden\" name=\"kotaTujuan\" value=\"Paris\">\r\n					<input type=\"hidden\" name=\"waktuAwal\" value=\"\">\r\n					<input type=\"hidden\" name=\"waktuAkhir\" value=\"\">\r\n					<input type=\"hidden\" name=\"deskripsi\" value=\"tas berwarna hitam \">\r\n					<input type=\"hidden\" name=\"tipTraveller\" value=\"25000\">\r\n					<input type=\"hidden\" name=\"gambar\" value=\"tas.jpg\">\r\n					<input type=\"hidden\" name=\"fee\" value=\"18000\">\r\n					<input type=\"hidden\" name=\"kodeUnik\" value=\"401\">\r\n					</form>', 1, '2020-12-08 08:06:34'),
+(27, 761, 'Pembayaran Berhasil', 'Cek barang anda di tracking kami', 1, '2020-12-21 12:48:28'),
+(27, 762, 'Pembayaran Berhasil', 'Silahkan diproses barang yang akan dibeli', 1, '2020-12-21 12:48:28');
 
 -- --------------------------------------------------------
 
@@ -177,14 +225,25 @@ CREATE TABLE `post` (
 
 INSERT INTO `post` (`idUser`, `idTrip`) VALUES
 (14, 5),
-(3, 7),
+(27, 7),
 (14, 9),
 (14, 10),
 (3, 11),
 (3, 20),
 (26, 21),
 (27, 22),
-(27, 23);
+(27, 23),
+(27, 27),
+(27, 27),
+(27, 29),
+(27, 30),
+(27, 31),
+(28, 32),
+(29, 33),
+(27, 34),
+(29, 35),
+(29, 36),
+(14, 39);
 
 -- --------------------------------------------------------
 
@@ -204,18 +263,17 @@ CREATE TABLE `provinsi` (
 
 INSERT INTO `provinsi` (`idProvinsi`, `namaProvinsi`, `idNegara`) VALUES
 (19, 'DKI jakarta', 1),
-(23, 'pro', 1),
+(23, 'Jawa Tengah', 1),
 (24, 'protest', 1),
-(26, 'd', 1),
 (27, 'test', 1),
-(28, 'a', 1),
-(29, 'z', 1),
-(30, 'j', 1),
-(31, 'k', 1),
 (32, 'California', 3),
 (33, 'Texas', 3),
-(37, 'qw', 1),
-(45, 'otto', 1);
+(45, 'otto', 1),
+(46, 'Jawa Barat', 1),
+(47, 'Prancis', 4),
+(48, 'Beijing', 6),
+(49, 'Shanghai', 6),
+(50, 'Jawa Timur', 1);
 
 -- --------------------------------------------------------
 
@@ -236,30 +294,42 @@ CREATE TABLE `transaksi` (
   `deskripsiBarang` varchar(225) DEFAULT NULL,
   `gambarBarang` varchar(75) DEFAULT NULL,
   `noresi` varchar(75) DEFAULT NULL,
-  `idKategori` int(11) DEFAULT NULL
+  `idKategori` int(11) DEFAULT NULL,
+  `buktiPembayaran` varchar(75) DEFAULT NULL,
+  `kodeUnik` varchar(15) DEFAULT NULL,
+  `statusPembayaran` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`idUser1`, `IdTrip`, `idUser2`, `jumlahBarang`, `hargaBarang`, `hargaOngkir`, `hargaJasa`, `namaBarang`, `statusBarang`, `deskripsiBarang`, `gambarBarang`, `noresi`, `idKategori`) VALUES
-(3, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 20, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(26, 21, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1, NULL, NULL, 1, 250000, NULL, NULL, 'Sepatu Nike Air Force 1', 'onMarket', 'berwarna putih', 'air-force.jpg', NULL, 1),
-(27, 23, NULL, NULL, 250000, NULL, 10000, 'Sepatu Aja', 'onMarketOffer', 'Warna Hitam', 'Sepatu Hitam.jpg', NULL, 1),
-(27, 23, NULL, NULL, 250000, NULL, 10000, 'Sepatu Sneakers', 'onMarketOffer', 'Ukuran 43', 'sepatu.jpg', NULL, 1),
-(14, NULL, NULL, 1, NULL, NULL, NULL, 'Sepatu Olahraga', 'onMarketWanted', 'Warna Hitam', 'sepatu.jpg', NULL, 1),
-(14, NULL, NULL, 1, NULL, NULL, NULL, 'Sepatu c', 'onMarketWanted', 'Warna Putih ABu-abu', 'Sepatu Hitam.jpg', NULL, 1),
-(14, 5, NULL, NULL, 250000, NULL, 10000, 'Sepatu Abu-abu', 'onMarketOffer', 'Warna Abu-abu', 'Sepatu Hitam.jpg', NULL, 1),
-(27, 22, NULL, NULL, 250000, NULL, 10000, 'Sepatu e', 'onPending', 'Warna Hitam', 'sepatu.jpg', NULL, 1),
-(27, 22, NULL, NULL, 250, NULL, 10, 'sep', 'onPending', 'warna hitam', 'sepatu.jpg', NULL, 1),
-(27, 22, NULL, NULL, 250, NULL, 10, 'sep', 'onPending', 'warna hitam', 'sepatu.jpg', NULL, 1),
-(27, 22, NULL, NULL, 250, NULL, 10, 'sep', 'onPending', 'warna hitam', 'sepatu.jpg', NULL, 1),
-(27, 22, NULL, NULL, 250, NULL, 10, 'sep', 'onPending', 'warna hitam', 'sepatu.jpg', NULL, 1),
-(27, 22, NULL, NULL, 250, NULL, 10, 'Sepatu ehh', 'onPending', 'warna hitam', 'sepatu.jpg', NULL, 1);
+INSERT INTO `transaksi` (`idUser1`, `IdTrip`, `idUser2`, `jumlahBarang`, `hargaBarang`, `hargaOngkir`, `hargaJasa`, `namaBarang`, `statusBarang`, `deskripsiBarang`, `gambarBarang`, `noresi`, `idKategori`, `buktiPembayaran`, `kodeUnik`, `statusPembayaran`) VALUES
+(3, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 20, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(26, 21, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1, NULL, NULL, 1, 250000, NULL, NULL, 'Sepatu Nike Air Force 1', 'onMarket', 'berwarna putih', 'air-force.jpg', NULL, 1, NULL, NULL, NULL),
+(14, NULL, NULL, 1, NULL, NULL, NULL, 'Sepatu c', 'onMarketWanted', 'Warna Putih ABu-abu', 'Sepatu Hitam.jpg', NULL, 1, NULL, NULL, NULL),
+(14, 5, NULL, NULL, 250000, NULL, 10000, 'Sepatu Abu-abu', 'onMarketOffer', 'Warna Abu-abu', 'Sepatu Hitam.jpg', NULL, 1, NULL, NULL, NULL),
+(27, 22, NULL, NULL, 250000, NULL, 10000, 'Sepatu Sneakers', 'onMarketOffer', 'Ukuran 42, warna Hitam', 'sepatu.jpg', NULL, 1, NULL, NULL, NULL),
+(27, 36, 29, 1, NULL, NULL, NULL, 'Celana Jeans', 'onMarketWanted', 'Ukuran 30', 'celana jeans.jpg', NULL, 1, 'test', NULL, NULL),
+(27, 27, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, 29, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, 29, NULL, NULL, 300000, NULL, 12000, 'Tas', 'onMarketOffer', 'Untuk Tas Sekolah', 'baju Olahraga.jpg', NULL, 1, NULL, NULL, NULL),
+(28, 32, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(28, 32, NULL, NULL, 250000, NULL, 10000, 'Celana Cowo', 'onMarketOffer', 'Berwana Biru dan berukuran 30.', 'celana jeans.jpg', NULL, 1, NULL, NULL, NULL),
+(29, 33, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(29, 33, NULL, NULL, 250000, NULL, 10000, 'Jam tangan', 'onMarketOffer', 'Merk jam tangan : alba,\r\nUntuk Pria.', 'jamtangan.jpg', NULL, 1, NULL, NULL, NULL),
+(27, 31, NULL, NULL, 3000, NULL, 120, 'Tas Sekolah', 'onMarketOffer', 'Tas sekolah untuk anak TK dan SD, berwarna hitam.', 'tasSekolahTK.jpg', NULL, 1, NULL, NULL, NULL),
+(27, 34, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(29, 35, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, NULL, NULL, 1, NULL, NULL, NULL, 'Topi', 'onMarketWanted', 'Topi berwarna Hitam. Lokasinya di China', 'topi.jpg', NULL, 1, NULL, NULL, NULL),
+(27, 31, NULL, NULL, 30000, NULL, 1200, 'Uno', 'onMarketOffer', 'Permainan untuk anak', 'uno.jpg', NULL, 1, NULL, NULL, NULL),
+(29, 36, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(29, 36, 14, 1, 100000, 10000, 4000, 'Topi New York', 'onDelivery', 'Warna Hitam', 'topi.jpg', NULL, 1, 'yes sir.png', '215', NULL),
+(14, 39, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 39, 27, 1, 450000, 25000, 18000, 'tas jalan', 'onDelivery', 'tas berwarna hitam ', 'tas.jpg', NULL, 1, 'bukti pembayaran.jpg', '401', 'verified');
 
 -- --------------------------------------------------------
 
@@ -285,7 +355,7 @@ INSERT INTO `trip` (`idTrip`, `waktuAwal`, `waktuAkhir`, `statusTrip`, `gambarTr
 (4, '2020-04-01 03:12:00', '2020-04-02 04:10:09', 'pending', 'tiket.jpg', 26, 5),
 (5, '2020-01-23 22:20:00', '2020-01-24 21:21:00', 'pending', 'tiket.jpg', 23, 5),
 (6, '2020-01-23 20:20:00', '2020-02-24 21:21:00', 'pending', 'tiket.jpg', 23, 26),
-(7, '2323-02-24 22:22:00', '2311-04-25 11:11:00', 'verified', 'tiket.jpg', 26, 23),
+(7, '2020-08-04 00:00:00', '2020-08-04 00:00:00', 'verified', 'tiket.jpg', 26, 23),
 (8, '1990-12-29 23:01:00', '1991-01-01 15:08:00', 'pending', 'tiket.jpg', 23, 26),
 (9, '2020-03-03 12:00:00', '2020-03-04 13:50:00', 'pending', 'tiket.jpg', 23, 26),
 (10, '2020-05-04 09:19:00', '2020-05-05 10:00:00', 'verified', 'head.jpg', 24, 5),
@@ -293,7 +363,18 @@ INSERT INTO `trip` (`idTrip`, `waktuAwal`, `waktuAkhir`, `statusTrip`, `gambarTr
 (20, '2020-05-11 20:20:00', '2020-05-12 21:21:00', 'verified', 'tiket.jpg', 23, 5),
 (21, '2020-05-20 07:30:00', '2020-05-22 01:00:00', 'verified', 'tiket.jpg', 26, 5),
 (22, '2020-05-17 16:30:00', '2020-05-18 03:00:00', 'verified', 'tiket.jpg', 23, 5),
-(23, '2020-05-20 14:00:00', '2020-05-21 05:00:00', 'unverified', 'ide.jpg', 26, 23);
+(23, '2020-05-20 14:00:00', '2020-05-21 05:00:00', 'unverified', 'ide.jpg', 26, 23),
+(27, '2020-10-20 00:00:00', '2020-10-20 00:00:00', 'verified', 'tiketPesawat.jpg', 5, 24),
+(28, '2020-10-20 00:00:00', '2020-10-20 00:00:00', 'pending', 'tiketPesawat.jpg', 5, 24),
+(29, '2020-10-21 00:00:00', '2020-10-30 00:00:00', 'verified', 'tiketPesawat.jpg', 39, 40),
+(30, '2020-10-26 00:00:00', '2020-10-29 00:00:00', 'unverified', 'tiketPesawat.jpg', 39, 40),
+(31, '2020-11-07 00:00:00', '2020-11-14 00:00:00', 'verified', 'tiketPesawat.jpg', 39, 40),
+(32, '2020-11-25 00:00:00', '2020-12-01 00:00:00', 'verified', 'tiketPesawat.jpg', 39, 40),
+(33, '2020-11-17 00:00:00', '2020-11-26 00:00:00', 'verified', 'tiket.jpg', 5, 41),
+(34, '2020-11-22 00:00:00', '2020-11-28 00:00:00', 'verified', 'tiket2.jpg', 39, 26),
+(35, '2020-11-26 00:00:00', '2020-11-29 00:00:00', 'verified', 'tiket2.jpg', 5, 42),
+(36, '2020-12-04 00:00:00', '2020-12-25 00:00:00', 'verified', 'tiketPesawat.jpg', 39, 40),
+(39, '2020-12-10 00:00:00', '2020-12-16 07:00:00', 'verified', 'tiket2.jpg', 10, 40);
 
 -- --------------------------------------------------------
 
@@ -330,7 +411,10 @@ INSERT INTO `user` (`idUser`, `namaUser`, `email`, `password`, `nohp`, `alamat`,
 (24, 'otto', 'ottowalada@gmail.com', 'ottoarab', 7564756, 'otto', NULL, 'pending', 'head.jpg', 'user.png', 'MANDIRI', '902343743', '2000000238231', 34, NULL),
 (25, 'cowo', 'cowo@gmail.com', 'cowo', 10052020, 'jl. BJ 12', NULL, 'verified', 'shopping-bagsl.jpg', 'shopping-bagsl.jpg', 'BRI', '1234-33323-121', '09876', 13, NULL),
 (26, 'byon nugraha', 'byon@gmail.com', 'byon', 2147483647, 'jalan haji hasbi no.22', NULL, 'verified', 'user.png', 'head.jpg', 'BCA', '3847281', '2837428', 5, NULL),
-(27, 'yulius famas', 'yulius@gmail.com', 'yulius', 2147483647, 'jalan teratai no.1', NULL, 'verified', 'user.png', 'head.jpg', 'BNI', '72-7244-1821', '20007236619', 5, NULL);
+(27, 'Quadrat', 'quadrat@gmail.com', 'quadratnp', 2147483647, 'Jl. Bukir Jarian', NULL, 'verified', 'user.png', 'head.jpg', 'BNI', '72-7244-1821', '20007236619', 5, ''),
+(28, 'Ana Maria', 'maria@gmail.com', '12345678', 8132799, 'Jl. Bukit Hegar, Ciumbuleuit', NULL, 'verified', 'ktp.png', 'contoh.png', 'BCA', '123-456-7891', '12345678', 35, 'profile2.jpg'),
+(29, 'Joseph', 'joseph@gmail.com', 'joseph', 81327888, 'Jl. Cihampelas No.12', NULL, 'verified', 'idcard.jpg', 'profile3.jpg', 'BCA', '123-456-7891', '12345678', 36, NULL),
+(30, 'Naufal', 'naufal@gmail.com', 'naufal', 827088498, 'Jl. Ahmad Yani', NULL, 'verified', 'profile3.jpg', 'idcard.jpg', 'BNI', '123-456-7891', '12345678', 37, NULL);
 
 --
 -- Indexes for dumped tables
@@ -426,49 +510,49 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
-  MODIFY `idKecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `idKecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `kelurahan`
 --
 ALTER TABLE `kelurahan`
-  MODIFY `idKelurahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `idKelurahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `kota`
 --
 ALTER TABLE `kota`
-  MODIFY `idKota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `idKota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `negara`
 --
 ALTER TABLE `negara`
-  MODIFY `idNegara` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idNegara` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `notifikasi`
 --
 ALTER TABLE `notifikasi`
-  MODIFY `idNotifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idNotifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=763;
 
 --
 -- AUTO_INCREMENT for table `provinsi`
 --
 ALTER TABLE `provinsi`
-  MODIFY `idProvinsi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `idProvinsi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `trip`
 --
 ALTER TABLE `trip`
-  MODIFY `idTrip` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idTrip` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Constraints for dumped tables

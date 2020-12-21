@@ -370,6 +370,12 @@ class UserController{
 		}		
 	}
 
+	public function view_tracking(){
+		$nama = $_SESSION['nama'];
+		// $result = $this->getTracking();
+		return view::createView('tracking.php',["nama"=>$nama]);
+	}
+
 	public function getProfileTraveller($nama){
         $query = "SELECT himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
 			as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
@@ -1260,9 +1266,17 @@ class UserController{
 		$newname = dirname(__DIR__) . "\\view\image\pembayaran\\" . $buktiPembayaran;
 		move_uploaded_file($oldname, $newname);
 		
-		$query = "UPDATE transaksi SET buktiPembayaran ='$buktiPembayaran', statusBarang = 'onPaymentProgress' WHERE idUser2 = '$idUser' AND namaBarang = '$namaBarang' ";
+		$query = "UPDATE transaksi SET buktiPembayaran ='$buktiPembayaran', statusBarang = 'onPaymentProgress', statusPembayaran = 'pending' WHERE idUser2 = '$idUser' AND namaBarang = '$namaBarang' ";
 		$query_result = $this->db->executeNonSelectQuery($query);
-    }
+	}
+	
+	// public function getTracking(){
+	// 	$nama = $_SESSION['nama'];
+	// 	$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama' ";
+	// 	$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
+	// 	$idUser = $query_idUser_result[0]['idUser'];
+	// 	$query = "SELECT"
+	// }
 	
 }
 

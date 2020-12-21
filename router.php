@@ -193,10 +193,11 @@
 				$userctrl = new userController();
 				echo $userctrl->view_pembayaranOffer(); 
 				break;
-			
-			
-			
-			 
+			case $baseURL . '/tracking':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_tracking(); 
+				break;
 			default:
 				echo '404 Not Found';
 				break;
