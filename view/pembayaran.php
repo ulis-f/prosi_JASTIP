@@ -97,7 +97,7 @@
 
 <div class="container">
         <div class="w3-card w3-white" style="padding: 50px; height: 800px; margin-top: 3%;">
-            <form action="pembayaranKeAdmin" method="POST">
+            <form action="pembayaranKeAdmin" method="POST" enctype="multipart/form-data">
                 <div class="column">
                     <h3><b>Ringkasan Belanja</b></h3> 
                     <br> 
@@ -192,7 +192,7 @@
                             ?>
                         </tr>
     
-                    </table>
+                    </table> 
                     <br>
                     <p class="" style="width:100%;border-bottom:2px solid #dddddd"></p>
             

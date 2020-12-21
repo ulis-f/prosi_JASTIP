@@ -15,8 +15,9 @@
 
     /* Create two equal columns that sits next to each other */
     .column {
-        width: 40%;
+        width: 30%;
         float :left;
+        margin-right: 2%; 
     }
 
     .column1 {
@@ -66,13 +67,12 @@
             <a class="" href="#" style="text-decoration:none ; color:#6699cc; ">Detail Pembayaran</a>
         </p>
         <div class="container">
-            <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 1100px; margin-top: 5%;">
+            <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 520px; margin-top: 5%;">
                 <h3><b>Detail Pembayaran</b></h3> <br>
                     <div class="column1">
-                    <button onclick="document.getElementById('detailBarang').style.display='block'" class="btn btn-primary btn-sm">Lihat Detail Pemesanan</button>
 
                     <div id="detailBarang" class="w3-modal">
-                        <div class="w3-modal-content">  
+                        <div class="w3-modal-content" style="width:40%;">  
                         <div class="w3-container">
                             <span onclick="document.getElementById('detailBarang').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                             <table style="width:100%;border-collapse: collapse; margin-top:5%;">
@@ -190,29 +190,29 @@
                     <form action="persetujuanPembayaran" method="POST">
                             <table>
                                 <tr>
-                                    <td><h4>Bank yang dituju</h4></td>
+                                    <td><h5>Bank yang dituju</h5></td>
                                     <td>:</td>
-                                    <td><h4>Nama Bank di sini</h4></td>
+                                    <td><h5>Nama Bank di sini</h5></td>
                                 </tr>
                                 <tr>
                                     <td>Total Harga</td>
                                     <td>:</td>
                                     <?php
                                     foreach($hasil as $key =>$value){
-                                        echo"<td>".$value->noresi."</td>";   
+                                        echo"<td>Rp.".$value->noresi."</td>";   
                                         echo"<input type='hidden' name='idPenerima' value='$value->idUser1'>";
                                         echo"<input type='hidden' name='idPembeli' value='$value->idUser2'>";
                                     }
                                     ?>
                                 </tr>
                             </table>
-                            <br><br>
+                            <br>
                             <div style="float:left">
                                 <label for="">Bukti Transfer</label> <br>
                                 <figure>
                                 <?php
                                 foreach($hasil as $key =>$value){
-                                    echo "<img src='image/pembayaran/".$value->namaKategori."' width=250px height=150px>";
+                                    echo "<img src='image/pembayaran/".$value->namaKategori."' width=250px height=100px>";
                                 }
                                 ?>
                                 </figure>
@@ -220,72 +220,98 @@
                             
                             <div style="float:right">
                                 <label for='note'>Note :</label> <br>
-                                <textarea name='' id='' cols='30' rows='5' style="height:150px;"></textarea> <br> <br>
+                                <textarea name='' id='' cols='30' rows='5' style="height:100px;"></textarea> <br> <br>
                                 <input type='radio' id='verified' name='verified' value='verified'>Verified <div style="float:right;">
                                 <input type='radio' id='unverified' name='verified' value='unverified'>Unverified<br> </div>   
                             </div>
 
                            
-                            <input type="submit" class="btn btn-danger btn-sm" style="font-size:17px; margin-top:20%; width:100%;" value="Submit">
+                            <input type="submit" class="btn w3-theme btn-sm" style="font-size:17px; margin-top:10%; width:100%;" value="Submit">
                             <!-- <input id="submit" type="submit" class="btn btn-primary btn-sm" style="font-size:17px;" value="Submit"> -->
                             
                     </form>
                 </div>
 
                 <div class="column">
-                    <form action="profileTravellerMarket" method="GET">
-                        <fieldset style="width: 70%;">
-                            <div class="w3-container">
-                            <h4 class="w3-center">Profile Traveller</h4>  
-                                <div class="w3-center">
-                                <?php
-                                    foreach($user1 as $key => $value){    
-                                        if($value->gambarProfile!=null){
-                                            echo "<img src='../view/image/".$value->gambarProfile."' class='w3-circle' style='height:106px;width:106px' alt='Avatar'></p>";
-                                        }
-                                        else{
-                                            echo "<img src='../view/image/user.png' class='w3-circle' style='height:106px;width:106px' alt='Avatar'></p>";
-                                        }
-                                    }    
-                                ?>
-                                </div> 
+                    <div class="btn-group-vertical" style="width:80%; border-line:1px black; ">
+                        <button type="button" class="btn w3-light-grey w3-text-theme" style="padding:5%;" onclick="document.getElementById('detailBarang').style.display='block'">Detail Barang</button>
+                        <button type="button" class="btn w3-light-grey w3-text-theme" style="padding:5%;" onclick="document.getElementById('detailTraveller').style.display='block'">Detail Profile Traveller</button>
+                        <button type="button" class="btn w3-light-grey w3-text-theme" style="padding:5%;" onclick="document.getElementById('detailCustomer').style.display='block'">Detail Profile Customer</button>
+                    </div>
+
+                    <div id="detailTraveller" class="w3-modal">
+                        <div class="w3-modal-content" style="width:40%;">
+                        <div class="w3-container">
+                            <span onclick="document.getElementById('detailTraveller').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                            <form action="profileTravellerMarket" method="GET">
+                                <fieldset style="width: 100%;">
+                                    <div class="w3-container">
+                                    <h4 class="w3-center">Profile Traveller</h4>  
+                                        <div class="w3-center">
+                                        <?php
+                                            foreach($user1 as $key => $value){    
+                                                if($value->gambarProfile!=null){
+                                                    echo "<img src='../view/image/".$value->gambarProfile."' class='w3-circle' style='height:106px;width:106px' alt='Avatar'></p>";
+                                                }
+                                                else{
+                                                    echo "<img src='../view/image/user.png' class='w3-circle' style='height:106px;width:106px' alt='Avatar'></p>";
+                                                }
+                                            }    
+                                        ?>
+                                        </div> 
+                                            <hr>
+                                            <?php  
+                                                foreach($user1 as $key=>$value){
+                                                    echo"<p style=''><i class='fa fa-user fa-fw w3-margin-right w3-text-theme'></i>".$value->username."</p>";
+                                                    echo"<p style=''><i class='fa fa-phone fa-fw w3-margin-right w3-text-theme'></i>".$value->noHp."</p>";
+                                                    echo"<p style=''><i class='fa fa-credit-card fa-fw w3-margin-right w3-text-theme'></i>".$value->norek."</p>";
+                                                    echo"<p style=''><i class='fa fa-home fa-fw w3-margin-right w3-text-theme'></i>".$value->alamat."</p>";
+                                                }
+                                            ?>   
+                                    </div>
                                     <hr>
-                                    <?php  
-                                        foreach($user1 as $key=>$value){
-                                            echo"<p style=''><i class='fa fa-user fa-fw w3-margin-right w3-text-theme'></i>".$value->username."</p>";
-                                            echo"<p style=''><i class='fa fa-phone fa-fw w3-margin-right w3-text-theme'></i>".$value->noHp."</p>";
-                                            echo"<p style=''><i class='fa fa-credit-card fa-fw w3-margin-right w3-text-theme'></i>".$value->norek."</p>";
-                                            echo"<p style=''><i class='fa fa-home fa-fw w3-margin-right w3-text-theme'></i>".$value->alamat."</p>";
-                                        }
-                                    ?>   
-                            </div>
-                            <hr>
-                            <h4 class="w3-center">Profile Customer</h4>  
-                                <div class="w3-center">
-                                <?php
-                                    foreach($user2 as $key => $value){    
-                                        if($value->gambarProfile!=null){
-                                            echo "<img src='../view/image/".$value->gambarProfile."' class='w3-circle' style='height:106px;width:106px' alt='Avatar'></p>";
-                                        }
-                                        else{
-                                            echo "<img src='../view/image/user.png' class='w3-circle' style='height:106px;width:106px' alt='Avatar'></p>";
-                                        }
-                                    }    
-                                ?>
-                                </div> 
+                                </fieldset>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div id="detailCustomer" class="w3-modal">
+                        <div class="w3-modal-content" style="width:40%;">
+                        <div class="w3-container">
+                            <span onclick="document.getElementById('detailCustomer').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                            <form action="profileTravellerMarket" method="GET">
+                                <fieldset style="width: 100%;">
+                                    <div class="w3-container">
+                                    <h4 class="w3-center">Profile Customer</h4>  
+                                    <div class="w3-center">
+                                        <?php
+                                            foreach($user2 as $key => $value){    
+                                                if($value->gambarProfile!=null){
+                                                    echo "<img src='../view/image/".$value->gambarProfile."' class='w3-circle' style='height:106px;width:106px' alt='Avatar'></p>";
+                                                }
+                                                else{
+                                                    echo "<img src='../view/image/user.png' class='w3-circle' style='height:106px;width:106px' alt='Avatar'></p>";
+                                                }
+                                            }    
+                                        ?>
+                                        </div> 
+                                            <hr>
+                                            <?php  
+                                                foreach($user2 as $key=>$value){
+                                                    echo"<p style='margin-bottom:0; margin-top:0;'><i class='fa fa-user fa-fw w3-margin-right w3-text-theme'></i>".$value->username."</p>";
+                                                    echo"<p style='margin-bottom:0; margin-top:0;'><i class='fa fa-phone fa-fw w3-margin-right w3-text-theme'></i>".$value->noHp."</p>";
+                                                    echo"<p style='margin-bottom:0; margin-top:0;'><i class='fa fa-credit-card fa-fw w3-margin-right w3-text-theme'></i>".$value->norek."</p>";
+                                                    echo"<p style='margin-bottom:0; margin-top:0;'><i class='fa fa-home fa-fw w3-margin-right w3-text-theme'></i>".$value->alamat."</p>";
+                                                }
+                                            ?> 
+                                    </div>
                                     <hr>
-                                    <?php  
-                                        foreach($user2 as $key=>$value){
-                                            echo"<p style='margin-bottom:0; margin-top:0;'><i class='fa fa-user fa-fw w3-margin-right w3-text-theme'></i>".$value->username."</p>";
-                                            echo"<p style='margin-bottom:0; margin-top:0;'><i class='fa fa-phone fa-fw w3-margin-right w3-text-theme'></i>".$value->noHp."</p>";
-                                            echo"<p style='margin-bottom:0; margin-top:0;'><i class='fa fa-credit-card fa-fw w3-margin-right w3-text-theme'></i>".$value->norek."</p>";
-                                            echo"<p style='margin-bottom:0; margin-top:0;'><i class='fa fa-home fa-fw w3-margin-right w3-text-theme'></i>".$value->alamat."</p>";
-                                        }
-                                    ?>   
-                            </div>
-                        </fieldset>
-                    </form>
-                    
+                                </fieldset>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>  

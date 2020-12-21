@@ -311,7 +311,7 @@
                 foreach($result as $key=>$value){
                     echo"<div style='width: 100%;margin-bottom:1%;' class=''>";
                     if($i==1){
-                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:350px;margin-bottom:3%; border-radius:3%;'>";
+                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:auto;margin-bottom:3%; border-radius:3%;'>";
                         echo"<div class=''>";
                             echo"<form method='GET' action='detailBarangOffer'>";
                             echo"<input type='hidden' name='id' value='".$value->idUser1."'>";
@@ -326,7 +326,7 @@
                     }
 
                     elseif($i==2){
-                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:350px;margin-bottom:3%; border-radius:3%;'>";
+                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:auto;margin-bottom:3%; border-radius:3%;'>";
                         echo"<div class=''>";
                         echo"<form method='GET' action='detailBarangOffer'>";
                             echo"<input type='hidden' name='id' value='".$value->idUser1."'>";
@@ -341,7 +341,7 @@
                     }
 
                     elseif($i==3){
-                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:350px;margin-bottom:3%; border-radius:3%;'>";
+                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:auto;margin-bottom:3%; border-radius:3%;'>";
                         echo"<div class=''>";
                         echo"<form method='GET' action='detailBarangOffer'>";
                             echo"<input type='hidden' name='id' value='".$value->idUser1."'>";
@@ -356,7 +356,7 @@
                     }
 
                     elseif($i==4){
-                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:350px;margin-bottom:3%; border-radius:3%;'>";
+                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left;margin-right: 2%; height:auto;margin-bottom:3%; border-radius:3%;'>";
                         echo"<div class=''>";
                         echo"<form method='GET' action='detailBarangOffer'>";
                             echo"<input type='hidden' name='id' value='".$value->idUser1."'>";
@@ -371,7 +371,7 @@
                     }
 
                     else{
-                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left; height:350px;margin-bottom:3%; border-radius:3%;'>";
+                        echo"<div class='w3-card w3-white' style='width:18.4%; float: left; height:auto;margin-bottom:3%; border-radius:3%;'>";
                         echo"<div class=''>";
                         echo"<form method='GET' action='detailBarangOffer'>";
                             echo"<input type='hidden' name='id' value='".$value->idUser1."'>";
