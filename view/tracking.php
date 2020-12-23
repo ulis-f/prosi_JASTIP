@@ -1,11 +1,12 @@
 <style>
-    figure:hover{
+        body{
+            background-color: white;
+        }
+
+        figure:hover{
             transform: scale(2.4); 
         }
 
-        body {
-            background-color: #f9f9f9;
-        }
         img {
             display: block;
             margin-left: auto;
@@ -37,6 +38,17 @@
         }
 
 </style>
+
+    <ul class="nav" style="width:100%;"> 
+        <li class="nav-item" style="margin-left:2%;">
+            <a class="nav-link text-center w3-text-theme" href="#" style="height: 100%; border-bottom: 4px solid #6699cc;" >Customer</a>
+        </li>
+        <li class="nav-item w3-text-theme">
+            <a class="nav-link text-center w3-text-theme" href="trackingTraveller" style="height: 100%;">Traveller</a>
+        </li>
+    </ul>  
+
+<fieldset class="" style="margin-left:2%; margin-right:2%; border: #6699cc 1px solid">
 
     <div class="container">
         <div class="w3-card-4 w3-white" style="padding: 50px; height: 800px; margin-top: 5%;">
@@ -670,6 +682,8 @@
             </div>  
         </div>
     </div>
+    
+</fieldset>
 
 <script>
     function openContent(obj, idContentContainer){

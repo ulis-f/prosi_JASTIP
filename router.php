@@ -198,6 +198,11 @@
 				$userctrl = new userController();
 				echo $userctrl->view_tracking(); 
 				break;
+			case $baseURL . '/trackingTraveller':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				echo $userctrl->view_trackingTraveller(); 
+				break;
 			default:
 				echo '404 Not Found';
 				break;

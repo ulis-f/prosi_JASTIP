@@ -376,6 +376,12 @@ class UserController{
 		return view::createView('tracking.php',["nama"=>$nama]);
 	}
 
+	public function view_trackingTraveller(){
+		$nama = $_SESSION['nama'];
+		// $result = $this->getTracking();
+		return view::createView('trackingTraveller.php',["nama"=>$nama]);
+	}
+
 	public function getProfileTraveller($nama){
         $query = "SELECT himpA.idTrip,himpA.gambarTrip, himpA.waktuAwal,himpA.waktuAkhir,himpA.namaKota 
 			as 'kota_Awal', kota.namaKota as 'kota_tujuan' 
