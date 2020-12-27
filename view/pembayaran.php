@@ -232,8 +232,16 @@
                                 <img src="../view/image/bank/mandiri.png" name="jenisBank" id="jenisBank" value="mandiri" onclick="toggleVisibility('bank2');" alt="" style="width: 100%;  border: 2px solid #dddddd; padding:8px; cursor:pointer">
                             </div>
                         </div>
-                        <br>
-
+                        
+                       
+                        <table>
+                            <tr>
+                                <td><input type='radio' style="margin-left:30px;" id='BCA' name='BCA' value='BCA' onclick="toggleVisibility('bank');">BCA</div> </td>
+                                <td><input type='radio' style="margin-left:110px;" id='BRI' name='BRI' value='BRI' onclick="toggleVisibility('bank1');">BRI</div> </td>
+                                <td><input type='radio' style="margin-left:110px;" id='MANDIRI' name='MANDIRI' value='MANDIRI' onclick="toggleVisibility('bank2');">MANDIRI</div> </td>
+                            </tr>
+                        </table>
+                        
                         <div class="inner_div">
                             <div id="bank">
                                 <h4>No. Rekening BCA : 731 025 4675</h4>
