@@ -67,4 +67,3 @@ class MySQLDB{
 		$this->db_connection->close();
 	}
 }
-?>
