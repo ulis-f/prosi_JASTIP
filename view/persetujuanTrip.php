@@ -31,9 +31,9 @@
     </p>
 
     <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; margin-top: 5%; height: 1000px; background-color: #ebebeb; ">
+        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1000px; background-color: #ebebeb; ">
             <form action="verifikasi" method="POST">
-                <h2>Post Trip</h2>
+                <h3><b>Post Trip</b></h3>
                     <br> 
                     <?php
                     foreach($result as $key=>$value){

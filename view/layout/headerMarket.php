@@ -292,7 +292,7 @@
         </div>
                 
             <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn" onclick="market()">Market</h4>
-            <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn">Tracking</h4>
+            <h4 id="loginButton" class="w3-bar-item w3-display-inline  w3-btn" onclick="tracking()">Tracking</h4>
             <?php
                 if($nama==null){   
                     echo '
@@ -372,6 +372,9 @@
     }
     function market(){
         location.href="market";
+    }
+    function tracking(){
+        location.href = "tracking";
     }
 
 

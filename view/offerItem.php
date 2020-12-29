@@ -34,9 +34,9 @@
         <a class="" href="#" style="text-decoration:none; color:#6699cc"><b>Offer an Item</b></a>
     </p>   
     <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1000px; ">
-            <h2>Penawaran Barang</h2>
-            <br><br>
+        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 800px; ">
+            <h3><b>Penawaran Barang</b></h3>
+            <br>
             <table>
             <form action="offerKlik" method="POST" enctype="multipart/form-data">   
                 <tr>
@@ -99,15 +99,14 @@
                 </tr>
             </table>
             <br>
-            <h4>Upload Gambar</h4>
+            <h5>Upload Gambar</h5>
             <input required type='file' name="gambar" id="gambar" accept='image/*'>   
             <br>
-            <br>
+            
             <p style="color:red;font-size:13px;">*Total harga sudah termasuk biaya ongkir dan akan dipotong 4% untuk biaya transaksi titipaja</p>
             <br>
-            <br> 
 
-            <div class="w3-right" style="padding-top: 100px;"> 
+            <div class="w3-right" style="padding-top: 10px;"> 
                 <input type="submit" value="Submit" class="w3-btn w3-theme">
             </div>
             </form>

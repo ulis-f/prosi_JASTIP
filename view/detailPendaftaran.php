@@ -6,6 +6,15 @@
     body{
         background-color:white;
     }
+    .column {
+        width: 48%;
+        float: left;
+    }
+
+    .column1 {
+        width: 48%;
+        float: right;
+    }
 
 </style>
 
@@ -37,10 +46,10 @@
     </p>
   
     <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1200px; margin-top: 5%;">
+        <div class="w3-card-4 w3-white" style="margin: auto; padding: 50px; height: 700px;">
             <form action="verifikasiPendaftaran" method="POST">
-                <h2>Persetujuan Pendaftaran</h2> 
-                    <br> 
+                <h3><b>Persetujuan Pendaftaran</b></h3><br> 
+                <div class="column">
                     <?php
                     foreach($result as $key=>$value){
                     echo"<input type='hidden' name='id' value='".$value->IDuser."'>";
@@ -48,7 +57,8 @@
                     echo"<figure><img src='image/".$value->gambarktp."'width=250px height=150px></figure><br>";
                     echo"<label for=''><b>Swafoto</b></label> <br>";
                     echo"<figure><img src='image/".$value->swafoto."'width=250px height=150px></figure>";
-                    echo "<br>
+                    echo "</div>
+                <div class='column1'>    
                     <label for=''><b> NIK</b></label>
                     <br>";
                     echo "$value->noktp";   
@@ -65,11 +75,12 @@
                     <input type='radio' id='unverifie' name='verified' onclick='check(this.value)' value='unverified'>Unverified
                     <br> <br>
                     <label for='note'>Note</label> <br>
-                    <textarea name='deskripsi' id='deskripsi' cols='30' rows='5'></textarea>
-                    <br><br><br><br><br>
-                    <input type='submit' class='w3-btn w3-right w3-theme' value='Submit'>  ";
+                    <textarea name='deskripsi' id='deskripsi' cols='50' rows='5'></textarea>
+                    <br><br>
+                    <input type='submit' class='w3-btn w3-right w3-theme' style='width:100%;' value='Submit'>  ";
                     }
                     ?>
+                </div>
             </form>    
         </div>
     </div>

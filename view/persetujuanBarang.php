@@ -18,6 +18,7 @@
     body{
         background-color:white;
     }
+    
 </style>
 
 <ul class="nav" style="margin-top:7%; background-color:white; margin-left:2%;">
@@ -31,7 +32,7 @@
         <a class="nav-link text-center " href="#"  style="height: 100%; border-bottom: 4px solid #6699cc; ">Form Barang</a>
     </li>
     <li class="nav-item w3-text-theme">
-        <a class="nav-link" href="#" style="height: 100%;">Pembayaran</a>  
+        <a class="nav-link" href="pembayaranAdmin" style="height: 100%;">Pembayaran</a>  
     </li>
     <li class="nav-item w3-text-theme">
         <a class="nav-link" href="#" style="height: 100%;">Mengirim Uang</a>
@@ -45,9 +46,9 @@
         <i class="fa fa-angle-double-right" style=""></i>  
         <a class="" href="#" style="text-decoration:none; ">Detail Form Barang</a>
     </p>
-    <div class="container" style="margin-top:7%;">
+    <div class="container" style="">
         <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 700px; ">
-            <h2>Post Barang</h2>        
+            <h3><b>Post Barang</b></h3>        
             <table class="table table-striped">
             <tr>
                 <th>Nama</th>

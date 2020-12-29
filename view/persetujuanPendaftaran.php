@@ -46,7 +46,7 @@
         <i class="fa fa-angle-double-right" style=""></i>  
         <a class="" href="#" style="text-decoration:none; ">Detail Lengkapi Pendaftaran</a>
     </p>
-<div class="container" style="margin-top:7%;">
+<div class="container" style="">
     <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 700px; ">
         <h2>Lengkapi Pendaftaran</h2>        
         <table class="table table-striped">
