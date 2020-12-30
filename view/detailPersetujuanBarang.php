@@ -6,9 +6,18 @@
     body{
         background-color:white;
     }
+    .column {
+        width: 58%;
+        float: left;
+    }
+
+    .column1 {
+        width: 38%;
+        float: right;
+    }
 </style>
 
-<ul class="nav" style="margin-top:7%; background-color:white; margin-left:2%;">
+<ul class="nav" style="margin-top:2%; background-color:white; margin-left:3%;">
     <li class="nav-item w3-text-theme w3-text-theme">
         <a class="nav-link w3-text-theme" href="homeAdmin" style="height: 100%;">Post Trip</a>
     </li>
@@ -34,11 +43,11 @@
         <a class="" href="#" style="text-decoration:none; color:#6699cc "><b>Detail Form Barang</b></a>
     </p> 
     <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 900px; margin-top: 5%;">
-                <h2>Persetujuan Barang</h2> 
+        <div class="w3-card-4 w3-white" style="margin: auto; padding: 50px; height: 600; margin-top: 2%;">
+            <h3><b>Persetujuan Barang</b></h3> <br>
+            <div class="column">
                 <form action="verifikasiBarang" method="POST">
                     <table>
-                    
                         <tr>
                             <td><label for="namaBarang">Nama Barang</label></td>
                             <td>:</td>
@@ -100,15 +109,16 @@
                     echo"<figure><img src='image/market/".$value->gambarBarang."'width=250px height=150px></figure><br>"; 
                     }
                     ?>
-                    <br>
+                </div>
+                <div class="column1">
                     <input type='radio' id='verified' name='verified' value='verified'>Verified<br>
                     <input type='radio' id='unverified' name='unverified' value='unverified'>Unverified<br>      
                     <br>
                     <label for='note'>Note</label> <br>
-                    <textarea name='' id='' cols='30' rows='5'></textarea>
+                    <textarea name='' id='' cols='40' rows='5'></textarea>
                     <br><br><br><br><br>
-                    <input type='submit' class='w3-btn w3-right w3-theme' value='Submit'>  
-
+                    <input type='submit' class='w3-btn w3-right w3-theme' style="width:100%;" value='Submit'>  
+                </div>
             </form>    
         </div>
     </div>

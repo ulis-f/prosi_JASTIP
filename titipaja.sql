@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2020 at 07:04 AM
+-- Generation Time: Dec 29, 2020 at 01:56 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -297,39 +297,40 @@ CREATE TABLE `transaksi` (
   `idKategori` int(11) DEFAULT NULL,
   `buktiPembayaran` varchar(75) DEFAULT NULL,
   `kodeUnik` varchar(15) DEFAULT NULL,
-  `statusPembayaran` varchar(15) DEFAULT NULL
+  `statusPembayaran` varchar(15) DEFAULT NULL,
+  `namaBankPembayaran` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`idUser1`, `IdTrip`, `idUser2`, `jumlahBarang`, `hargaBarang`, `hargaOngkir`, `hargaJasa`, `namaBarang`, `statusBarang`, `deskripsiBarang`, `gambarBarang`, `noresi`, `idKategori`, `buktiPembayaran`, `kodeUnik`, `statusPembayaran`) VALUES
-(3, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 20, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(26, 21, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1, NULL, NULL, 1, 250000, NULL, NULL, 'Sepatu Nike Air Force 1', 'onMarket', 'berwarna putih', 'air-force.jpg', NULL, 1, NULL, NULL, NULL),
-(14, NULL, NULL, 1, NULL, NULL, NULL, 'Sepatu c', 'onMarketWanted', 'Warna Putih ABu-abu', 'Sepatu Hitam.jpg', NULL, 1, NULL, NULL, NULL),
-(14, 5, NULL, NULL, 250000, NULL, 10000, 'Sepatu Abu-abu', 'onMarketOffer', 'Warna Abu-abu', 'Sepatu Hitam.jpg', NULL, 1, NULL, NULL, NULL),
-(27, 22, NULL, NULL, 250000, NULL, 10000, 'Sepatu Sneakers', 'onMarketOffer', 'Ukuran 42, warna Hitam', 'sepatu.jpg', NULL, 1, NULL, NULL, NULL),
-(27, 36, 29, 1, NULL, NULL, NULL, 'Celana Jeans', 'onMarketWanted', 'Ukuran 30', 'celana jeans.jpg', NULL, 1, 'test', NULL, NULL),
-(27, 27, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(27, 29, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(27, 29, NULL, NULL, 300000, NULL, 12000, 'Tas', 'onMarketOffer', 'Untuk Tas Sekolah', 'baju Olahraga.jpg', NULL, 1, NULL, NULL, NULL),
-(28, 32, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(28, 32, NULL, NULL, 250000, NULL, 10000, 'Celana Cowo', 'onMarketOffer', 'Berwana Biru dan berukuran 30.', 'celana jeans.jpg', NULL, 1, NULL, NULL, NULL),
-(29, 33, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(29, 33, NULL, NULL, 250000, NULL, 10000, 'Jam tangan', 'onMarketOffer', 'Merk jam tangan : alba,\r\nUntuk Pria.', 'jamtangan.jpg', NULL, 1, NULL, NULL, NULL),
-(27, 31, NULL, NULL, 3000, NULL, 120, 'Tas Sekolah', 'onMarketOffer', 'Tas sekolah untuk anak TK dan SD, berwarna hitam.', 'tasSekolahTK.jpg', NULL, 1, NULL, NULL, NULL),
-(27, 34, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(29, 35, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(27, NULL, NULL, 1, NULL, NULL, NULL, 'Topi', 'onMarketWanted', 'Topi berwarna Hitam. Lokasinya di China', 'topi.jpg', NULL, 1, NULL, NULL, NULL),
-(27, 31, NULL, NULL, 30000, NULL, 1200, 'Uno', 'onMarketOffer', 'Permainan untuk anak', 'uno.jpg', NULL, 1, NULL, NULL, NULL),
-(29, 36, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(29, 36, 14, 1, 100000, 10000, 4000, 'Topi New York', 'onDelivery', 'Warna Hitam', 'topi.jpg', NULL, 1, 'yes sir.png', '215', NULL),
-(14, 39, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, 39, 27, 1, 450000, 25000, 18000, 'tas jalan', 'onDelivery', 'tas berwarna hitam ', 'tas.jpg', NULL, 1, 'bukti pembayaran.jpg', '401', 'verified');
+INSERT INTO `transaksi` (`idUser1`, `IdTrip`, `idUser2`, `jumlahBarang`, `hargaBarang`, `hargaOngkir`, `hargaJasa`, `namaBarang`, `statusBarang`, `deskripsiBarang`, `gambarBarang`, `noresi`, `idKategori`, `buktiPembayaran`, `kodeUnik`, `statusPembayaran`, `namaBankPembayaran`) VALUES
+(3, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 20, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(26, 21, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1, NULL, NULL, 1, 250000, NULL, NULL, 'Sepatu Nike Air Force 1', 'onMarket', 'berwarna putih', 'air-force.jpg', NULL, 1, NULL, NULL, NULL, NULL),
+(14, NULL, NULL, 1, NULL, NULL, NULL, 'Sepatu c', 'onMarketWanted', 'Warna Putih ABu-abu', 'Sepatu Hitam.jpg', NULL, 1, NULL, NULL, NULL, NULL),
+(14, 5, NULL, NULL, 250000, NULL, 10000, 'Sepatu Abu-abu', 'onMarketOffer', 'Warna Abu-abu', 'Sepatu Hitam.jpg', NULL, 1, NULL, NULL, NULL, NULL),
+(27, 22, NULL, NULL, 250000, NULL, 10000, 'Sepatu Sneakers', 'onMarketOffer', 'Ukuran 42, warna Hitam', 'sepatu.jpg', NULL, 1, NULL, NULL, NULL, NULL),
+(27, 36, 29, 1, NULL, NULL, NULL, 'Celana Jeans', 'onMarketWanted', 'Ukuran 30', 'celana jeans.jpg', NULL, 1, 'test', NULL, NULL, NULL),
+(27, 27, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, 29, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, 29, NULL, NULL, 300000, NULL, 12000, 'Tas', 'onMarketOffer', 'Untuk Tas Sekolah', 'baju Olahraga.jpg', NULL, 1, NULL, NULL, NULL, NULL),
+(28, 32, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(28, 32, NULL, NULL, 250000, NULL, 10000, 'Celana Cowo', 'onMarketOffer', 'Berwana Biru dan berukuran 30.', 'celana jeans.jpg', NULL, 1, NULL, NULL, NULL, NULL),
+(29, 33, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(29, 33, NULL, NULL, 250000, NULL, 10000, 'Jam tangan', 'onMarketOffer', 'Merk jam tangan : alba,\r\nUntuk Pria.', 'jamtangan.jpg', NULL, 1, NULL, NULL, NULL, NULL),
+(27, 31, NULL, NULL, 3000, NULL, 120, 'Tas Sekolah', 'onMarketOffer', 'Tas sekolah untuk anak TK dan SD, berwarna hitam.', 'tasSekolahTK.jpg', NULL, 1, NULL, NULL, NULL, NULL),
+(27, 34, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(29, 35, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, NULL, NULL, 1, NULL, NULL, NULL, 'Topi', 'onMarketWanted', 'Topi berwarna Hitam. Lokasinya di China', 'topi.jpg', NULL, 1, NULL, NULL, NULL, NULL),
+(27, 31, NULL, NULL, 30000, NULL, 1200, 'Uno', 'onMarketOffer', 'Permainan untuk anak', 'uno.jpg', NULL, 1, NULL, NULL, NULL, NULL),
+(29, 36, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(29, 36, 14, 1, 100000, 10000, 4000, 'Topi New York', 'onDelivery', 'Warna Hitam', 'topi.jpg', NULL, 1, 'yes sir.png', '215', NULL, NULL),
+(14, 39, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 39, 27, 1, 450000, 25000, 18000, 'tas jalan', 'onDelivery', 'tas berwarna hitam ', 'tas.jpg', NULL, 1, 'bukti pembayaran.jpg', '401', 'verified', NULL);
 
 -- --------------------------------------------------------
 

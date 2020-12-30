@@ -16,9 +16,9 @@
 </style>
   
     <div class="container">
-        <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 1000px; margin-top: 5%;">
+        <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 1000px;">
             <form action="beliBarangWanted" method="GET">
-                <h2>Penitipan Barang</h2> 
+                <h3><b>Penitipan Barang</b></h3>
                 <br><br>
                     <div class="column1">
                     <table>
@@ -76,16 +76,16 @@
                         echo"<input type='hidden' name='namaUser' value='$value->namaUser'>";
                         echo"<input type='hidden' name='nohp' value='$value->nohp'>";
                         echo"<input type='hidden' name='alamat' value='$value->alamat'>";
-                        echo"<figure><img src='image/market/".$value->gambarBarang."'width=250px height=150px></figure><br>"; 
+                        echo"<figure><img src='image/market/".$value->gambarBarang."'width=150px height=100px></figure><br>"; 
                     }
                     ?>
                     <br> 
-                    <br><br><br>
                     <p style="color:red; font-size:12px;">Note : <br>Sebelum melakukan pembelian barang, silakan menghubungi customer terlebih dahulu
                     untuk negosiasi harga (Harga Ongkir dan Harga Barang). Untuk kontak customer bisa dilihat pada profilenya.</p>
-                    <div class="w3-right" style="padding-top: 100px; padding-right:1%">    
-                    <br><br><br><br><br> 
-                    <input type='submit' class="w3-btn w3-theme" name="beliBarang" style="" value='Accept'>
+                    <!-- <div class="w3-right" style="padding-right:1%; ">     -->
+                    <br>
+                    <div>
+                        <input type='submit' class="w3-btn w3-theme" name="beliBarang" style="width:100%;" value='Accept'>
                     </div>
                 </div>     
             </form>
