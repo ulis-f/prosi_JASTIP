@@ -306,6 +306,12 @@
 				$userctrl->insertPembayaranKeAdmin();
 				header('location: index'); 
 				break;
+			case $baseURL . '/statusTracking':    
+				require_once "controller/userController.php";
+				$userctrl = new userController();
+				$userctrl->statusTracking();
+				header('location: trackingTraveller'); 
+				break;
 			case $baseURL . '/persetujuanPembayaran':    
 				require_once "controller/adminController.php";
 				$userctrl = new adminController();
@@ -319,5 +325,3 @@
 		}
 	
 	}
-		
-?>
