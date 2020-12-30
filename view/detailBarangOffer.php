@@ -17,9 +17,9 @@
 </style>
   
     <div class="container">
-        <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 1000px; margin-top: 5%;">
+        <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 800px;">
             <form action="beliBarangOffer" method="GET">
-                <h2>Penitipan Barang</h2> <br><br>
+                <h3><b>Penitipan Barang</b></h3> <br>
                     <div class="column1">
                     <table>
                         <tr>
@@ -99,10 +99,10 @@
                     
                     <p style="color:red; font-size:12px;">Note : <br>Sebelum melakukan pembelian barang, silakan menghubungi traveller terlebih dahulu
                     untuk negosiasi harga (Harga Ongkir). Untuk kontak traveller bisa dilihat pada profilenya.</p>
-                    <div class="w3-right" style="padding-top: 100px; padding-right:1%">    
-                    <br><br><br><br><br> 
-                    <input type='submit' class="w3-btn w3-theme" name="beliBarang" style="" value='Beli Barang'>
-                </div>   
+                    <!-- <div class="w3-right" style="padding-top: 100px; padding-right:1%">     -->
+                    <br>
+                    <input type='submit' class="w3-btn w3-theme" name="beliBarang" style="width:100%;" value='Beli Barang'>
+                <!-- </div>    -->
             </form>
             </div>
 

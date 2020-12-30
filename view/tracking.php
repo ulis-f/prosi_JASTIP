@@ -77,112 +77,119 @@
                         <div class='column' style='border-right:#dddddd 1px solid;'>
                             <div>
                                 <div style='width: 30%; height: 50px; float: left;'>";
-                    echo "<figure><img src='image/market/" . $value->gambarBarang . "' style='width: 100%; height: 100%;'></figure><br>
+                                echo "<figure><img src='image/market/" . $value->gambarBarang . "' style='width: 100%; height: 100%;'></figure><br>
                                 </div>
     
                                 <div style='width: 30%; float: left; '>";
-                    echo "<h5><b>" . $value->namaBarang . "</b></h5>";
-                    echo "<p><b style='color:#ffa500'>" . $value->hargaTotal . "</b></p>
+                                echo "<h5><b>" . $value->namaBarang . "</b></h5>";
+                                echo "<p><b style='color:#ffa500'>" . $value->hargaTotal . "</b></p>
                                 </div>
                             </div>
-                        </div>
+                        </div>";
+                    
+                }?>
                         
                         
                         <div class='column1'>
                         
-                            <button onclick='document.getElementById('detailBarang').style.display='block'' class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;margin-top: 5%;border-radius: 25px;'>Detail Pemesanan</button>
+                            <button onclick="document.getElementById('detailBarang').style.display='block'" class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;margin-top: 5%;border-radius: 25px;'>Detail Pemesanan</button>
 
                                 <div id='detailBarang' class='w3-modal'>
                                 <div class='w3-modal-content'>  
                                 <div class='w3-container'>
-                                    <span onclick='document.getElementById('detailBarang').style.display='none'' class='w3-button w3-display-topright'>&times;</span>
+                                    <span onclick="document.getElementById('detailBarang').style.display='none'" class='w3-button w3-display-topright'>&times;</span>
                                     <table style='width:100%;border-collapse: collapse; margin-top:5%;'>
-                                        <tr>";
+                                        <tr>
+                    
+                                    <?php
+                                    foreach ($hasil as $key => $value) {
+
+                                        echo "<input type='hidden' name='kotaAwal' value='$value->kotaAwal'>";
+                                        echo "<td style='float:left;border-collapse: collapse;'>" . $value->kotaAwal . "</td>";
+                                        echo "<td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:20px'></i></td>";
+                                        echo "<td style='float:right;'>" . $value->kotaTujuan . "</td>";
 
 
-                    echo "<input type='hidden' name='kotaAwal' value='$value->kotaAwal'>";
-                    echo "<td style='float:left;border-collapse: collapse;'>" . $value->kotaAwal . "</td>";
-                    echo "<td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:20px'></i></td>";
-                    echo "<td style='float:right;'>" . $value->kotaTujuan . "</td>";
+                                        echo "</tr>";
+                                    }?>
+                                        <tr>
 
+                                    <?php
+                                        foreach ($hasil as $key => $value) {
+                                            echo "<td><b>" . $value->waktuAwal . "</b></td>";
+                                            echo "<td style='float:right;'><b>" . $value->waktuAkhir . "</b></td>";
+                                        }
 
-                    echo "</tr>
-                                        <tr>";
-
-                    foreach ($hasil as $key => $value) {
-                        echo "<td><b>" . $value->waktuAwal . "</b></td>";
-                        echo "<td style='float:right;'><b>" . $value->waktuAkhir . "</b></td>";
-                    }
-
-                    echo "</tr>
+                                        echo "</tr>
                                     </table>
                                     <br>
                                     <div>
                                         <div style='width: 40%; float: left; height: 150px;'>";
 
-                    foreach ($hasil as $key => $value) {
-                        echo "<figure><img src='image/market/" . $value->gambarBarang . "'width=100% height=100%;></figure><br>";
-                    }
+                                        foreach ($hasil as $key => $value) {
+                                            echo "<figure><img src='image/market/" . $value->gambarBarang . "'width=100% height=100%;></figure><br>";
+                                        }
 
-                    echo "</div>
+                                    echo "</div>
             
                                     <div style='width: 60%; float: right; padding-left: 10%; height: 150px;'>";
 
-                    foreach ($hasil as $key => $value) {
-                        echo "<input type='hidden' name='namaBarang' value='$value->namaBarang'>";
-                        echo "<h4>" . $value->namaBarang . "</h4>";
-                    }
+                                    foreach ($hasil as $key => $value) {
+                                        echo "<input type='hidden' name='namaBarang' value='$value->namaBarang'>";
+                                        echo "<h4>" . $value->namaBarang . "</h4>";
+                                    }
 
-                    foreach ($hasil as $key => $value) {
-                        echo "<input type='hidden' name='deskripsi' value='$value->deskripsiBarang'>";
-                        echo "<p>" . $value->deskripsiBarang . "</p>";
-                    }
+                                    foreach ($hasil as $key => $value) {
+                                        echo "<input type='hidden' name='deskripsi' value='$value->deskripsiBarang'>";
+                                        echo "<p>" . $value->deskripsiBarang . "</p>";
+                                    }
 
-                    echo "<p class='' style='width:100%;border-bottom:2px solid #dddddd'></p>
+                                        echo "<p class='' style='width:100%;border-bottom:2px solid #dddddd'></p>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <table class='table1'>
-                                    <tr>
-                                        <td>Harga Barang</td>
-                                        <td>Rp</td>";
+                                    <table class='table1'>
+                                        <tr>
+                                            <td>Harga Barang</td>
+                                            <td>Rp</td>";
 
-                    foreach ($hasil as $key => $value) {
-                        echo "<input type='hidden' name='hargaBarang' value='$value->hargaBarang'>";
-                        echo "<td style='float: right;'>" . $value->hargaBarang . "</td>";
-                    }
+                                    foreach ($hasil as $key => $value) {
+                                        echo "<input type='hidden' name='hargaBarang' value='$value->hargaBarang'>";
+                                        echo "<td style='float: right;'>" . $value->hargaBarang . "</td>";
+                                    }
 
-                    echo "</tr>
-                                    <tr>
-                                        <td>Tip Traveller</td>
-                                        <td>Rp</td>";
+                                        echo "</tr>
+                                        <tr>
+                                            <td>Tip Traveller</td>
+                                            <td>Rp</td>";
 
-                    foreach ($hasil as $key => $value) {
-                        echo "<input type='hidden' name='tip' value='$value->hargaOngkir'>";
-                        echo "<td style='float: right;'>" . $value->hargaOngkir . "</td>";
-                    }
+                                    foreach ($hasil as $key => $value) {
+                                        echo "<input type='hidden' name='tip' value='$value->hargaOngkir'>";
+                                        echo "<td style='float: right;'>" . $value->hargaOngkir . "</td>";
+                                    }
 
-                    echo "</tr>
-                                    <tr>
-                                        <td>TitipAja Fee</td>
-                                        <td>Rp</td>";
+                                    echo "</tr>
 
-                    foreach ($hasil as $key => $value) {
-                        echo "<input type='hidden' name='fee' value='$value->hargaJasa'>";
-                        echo "<td style='float: right;'>" . $value->hargaJasa . "</td>";
-                    }
+                                        <tr>
+                                            <td>TitipAja Fee</td>
+                                            <td>Rp</td>";
 
-                    echo "</tr>
-                                    <tr>
-                                        <td>Kode Unik Transaksi</td>
-                                        <td>Rp</td>";
+                                        foreach ($hasil as $key => $value) {
+                                            echo "<input type='hidden' name='fee' value='$value->hargaJasa'>";
+                                            echo "<td style='float: right;'>" . $value->hargaJasa . "</td>";
+                                        }
 
-                    foreach ($hasil as $key => $value) {
-                        echo "<input type='hidden' name='kodeUnik' value='$value->idUser1'>";
-                        echo "<td style='float: right;'>" . $value->idUser1 . "</td>";
-                    }
+                                    echo "</tr>
+                                        <tr>
+                                            <td>Kode Unik Transaksi</td>
+                                            <td>Rp</td>";
 
-                    echo "</tr>
+                                        foreach ($hasil as $key => $value) {
+                                            echo "<input type='hidden' name='kodeUnik' value='$value->idUser1'>";
+                                            echo "<td style='float: right;'>" . $value->idUser1 . "</td>";
+                                        }
+
+                                echo "</tr>
                 
                                 </table>
                                 <br>
@@ -193,14 +200,14 @@
                                         <td style='width:66%;'><b>Total Harga</b></td>
                                         <td>Rp</td>";
 
-                    foreach ($hasil as $key => $value) {
-                        echo "<input type='hidden' name='totalHarga' value='$value->idTrip'>";
-                        echo "<input type='hidden' name='idPenerima' value='$value->idUser1'>";
-                        echo "<input type='hidden' name='idPembeli' value='$value->idUser2'>";
-                        echo "<td style='float: right; width:30%: color:#ffa500'><b style='color:#ffa500'>" . $value->idTrip . "</b></td>";
-                    }
+                                    foreach ($hasil as $key => $value) {
+                                        echo "<input type='hidden' name='totalHarga' value='$value->idTrip'>";
+                                        echo "<input type='hidden' name='idPenerima' value='$value->idUser1'>";
+                                        echo "<input type='hidden' name='idPembeli' value='$value->idUser2'>";
+                                        echo "<td style='float: right; width:30%: color:#ffa500'><b style='color:#ffa500'>" . $value->idTrip . "</b></td>";
+                                    }
 
-                    echo "</tr>
+                                echo "</tr>
                                 </table> 
                             
                                 </div>
@@ -211,7 +218,7 @@
                         
                     </div>
                 </fieldset>";
-                }
+                
                 ?>
             </div>
             <?php
@@ -231,7 +238,7 @@
                                     <p><b style='color:#ffa500'>Rp. " . $value->hargaTotal . "</b></p>
                                 </div>
                             </div>
-                        </div>
+                        </div>  
 
 
                         <div class='column1'>
