@@ -21,7 +21,7 @@
 <fieldset class="" style="margin-left:2%; margin-right:2%; border: #6699cc 1px solid">
     <div class="container">
         <div class="w3-card-4 w3-white" style="padding: 50px; height: 800px; margin-top: 5%;">
-
+  
             <?php
             foreach ($result as $key => $value) {
                 echo "<fieldset>
@@ -39,20 +39,20 @@
                                 <h5>" . $value->kotaTujuan . "</h5>
                             </td>
                         </div>";
-            }?>
+            
             
 
-                        <td rowspan='2' onclick="document.getElementById('ubahStatus').style.display='block'" style='width: 10%; padding: 10px;border-left:#dddddd 1px solid;'>
+                    echo"<td rowspan='2' onclick="."document.getElementById('ubahStatus').style.display='block'"." style='width: 10%; padding: 10px;border-left:#dddddd 1px solid;'>
                         <button class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;margin-top: 5%;border-radius: 25px;'>Ubah Status</button></td>
                     </tr>
 
-                    <tr>
-            <?php 
+                    <tr>";
+            
             foreach ($result as $key => $value) {
                 echo "<td style='float:left; padding: 10px;'><b>" . $value->waktuAwal . "</b></td>
                         <td style='float: right; padding: 10px;'><b>" . $value->waktuAkhir . "</b></td>";
-            }?>
-                    </tr>
+            }
+                echo"</tr>
                 </table>
             </fieldset>
             
@@ -60,25 +60,25 @@
             <div id='ubahStatus' class='w3-modal'>
                 <div class='w3-modal-content' style='border-radius: 15px; width: 55%;'>
                     <div class='w3-container'>
-                        <span onclick="document.getElementById('ubahStatus').style.display='none'" class='w3-button w3-display-topright'>&times;</span>
+                        <span onclick="."document.getElementById('ubahStatus').style.display='none'"." class='w3-button w3-display-topright'>&times;</span>
 
                         <div style='margin-top: 25px; margin-bottom: 20px; margin-right: 20px;'>
                             <div class='container'>
                                 <div class='btn-group-vertical' style='width:50%; float: left; margin-right: 2%;'>
-                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' class='active' name='statusBarang' id='pesananDiproses' value='pesananDiproses' onclick="toggleVisibility('status1');">Pesanan Diproses</button>
-                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananKirimKeIndo' value='pesananKirimKeIndo' onclick="toggleVisibility('status2');">Pesanan Dikirim Ke Indonesia</button>
-                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananTibaDiIndo' value='pesananTibaDiIndo' onclick="toggleVisibility('status3');">Pesanan Tiba Di Indonesia</button>
-                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananDikirim' value='pesananDikirim' onclick="toggleVisibility('status4');">Pesanan Dikirim</button>
-                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananDiterima' value='pesananDiterima' onclick="toggleVisibility('status5');">Pesanan Diterima</button>
+                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' class='active' name='statusBarang' id='pesananDiproses' value='pesananDiproses' onclick="."toggleVisibility('status1');".">Pesanan Diproses</button>
+                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananKirimKeIndo' value='pesananKirimKeIndo' onclick="."toggleVisibility('status2');".">Pesanan Dikirim Ke Indonesia</button>
+                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananTibaDiIndo' value='pesananTibaDiIndo' onclick="."toggleVisibility('status3');".">Pesanan Tiba Di Indonesia</button>
+                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananDikirim' value='pesananDikirim' onclick="."toggleVisibility('status4');".">Pesanan Dikirim</button>
+                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananDiterima' value='pesananDiterima' onclick="."toggleVisibility('status5');".">Pesanan Diterima</button>
                                 </div>
 
 
-                                <form action='statusTracking' method='POST' enctype='multipart/form-data'>
-                                    <?php 
+                                <form action='statusTracking' method='POST' enctype='multipart/form-data'>";
+                                    
                                     foreach ($result as $key => $value) {
-                                    echo"<input type = 'hidden' name = 'namaBarang' value = '" . $value->namaBarang . "'";
-                                    }?>
-                                </form>
+                                        echo"<input type = 'hidden' name = 'namaBarang' value = '" . $value->namaBarang . "'";
+                                    }
+                            echo"</form>
 
                                 <div class='inner_div'>
                                     <div id='status1'>
@@ -157,7 +157,8 @@
 
                 </div>
             </div>   
-        </div>
+        ";}?></div>
+    
     </div>
 </fieldset>
 

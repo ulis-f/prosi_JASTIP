@@ -68,10 +68,12 @@
                 border-top-left-radius: 25px; border-bottom-right-radius: 25px; border-top-right-radius: 25px;" onclick="openContent(this,'id5')">Pesanan Diterima</button>
             </div>
 
-            <div id="id1" class="tabs">
-                ini halaman pesanan di proses
-                <?php
-                foreach ($hasil as $key => $value) {
+             
+            <?php
+            foreach ($hasil as $key => $value) {
+                echo"<div id='id1' class='tabs'>
+                ini halaman pesanan di proses";
+                
                     echo "<fieldset class='' style='border:#dddddd 1px solid'>
                     <div>
                         <div class='column' style='border-right:#dddddd 1px solid;'>
@@ -85,36 +87,34 @@
                                 echo "<p><b style='color:#ffa500'>" . $value->hargaTotal . "</b></p>
                                 </div>
                             </div>
-                        </div>";
-                    
-                }?>
+                        </div>
                         
                         
                         <div class='column1'>
                         
-                            <button onclick="document.getElementById('detailBarang').style.display='block'" class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;margin-top: 5%;border-radius: 25px;'>Detail Pemesanan</button>
+                        <button onclick="."document.getElementById('detailBarang').style.display='block'"." class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;margin-top: 5%;border-radius: 25px;'>Detail Pemesanan</button>
 
                                 <div id='detailBarang' class='w3-modal'>
                                 <div class='w3-modal-content'>  
                                 <div class='w3-container'>
-                                    <span onclick="document.getElementById('detailBarang').style.display='none'" class='w3-button w3-display-topright'>&times;</span>
+                                <span onclick="."document.getElementById('detailBarang').style.display='none'"." class='w3-button w3-display-topright'>&times;</span>
                                     <table style='width:100%;border-collapse: collapse; margin-top:5%;'>
-                                        <tr>
+                                        <tr>";
                     
-                                    <?php
+                                    
                                     foreach ($hasil as $key => $value) {
 
                                         echo "<input type='hidden' name='kotaAwal' value='$value->kotaAwal'>";
                                         echo "<td style='float:left;border-collapse: collapse;'>" . $value->kotaAwal . "</td>";
                                         echo "<td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:20px'></i></td>";
                                         echo "<td style='float:right;'>" . $value->kotaTujuan . "</td>";
+                                    }
 
+                                        echo "</tr>
+                                    
+                                        <tr>";
 
-                                        echo "</tr>";
-                                    }?>
-                                        <tr>
-
-                                    <?php
+                                    
                                         foreach ($hasil as $key => $value) {
                                             echo "<td><b>" . $value->waktuAwal . "</b></td>";
                                             echo "<td style='float:right;'><b>" . $value->waktuAkhir . "</b></td>";
@@ -218,7 +218,7 @@
                         
                     </div>
                 </fieldset>";
-                
+                }
                 ?>
             </div>
             <?php
@@ -243,12 +243,12 @@
 
                         <div class='column1'>
 
-                            <button onclick='document.getElementById('detailBarang').style.display='block'' class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;margin-top: 5%;border-radius: 25px;'>Detail Pemesanan</button>
+                            <button onclick="."document.getElementById('detailBarang').style.display='block'"." class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;margin-top: 5%;border-radius: 25px;'>Detail Pemesanan</button>
 
                             <div id='detailBarang' class='w3-modal'>
                                 <div class='w3-modal-content'>
                                     <div class='w3-container'>
-                                        <span onclick='document.getElementById('detailBarang').style.display='none'' class='w3-button w3-display-topright'>&times;</span>
+                                        <span onclick="."document.getElementById('detailBarang').style.display='none'"." class='w3-button w3-display-topright'>&times;</span>
                                         <table style='width:100%;border-collapse: collapse; margin-top:5%;''>
                                             <tr>";
 
@@ -389,12 +389,12 @@
 
                         <div class='column1'>
 
-                            <button onclick='document.getElementById('detailBarang').style.display='block'' class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;margin-top: 5%;border-radius: 25px;'>Detail Pemesanan</button>
+                            <button onclick="."document.getElementById('detailBarang').style.display='block'"." class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;margin-top: 5%;border-radius: 25px;'>Detail Pemesanan</button>
 
                             <div id='detailBarang' class='w3-modal'>
                                 <div class='w3-modal-content'>
                                     <div class='w3-container'>
-                                        <span onclick='document.getElementById('detailBarang').style.display='none'' class='w3-button w3-display-topright'>&times;</span>
+                                        <span onclick="."document.getElementById('detailBarang').style.display='none'"." class='w3-button w3-display-topright'>&times;</span>
                                         <table style='width:100%;border-collapse: collapse; margin-top:5%;'>
                                             <tr>";
 
@@ -542,12 +542,12 @@
                                 <button class='btn btn-danger btn-sm' style='float: right;padding: 9px 7px;margin-top: 5%;border-radius: 25px;'><a href='https://www.jne.co.id/id/tracking/trace'>
                                         Lacak Pesanan</a></button>
 
-                                <button onclick='document.getElementById('detailBarang').style.display='block'' class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;margin-top: 5%;border-radius: 25px;'>Detail Pemesanan</button>
+                                <button onclick="."document.getElementById('detailBarang').style.display='block'"." class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;margin-top: 5%;border-radius: 25px;'>Detail Pemesanan</button>
 
                                 <div id='detailBarang' class='w3-modal'>
                                     <div class='w3-modal-content'>
                                         <div class='w3-container'>
-                                            <span onclick='document.getElementById('detailBarang').style.display='none'' class='w3-button w3-display-topright'>&times;</span>
+                                            <span onclick="."document.getElementById('detailBarang').style.display='none'"." class='w3-button w3-display-topright'>&times;</span>
                                             <table style='width:100%;border-collapse: collapse; margin-top:5%;'>
                                                 <tr>";
 
