@@ -1455,13 +1455,16 @@ class UserController
 		$idUser = $query_idUser_result[0]['idUser'];
 		$namaBank = $_POST['namaBank'];
 
+		$query_namaBank = "SELECT * FROM `bank` WHERE `namaBank` LIKE '$namaBank' ";
+		$query_namaBank_result = $this->db->executeSelectQuery($query_namaBank);
+		$idBank = $query_namaBank_result[0]['idBank'];  
 
 		$oldname = $_FILES['buktiPembayaran']['tmp_name'];
 		$newname = dirname(__DIR__) . "\\view\image\pembayaran\\" . $buktiPembayaran;
 		move_uploaded_file($oldname, $newname);
 
-		$query = "UPDATE transaksi SET buktiPembayaran ='$buktiPembayaran', statusBarang = 'onPaymentProgress', statusPembayaran = 'pending', namaBankPembayaran = '$namaBank' WHERE idUser2 = '$idUser' AND namaBarang = '$namaBarang' ";
-		$query_result = $this->db->executeNonSelectQuery($query);
+		$query = "UPDATE transaksi SET buktiPembayaran ='$buktiPembayaran', statusBarang = 'onPaymentProgress', statusPembayaran = 'pending', idBankPembayaran = '$idBank' WHERE idUser2 = '$idUser' AND namaBarang = '$namaBarang' ";
+		$query_result = $this->db->executeNonSelectQuery($query); 
 	}
 
 	// public function getTracking(){
