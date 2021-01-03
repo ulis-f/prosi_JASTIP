@@ -18,13 +18,13 @@
 </ul>
 
 <fieldset class="" style="margin-left:2%; margin-right:2%; border: #6699cc 1px solid">
-<div class="container">
+    <div class="container">
         <div class="w3-card-4 w3-white" style="padding: 50px; height: 800px; margin-top: 2%;">
 
             <div class="w3-bar" style="margin-bottom: 3%;">
                 <h5><b>Status Pesanan</b></h5>
                 <button class="btn btn-outline-success tablink w3-green" type="button" style="border-bottom-left-radius: 25px; 
-                border-top-left-radius: 25px; border-bottom-right-radius: 25px; border-top-right-radius: 25px;"  onclick="openContent(this,'id1')">Pesanan Diproses</button>
+                border-top-left-radius: 25px; border-bottom-right-radius: 25px; border-top-right-radius: 25px;" onclick="openContent(this,'id1')">Pesanan Diproses</button>
                 <button class="btn btn-outline-success tablink" type="button" style="border-bottom-left-radius: 25px; 
                 border-top-left-radius: 25px; border-bottom-right-radius: 25px; border-top-right-radius: 25px;" onclick="openContent(this,'id2')">Pesanan Dikirim Ke Indonesia</button>
                 <button class="btn btn-outline-success tablink" type="button" style="border-bottom-left-radius: 25px; 
@@ -32,17 +32,20 @@
                 <button class="btn btn-outline-success tablink" type="button" style="border-bottom-left-radius: 25px; 
                 border-top-left-radius: 25px; border-bottom-right-radius: 25px; border-top-right-radius: 25px;" onclick="openContent(this,'id4')">Pesanan Dikirim</button>
                 <button class="btn btn-outline-success tablink" type="button" style="border-bottom-left-radius: 25px; 
-                border-top-left-radius: 25px; border-bottom-right-radius: 25px; border-top-right-radius: 25px;" onclick="openContent(this,'id5')">Pesanan Diterima</button>  
+                border-top-left-radius: 25px; border-bottom-right-radius: 25px; border-top-right-radius: 25px;" onclick="openContent(this,'id5')">Pesanan Diterima</button>
             </div>
 
             <div id="id1" class="tabs">
                 <?php
-                foreach ($result as $key => $value) {
-                    echo "<fieldset>
+                foreach ($result1 as $key => $value) {
+                    echo "
+                    <form action='statusTracking' method='POST' enctype='multipart/form-data'>
+                    <fieldset>
                     <table class=''>
                         <tr>
                             <td style='float: left; padding: 3px;'><h5>" . $value->kotaAwal . "</h5></td>
                             <td style='float: right; padding-right: 10px ;'><h5>" . $value->kotaTujuan . "</h5></td>
+                            <input type='hidden' name='namaBarang' value='$value->namaBarang'>
                             <td rowspan='2' style='width: 15%; border-left:#dddddd 1px solid; padding-left:10px;color:#ffa500;font-size:15px;'><b>" . $value->namaBarang . "</b></td>
                             <td rowspan='2' style='width: 3%; padding: 3px;'><i class='fa fa-angle-double-right' style='font-size:25px;'></i></td>
                             <td style='width: 40%; padding: 10px; '><input required type='checkbox' name='pesananKirimKeIndo' value='pesananKirimKeIndo'>
@@ -53,26 +56,30 @@
                         <tr>
                             <td style='float:left; padding: 3px;font-size:13px;'><b>" . $value->waktuAwal . "</b></td>
                             <td style='float: right; padding-right: 10px;font-size:13px;'><b>" . $value->waktuAkhir . "</b></td>
-                            <td><button class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;border-radius: 25px;'>Ubah Status</button></td> 
+                            <td><input type='submit' class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;border-radius: 25px;' value ='Ubah Status'></td> 
                         </tr>
                             
             
                     
                             
                     </table>
-                </fieldset>";
-                }?>
+                </fieldset>
+                </form>";
+                } ?>
             </div>
 
             <div id="id2" class="tabs" style="display: none;">
                 ini halaman pesanan di kirim ke indonesia
                 <?php
-                foreach ($result as $key => $value) {
-                    echo "<fieldset>
+                foreach ($result2 as $key => $value) {
+                    echo "
+                    <form action='statusTracking' method='POST' enctype='multipart/form-data'>
+                    <fieldset>
                     <table class=''>
                         <tr>
                             <td style='float: left; padding: 3px;'><h5>" . $value->kotaAwal . "</h5></td>
                             <td style='float: right; padding-right: 10px ;'><h5>" . $value->kotaTujuan . "</h5></td>
+                            <input type='hidden' name='namaBarang' value='$value->namaBarang'>
                             <td rowspan='2' style='width: 15%; border-left:#dddddd 1px solid; padding-left:10px;color:#ffa500;font-size:15px;'><b>" . $value->namaBarang . "</b></td>
                             <td rowspan='2' style='width: 3%; padding: 3px;'><i class='fa fa-angle-double-right' style='font-size:25px;'></i></td>
                             <td style='width: 40%; padding: 10px; '><input required type='checkbox' name='pesananTibaDiIndo' value='pesananTibaDiIndo'>
@@ -83,23 +90,27 @@
                         <tr>
                             <td style='float:left; padding: 3px;font-size:13px;'><b>" . $value->waktuAwal . "</b></td>
                             <td style='float: right; padding-right: 10px;font-size:13px;'><b>" . $value->waktuAkhir . "</b></td>
-                            <td><button class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;border-radius: 25px;'>Ubah Status</button></td> 
+                            <td><input type='submit' class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;border-radius: 25px;' value ='Ubah Status'></td> 
                         </tr>
                             
                     </table>
-                </fieldset>";
-                }?>
+                </fieldset>
+                </form>";
+                } ?>
             </div>
-        
+
             <div id="id3" class="tabs" style="display: none">
                 Ini Halaman pesanan tiba di indonesia
                 <?php
-                foreach ($result as $key => $value) {
-                    echo "<fieldset>
+                foreach ($result3 as $key => $value) {
+                    echo "
+                    <form action='statusTracking' method='POST' enctype='multipart/form-data'>
+                    <fieldset>
                     <table class=''>
                         <tr>
                             <td style='float: left; padding: 3px;'><h5>" . $value->kotaAwal . "</h5></td>
                             <td style='float: right; padding-right: 10px ;'><h5>" . $value->kotaTujuan . "</h5></td>
+                            <input type='hidden' name='namaBarang' value='$value->namaBarang'>
                             <td rowspan='2' style='width: 15%; border-left:#dddddd 1px solid; padding-left:10px;color:#ffa500;font-size:15px;'><b>" . $value->namaBarang . "</b></td>
                             <td rowspan='2' style='width: 3%; padding: 3px;'><i class='fa fa-angle-double-right' style='font-size:25px;'></i></td>
                             <td style='width: 40%; padding: 10px; '><input required type='checkbox' name='pesananDikirim' value='pesananDikirim'>
@@ -111,24 +122,28 @@
                             <td style='float:left; padding: 3px;font-size:13px;'><b>" . $value->waktuAwal . "</b></td>
                             <td style='float: right; padding-right: 10px;font-size:13px;'><b>" . $value->waktuAkhir . "</b></td>
                             <td>
-                            <input required class='w3-input w3-border w3-border-theme' style='float:left;' placeholder='Masukkan No.Resi' type='text' id='noResi'>
-                            <button class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;border-radius: 25px;'>Ubah Status</button>
+                            <input required class='w3-input w3-border w3-border-theme' style='float:left;' placeholder='Masukkan No.Resi' type='text' id='noResi' name='noresi'>
+                            <input type='submit' class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;border-radius: 25px;' value ='Ubah Status'>
                             </td> 
                         </tr>
                             
                     </table>
-                </fieldset>";
-                }?>
-            </div>  
+                </fieldset>
+                </form>";
+                } ?>
+            </div>
 
             <div id="id4" class="tabs" style="display: none;">
                 <?php
-                foreach ($result as $key => $value) {
-                    echo "<fieldset>
+                foreach ($result4 as $key => $value) {
+                    echo "
+                    <form action='statusTracking' method='POST' enctype='multipart/form-data'>
+                    <fieldset>
                     <table class=''>
                         <tr>
                             <td style='float: left; padding: 3px;'><h5>" . $value->kotaAwal . "</h5></td>
                             <td style='float: right; padding-right: 10px ;'><h5>" . $value->kotaTujuan . "</h5></td>
+                            <input type='hidden' name='namaBarang' value='$value->namaBarang'>
                             <td rowspan='2' style='width: 15%; border-left:#dddddd 1px solid; padding-left:10px;color:#ffa500;font-size:15px;'><b>" . $value->namaBarang . "</b></td>
                             <td rowspan='2' style='width: 3%; padding: 3px;'><i class='fa fa-angle-double-right' style='font-size:25px;'></i></td>
                             <td style='width: 40%; padding: 10px; '><input required type='checkbox' name='pesananDiterima' value='pesananDiterima'>
@@ -139,18 +154,19 @@
                         <tr>
                             <td style='float:left; padding: 3px;font-size:13px;'><b>" . $value->waktuAwal . "</b></td>
                             <td style='float: right; padding-right: 10px;font-size:13px;'><b>" . $value->waktuAkhir . "</b></td>
-                            <td><button class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;border-radius: 25px;'>Ubah Status</button></td> 
+                            <td><input type='submit' class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;border-radius: 25px;' value ='Ubah Status'></td> 
                         </tr>
                             
                     </table>
-                </fieldset>";
-                }?>
+                </fieldset>
+                </form>";
+                } ?>
             </div>
-        
-            <div id="id5" class="tabs" style="display: none"> 
+
+            <div id="id5" class="tabs" style="display: none">
                 Ini Halaman diterima
                 <?php
-                foreach ($result as $key => $value) {
+                foreach ($result5 as $key => $value) {
                     echo "<fieldset>
                     <table class=''>
                         <tr>
@@ -166,17 +182,17 @@
                             
                     </table>
                 </fieldset>";
-                }?>
-            </div>  
+                } ?>
+            </div>
         </div>
-    </div> 
+    </div>
 </fieldset>
 
 
 <fieldset class="" style="margin-left:2%; margin-right:2%; border: #6699cc 1px solid">
     <div class="container">
         <div class="w3-card-4 w3-white" style="padding: 50px; height: 800px; margin-top: 5%;">
-  
+
             <?php
             foreach ($result as $key => $value) {
                 echo "<fieldset>
@@ -194,20 +210,20 @@
                                 <h5>" . $value->kotaTujuan . "</h5>
                             </td>
                         </div>";
-            
-            
 
-                    echo"<td rowspan='2' onclick="."document.getElementById('ubahStatus').style.display='block'"." style='width: 10%; padding: 10px;border-left:#dddddd 1px solid;'>
+
+
+                echo "<td rowspan='2' onclick=" . "document.getElementById('ubahStatus').style.display='block'" . " style='width: 10%; padding: 10px;border-left:#dddddd 1px solid;'>
                         <button class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;margin-top: 5%;border-radius: 25px;'>Ubah Status</button></td>
                     </tr>
 
                     <tr>";
-            
-           
+
+
                 echo "<td style='float:left; padding: 10px;'><b>" . $value->waktuAwal . "</b></td>
                         <td style='float: right; padding: 10px;'><b>" . $value->waktuAkhir . "</b></td>";
-            
-                echo"</tr>
+
+                echo "</tr>
                 </table>
             </fieldset>
             
@@ -215,25 +231,25 @@
             <div id='ubahStatus' class='w3-modal'>
                 <div class='w3-modal-content' style='border-radius: 15px; width: 55%;'>
                     <div class='w3-container'>
-                        <span onclick="."document.getElementById('ubahStatus').style.display='none'"." class='w3-button w3-display-topright'>&times;</span>
+                        <span onclick=" . "document.getElementById('ubahStatus').style.display='none'" . " class='w3-button w3-display-topright'>&times;</span>
 
                         <div style='margin-top: 25px; margin-bottom: 20px; margin-right: 20px;'>
                             <div class='container'>
                                 <div class='btn-group-vertical' style='width:50%; float: left; margin-right: 2%;'>
-                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' class='active' name='statusBarang' id='pesananDiproses' value='pesananDiproses' onclick="."toggleVisibility('status1');".">Pesanan Diproses</button>
-                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananKirimKeIndo' value='pesananKirimKeIndo' onclick="."toggleVisibility('status2');".">Pesanan Dikirim Ke Indonesia</button>
-                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananTibaDiIndo' value='pesananTibaDiIndo' onclick="."toggleVisibility('status3');".">Pesanan Tiba Di Indonesia</button>
-                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananDikirim' value='pesananDikirim' onclick="."toggleVisibility('status4');".">Pesanan Dikirim</button>
-                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananDiterima' value='pesananDiterima' onclick="."toggleVisibility('status5');".">Pesanan Diterima</button>
+                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' class='active' name='statusBarang' id='pesananDiproses' value='pesananDiproses' onclick=" . "toggleVisibility('status1');" . ">Pesanan Diproses</button>
+                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananKirimKeIndo' value='pesananKirimKeIndo' onclick=" . "toggleVisibility('status2');" . ">Pesanan Dikirim Ke Indonesia</button>
+                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananTibaDiIndo' value='pesananTibaDiIndo' onclick=" . "toggleVisibility('status3');" . ">Pesanan Tiba Di Indonesia</button>
+                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananDikirim' value='pesananDikirim' onclick=" . "toggleVisibility('status4');" . ">Pesanan Dikirim</button>
+                                    <button type='button' class='btn tablink w3-light-grey w3-text-theme' name='statusBarang' id='pesananDiterima' value='pesananDiterima' onclick=" . "toggleVisibility('status5');" . ">Pesanan Diterima</button>
                                 </div>
 
 
                                 <form action='statusTracking' method='POST' enctype='multipart/form-data'>";
-                                    
-                                    
-                                    echo"<input type = 'hidden' name = 'namaBarang' value = '" . $value->namaBarang . "'";
-                                    
-                            echo"</form>
+
+
+                echo "<input type = 'hidden' name = 'namaBarang' value = '" . $value->namaBarang . "'";
+
+                echo "</form>
 
                                 <div class='inner_div'>
                                     <div id='status1'>
@@ -312,8 +328,9 @@
 
                 </div>
             </div>   
-        ";}?></div>
-    
+        ";
+            } ?></div>
+
     </div>
 </fieldset>
 
@@ -341,5 +358,24 @@
                 div.style.display = "none";
             }
         }
-    }  
+    }
+
+    function openContent(obj, idContentContainer) {
+        var i, x, tablinks;
+
+        x = document.getElementsByClassName("tabs");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace("w3-green", "");
+        }
+
+        document.getElementById(idContentContainer).style.display = 'block';
+
+        obj.className += "w3-green";
+
+    }
 </script>

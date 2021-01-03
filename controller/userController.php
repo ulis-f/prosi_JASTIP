@@ -407,8 +407,8 @@ class UserController
 		$query_result = $this->db->executeSelectQuery($query);
 		$result = [];
 		foreach ($query_result as $key => $value) {
-			$hargaTotal = $value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa'];
-			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir']);
+			$hargaTotal = $value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa'] + $value['kodeUnik'];
+			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir'], null);
 		}
 		return $result;
 	}
@@ -427,7 +427,7 @@ class UserController
 		$result = [];
 		foreach ($query_result as $key => $value) {
 			$hargaTotal = $value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa'];
-			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir']);
+			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir'], null);
 		}
 		return $result;
 	}
@@ -446,7 +446,7 @@ class UserController
 		$result = [];
 		foreach ($query_result as $key => $value) {
 			$hargaTotal = $value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa'];
-			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir']);
+			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir'], null);
 		}
 		return $result;
 	}
@@ -456,16 +456,16 @@ class UserController
 		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);
 		$idUser = $query_idUser_result[0]['idUser'];
 
-		$query = "SELECT himpB.idUser1, himpB.idTrip, himpB.idUser2, himpB.hargaBarang, himpB.hargaOngkir, himpB.hargaJasa, himpB.namaBarang, himpB.deskripsiBarang, himpB.gambarBarang, himpB.kodeUnik,himpB.idKota2,himpB.waktuAwal, himpB.waktuAkhir, himpB.kota_awal, kota.namaKota as 'kota_tujuan'
-		FROM kota inner join (SELECT himpA.idUser1, himpA.idTrip, himpA.idUser2, himpA.hargaBarang, himpA.hargaOngkir, himpA.hargaJasa, himpA.namaBarang, himpA.deskripsiBarang, himpA.gambarBarang, himpA.kodeUnik,himpA.idKota2,himpA.waktuAwal, himpA.waktuAkhir, kota.namaKota as 'kota_awal'
-					FROM kota inner join (SELECT  idUser1, transaksi.idTrip, idUser2, hargaBarang ,hargaOngkir, hargaJasa, namaBarang, deskripsiBarang,gambarBarang, kodeUnik,idKota1, idKota2,waktuAwal, waktuAkhir
-										FROM transaksi inner join trip on transaksi.idTrip = trip.idTrip 
-										WHERE idUser2 = $idUser AND statusBarang = 'orderSent') as himpA on kota.idKota = himpA.idKota1) as himpB  on kota.idKota = himpB.idKota2";
+		$query = "SELECT himpB.idUser1, himpB.idTrip, himpB.idUser2, himpB.hargaBarang, himpB.hargaOngkir, himpB.hargaJasa, himpB.namaBarang, himpB.deskripsiBarang, himpB.gambarBarang, himpB.kodeUnik,himpB.idKota2,himpB.waktuAwal, himpB.waktuAkhir, himpB.kota_awal, kota.namaKota as 'kota_tujuan', himpB.noresi
+			FROM kota inner join (SELECT himpA.idUser1, himpA.idTrip, himpA.idUser2, himpA.hargaBarang, himpA.hargaOngkir, himpA.hargaJasa, himpA.namaBarang, himpA.deskripsiBarang, himpA.gambarBarang, himpA.kodeUnik,himpA.idKota2,himpA.waktuAwal, himpA.waktuAkhir, kota.namaKota as 'kota_awal', himpA.noresi
+						FROM kota inner join (SELECT  idUser1, transaksi.idTrip, idUser2, hargaBarang ,hargaOngkir, hargaJasa, namaBarang, deskripsiBarang,gambarBarang, kodeUnik,idKota1, idKota2,waktuAwal, waktuAkhir, noresi
+											FROM transaksi inner join trip on transaksi.idTrip = trip.idTrip 
+											WHERE idUser2 = $idUser AND statusBarang = 'orderSent') as himpA on kota.idKota = himpA.idKota1) as himpB  on kota.idKota = himpB.idKota2";
 		$query_result = $this->db->executeSelectQuery($query);
 		$result = [];
 		foreach ($query_result as $key => $value) {
 			$hargaTotal = $value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa'];
-			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir']);
+			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir'], $value['noresi']);
 		}
 		return $result;
 	}
@@ -480,12 +480,12 @@ class UserController
 				FROM kota inner join (SELECT himpA.idUser1, himpA.idTrip, himpA.idUser2, himpA.hargaBarang, himpA.hargaOngkir, himpA.hargaJasa, himpA.namaBarang, himpA.deskripsiBarang, himpA.gambarBarang, himpA.kodeUnik,himpA.idKota2,himpA.waktuAwal, himpA.waktuAkhir, kota.namaKota as 'kota_awal'
 							FROM kota inner join (SELECT  idUser1, transaksi.idTrip, idUser2, hargaBarang ,hargaOngkir, hargaJasa, namaBarang, deskripsiBarang,gambarBarang, kodeUnik,idKota1, idKota2,waktuAwal, waktuAkhir
 												FROM transaksi inner join trip on transaksi.idTrip = trip.idTrip 
-												WHERE idUser2 = $idUser AND statusBarang = 'transactionComplete') as himpA on kota.idKota = himpA.idKota1) as himpB  on kota.idKota = himpB.idKota2";
+												WHERE idUser2 = '$idUser' AND statusBarang = 'transactionComplete') as himpA on kota.idKota = himpA.idKota1) as himpB  on kota.idKota = himpB.idKota2";
 		$query_result = $this->db->executeSelectQuery($query);
 		$result = [];
 		foreach ($query_result as $key => $value) {
 			$hargaTotal = $value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa'];
-			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir']);
+			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir'], null);
 		}
 		return $result;
 	}
@@ -495,11 +495,15 @@ class UserController
 	public function view_trackingTraveller()
 	{
 		$nama = $_SESSION['nama'];
-		$result = $this->getTrackingTraveller($nama);
-		return view::createView('trackingTraveller.php', ["nama" => $nama, "result" => $result]);
+		$result1 = $this->getTrackingTraveller1($nama);
+		$result2 = $this->getTrackingTraveller2($nama);
+		$result3 = $this->getTrackingTraveller3($nama);
+		$result4 = $this->getTrackingTraveller4($nama);
+		$result5 = $this->getTrackingTraveller5($nama);
+		return view::createView('trackingTraveller.php', ["nama" => $nama, "result1" => $result1, "result2" => $result2, "result3" => $result3, "result4" => $result4, "result5" => $result5]);
 	}
 
-	public function getTrackingTraveller($nama)
+	public function getTrackingTraveller1($nama)
 	{
 		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama' ";
 		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);
@@ -514,7 +518,83 @@ class UserController
 		$result = [];
 		foreach ($query_result as $key => $value) {
 			$hargaTotal = $value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa'];
-			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir']);
+			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir'], null);
+		}
+		return $result;
+	}
+	public function getTrackingTraveller2($nama)
+	{
+		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama' ";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);
+		$idUser = $query_idUser_result[0]['idUser'];
+
+		$query = "SELECT himpB.idUser1, himpB.idTrip, himpB.idUser2, himpB.hargaBarang, himpB.hargaOngkir, himpB.hargaJasa, himpB.namaBarang, himpB.deskripsiBarang, himpB.gambarBarang, himpB.kodeUnik,himpB.idKota2,himpB.waktuAwal, himpB.waktuAkhir, himpB.kota_awal, kota.namaKota as 'kota_tujuan'
+		FROM kota inner join (SELECT himpA.idUser1, himpA.idTrip, himpA.idUser2, himpA.hargaBarang, himpA.hargaOngkir, himpA.hargaJasa, himpA.namaBarang, himpA.deskripsiBarang, himpA.gambarBarang, himpA.kodeUnik,himpA.idKota2,himpA.waktuAwal, himpA.waktuAkhir, kota.namaKota as 'kota_awal'
+					FROM kota inner join (SELECT  idUser1, transaksi.idTrip, idUser2, hargaBarang ,hargaOngkir, hargaJasa, namaBarang, deskripsiBarang,gambarBarang, kodeUnik,idKota1, idKota2,waktuAwal, waktuAkhir
+										FROM transaksi inner join trip on transaksi.idTrip = trip.idTrip 
+										WHERE idUser1 = $idUser AND statusBarang = 'onDeliveryToIndo') as himpA on kota.idKota = himpA.idKota1) as himpB  on kota.idKota = himpB.idKota2";
+		$query_result = $this->db->executeSelectQuery($query);
+		$result = [];
+		foreach ($query_result as $key => $value) {
+			$hargaTotal = $value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa'];
+			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir'], null);
+		}
+		return $result;
+	}
+	public function getTrackingTraveller3($nama)
+	{
+		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama' ";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);
+		$idUser = $query_idUser_result[0]['idUser'];
+
+		$query = "SELECT himpB.idUser1, himpB.idTrip, himpB.idUser2, himpB.hargaBarang, himpB.hargaOngkir, himpB.hargaJasa, himpB.namaBarang, himpB.deskripsiBarang, himpB.gambarBarang, himpB.kodeUnik,himpB.idKota2,himpB.waktuAwal, himpB.waktuAkhir, himpB.kota_awal, kota.namaKota as 'kota_tujuan'
+		FROM kota inner join (SELECT himpA.idUser1, himpA.idTrip, himpA.idUser2, himpA.hargaBarang, himpA.hargaOngkir, himpA.hargaJasa, himpA.namaBarang, himpA.deskripsiBarang, himpA.gambarBarang, himpA.kodeUnik,himpA.idKota2,himpA.waktuAwal, himpA.waktuAkhir, kota.namaKota as 'kota_awal'
+					FROM kota inner join (SELECT  idUser1, transaksi.idTrip, idUser2, hargaBarang ,hargaOngkir, hargaJasa, namaBarang, deskripsiBarang,gambarBarang, kodeUnik,idKota1, idKota2,waktuAwal, waktuAkhir
+										FROM transaksi inner join trip on transaksi.idTrip = trip.idTrip 
+										WHERE idUser1 = $idUser AND statusBarang = 'arrivedInIndo') as himpA on kota.idKota = himpA.idKota1) as himpB  on kota.idKota = himpB.idKota2";
+		$query_result = $this->db->executeSelectQuery($query);
+		$result = [];
+		foreach ($query_result as $key => $value) {
+			$hargaTotal = $value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa'];
+			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir'], null);
+		}
+		return $result;
+	}
+	public function getTrackingTraveller4($nama)
+	{
+		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama' ";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);
+		$idUser = $query_idUser_result[0]['idUser'];
+
+		$query = "SELECT himpB.idUser1, himpB.idTrip, himpB.idUser2, himpB.hargaBarang, himpB.hargaOngkir, himpB.hargaJasa, himpB.namaBarang, himpB.deskripsiBarang, himpB.gambarBarang, himpB.kodeUnik,himpB.idKota2,himpB.waktuAwal, himpB.waktuAkhir, himpB.kota_awal, kota.namaKota as 'kota_tujuan'
+		FROM kota inner join (SELECT himpA.idUser1, himpA.idTrip, himpA.idUser2, himpA.hargaBarang, himpA.hargaOngkir, himpA.hargaJasa, himpA.namaBarang, himpA.deskripsiBarang, himpA.gambarBarang, himpA.kodeUnik,himpA.idKota2,himpA.waktuAwal, himpA.waktuAkhir, kota.namaKota as 'kota_awal'
+					FROM kota inner join (SELECT  idUser1, transaksi.idTrip, idUser2, hargaBarang ,hargaOngkir, hargaJasa, namaBarang, deskripsiBarang,gambarBarang, kodeUnik,idKota1, idKota2,waktuAwal, waktuAkhir
+										FROM transaksi inner join trip on transaksi.idTrip = trip.idTrip 
+										WHERE idUser1 = $idUser AND statusBarang = 'orderSent') as himpA on kota.idKota = himpA.idKota1) as himpB  on kota.idKota = himpB.idKota2";
+		$query_result = $this->db->executeSelectQuery($query);
+		$result = [];
+		foreach ($query_result as $key => $value) {
+			$hargaTotal = $value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa'];
+			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir'], null);
+		}
+		return $result;
+	}
+	public function getTrackingTraveller5($nama)
+	{
+		$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama' ";
+		$query_idUser_result = $this->db->executeSelectQuery($query_idUser);
+		$idUser = $query_idUser_result[0]['idUser'];
+
+		$query = "SELECT himpB.idUser1, himpB.idTrip, himpB.idUser2, himpB.hargaBarang, himpB.hargaOngkir, himpB.hargaJasa, himpB.namaBarang, himpB.deskripsiBarang, himpB.gambarBarang, himpB.kodeUnik,himpB.idKota2,himpB.waktuAwal, himpB.waktuAkhir, himpB.kota_awal, kota.namaKota as 'kota_tujuan'
+		FROM kota inner join (SELECT himpA.idUser1, himpA.idTrip, himpA.idUser2, himpA.hargaBarang, himpA.hargaOngkir, himpA.hargaJasa, himpA.namaBarang, himpA.deskripsiBarang, himpA.gambarBarang, himpA.kodeUnik,himpA.idKota2,himpA.waktuAwal, himpA.waktuAkhir, kota.namaKota as 'kota_awal'
+					FROM kota inner join (SELECT  idUser1, transaksi.idTrip, idUser2, hargaBarang ,hargaOngkir, hargaJasa, namaBarang, deskripsiBarang,gambarBarang, kodeUnik,idKota1, idKota2,waktuAwal, waktuAkhir
+										FROM transaksi inner join trip on transaksi.idTrip = trip.idTrip 
+										WHERE idUser1 = $idUser AND statusBarang = 'transactionComplete') as himpA on kota.idKota = himpA.idKota1) as himpB  on kota.idKota = himpB.idKota2";
+		$query_result = $this->db->executeSelectQuery($query);
+		$result = [];
+		foreach ($query_result as $key => $value) {
+			$hargaTotal = $value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa'];
+			$result[] = new Tracking($value['namaBarang'], $value['deskripsiBarang'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $hargaTotal, $value['kodeUnik'], $value['gambarBarang'], $value['idTrip'], $value['kota_awal'], $value['kota_tujuan'], $value['waktuAwal'], $value['waktuAkhir'], null);
 		}
 		return $result;
 	}
@@ -527,20 +607,20 @@ class UserController
 		$idUser = $query_idUser_result[0]['idUser'];
 		$namaBarang = $_POST['namaBarang'];
 		if ($_POST['pesananDiproses'] != null) {
-			$query = "UPDATE transaksi SET statusBarang = 'onDelivery' WHERE idUser1 = $idUser AND namaBarang = $namaBarang";
+			$query = "UPDATE `transaksi` SET `statusBarang` = 'onDelivery' WHERE `idUser1` = '$idUser' AND `namaBarang` = '$namaBarang' ";
 			$query_result = $this->db->executeNonSelectQuery($query);
 		} else if ($_POST['pesananKirimKeIndo'] != null) {
-			$query = "UPDATE transaksi SET statusBarang = 'onDeliveryToIndo' WHERE idUser1 = $idUser AND namaBarang = $namaBarang";
+			$query = "UPDATE `transaksi` SET `statusBarang` = 'onDeliveryToIndo' WHERE `idUser1` = '$idUser' AND `namaBarang` = '$namaBarang' ";
 			$query_result = $this->db->executeNonSelectQuery($query);
 		} else if ($_POST['pesananTibaDiIndo'] != null) {
-			$query = "UPDATE transaksi SET statusBarang = 'arrivedInIndo' WHERE idUser1 = $idUser AND namaBarang = $namaBarang";
+			$query = "UPDATE `transaksi` SET `statusBarang` = 'arrivedInIndo' WHERE `idUser1` = '$idUser' AND `namaBarang` = '$namaBarang' ";
 			$query_result = $this->db->executeNonSelectQuery($query);
 		} else if ($_POST['pesananDikirim'] != null) {
 			$noresi = $_POST['noresi'];
-			$query = "UPDATE transaksi SET statusBarang = 'orderSent', noresi = $noresi  WHERE idUser1 = $idUser AND namaBarang = $namaBarang";
+			$query = "UPDATE `transaksi` SET `statusBarang` = 'orderSent', `noresi` = '$noresi'  WHERE `idUser1` = '$idUser' AND `namaBarang` = '$namaBarang' ";
 			$query_result = $this->db->executeNonSelectQuery($query);
 		} else if ($_POST['pesananDiterima'] != null) {
-			$query = "UPDATE transaksi SET statusBarang = 'transactionComplete' WHERE idUser1 = $idUser AND namaBarang = $namaBarang";
+			$query = "UPDATE `transaksi` SET `statusBarang` = 'transactionComplete' WHERE `idUser1` = '$idUser' AND `namaBarang` = '$namaBarang' ";
 			$query_result = $this->db->executeNonSelectQuery($query);
 		}
 	}
@@ -1457,14 +1537,14 @@ class UserController
 
 		$query_namaBank = "SELECT * FROM `bank` WHERE `namaBank` LIKE '$namaBank' ";
 		$query_namaBank_result = $this->db->executeSelectQuery($query_namaBank);
-		$idBank = $query_namaBank_result[0]['idBank'];  
+		$idBank = $query_namaBank_result[0]['idBank'];
 
 		$oldname = $_FILES['buktiPembayaran']['tmp_name'];
 		$newname = dirname(__DIR__) . "\\view\image\pembayaran\\" . $buktiPembayaran;
 		move_uploaded_file($oldname, $newname);
 
 		$query = "UPDATE transaksi SET buktiPembayaran ='$buktiPembayaran', statusBarang = 'onPaymentProgress', statusPembayaran = 'pending', idBankPembayaran = '$idBank' WHERE idUser2 = '$idUser' AND namaBarang = '$namaBarang' ";
-		$query_result = $this->db->executeNonSelectQuery($query); 
+		$query_result = $this->db->executeNonSelectQuery($query);
 	}
 
 	// public function getTracking(){
