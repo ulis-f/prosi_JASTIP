@@ -52,23 +52,23 @@
             <a class="nav-link text-center " href="persetujuanBarang"  style="height: 100%;">Form Barang</a>
         </li>
         <li class="nav-item w3-text-theme">
-            <a class="nav-link text-center" href="#" style="height: 100%; border-bottom: 4px solid #6699cc;">Pembayaran</a>  
+            <a class="nav-link text-center" href="pembayaranAdmin" style="height: 100%;">Pembayaran</a>  
         </li>
         <li class="nav-item w3-text-theme">
-            <a class="nav-link" href="pengirimanUang" style="height: 100%;">Pengiriman Uang</a>
+            <a class="nav-link" href="#" style="height: 100%; border-bottom: 4px solid #6699cc;">Pengriman Uang</a>
         </li>
     </ul>
     
     <fieldset class="" style="margin-left:2%; margin-right:2%; border: #6699cc 1px solid">
         <p class="" style="width:100%;border-bottom:1px solid #6699cc"> 
             Sekarang anda berada di halaman :
-            <a class="" href="#" style="text-decoration:none;"><b>Pembayaran</b></a>
+            <a class="" href="#" style="text-decoration:none;"><b>Pengiriman Uang</b></a>
             <i class="fa fa-angle-double-right" style=""></i>  
-            <a class="" href="#" style="text-decoration:none ; color:#6699cc; ">Detail Pembayaran</a>
+            <a class="" href="#" style="text-decoration:none ; color:#6699cc; ">Detail Pengiriman Uang</a>
         </p>
         <div class="container">
             <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 520px; margin-top: 5%;">
-                <h3><b>Detail Pembayaran</b></h3> <br>
+                <h3><b>Detail Pengiriman Uang</b></h3> <br>
                     <div class="column1">
 
                     <div id="detailBarang" class="w3-modal">
@@ -218,13 +218,11 @@
                                 </figure>
                             </div>
                             
-                            <div style="float:right">
-                                <label for='note'>Note :</label> <br>
-                                <textarea name='' id='' cols='30' rows='5' style="height:100px;"></textarea> <br> <br>
-                                <input type='radio' id='verified' name='verified' value='verified'>Verified <div style="float:right;">
-                                <input type='radio' id='unverified' name='verified' value='unverified'>Unverified<br> </div>   
+                            <div style="float:right; margin-top:10%;">
+                                <input type="checkbox" id="" name="pengirimanUang" value="">
+                                <label required for="pengirimanUang">Setujui uang telah dikirim ke traveller</label><br>   
                             </div>
-
+  
                            
                             <input type="submit" class="btn w3-theme btn-sm" style="font-size:17px; margin-top:10%; width:100%;" value="Submit">
                             <!-- <input id="submit" type="submit" class="btn btn-primary btn-sm" style="font-size:17px;" value="Submit"> -->
@@ -315,7 +313,8 @@
                 </div>
             </div>
         </div>  
-    </fieldset>
+        </fieldset>
+    
 
 
 

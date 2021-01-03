@@ -203,6 +203,16 @@
 				$userctrl = new userController();
 				echo $userctrl->view_trackingTraveller(); 
 				break;
+			case $baseURL . '/pengirimanUang':
+				require_once "controller/adminController.php";
+				$userctrl = new adminController();
+				echo $userctrl->view_pengirimanUang();  
+				break;
+			case $baseURL . '/detailPengirimanUang':
+				require_once "controller/adminController.php";
+				$userctrl = new adminController();
+				echo $userctrl->view_detailPengirimanUang();	
+				break;  
 			default:
 				echo '404 Not Found';
 				break;
@@ -257,7 +267,7 @@
 				$roleCtrl = new adminController();
 				$roleCtrl->verifikasi();
 				header('Location: homeAdmin');
-				break;
+				break; 
 			case $baseURL.'/verifikasiPendaftaran':
 				require_once "controller/adminController.php";
 				$roleCtrl = new adminController();

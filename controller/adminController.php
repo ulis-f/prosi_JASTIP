@@ -89,6 +89,24 @@ class adminController
         $user2 = $this->getProfilePembayaran($idPembeli);
         $hasil = $this->getDetailPembayaran($idPenerima, $idPembeli);
         return view::createViewAdmin('detailPembayaranAdmin.php', ["trip" => $trip, "user1" => $user1, "user2" => $user2, "hasil" => $hasil]);
+    }  
+
+    public function view_pengirimanUang()
+    {
+        $result = $this->getListPembayaran('verified');
+        return view::createViewAdmin('pengirimanUang.php', ["result" => $result]);
+    }
+
+    public function view_detailPengirimanUang()
+    {
+        $idPenerima = $_GET['namaPenerima'];
+        $idPembeli = $_GET['namaPembeli'];
+        $idTrip = $_GET['idTrip'];
+        $trip = $this->getTrip($idTrip);
+        $user1 = $this->getProfilePembayaran($idPenerima);
+        $user2 = $this->getProfilePembayaran($idPembeli);
+        $hasil = $this->getDetailPembayaran($idPenerima, $idPembeli);
+        return view::createViewAdmin('detailPengirimanUang.php', ["trip" => $trip, "user1" => $user1, "user2" => $user2, "hasil" => $hasil]);
     }
 
     public function getPostTrip()

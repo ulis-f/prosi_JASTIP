@@ -71,20 +71,18 @@
 
             <?php
             foreach ($hasil as $key => $value) {
-                echo "<div id='id1' class='tabs'>
-            ";
-
+                echo "<div id='id1' class='tabs'>";
                 echo "<fieldset class='' style='border:#dddddd 1px solid'>
                     <div>
                         <div class='column' style='border-right:#dddddd 1px solid;'>
                             <div>
-                                <div style='width: 30%; height: 50px; float: left;'>";
-                echo "<figure><img src='image/market/" . $value->gambarBarang . "' style='width: 100%; height: 100%;'></figure><br>
+                                <div style='width: 40%; float: left; height: 150px;'>";
+                            echo "<figure><img src='image/market/" . $value->gambarBarang . "' style='width: 100%; height: 100%;'></figure><br>
                                 </div>
     
                                 <div style='width: 30%; float: left; '>";
-                echo "<h5><b>" . $value->namaBarang . "</b></h5>";
-                echo "<p><b style='color:#ffa500'>Rp. " . $value->hargaTotal . "</b></p>
+                                echo "<h5><b>" . $value->namaBarang . "</b></h5>";
+                                echo "<p><b style='color:#ffa500'>Rp. " . $value->hargaTotal . "</b></p>
                                 </div>
                             </div>
                         </div>
@@ -94,57 +92,36 @@
                         
                         <button onclick=" . "document.getElementById('detailBarang').style.display='block'" . " class='btn btn-primary btn-sm' style='float: right;padding: 9px 7px;margin-top: 5%;border-radius: 25px;'>Detail Pemesanan</button>
 
-                                <div id='detailBarang' class='w3-modal'>
+                            <div id='detailBarang' class='w3-modal'>
                                 <div class='w3-modal-content'>  
                                 <div class='w3-container'>
                                 <span onclick=" . "document.getElementById('detailBarang').style.display='none'" . " class='w3-button w3-display-topright'>&times;</span>
                                     <table style='width:100%;border-collapse: collapse; margin-top:5%;'>
                                         <tr>";
-
-
-
-
-                echo "<input type='hidden' name='kotaAwal' value='$value->kotaAwal'>";
-                echo "<td style='float:left;border-collapse: collapse;'>" . $value->kotaAwal . "</td>";
-                echo "<td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:20px'></i></td>";
-                echo "<td style='float:right;'>" . $value->kotaTujuan . "</td>";
-
-
-                echo "</tr>
+                                    echo "<input type='hidden' name='kotaAwal' value='$value->kotaAwal'>";
+                                    echo "<td style='float:left;border-collapse: collapse;'>" . $value->kotaAwal . "</td>";
+                                    echo "<td rowspan='2'><i class='fa fa-angle-double-right' style='font-size:20px'></i></td>";
+                                    echo "<td style='float:right;'>" . $value->kotaTujuan . "</td>";
+                                    echo "</tr>
                                     
                                         <tr>";
-
-
-
-                echo "<td><b>" . $value->waktuAwal . "</b></td>";
-                echo "<td style='float:right;'><b>" . $value->waktuAkhir . "</b></td>";
-
-
-                echo "</tr>
+                                    echo "<td><b>" . $value->waktuAwal . "</b></td>";
+                                    echo "<td style='float:right;'><b>" . $value->waktuAkhir . "</b></td>";
+                                    echo "</tr>
                                     </table>
                                     <br>
                                     <div>
                                         <div style='width: 40%; float: left; height: 150px;'>";
-
-
-                echo "<figure><img src='image/market/" . $value->gambarBarang . "'width=100% height=100%;></figure><br>";
-
-
-                echo "</div>
+                                    echo "<figure><img src='image/market/" . $value->gambarBarang . "'width=100% height=100%;></figure><br>";
+                                echo "</div>
             
                                     <div style='width: 60%; float: right; padding-left: 10%; height: 150px;'>";
 
-
-                echo "<input type='hidden' name='namaBarang' value='$value->namaBarang'>";
-                echo "<h4>" . $value->namaBarang . "</h4>";
-
-
-
-                echo "<input type='hidden' name='deskripsi' value='$value->deskripsi'>";
-                echo "<p>" . $value->deskripsi . "</p>";
-
-
-                echo "<p class='' style='width:100%;border-bottom:2px solid #dddddd'></p>
+                                    echo "<input type='hidden' name='namaBarang' value='$value->namaBarang'>";
+                                    echo "<h4>" . $value->namaBarang . "</h4>";
+                                    echo "<input type='hidden' name='deskripsi' value='$value->deskripsi'>";
+                                    echo "<p>" . $value->deskripsi . "</p>";
+                                    echo "<p class='' style='width:100%;border-bottom:2px solid #dddddd'></p>
                                         </div>
                                     </div>
 
@@ -152,44 +129,30 @@
                                         <tr>
                                             <td>Harga Barang</td>
                                             <td>Rp</td>";
+                                        echo "<input type='hidden' name='hargaBarang' value='$value->hargaBarang'>";
+                                        echo "<td style='float: right;'>" . $value->hargaBarang . "</td>";
 
-
-                echo "<input type='hidden' name='hargaBarang' value='$value->hargaBarang'>";
-                echo "<td style='float: right;'>" . $value->hargaBarang . "</td>";
-
-
-                echo "</tr>
+                                    echo "</tr>
                                         <tr>
                                             <td>Tip Traveller</td>
                                             <td>Rp</td>";
-
-
-                echo "<input type='hidden' name='tip' value='$value->hargaOngkir'>";
-                echo "<td style='float: right;'>" . $value->hargaOngkir . "</td>";
-
-
-                echo "</tr>
+                                        echo "<input type='hidden' name='tip' value='$value->hargaOngkir'>";
+                                        echo "<td style='float: right;'>" . $value->hargaOngkir . "</td>";
+                                 echo "</tr>
 
                                         <tr>
                                             <td>TitipAja Fee</td>
                                             <td>Rp</td>";
-
-
-                echo "<input type='hidden' name='fee' value='$value->hargaJasa'>";
-                echo "<td style='float: right;'>" . $value->hargaJasa . "</td>";
-
-
-                echo "</tr>
+                                    echo "<input type='hidden' name='fee' value='$value->hargaJasa'>";
+                                    echo "<td style='float: right;'>" . $value->hargaJasa . "</td>";
+                                    echo "</tr>
                                         <tr>
                                             <td>Kode Unik Transaksi</td>
                                             <td>Rp</td>";
+                                        echo "<input type='hidden' name='kodeUnik' value='$value->kodeUnik'>";
+                                        echo "<td style='float: right;'>" . $value->kodeUnik . "</td>";
 
-
-                echo "<input type='hidden' name='kodeUnik' value='$value->kodeUnik'>";
-                echo "<td style='float: right;'>" . $value->kodeUnik . "</td>";
-
-
-                echo "</tr>
+                                    echo "</tr>
                 
                                 </table>
                                 <br>
@@ -199,26 +162,22 @@
                                     <tr> 
                                         <td style='width:66%;'><b>Total Harga</b></td>
                                         <td>Rp</td>";
-
-
-                echo "<input type='hidden' name='totalHarga' value='$value->hargaTotal'>";
-                echo "<td style='float: right; width:30%: color:#ffa500'><b style='color:#ffa500'>" . $value->hargaTotal . "</b></td>";
-
-
-                echo "</tr>
+                                    echo "<input type='hidden' name='totalHarga' value='$value->hargaTotal'>";
+                                    echo "<td style='float: right; width:30%: color:#ffa500'><b style='color:#ffa500'>" . $value->hargaTotal . "</b></td>";
+                                echo "</tr>
                                 </table> 
                             
                                 </div>
                                 </div>
                                 </div>
-    
+                            
                         </div>  
                         
                     </div>
                 </fieldset>";
             }
             ?>
-        </div>
+        
         <div id="id2" class="tabs" style="display: none;">
             <?php
             foreach ($hasil2 as $key => $value) {
