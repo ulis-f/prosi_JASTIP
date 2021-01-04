@@ -181,7 +181,7 @@
         <div id="id2" class="tabs" style="display: none;">
             <?php
             foreach ($hasil2 as $key => $value) {
-                echo "ini halaman pesanan di kirim ke indonesia
+                echo "
                 <fieldset class='' style='border:#dddddd 1px solid'>
                     <div>
                         <div class='column' style='border-right:#dddddd 1px solid;'>
@@ -325,7 +325,6 @@
         <?php
         foreach ($hasil3 as $key => $value) {
             echo "<div id='id3' class='tabs' style='display: none'>
-                Ini Halaman pesanan tiba di indonesia
                 <fieldset class='' style='border:#dddddd 1px solid'>
                     <div>
                         <div class='column' style='border-right:#dddddd 1px solid;'>
@@ -608,7 +607,7 @@
         <div id="id5" class="tabs" style="display: none">
             <?php
             foreach ($hasil5 as $key => $value) {
-                echo "Ini Halaman diterima
+                echo "
                 <fieldset class='' style='border:#dddddd 1px solid'>
                     <div>
                         <div class='column' style='border-right:#dddddd 1px solid;'>

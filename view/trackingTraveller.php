@@ -69,7 +69,7 @@
             </div>
 
             <div id="id2" class="tabs" style="display: none;">
-                ini halaman pesanan di kirim ke indonesia
+                
                 <?php
                 foreach ($result2 as $key => $value) {
                     echo "
@@ -100,7 +100,7 @@
             </div>
 
             <div id="id3" class="tabs" style="display: none">
-                Ini Halaman pesanan tiba di indonesia
+                
                 <?php
                 foreach ($result3 as $key => $value) {
                     echo "
@@ -164,20 +164,20 @@
             </div>
 
             <div id="id5" class="tabs" style="display: none">
-                Ini Halaman diterima
+                
                 <?php
                 foreach ($result5 as $key => $value) {
                     echo "<fieldset>
                     <table class=''>
                         <tr>
-                            <td style='float: left; padding: 3px;width: 40%;'><h5>" . $value->kotaAwal . "</h5></td>
-                            <td style='float: right; padding-right: 10px ;width: 40%;'><h5>" . $value->kotaTujuan . "</h5></td>
-                            <td rowspan='2' style='width: 40%; border-left:#dddddd 1px solid; padding-left:10px;color:#ffa500;font-size:15px;'><b>" . $value->namaBarang . "</b></td>
+                            <td style='float: left; padding: 10px;width: 50%;'><h5>" . $value->kotaAwal . "</h5></td>
+                            <td style='float: right; padding: 10px ;width: 50%;'><h5>" . $value->kotaTujuan . "</h5></td>
+                            <td rowspan='2' style='width: 50%; border-left:#dddddd 1px solid; padding-left:10px;color:#ffa500;font-size:15px;'><b>" . $value->namaBarang . "</b></td>
                         </tr>
   
                         <tr>
-                            <td style='float:left; padding: 3px;font-size:13px;'><b>" . $value->waktuAwal . "</b></td>
-                            <td style='float: right; padding-right: 10px;font-size:13px;'><b>" . $value->waktuAkhir . "</b></td>
+                            <td style='float:left; padding: 10px;font-size:13px;'><b>" . $value->waktuAwal . "</b></td>
+                            <td style='float: right; padding: 10px;font-size:13px;'><b>" . $value->waktuAkhir . "</b></td>
                         </tr>
                             
                     </table>
