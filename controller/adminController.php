@@ -144,6 +144,40 @@ class adminController
         return $result;
     }
 
+    public function view_pengirimanUang()
+    {
+        $result = $this->getListPengirimanUang();
+        return view::createViewAdmin('pengirimanUang.php', ["result" => $result]);
+    }
+
+    public function view_detailPengirimanUang()
+    {
+        $idPenerima = $_GET['namaPenerima'];
+        $idPembeli = $_GET['namaPembeli'];
+        $namaBarang = $_GET['namaBarang'];
+        $idTrip = $_GET['idTrip'];
+        $trip = $this->getTrip($idTrip);
+        $user1 = $this->getProfilePembayaran($idPenerima);
+        $user2 = $this->getProfilePembayaran($idPembeli);
+        $hasil = $this->getDetailPembayaran($idPenerima, $idPembeli, $namaBarang);
+        return view::createViewAdmin('detailPengirimanUang.php', ["trip" => $trip, "user1" => $user1, "user2" => $user2, "hasil" => $hasil]);
+    }
+
+    public function getListPengirimanUang()
+    {
+        $query = "select himpA.idUser1, himpA.idUser2, himpA.namaSatu, himpA.email, himpA.idTrip, himpA.namaBarang
+        from(select idUser1,idTrip, idUser2, user.namaUser as 'namaSatu', user.email, namaBarang
+        from transaksi inner join user 
+        on user.idUser = transaksi.idUser1
+            where statusBarang = 'transactionComplete') as himpA inner join user on himpA.idUser2 = user.idUser";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        foreach ($query_result as $key => $value) {
+            $result[] = new ListPembayaran($value['idUser1'], $value['idUser2'], $value['idTrip'], $value['namaSatu'], $value['email'], $value['namaBarang']);
+        }
+        return $result;
+    }
+
     public function getPostTrip()
     {
         // $nama = $_POST['nama'];
