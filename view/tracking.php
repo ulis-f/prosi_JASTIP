@@ -181,7 +181,7 @@
             <div id="id2" class="tabs" style="display: none;">
                 <?php
                 foreach ($hasil2 as $key => $value) {
-                    echo "ini halaman pesanan di kirim ke indonesia
+                    echo "
                 <fieldset class='' style='border:#dddddd 1px solid'>
                     <div>
                         <div class='column' style='border-right:#dddddd 1px solid;'>
@@ -216,12 +216,14 @@
                     echo "<td style='float:right;'>" . $value->kotaTujuan . "</td>";
 
 
+
                     echo "</tr>
                                             <tr>";
 
 
                     echo "<td><b>" . $value->waktuAwal . "</b></td>";
                     echo "<td style='float:right;'><b>" . $value->waktuAkhir . "</b></td>";
+
 
 
                     echo "</tr>
@@ -247,6 +249,11 @@
                     echo "<p>" . $value->deskripsi . "</p>";
 
 
+
+                    echo "<input type='hidden' name='deskripsi' value='$value->deskripsi'>";
+                    echo "<p>" . $value->deskripsi . "</p>";
+
+
                     echo "<p class='' style='width:100%;border-bottom:2px solid #dddddd'></p>
                                             </div>
                                         </div>
@@ -261,6 +268,7 @@
                     echo "<td style='float: right;'>" . $value->hargaBarang . "</td>";
 
 
+
                     echo "</tr>
                                             <tr>
                                                 <td>Tip Traveller</td>
@@ -269,6 +277,7 @@
 
                     echo "<input type='hidden' name='tip' value='$value->hargaOngkir'>";
                     echo "<td style='float: right;'>" . $value->hargaOngkir . "</td>";
+
 
 
                     echo "</tr>
@@ -281,10 +290,15 @@
                     echo "<td style='float: right;'>" . $value->hargaJasa . "</td>";
 
 
+
                     echo "</tr>
                                             <tr>
                                                 <td>Kode Unik Transaksi</td>
                                                 <td>Rp</td>";
+
+
+                    echo "<input type='hidden' name='kodeUnik' value='$value->kodeUnik'>";
+                    echo "<td style='float: right;'>" . $value->kodeUnik . "</td>";
 
 
                     echo "<input type='hidden' name='kodeUnik' value='$value->kodeUnik'>";
@@ -307,6 +321,7 @@
                     echo "<td style='float: right; width:30%: color:#ffa500'><b style='color:#ffa500'>" . $value->hargaTotal . "</b></td>";
 
 
+
                     echo "</tr>
                                         </table>
 
@@ -325,7 +340,6 @@
             <?php
             foreach ($hasil3 as $key => $value) {
                 echo "<div id='id3' class='tabs' style='display: none'>
-                Ini Halaman pesanan tiba di indonesia
                 <fieldset class='' style='border:#dddddd 1px solid'>
                     <div>
                         <div class='column' style='border-right:#dddddd 1px solid;'>
@@ -608,7 +622,7 @@
             <div id="id5" class="tabs" style="display: none">
                 <?php
                 foreach ($hasil5 as $key => $value) {
-                    echo "Ini Halaman diterima
+                    echo "
                 <fieldset class='' style='border:#dddddd 1px solid'>
                     <div>
                         <div class='column' style='border-right:#dddddd 1px solid;'>

@@ -418,7 +418,7 @@ class adminController
         $now = $date->format('Y-m-d H:i:s');
         $query = "UPDATE transaksi SET statusBarang = 'transactionCompleteAndPaid' WHERE idUser1 = '$idPenerima' AND idUser2 = '$idPembeli' AND namaBarang = '$namaBarang'";
         $query_result = $this->db->executeNonSelectQuery($query);
-        $query_notifikasi1 = "INSERT INTO Notifikasi VALUES ('$idPenerima',null,'Pembayaran Titipaja Berhasil', 'Titipaja telah membayar ke rekening anda', 0, '$now')";
+        $query_notifikasi1 = "INSERT INTO Notifikasi VALUES ('$idPembeli',null,'Pembayaran Titipaja Berhasil', 'Titipaja telah membayar ke rekening anda', 0, '$now')";
         $query_result1 = $this->db->executeNonSelectQuery($query_notifikasi1);
     }
 }
