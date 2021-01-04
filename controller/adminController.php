@@ -93,7 +93,7 @@ class adminController
 
     public function view_pengirimanUang()
     {
-        $result = $this->getListPembayaran('verified');
+        $result = $this->getListTransaksiSelesai();
         return view::createViewAdmin('pengirimanUang.php', ["result" => $result]);
     }
 
@@ -326,6 +326,21 @@ class adminController
         from transaksi inner join user 
         on user.idUser = transaksi.idUser1
             where statusPembayaran = '$param') as himpA inner join user on himpA.idUser2 = user.idUser";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        foreach ($query_result as $key => $value) {
+            $result[] = new ListPembayaran($value['idUser1'], $value['idUser2'], $value['idTrip'], $value['namaSatu'], $value['email']);
+        }
+        return $result;
+    }
+
+    public function getListTransaksiSelesai()
+    {
+        $query = "select himpA.idUser1, himpA.idUser2, himpA.namaSatu, himpA.email, himpA.idTrip
+        from(select idUser1,idTrip, idUser2, user.namaUser as 'namaSatu', user.email
+        from transaksi inner join user 
+        on user.idUser = transaksi.idUser1
+            where statusBarang = 'transactionComplete') as himpA inner join user on himpA.idUser2 = user.idUser";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach ($query_result as $key => $value) {
