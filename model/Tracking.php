@@ -14,8 +14,9 @@ class Tracking
     public $kotaTujuan;
     public $waktuAwal;
     public $waktuAkhir;
+    public $noresi;
 
-    public function __construct($namaBarang, $deskripsi, $hargaBarang, $hargaOngkir, $hargaJasa, $hargaTotal, $kodeUnik, $gambarBarang, $idTrip, $kotaAwal, $kotaTujuan, $waktuAwal, $waktuAkhir)
+    public function __construct($namaBarang, $deskripsi, $hargaBarang, $hargaOngkir, $hargaJasa, $hargaTotal, $kodeUnik, $gambarBarang, $idTrip, $kotaAwal, $kotaTujuan, $waktuAwal, $waktuAkhir, $noresi)
     {
         $this->namaBarang = $namaBarang;
         $this->deskripsi = $deskripsi;
@@ -30,5 +31,6 @@ class Tracking
         $this->kotaTujuan = $kotaTujuan;
         $this->waktuAwal = $waktuAwal;
         $this->waktuAkhir = $waktuAkhir;
+        $this->noresi = $noresi;
     }
 }

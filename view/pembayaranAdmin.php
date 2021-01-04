@@ -56,34 +56,36 @@
             </div>
 
             <div id="Pending" class="tabs">
-                <form method="GET" action="detailPembayaran">
-                    <table class="table table-striped">
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Pengirim</th>
-                            <th>Email Pengirim</th>
-                            <th>Waktu Pengiriman</th>
-                            <th>Detail</th>
-                        </tr>
 
-                        <?php
-                        $i = 1;
-                        foreach ($result as $key => $value) {
-                            echo "<tr>";
-                            echo "<input type='hidden' name='namaPembeli' value='$value->idPembeli'>";
-                            echo "<input type='hidden' name='namaPenerima' value='$value->idPenerima'>";
-                            echo "<input type='hidden' name='idTrip' value='$value->idTrip'>";
-                            echo "<td>$i</td>";
-                            echo "<td>" . $value->nama . "</td>";
-                            echo "<td>" . $value->email . "</td>";
-                            echo "<td>Waktu Pengiriman</td>";
-                            echo "<td class='text-center'><input class='btn btn-primary btn-sm' style='font-size:15px' type='submit' value='Detail'></td>";
-                            echo "</tr>";
-                            $i++;
-                        }
-                        ?>
-                    </table>
-                </form>
+                <table class="table table-striped">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Pengirim</th>
+                        <th>Email Pengirim</th>
+                        <th>Waktu Pengiriman</th>
+                        <th>Detail</th>
+                    </tr>
+
+                    <?php
+                    $i = 1;
+                    foreach ($result as $key => $value) {
+                        echo "<form method='GET' action='detailPembayaran'>";
+                        echo "<tr>";
+                        echo "<input type='hidden' name='namaPembeli' value='$value->idPembeli'>";
+                        echo "<input type='hidden' name='namaPenerima' value='$value->idPenerima'>";
+                        echo "<input type='hidden' name='namaBarang' value='$value->namaBarang'>";
+                        echo "<input type='hidden' name='idTrip' value='$value->idTrip'>";
+                        echo "<td>$i</td>";
+                        echo "<td>" . $value->nama . "</td>";
+                        echo "<td>" . $value->email . "</td>";
+                        echo "<td>Waktu Pengiriman</td>";
+                        echo "<td class='text-center'><input class='btn btn-primary btn-sm' style='font-size:15px' type='submit' value='Detail'></td>";
+                        echo "</tr>";
+                        echo "</form>";
+                        $i++;
+                    }
+                    ?>
+                </table>
             </div>
 
             <div id="Verified" class="tabs" style="display: none;">
