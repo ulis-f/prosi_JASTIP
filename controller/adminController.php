@@ -83,11 +83,12 @@ class adminController
     {
         $idPenerima = $_GET['namaPenerima'];
         $idPembeli = $_GET['namaPembeli'];
+        $namaBarang = $_GET['namaBarang'];
         $idTrip = $_GET['idTrip'];
         $trip = $this->getTrip($idTrip);
         $user1 = $this->getProfilePembayaran($idPenerima);
         $user2 = $this->getProfilePembayaran($idPembeli);
-        $hasil = $this->getDetailPembayaran($idPenerima, $idPembeli);
+        $hasil = $this->getDetailPembayaran($idPenerima, $idPembeli, $namaBarang);
         return view::createViewAdmin('detailPembayaranAdmin.php', ["trip" => $trip, "user1" => $user1, "user2" => $user2, "hasil" => $hasil]);
     }  
 
@@ -107,6 +108,40 @@ class adminController
         $user2 = $this->getProfilePembayaran($idPembeli);
         $hasil = $this->getDetailPembayaran($idPenerima, $idPembeli);
         return view::createViewAdmin('detailPengirimanUang.php', ["trip" => $trip, "user1" => $user1, "user2" => $user2, "hasil" => $hasil]);
+    }
+
+    public function view_pengirimanUang()
+    {
+        $result = $this->getListPengirimanUang();
+        return view::createViewAdmin('pengirimanUang.php', ["result" => $result]);
+    }
+
+    public function view_detailPengirimanUang()
+    {
+        $idPenerima = $_GET['namaPenerima'];
+        $idPembeli = $_GET['namaPembeli'];
+        $namaBarang = $_GET['namaBarang'];
+        $idTrip = $_GET['idTrip'];
+        $trip = $this->getTrip($idTrip);
+        $user1 = $this->getProfilePembayaran($idPenerima);
+        $user2 = $this->getProfilePembayaran($idPembeli);
+        $hasil = $this->getDetailPembayaran($idPenerima, $idPembeli, $namaBarang);
+        return view::createViewAdmin('detailPengirimanUang.php', ["trip" => $trip, "user1" => $user1, "user2" => $user2, "hasil" => $hasil]);
+    }
+
+    public function getListPengirimanUang()
+    {
+        $query = "select himpA.idUser1, himpA.idUser2, himpA.namaSatu, himpA.email, himpA.idTrip, himpA.namaBarang
+        from(select idUser1,idTrip, idUser2, user.namaUser as 'namaSatu', user.email, namaBarang
+        from transaksi inner join user 
+        on user.idUser = transaksi.idUser1
+            where statusBarang = 'transactionComplete') as himpA inner join user on himpA.idUser2 = user.idUser";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        foreach ($query_result as $key => $value) {
+            $result[] = new ListPembayaran($value['idUser1'], $value['idUser2'], $value['idTrip'], $value['namaSatu'], $value['email'], $value['namaBarang']);
+        }
+        return $result;
     }
 
     public function getPostTrip()
@@ -321,28 +356,28 @@ class adminController
 
     public function getListPembayaran($param)
     {
-        $query = "select himpA.idUser1, himpA.idUser2, himpA.namaSatu, himpA.email, himpA.idTrip
-        from(select idUser1,idTrip, idUser2, user.namaUser as 'namaSatu', user.email
+        $query = "select himpA.idUser1, himpA.idUser2, himpA.namaSatu, himpA.email, himpA.idTrip, himpA.namaBarang
+        from(select idUser1,idTrip, idUser2, user.namaUser as 'namaSatu', user.email, namaBarang
         from transaksi inner join user 
         on user.idUser = transaksi.idUser1
             where statusPembayaran = '$param') as himpA inner join user on himpA.idUser2 = user.idUser";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach ($query_result as $key => $value) {
-            $result[] = new ListPembayaran($value['idUser1'], $value['idUser2'], $value['idTrip'], $value['namaSatu'], $value['email']);
+            $result[] = new ListPembayaran($value['idUser1'], $value['idUser2'], $value['idTrip'], $value['namaSatu'], $value['email'], $value['namaBarang']);
         }
         return $result;
     }
 
-    public function getDetailPembayaran($idPenerima, $idPembeli)
+    public function getDetailPembayaran($idPenerima, $idPembeli, $namaBarang)
     {
 
-        $query = "SELECT * from transaksi where idUser1 = '$idPenerima' AND idUser2 = '$idPembeli'";
+        $query = "SELECT * FROM transaksi inner join bank on transaksi.idBankPembayaran = bank.idBank where idUser1 = '$idPenerima' AND idUser2 = '$idPembeli' AND namaBarang = '$namaBarang'";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach ($query_result as $key => $value) {
             $totalHarga = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - $value['kodeUnik'];
-            $result[] = new transaksi($value['idUser1'], $value['kodeUnik'], $value['idUser2'], null, $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $value['namaBarang'], null, $value['deskripsiBarang'], $value['gambarBarang'], $totalHarga, $value['buktiPembayaran']);
+            $result[] = new transaksi($value['idUser1'], $value['kodeUnik'], $value['idUser2'], $value['namaBank'], $value['hargaBarang'], $value['hargaOngkir'], $value['hargaJasa'], $value['namaBarang'], null, $value['deskripsiBarang'], $value['gambarBarang'], $totalHarga, $value['buktiPembayaran']);
         }
         return $result;
     }
@@ -388,5 +423,20 @@ class adminController
             $query_notifikasi2 = "INSERT INTO Notifikasi VALUES ('$idPenerima',null,'Pembayaran Pembeli Gagal', 'Barang anda akan tertampil lagi di market ', 0, '$now')";
             $query_result2 = $this->db->executeNonSelectQuery($query_notifikasi2);
         }
+    }
+
+    public function updatePembayaranAdmin()
+    {
+        $idPenerima = $_POST['idPenerima'];
+        $idPembeli = $_POST['idPembeli'];
+        $namaBarang = $_POST['namaBarang'];
+        $timezone = new DateTimeZone('Asia/Jakarta');
+        $date = new DateTime();
+        $date->setTimeZone($timezone);
+        $now = $date->format('Y-m-d H:i:s');
+        $query = "UPDATE transaksi SET statusBarang = 'transactionCompleteAndPaid' WHERE idUser1 = '$idPenerima' AND idUser2 = '$idPembeli' AND namaBarang = '$namaBarang'";
+        $query_result = $this->db->executeNonSelectQuery($query);
+        $query_notifikasi1 = "INSERT INTO Notifikasi VALUES ('$idPembeli',null,'Pembayaran Titipaja Berhasil', 'Titipaja telah membayar ke rekening anda', 0, '$now')";
+        $query_result1 = $this->db->executeNonSelectQuery($query_notifikasi1);
     }
 }
