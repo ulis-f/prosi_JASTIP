@@ -885,8 +885,12 @@ class UserController
 		$newnameselfie = dirname(__DIR__) . "\\view\image\\" . $fotoselfie;
 		move_uploaded_file($oldnameselfie, $newnameselfie);
 
+		$query_namaBank = "SELECT * FROM `bank` WHERE `namaBank` LIKE '$namabank' ";
+		$query_namaBank_result = $this->db->executeSelectQuery($query_namaBank);
+		$idBank = $query_namaBank_result[0]['idBank'];
+
 		$query = "UPDATE `user` 
-				SET `isTraveller` = 'pending', `gambarKTP` = '$fotoktp', `swafoto` = '$fotoselfie', `namaBank` = '$namabank', `norek` = '$norek', `noKTP` = '$nik'
+				SET `isTraveller` = 'pending', `gambarKTP` = '$fotoktp', `swafoto` = '$fotoselfie', `namaBank` = '$idBank', `norek` = '$norek', `noKTP` = '$nik'
 				WHERE `namaUser` LIKE '$nama'";
 		$query_result = $this->db->executeNonSelectQuery($query);
 
