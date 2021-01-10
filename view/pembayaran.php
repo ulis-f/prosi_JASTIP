@@ -223,13 +223,48 @@
                     </tr>
                 </table>
             </div>
+            
+            <?php
+                require_once "controller/services/mysqlDB.php";
+                require_once "controller/services/view.php";
+                require_once "model/user.php";
+                require_once "model/notifikasi.php";
+                
 
+                $db = new MySQLDB("localhost","root","","titipaja");  
+                $query_idUser = "SELECT idUser FROM `user` WHERE `namaUser` LIKE '$nama'";
+                $query_idUser_result = $db->executeSelectQuery($query_idUser);  
+                // if($nama != null){
+                    $nama = $_SESSION['nama'];
+                    $idUser = $query_idUser_result[0]['idUser'];
+                    $query = "SELECT * FROM notifikasi WHERE idUser = '$idUser' AND namaNotifikasi LIKE 'Verifikasi Penitipan Barang Berhasil'
+                                ORDER BY dateTime ";
+                    $query_result = $db->executeSelectQuery($query);
+                    
+                    $dateTimePembayaran = $query_result[0]['dateTime'];
 
-            <div class="column1">
-                <h3 style="float:left"><b>Pembayaran</b></h3>
+                    // $startDate   = $dateTimePembayaran;
+
+                    
+                    // $waktuSekarang = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+                    // $endDate = $dateTimePembayaran;
+
+                    // $datetime2 = new DateTime('9 January 2021 2:00 AM');
+                    // $interval = $waktuSekarang->diff($endDate);
+                    // echo"$interval->format('%H')";  
+
+                    // $hours = floor(($remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    // $minutes = floor(($remaining % (1000 * 60 * 60)) / (1000 * 60));
+                    // $seconds = floor(($remaining % (1000 * 60)) / 1000); 
+                
+
+            echo"<div class="."column1".">
+                <h3 style="."float:left"."><b>Pembayaran</b></h3>
                 <h3><b>
-                        <div id="demo" style="float:right;color:red;"></div>
-                </h3></b>
+                        <div id="."demo"." style="."float:right;color:red;".">$dateTimePembayaran</div>
+                </h3></b>";
+            // }  
+            ?>
                 <!-- <h3><div class="countdown" style="float:right;color:red;">
                             <span id="time"><b>24:00:00</b></span>
                         </div></h3> -->
@@ -300,8 +335,8 @@
 
 <script>
     // Set the date we're counting down to
-    var countDownDate = new Date("Dec 10, 2020 10:37:25").getTime();
 
+    
     // Update the count down every 1 second
     var x = setInterval(function() {
 
@@ -309,7 +344,7 @@
         var now = new Date().getTime();
 
         // Find the distance between now and the count down date
-        var distance = countDownDate - now;
+        var distance = <?php $sisaWaktuBayar ?>;
 
         // Time calculations for days, hours, minutes and seconds
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));

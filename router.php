@@ -213,6 +213,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 			$userctrl = new adminController();
 			echo $userctrl->view_detailPengirimanUang();
 			break;
+		case $baseURL . '/laporan':
+			require_once "controller/adminController.php";
+			$userctrl = new adminController();
+			echo $userctrl->view_laporan();  
+			break;
 		default:
 			echo '404 Not Found';
 			break;

@@ -111,6 +111,11 @@ class adminController
         return view::createViewAdmin('detailPengirimanUang.php', ["trip" => $trip, "user1" => $user1, "user2" => $user2, "hasil" => $hasil]);
     }
 
+    public function view_laporan()
+    {
+        return view::createViewAdmin('laporan.php', []);
+    }
+
     public function getListPengirimanUang()
     {
         $query = "select himpA.idUser1, himpA.idUser2, himpA.namaSatu, himpA.email, himpA.idTrip, himpA.namaBarang

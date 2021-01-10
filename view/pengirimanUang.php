@@ -37,6 +37,9 @@
     <li class="nav-item w3-text-theme">
         <a class="nav-link" href="#" style="height: 100%; border-bottom: 4px solid #6699cc;">Pengiriman Uang</a>
     </li>
+    <li class="nav-item w3-text-theme">
+        <a class="nav-link" href="laporan" style="height: 100%;">Laporan</a>
+    </li>
 </ul>
 
 <fieldset class="" style="margin-left:2%; margin-right:2%; border: #6699cc 1px solid">

@@ -76,12 +76,10 @@
             <h4>Upload Gambar</h4>
             <input required type='file' name="gambar" id="gambar" accept='image/*'>
             <br>
-            <br>
             <p style="color:red;font-size:13px;">*Harus disertakan kondisi barang dan lokasi barang</p>
-            <br>
-            <br> 
+        
 
-            <div class="w3-right" style="padding-top: 100px;"> 
+            <div class="w3-right" style="padding-top: 7px;"> 
                 <input type="submit" value="Submit" class="w3-btn w3-theme">
             </div>
             </form>

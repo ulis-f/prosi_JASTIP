@@ -56,7 +56,10 @@
         <a class="nav-link text-center" href="pembayaranAdmin" style="height: 100%;">Pembayaran</a>
     </li>
     <li class="nav-item w3-text-theme">
-        <a class="nav-link" href="#" style="height: 100%; border-bottom: 4px solid #6699cc;">Pengriman Uang</a>
+        <a class="nav-link" href="pengirimanUang" style="height: 100%; border-bottom: 4px solid #6699cc;">Pengriman Uang</a>
+    </li>
+    <li class="nav-item w3-text-theme">
+        <a class="nav-link" href="laporan" style="height: 100%;">Laporan</a>
     </li>
 </ul>
 

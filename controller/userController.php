@@ -304,7 +304,7 @@ class UserController
 		$idTrip = $_GET['idTrip'];
 		if ($_GET['verified'] == 'verified') {
 			$result = $this->getPembayaranWanted();
-			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Berhasil', 'Permintaan anda berhasil diterima', 0, '$now')";
+			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Penitipan Barang Berhasil', 'Permintaan anda berhasil diterima', 0, '$now')";
 			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);
 			$query_transaksi = "UPDATE transaksi SET idTrip = '$idTrip', idUser2 = '$idUser_customer' WHERE idUser1 = '$idUser_traveller' AND namaBarang ='$namaBarang'";
 			$query_result2 = $this->db->executeNonSelectQuery($query_transaksi);
@@ -375,7 +375,7 @@ class UserController
 			<input type="hidden" name="fee" value="' . ($totalHarga * (4 / 100)) . '">
 			<input type="hidden" name="kodeUnik" value="' . rand(100, 999) . '">
 			</form>';
-			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Berhasil', 'Permintaan anda berhasil diterima $link', 0, '$now')";
+			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Penitipan Barang Berhasil', 'Permintaan anda berhasil diterima $link', 0, '$now')";
 			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);
 			$query_transaksi = "UPDATE transaksi SET  idUser2 = '$idUser_customer', statusBarang = 'onPayment', jumlahBarang = '1', hargaOngkir = '$hargaOngkir', hargaBarang = '$hargaBarang' WHERE idUser1 = '$idUser_traveller' AND namaBarang ='$namaBarang'";
 			$query_result2 = $this->db->executeNonSelectQuery($query_transaksi);
@@ -1503,7 +1503,7 @@ class UserController
 					<input type="hidden" name="fee" value="' . $fee . '">
 					<input type="hidden" name="kodeUnik" value="' . $kodeUnik . '">
 					</form>';
-			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Berhasil', 'Permintaan anda berhasil diterima $namaBarang $link', 0, '$now')";
+			$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Penitipan Barang Berhasil', 'Permintaan anda berhasil diterima $namaBarang $link', 0, '$now')";
 			$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi);
 			$query_transaksi = "UPDATE transaksi SET  idUser2 = '$idUser_customer', statusBarang = 'onPayment', jumlahBarang = '1', hargaBarang = '$hargaBarang', hargaOngkir = '$tipTraveller', hargaJasa = '$fee' WHERE idUser1 = '$idUser_traveller' AND namaBarang ='$namaBarang'";
 			$query_result2 = $this->db->executeNonSelectQuery($query_transaksi);

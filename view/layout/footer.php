@@ -48,16 +48,10 @@
                 <a href="#!"><img src="#" alt="">BCA</a>
             </p>
             <p>
-                <a href="#!"><img src="#" alt="">BNI</a>
-            </p>
-            <p>
                 <a href="#!"><img src="#" alt="">BRI</a>
             </p>
             <p>
                 <a href="#!"><img src="#" alt="">MANDIRI</a>
-            </p>
-            <p>
-                <a href="#!"><img src="#" alt="">OCBC NISP</a>
             </p>
         </div>
           <!-- Grid column -->
