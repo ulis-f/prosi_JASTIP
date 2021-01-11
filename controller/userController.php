@@ -620,7 +620,11 @@ class UserController
 			$query = "UPDATE `transaksi` SET `statusBarang` = 'orderSent', `noresi` = '$noresi'  WHERE `idUser1` = '$idUser' AND `namaBarang` = '$namaBarang' ";
 			$query_result = $this->db->executeNonSelectQuery($query);
 		} else if ($_POST['pesananDiterima'] != null) {
-			$query = "UPDATE `transaksi` SET `statusBarang` = 'transactionComplete' WHERE `idUser1` = '$idUser' AND `namaBarang` = '$namaBarang' ";
+			$timezone = new DateTimeZone('Asia/Jakarta');
+			$date = new DateTime();
+			$date->setTimeZone($timezone);
+			$now = $date->format('Y-m-d H:i:s');
+			$query = "UPDATE `transaksi` SET `statusBarang` = 'transactionComplete', waktuTransaksi = '$now' WHERE `idUser1` = '$idUser' AND `namaBarang` = '$namaBarang' ";
 			$query_result = $this->db->executeNonSelectQuery($query);
 		}
 	}

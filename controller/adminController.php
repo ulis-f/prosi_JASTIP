@@ -7,7 +7,9 @@ require_once "model/transaksi.php";
 require_once "model/barang.php";
 require_once "model/notifikasi.php";
 require_once "model/ListPembayaran.php";
-
+require_once "model/PendapatanAdmin.php";
+require_once "model/laporanTrip.php";
+require_once "model/laporanUser.php";
 class adminController
 {
     protected $db;
@@ -113,7 +115,183 @@ class adminController
 
     public function view_laporan()
     {
-        return view::createViewAdmin('laporan.php', []);
+        $bulan = $_GET['bulan'];
+        $pendapatan = $this->getPendapatanAdmin($bulan);
+        $tripTraveller = $this->getJumlahTrip();
+        $pendapatanCustomer = $this->getPendapatanCustomer();
+        return view::createViewAdmin('laporan.php', ["pendapatan" => $pendapatan, "tripTraveller" => $tripTraveller, "pendapatanCustomer" => $pendapatanCustomer]);
+    }
+
+    public function getPendapatanCustomer()
+    {
+        $query = "SELECT count(idUser1) as 'jumlah' , transaksi.idUser1 , user.namaUser FROM `transaksi` inner join user on transaksi.idUser1 = user.idUser where MONTH(waktuTransaksi) = 10 or  MONTH(waktuTransaksi) = 11 or  MONTH(waktuTransaksi) = 12 group by idUser1";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        foreach ($query_result as $key => $value) {
+            $result[] = new laporanPelanggan($value['namaUser'], $value['jumlah']);
+        }
+        return $result;
+    }
+
+    public function getJumlahTrip()
+    {
+        $query = "select namaUser, count(idTrip) as 'jumlah'
+        from (SELECT post.idUser, trip.IdTrip , waktuAwal FROM trip inner join post on trip.idTrip = post.idTrip where MONTH(waktuAwal) = 10 or MONTH(waktuAwal) = 11 or MONTH(waktuAwal) = 12) as himpA inner join user on himpA.idUser = user.idUser
+        group by namaUser";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        foreach ($query_result as $key => $value) {
+            $result[] = new laporanTrip($value['namaUser'], $value['jumlah']);
+        }
+        return $result;
+    }
+
+    public function getPendapatanAdmin($bulan)
+    {
+        $result = [];
+        if ($bulan == NULL || $bulan == 'Semua') {
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) >0 group by MONTH(waktuTransaksi)";
+            $query_result = $this->db->executeSelectQuery($query);
+            foreach ($query_result as $key => $value) {
+                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $month = date("m", strtotime($value['waktuTransaksi']));
+                $year = date("Y", strtotime($value['waktuTransaksi']));
+                if ($month == '01') {
+                    $result[] = new pendapatanAdmin('Januari', $total);
+                } else if ($month == '02') {
+                    $result[] = new pendapatanAdmin('Februari', $total);
+                } else if ($month == '03') {
+                    $result[] = new pendapatanAdmin('Maret', $total);
+                } else if ($month == '04') {
+                    $result[] = new pendapatanAdmin('April', $total);
+                } else if ($month == '05') {
+                    $result[] = new pendapatanAdmin('Mei', $total);
+                } else if ($month == '06') {
+                    $result[] = new pendapatanAdmin('Juni', $total);
+                } else if ($month == '07') {
+                    $result[] = new pendapatanAdmin('Juli', $total);
+                } else if ($month == '08') {
+                    $result[] = new pendapatanAdmin('Agustus', $total);
+                } else if ($month == '09') {
+                    $result[] = new pendapatanAdmin('September', $total);
+                } else if ($month == '10') {
+                    $result[] = new pendapatanAdmin('Oktober', $total);
+                } else if ($month == '11') {
+                    $result[] = new pendapatanAdmin('November', $total);
+                } else if ($month == '12') {
+                    $result[] = new pendapatanAdmin('Desember', $total);
+                }
+            }
+        } else if ($bulan == 1) {
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 1 group by MONTH(waktuTransaksi)";
+            $query_result = $this->db->executeSelectQuery($query);
+            $result = [];
+            foreach ($query_result as $key => $value) {
+                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $month = date("m", strtotime($value['waktuTransaksi']));
+            }
+            $result[] = new pendapatanAdmin('Januari', $total);
+        } else if ($bulan == 2) {
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 2 group by MONTH(waktuTransaksi)";
+            $query_result = $this->db->executeSelectQuery($query);
+            $result = [];
+            foreach ($query_result as $key => $value) {
+                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $month = date("m", strtotime($value['waktuTransaksi']));
+            }
+            $result[] = new pendapatanAdmin('Februari', $total);
+        } else if ($bulan == 3) {
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 3 group by MONTH(waktuTransaksi)";
+            $query_result = $this->db->executeSelectQuery($query);
+            $result = [];
+            foreach ($query_result as $key => $value) {
+                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $month = date("m", strtotime($value['waktuTransaksi']));
+            }
+            $result[] = new pendapatanAdmin('Maret', $total);
+        } else if ($bulan == 4) {
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 4 group by MONTH(waktuTransaksi)";
+            $query_result = $this->db->executeSelectQuery($query);
+            $result = [];
+            foreach ($query_result as $key => $value) {
+                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $month = date("m", strtotime($value['waktuTransaksi']));
+            }
+            $result[] = new pendapatanAdmin('April', $total);
+        } else if ($bulan == 5) {
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 5 group by MONTH(waktuTransaksi)";
+            $query_result = $this->db->executeSelectQuery($query);
+            $result = [];
+            foreach ($query_result as $key => $value) {
+                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $month = date("m", strtotime($value['waktuTransaksi']));
+            }
+            $result[] = new pendapatanAdmin('Mei', $total);
+        } else if ($bulan == 6) {
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 6 group by MONTH(waktuTransaksi)";
+            $query_result = $this->db->executeSelectQuery($query);
+            $result = [];
+            foreach ($query_result as $key => $value) {
+                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $month = date("m", strtotime($value['waktuTransaksi']));
+            }
+            $result[] = new pendapatanAdmin('Juni', $total);
+        } else if ($bulan == 7) {
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 7 group by MONTH(waktuTransaksi)";
+            $query_result = $this->db->executeSelectQuery($query);
+            $result = [];
+            foreach ($query_result as $key => $value) {
+                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $month = date("m", strtotime($value['waktuTransaksi']));
+            }
+            $result[] = new pendapatanAdmin('Juli', $total);
+        } else if ($bulan == 8) {
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 8 group by MONTH(waktuTransaksi)";
+            $query_result = $this->db->executeSelectQuery($query);
+            $result = [];
+            foreach ($query_result as $key => $value) {
+                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $month = date("m", strtotime($value['waktuTransaksi']));
+            }
+            $result[] = new pendapatanAdmin('Agustus', $total);
+        } else if ($bulan == 9) {
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 9 group by MONTH(waktuTransaksi)";
+            $query_result = $this->db->executeSelectQuery($query);
+            $result = [];
+            foreach ($query_result as $key => $value) {
+                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $month = date("m", strtotime($value['waktuTransaksi']));
+            }
+            $result[] = new pendapatanAdmin('September', $total);
+        } else if ($bulan == 10) {
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 10 group by MONTH(waktuTransaksi)";
+            $query_result = $this->db->executeSelectQuery($query);
+            $result = [];
+            foreach ($query_result as $key => $value) {
+                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $month = date("m", strtotime($value['waktuTransaksi']));
+            }
+            $result[] = new pendapatanAdmin('Oktober', $total);
+        } else if ($bulan == 11) {
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 11 group by MONTH(waktuTransaksi)";
+            $query_result = $this->db->executeSelectQuery($query);
+            $result = [];
+            foreach ($query_result as $key => $value) {
+                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $month = date("m", strtotime($value['waktuTransaksi']));
+            }
+            $result[] = new pendapatanAdmin('November', $total);
+        } else if ($bulan == 12) {
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 12 group by MONTH(waktuTransaksi)";
+            $query_result = $this->db->executeSelectQuery($query);
+            $result = [];
+            foreach ($query_result as $key => $value) {
+                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $month = date("m", strtotime($value['waktuTransaksi']));
+            }
+            $result[] = new pendapatanAdmin('Desember', $total);
+        }
+        return $result;
     }
 
     public function getListPengirimanUang()
