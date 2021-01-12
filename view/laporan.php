@@ -54,7 +54,7 @@
                         <button class="btn btn-outline-success tablink" type="button" style="border-bottom-left-radius: 25px; 
                         border-top-left-radius: 25px; border-bottom-right-radius: 25px; border-top-right-radius: 25px;" onclick="openContent(this,'id2')">Traveller</button>
                         <button class="btn btn-outline-success tablink" type="button" style="border-bottom-left-radius: 25px; 
-                        border-top-left-radius: 25px; border-bottom-right-radius: 25px; border-top-right-radius: 25px;" onclick="openContent(this,'id3')">Customer</button>
+                        border-top-left-radius: 25px; border-bottom-right-radius: 25px; border-top-right-radius: 25px;" onclick="openContent(this,'id3')">User</button>
                     </div>
 
                     <div id="id1" class="tabs">
@@ -85,7 +85,7 @@
                         <table class="table table-striped" style="margin-top:2%;">
                             <tr>
                                 <th>No</th>
-                                <th>Bulan</th>
+                                <th>Bulan dan Tahun</th>
                                 <th>Total Pendapatan</th>
                             </tr>
                             <?php
@@ -129,7 +129,7 @@
                             <p>Customer yang paling banyak melakukan transaksi dalam kurun waktu 3 bulan terakhir</p>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Customer</th>
+                                <th>Nama User</th>
                                 <th>Jumlah Transaksi</th>
                             </tr>
                             <?php

@@ -153,33 +153,33 @@ class adminController
             $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) >0 group by MONTH(waktuTransaksi)";
             $query_result = $this->db->executeSelectQuery($query);
             foreach ($query_result as $key => $value) {
-                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
                 $month = date("m", strtotime($value['waktuTransaksi']));
                 $year = date("Y", strtotime($value['waktuTransaksi']));
                 if ($month == '01') {
-                    $result[] = new pendapatanAdmin('Januari', $total);
+                    $result[] = new pendapatanAdmin('Januari ' . $year, $total);
                 } else if ($month == '02') {
-                    $result[] = new pendapatanAdmin('Februari', $total);
+                    $result[] = new pendapatanAdmin('Februari ' . $year, $total);
                 } else if ($month == '03') {
-                    $result[] = new pendapatanAdmin('Maret', $total);
+                    $result[] = new pendapatanAdmin('Maret ' . $year, $total);
                 } else if ($month == '04') {
-                    $result[] = new pendapatanAdmin('April', $total);
+                    $result[] = new pendapatanAdmin('April ' . $year, $total);
                 } else if ($month == '05') {
-                    $result[] = new pendapatanAdmin('Mei', $total);
+                    $result[] = new pendapatanAdmin('Mei ' . $year, $total);
                 } else if ($month == '06') {
-                    $result[] = new pendapatanAdmin('Juni', $total);
+                    $result[] = new pendapatanAdmin('Juni ' . $year, $total);
                 } else if ($month == '07') {
-                    $result[] = new pendapatanAdmin('Juli', $total);
+                    $result[] = new pendapatanAdmin('Juli ' . $year, $total);
                 } else if ($month == '08') {
-                    $result[] = new pendapatanAdmin('Agustus', $total);
+                    $result[] = new pendapatanAdmin('Agustus ' . $year, $total);
                 } else if ($month == '09') {
-                    $result[] = new pendapatanAdmin('September', $total);
+                    $result[] = new pendapatanAdmin('September ' . $year, $total);
                 } else if ($month == '10') {
-                    $result[] = new pendapatanAdmin('Oktober', $total);
+                    $result[] = new pendapatanAdmin('Oktober ' . $year, $total);
                 } else if ($month == '11') {
-                    $result[] = new pendapatanAdmin('November', $total);
+                    $result[] = new pendapatanAdmin('November ' . $year, $total);
                 } else if ($month == '12') {
-                    $result[] = new pendapatanAdmin('Desember', $total);
+                    $result[] = new pendapatanAdmin('Desember ' . $year, $total);
                 }
             }
         } else if ($bulan == 1) {
