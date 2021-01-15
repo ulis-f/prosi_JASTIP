@@ -19,6 +19,10 @@
     body {
         background-color: white;
     }
+
+    #laporan{
+        overflow-y: scroll;
+    }
 </style>
 
 <ul class="nav" style="margin-top:7%; background-color:white; margin-left:2%;">
@@ -44,7 +48,7 @@
 
 <fieldset class="" style="margin-left:2%; margin-right:2%; border: #6699cc 1px solid">
     <div class="container" style="">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 700px; ">
+        <div class="w3-card-4 w3-white" id="laporan" style="width:60%; margin: auto; padding: 50px; height: 700px; ">
             <h3><b>Laporan</b></h3>
             <div style="margin-top: 25px; margin-bottom: 20px; margin-right: 20px;">
                 <div class="container">
@@ -58,8 +62,8 @@
                     </div>
 
                     <div id="id1" class="tabs">
-                        <div class="input-group md-form form-sm form-2 pl-0">
-                            <form action="laporan" method="GET">
+                        <form action="laporan" method="GET">
+                            <div class="input-group md-form form-sm form-2 pl-0">
                                 <select class="form-control" name="bulan">;
                                     <option value="Semua">Semua</option>
                                     <option value="1">January</option>
@@ -78,15 +82,15 @@
                                 <div class="input-group-append">
                                     <button type="submit" class="btn-primary">Cari</button>
                                 </div>
-                            </form>
-                        </div>
-
+                            </div>
+                        </form>
 
                         <table class="table table-striped" style="margin-top:2%;">
                             <tr>
                                 <th>No</th>
                                 <th>Bulan dan Tahun</th>
-                                <th>Total Pendapatan</th>
+                                <th>Bank</th>
+                                <th>Pendapatan</th>
                             </tr>
                             <?php
                             $i = 1;
@@ -94,11 +98,28 @@
                                 echo "<tr>
                                 <td>" . $i . "</td>
                                 <td>" . $value->bulan . "</td>
+                                <td>" . namaBank . "</td>
                                 <td>" . $value->pendapatan . "</td>
                             </tr>";
                                 $i++;
                             }
                             ?>
+                            <tr>
+                                <td colspan="3">Total uang yang dikirim melalui BCA</td> 
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Total uang yang dikirim melalui BRI</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Total uang yang dikirim melalui MANDIRI</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><b>Total Pendapatan</b></td>
+                                <td></td>
+                            </tr>
                         </table>
                     </div>
 
