@@ -80,9 +80,9 @@
 </style>
   
     <div class="container">
-        <div class="w3-card-4 w3-white" style="padding: 50px; height: 800px; margin-top: 5%;">
+        <div class="w3-card-4 w3-white" style="padding: 50px; height: 700px; margin-top: 5%;">
             <form action="persetujuanTravellerOffer" method="POST">
-                <h2>Penitipan Barang</h2> 
+                <h3><b>Penitipan Barang</b></h3> 
                 <br>
                     <div class="column">
                     <table>
@@ -180,16 +180,11 @@
                     <br>
                     <p style="color:red;font-size:13px;">*Total harga sudah termasuk biaya ongkir dan akan dipotong 4% untuk biaya transaksi titipaja</p>
                     <br>
+                    <button class="w3-btn w3-theme" name="persetujuanTraveller" style="width:100%;">Beli Barang</button>  
                     </div>
 
-                    <div class="w3-right" style="padding-top: 25%; padding-right:1%"> 
-                    <div class="popup" onclick="myFunctionPopUp()">
-                    <button class="w3-btn w3-theme" name="persetujuanTraveller" style="font-size:17px;">Beli Barang</button> 
-                    <span class="popuptext" id="myPopup">Pesanan anda sedang dalam tahap untuk diverifikasi customer.
-                        Silakan tunggu beberapa saat. <br> <br><br>
-                        <button class="w3-btn w3-red" style="font-size:14px;">Ok</button>
-                        </span>
-                    </div>  
+                    
+                    
     
                 </div>   
             </form>    

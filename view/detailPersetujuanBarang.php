@@ -46,13 +46,13 @@
         <a class="" href="#" style="text-decoration:none; color:#6699cc "><b>Detail Form Barang</b></a>
     </p> 
     <div class="container">
-        <div class="w3-card-4 w3-white" style="margin: auto; padding: 50px; height: 600; margin-top: 2%;">
+        <div class="w3-card-4 w3-white" style="margin: auto; padding: 50px; height: 600px; margin-top: 2%;">
             <h3><b>Persetujuan Barang</b></h3> <br>
             <div class="column">
                 <form action="verifikasiBarang" method="POST">
                     <table>
                         <tr>
-                            <td><label for="namaBarang">Nama Barang</label></td>
+                            <td><label for="namaBarang">Nama Barang</label></td> 
                             <td>:</td>
                             <?php
                             foreach($result as $key=>$value){
