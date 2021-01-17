@@ -20,7 +20,7 @@
         background-color: white;
     }
 
-    #laporan{
+    #laporan {
         overflow-y: scroll;
     }
 </style>
@@ -88,7 +88,7 @@
                         <table class="table table-striped" style="margin-top:2%;">
                             <tr>
                                 <th>No</th>
-                                <th>Bulan dan Tahun</th>
+                                <th>Bulan</th>
                                 <th>Bank</th>
                                 <th>Pendapatan</th>
                             </tr>
@@ -98,28 +98,48 @@
                                 echo "<tr>
                                 <td>" . $i . "</td>
                                 <td>" . $value->bulan . "</td>
-                                <td>" . namaBank . "</td>
+                                <td>" . $value->namaBank . "</td>
                                 <td>" . $value->pendapatan . "</td>
                             </tr>";
                                 $i++;
                             }
                             ?>
-                            <tr>
-                                <td colspan="3">Total uang yang dikirim melalui BCA</td> 
-                                <td></td>
+                            <?php
+                            $res = 0;
+                            foreach ($total as $key => $value) {
+                                echo "<tr>
+                                <td colspan='3'>Total uang yang dikirim melalui BCA</td>
+                                <td>";
+                                if ($value->namaBank == 'BCA') {
+                                    $res += $value->pendapatan;
+                                    echo $value->pendapatan;
+                                }
+                                echo "</td>
                             </tr>
                             <tr>
-                                <td colspan="3">Total uang yang dikirim melalui BRI</td>
-                                <td></td>
+                                <td colspan='3'>Total uang yang dikirim melalui BRI</td>
+                                <td>";
+                                if ($value->namaBank == 'BRI') {
+                                    $res += $value->pendapatan;
+                                    echo $value->pendapatan;
+                                }
+                                echo "</td>
                             </tr>
                             <tr>
-                                <td colspan="3">Total uang yang dikirim melalui MANDIRI</td>
-                                <td></td>
+                                <td colspan='3'>Total uang yang dikirim melalui MANDIRI</td>
+                                <td>";
+                                if ($value->namaBank == 'MANDIRI') {
+                                    $res += $value->pendapatan;
+                                    echo $value->pendapatan;
+                                }
+                                echo "</td>
                             </tr>
                             <tr>
-                                <td colspan="3"><b>Total Pendapatan</b></td>
-                                <td></td>
-                            </tr>
+                                <td colspan='3'><b>Total Pendapatan</b></td>
+                                <td>" . $res . "</td>
+                            </tr>";
+                            }
+                            ?>
                         </table>
                     </div>
 

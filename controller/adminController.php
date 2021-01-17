@@ -10,6 +10,7 @@ require_once "model/ListPembayaran.php";
 require_once "model/PendapatanAdmin.php";
 require_once "model/laporanTrip.php";
 require_once "model/laporanUser.php";
+require_once "model/total.php";
 class adminController
 {
     protected $db;
@@ -119,7 +120,23 @@ class adminController
         $pendapatan = $this->getPendapatanAdmin($bulan);
         $tripTraveller = $this->getJumlahTrip();
         $pendapatanCustomer = $this->getPendapatanCustomer();
-        return view::createViewAdmin('laporan.php', ["pendapatan" => $pendapatan, "tripTraveller" => $tripTraveller, "pendapatanCustomer" => $pendapatanCustomer]);
+        $total = $this->getTotal();
+        return view::createViewAdmin('laporan.php', ["pendapatan" => $pendapatan, "tripTraveller" => $tripTraveller, "pendapatanCustomer" => $pendapatanCustomer, "total" => $total]);
+    }
+
+    public function getTotal()
+    {
+        $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi, namaBank 
+        FROM `transaksi` inner join bank on transaksi.idBankPembayaran = bank.idBank
+        where year(waktuTransaksi) = 2021
+        group by idBankPembayaran ";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        foreach ($query_result as $key => $value) {
+            $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+            $result[]  =  new Total($value['namaBank'], $total);
+        }
+        return $result;
     }
 
     public function getPendapatanCustomer()
@@ -150,146 +167,161 @@ class adminController
     {
         $result = [];
         if ($bulan == NULL || $bulan == 'Semua') {
-            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) >0 group by MONTH(waktuTransaksi)";
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi, namaBank 
+            FROM `transaksi` inner join bank on transaksi.idBankPembayaran = bank.idBank 
+            where MONTH(waktuTransaksi) >0 and YEAR(waktuTransaksi) = 2021
+            group by MONTH(waktuTransaksi)";
             $query_result = $this->db->executeSelectQuery($query);
             foreach ($query_result as $key => $value) {
                 $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
                 $month = date("m", strtotime($value['waktuTransaksi']));
                 $year = date("Y", strtotime($value['waktuTransaksi']));
                 if ($month == '01') {
-                    $result[] = new pendapatanAdmin('Januari ' . $year, $total);
+                    $result[] = new pendapatanAdmin('Januari ', $value['namaBank'], $total);
                 } else if ($month == '02') {
-                    $result[] = new pendapatanAdmin('Februari ' . $year, $total);
+                    $result[] = new pendapatanAdmin('Februari ', $value['namaBank'], $total);
                 } else if ($month == '03') {
-                    $result[] = new pendapatanAdmin('Maret ' . $year, $total);
+                    $result[] = new pendapatanAdmin('Maret ', $value['namaBank'], $total);
                 } else if ($month == '04') {
-                    $result[] = new pendapatanAdmin('April ' . $year, $total);
+                    $result[] = new pendapatanAdmin('April ', $value['namaBank'], $total);
                 } else if ($month == '05') {
-                    $result[] = new pendapatanAdmin('Mei ' . $year, $total);
+                    $result[] = new pendapatanAdmin('Mei ', $value['namaBank'], $total);
                 } else if ($month == '06') {
-                    $result[] = new pendapatanAdmin('Juni ' . $year, $total);
+                    $result[] = new pendapatanAdmin('Juni ', $value['namaBank'], $total);
                 } else if ($month == '07') {
-                    $result[] = new pendapatanAdmin('Juli ' . $year, $total);
+                    $result[] = new pendapatanAdmin('Juli ', $value['namaBank'], $total);
                 } else if ($month == '08') {
-                    $result[] = new pendapatanAdmin('Agustus ' . $year, $total);
+                    $result[] = new pendapatanAdmin('Agustus ', $value['namaBank'], $total);
                 } else if ($month == '09') {
-                    $result[] = new pendapatanAdmin('September ' . $year, $total);
+                    $result[] = new pendapatanAdmin('September ', $value['namaBank'], $total);
                 } else if ($month == '10') {
-                    $result[] = new pendapatanAdmin('Oktober ' . $year, $total);
+                    $result[] = new pendapatanAdmin('Oktober ', $value['namaBank'], $total);
                 } else if ($month == '11') {
-                    $result[] = new pendapatanAdmin('November ' . $year, $total);
+                    $result[] = new pendapatanAdmin('November ', $value['namaBank'], $total);
                 } else if ($month == '12') {
-                    $result[] = new pendapatanAdmin('Desember ' . $year, $total);
+                    $result[] = new pendapatanAdmin('Desember ', $value['namaBank'], $total);
                 }
             }
         } else if ($bulan == 1) {
-            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 1 group by MONTH(waktuTransaksi)";
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi, namaBank 
+            FROM `transaksi` inner join bank on transaksi.idBankPembayaran = bank.idBank  where MONTH(waktuTransaksi) = 1 and YEAR(waktuTransaksi) = 2021 group by MONTH(waktuTransaksi)";
             $query_result = $this->db->executeSelectQuery($query);
             $result = [];
             foreach ($query_result as $key => $value) {
-                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
                 $month = date("m", strtotime($value['waktuTransaksi']));
             }
-            $result[] = new pendapatanAdmin('Januari', $total);
+            $result[] = new pendapatanAdmin('Januari', $value['namaBank'], $total);
         } else if ($bulan == 2) {
-            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 2 group by MONTH(waktuTransaksi)";
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi, namaBank 
+            FROM `transaksi` inner join bank on transaksi.idBankPembayaran = bank.idBank  where MONTH(waktuTransaksi) = 2 and YEAR(waktuTransaksi) = 2021 group by MONTH(waktuTransaksi)";
             $query_result = $this->db->executeSelectQuery($query);
             $result = [];
             foreach ($query_result as $key => $value) {
-                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
                 $month = date("m", strtotime($value['waktuTransaksi']));
             }
-            $result[] = new pendapatanAdmin('Februari', $total);
+            $result[] = new pendapatanAdmin('Februari', $value['namaBank'], $total);
         } else if ($bulan == 3) {
-            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 3 group by MONTH(waktuTransaksi)";
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi, namaBank 
+            FROM `transaksi` inner join bank on transaksi.idBankPembayaran = bank.idBank  where MONTH(waktuTransaksi) = 3 and YEAR(waktuTransaksi) = 2021 group by MONTH(waktuTransaksi)";
             $query_result = $this->db->executeSelectQuery($query);
             $result = [];
             foreach ($query_result as $key => $value) {
-                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
                 $month = date("m", strtotime($value['waktuTransaksi']));
             }
-            $result[] = new pendapatanAdmin('Maret', $total);
+            $result[] = new pendapatanAdmin('Maret', $value['namaBank'], $total);
         } else if ($bulan == 4) {
-            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 4 group by MONTH(waktuTransaksi)";
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi, namaBank 
+            FROM `transaksi` inner join bank on transaksi.idBankPembayaran = bank.idBank  where MONTH(waktuTransaksi) = 4 and YEAR(waktuTransaksi) = 2021 group by MONTH(waktuTransaksi)";
             $query_result = $this->db->executeSelectQuery($query);
             $result = [];
             foreach ($query_result as $key => $value) {
-                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
                 $month = date("m", strtotime($value['waktuTransaksi']));
             }
-            $result[] = new pendapatanAdmin('April', $total);
+            $result[] = new pendapatanAdmin('April', $value['namaBank'], $total);
         } else if ($bulan == 5) {
-            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 5 group by MONTH(waktuTransaksi)";
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi, namaBank 
+            FROM `transaksi` inner join bank on transaksi.idBankPembayaran = bank.idBank  where MONTH(waktuTransaksi) = 5 and YEAR(waktuTransaksi) = 2021 group by MONTH(waktuTransaksi)";
             $query_result = $this->db->executeSelectQuery($query);
             $result = [];
             foreach ($query_result as $key => $value) {
-                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
                 $month = date("m", strtotime($value['waktuTransaksi']));
             }
-            $result[] = new pendapatanAdmin('Mei', $total);
+            $result[] = new pendapatanAdmin('Mei', $value['namaBank'], $total);
         } else if ($bulan == 6) {
-            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 6 group by MONTH(waktuTransaksi)";
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi, namaBank 
+            FROM `transaksi` inner join bank on transaksi.idBankPembayaran = bank.idBank  where MONTH(waktuTransaksi) = 6  and YEAR(waktuTransaksi) = 2021 group by MONTH(waktuTransaksi)";
             $query_result = $this->db->executeSelectQuery($query);
             $result = [];
             foreach ($query_result as $key => $value) {
-                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
                 $month = date("m", strtotime($value['waktuTransaksi']));
             }
-            $result[] = new pendapatanAdmin('Juni', $total);
+            $result[] = new pendapatanAdmin('Juni', $value['namaBank'], $total);
         } else if ($bulan == 7) {
-            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 7 group by MONTH(waktuTransaksi)";
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi, namaBank 
+            FROM `transaksi` inner join bank on transaksi.idBankPembayaran = bank.idBank  where MONTH(waktuTransaksi) = 7 and YEAR(waktuTransaksi) = 2021 group by MONTH(waktuTransaksi)";
             $query_result = $this->db->executeSelectQuery($query);
             $result = [];
             foreach ($query_result as $key => $value) {
-                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
                 $month = date("m", strtotime($value['waktuTransaksi']));
             }
-            $result[] = new pendapatanAdmin('Juli', $total);
+            $result[] = new pendapatanAdmin('Juli', $value['namaBank'], $total);
         } else if ($bulan == 8) {
-            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 8 group by MONTH(waktuTransaksi)";
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi, namaBank 
+            FROM `transaksi` inner join bank on transaksi.idBankPembayaran = bank.idBank  where MONTH(waktuTransaksi) = 8 and YEAR(waktuTransaksi) = 2021 group by MONTH(waktuTransaksi)";
             $query_result = $this->db->executeSelectQuery($query);
             $result = [];
             foreach ($query_result as $key => $value) {
-                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
                 $month = date("m", strtotime($value['waktuTransaksi']));
             }
-            $result[] = new pendapatanAdmin('Agustus', $total);
+            $result[] = new pendapatanAdmin('Agustus', $value['namaBank'], $total);
         } else if ($bulan == 9) {
-            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 9 group by MONTH(waktuTransaksi)";
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi, namaBank 
+            FROM `transaksi` inner join bank on transaksi.idBankPembayaran = bank.idBank  where MONTH(waktuTransaksi) = 9 and YEAR(waktuTransaksi) = 2021 group by MONTH(waktuTransaksi)";
             $query_result = $this->db->executeSelectQuery($query);
             $result = [];
             foreach ($query_result as $key => $value) {
-                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
                 $month = date("m", strtotime($value['waktuTransaksi']));
             }
-            $result[] = new pendapatanAdmin('September', $total);
+            $result[] = new pendapatanAdmin('September', $value['namaBank'], $total);
         } else if ($bulan == 10) {
-            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 10 group by MONTH(waktuTransaksi)";
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi, namaBank 
+            FROM `transaksi` inner join bank on transaksi.idBankPembayaran = bank.idBank  where MONTH(waktuTransaksi) = 10 and YEAR(waktuTransaksi) = 2021 group by MONTH(waktuTransaksi)";
             $query_result = $this->db->executeSelectQuery($query);
             $result = [];
             foreach ($query_result as $key => $value) {
-                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
                 $month = date("m", strtotime($value['waktuTransaksi']));
             }
-            $result[] = new pendapatanAdmin('Oktober', $total);
+            $result[] = new pendapatanAdmin('Oktober', $value['namaBank'], $total);
         } else if ($bulan == 11) {
-            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 11 group by MONTH(waktuTransaksi)";
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi, namaBank 
+            FROM `transaksi` inner join bank on transaksi.idBankPembayaran = bank.idBank  where MONTH(waktuTransaksi) = 11 and YEAR(waktuTransaksi) = 2021 group by MONTH(waktuTransaksi)";
             $query_result = $this->db->executeSelectQuery($query);
             $result = [];
             foreach ($query_result as $key => $value) {
-                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
                 $month = date("m", strtotime($value['waktuTransaksi']));
             }
-            $result[] = new pendapatanAdmin('November', $total);
+            $result[] = new pendapatanAdmin('November', $value['namaBank'], $total);
         } else if ($bulan == 12) {
-            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi FROM `transaksi` where MONTH(waktuTransaksi) = 12 group by MONTH(waktuTransaksi)";
+            $query = "SELECT sum(hargaBarang) as 'hargaBarang', sum(hargaOngkir) as  'hargaOngkir', sum(hargaJasa) as 'hargaJasa', waktuTransaksi, namaBank 
+            FROM `transaksi` inner join bank on transaksi.idBankPembayaran = bank.idBank  where MONTH(waktuTransaksi) = 12 and YEAR(waktuTransaksi) = 2021 group by MONTH(waktuTransaksi)";
             $query_result = $this->db->executeSelectQuery($query);
             $result = [];
             foreach ($query_result as $key => $value) {
-                $total = ($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) - (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
+                $total = (($value['hargaBarang'] + $value['hargaOngkir'] + $value['hargaJasa']) * 25 / 1000);
                 $month = date("m", strtotime($value['waktuTransaksi']));
             }
-            $result[] = new pendapatanAdmin('Desember', $total);
+            $result[] = new pendapatanAdmin('Desember', $value['namaBank'], $total);
         }
         return $result;
     }

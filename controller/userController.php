@@ -1387,58 +1387,7 @@ class UserController
 		return $result;
 	}
 
-	// public function persetujuanPenitipan(){
-	// 	// kalau wanted, idCustomer adalah yang memposting gambar wanted, idTraveller adalah yang membelikan barang di luar negeri
-	// 	// kalau offer, idCustomer adalah yang memposting gambar offer, idTraveller adalah yang membayar barang offer tersebut
-	// 	$timezone = new DateTimeZone('Asia/Jakarta');
-	// 	$date = new DateTime();
-	// 	$date->setTimeZone($timezone);
-	// 	$now = $date->format('Y-m-d H:i:s'); 
-	// 	$idCustomer = $_GET['idUser'];
-	// 	$query_idUser = "SELECT * FROM `user` WHERE `idUser` LIKE '$idCustomer' ";
-	// 	$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
-	// 	$idUser_customer = $query_idUser_result[0]['idUser'];
 
-	// 	$namaBarang = $_GET['namaBarang'];
-	// 	$nama = $_SESSION['nama'];
-	// 	$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama' ";
-	// 	$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
-	// 	$idUser_traveller = $query_idUser_result[0]['idUser'];
-
-	// 	$idTrip = $_GET['idTrip'];
-
-
-
-	// 	if($_GET['jumlahBarang']!=null){
-	// 		$link = '<form action="detailBarangWanted" method="GET">
-	// 		<button  id="persetujuanTraveller" style="color:#f3310a;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Menuju Market</button>
-	// 		<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
-	// 		<input type="hidden" name="id" value="'.$idUser_traveller.'">
-	// 		</form>';
-	// 	}
-	// 	else{
-	// 		$link = '<form action="detailBarangOffer" method="GET">
-	// 		<button  id="persetujuanTraveller" style="color:#f3310a;" class="w3-bar-item w3-display-inline  w3-btn" >Klik di Sini Untuk Menuju Market</button>
-	// 		<input type="hidden" name="namaBarang" value="'.$namaBarang.'">
-	// 		<input type="hidden" name="id" value="'.$idUser_traveller.'">
-	// 		</form>';
-	// 	}
-
-	// 	$note = $_GET['note'];  
-
-	// 	if($_GET['verified'] == 'unverified'){		
-	// 		$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Gagal', '$note $link', 0, '$now')";
-	// 		$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi); 
-	// 		return false;
-	// 	}
-	// 	else{  
-	// 		$query_notifikasi = "INSERT INTO Notifikasi VALUES ('$idUser_customer',null,'Verifikasi Berhasil', 'Permintaan anda berhasil diterima', 0, '$now')";
-	// 		$query_result1 = $this->db->executeNonSelectQuery($query_notifikasi); 
-	// 		$query_transaksi = "UPDATE transaksi SET idTrip = '$idTrip', idUser2 = '$idCustomer' WHERE idUser1 = '$idUser_traveller' AND namaBarang ='$namaBarang'";
-	// 		$query_result2 = $this->db->executeNonSelectQuery($query_transaksi);
-	// 		return true;    
-	// 	}
-	// }
 
 	public function getPembayaranWanted()
 	{
@@ -1554,13 +1503,4 @@ class UserController
 		$query = "UPDATE transaksi SET buktiPembayaran ='$buktiPembayaran', statusBarang = 'onPaymentProgress', statusPembayaran = 'pending', idBankPembayaran = '$idBank' WHERE idUser2 = '$idUser' AND namaBarang = '$namaBarang' ";
 		$query_result = $this->db->executeNonSelectQuery($query);
 	}
-
-	// public function getTracking(){
-	// 	$nama = $_SESSION['nama'];
-	// 	$query_idUser = "SELECT * FROM `user` WHERE `namaUser` LIKE '$nama' ";
-	// 	$query_idUser_result = $this->db->executeSelectQuery($query_idUser);    
-	// 	$idUser = $query_idUser_result[0]['idUser'];
-	// 	$query = "SELECT"
-	// }
-
 }
