@@ -69,7 +69,7 @@
             </div>
 
             <div id="id2" class="tabs" style="display: none;">
-                ini halaman pesanan di kirim ke indonesia
+                
                 <?php
                 foreach ($result2 as $key => $value) {
                     echo "
@@ -100,7 +100,7 @@
             </div>
 
             <div id="id3" class="tabs" style="display: none">
-                Ini Halaman pesanan tiba di indonesia
+                
                 <?php
                 foreach ($result3 as $key => $value) {
                     echo "
@@ -164,7 +164,7 @@
             </div>
 
             <div id="id5" class="tabs" style="display: none">
-                Ini Halaman diterima
+                
                 <?php
                 foreach ($result5 as $key => $value) {
                     echo "<fieldset>

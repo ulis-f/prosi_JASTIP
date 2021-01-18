@@ -112,7 +112,7 @@
                                     <br>
                                     <div>
                                         <div style='width: 40%; float: left; height: 150px;'>";
-                echo "<figure><img src='image/market/" . $value->gambarBarang . "'width=100% height=100%;></figure><br>";
+                echo "<figure><img src='image/market/" . $value->gambarBarang . "'width=50% height=100%;></figure><br>";
                 echo "</div>
             
                                     <div style='width: 60%; float: right; padding-left: 10%; height: 150px;'>";
@@ -181,7 +181,7 @@
             <div id="id2" class="tabs" style="display: none;">
                 <?php
                 foreach ($hasil2 as $key => $value) {
-                    echo "ini halaman pesanan di kirim ke indonesia
+                    echo "
                 <fieldset class='' style='border:#dddddd 1px solid'>
                     <div>
                         <div class='column' style='border-right:#dddddd 1px solid;'>
@@ -231,7 +231,7 @@
                                             <div style='width: 40%; float: left; height: 150px;'>";
 
 
-                    echo "<figure><img src='image/market/" . $value->gambarBarang . "'width=100% height=100%;></figure><br>";
+                    echo "<figure><img src='image/market/" . $value->gambarBarang . "'width=50% height=100%;></figure><br>";
 
                     echo "</div>
 
@@ -325,7 +325,7 @@
             <?php
             foreach ($hasil3 as $key => $value) {
                 echo "<div id='id3' class='tabs' style='display: none'>
-                Ini Halaman pesanan tiba di indonesia
+                
                 <fieldset class='' style='border:#dddddd 1px solid'>
                     <div>
                         <div class='column' style='border-right:#dddddd 1px solid;'>
@@ -374,7 +374,7 @@
                                         <div>
                                             <div style='width: 40%; float: left; height: 150px;'>";
 
-                echo "<figure><img src='image/market/" . $value->gambarBarang . "'width=100% height=100%;></figure><br>";
+                echo "<figure><img src='image/market/" . $value->gambarBarang . "'width=50% height=100%;></figure><br>";
 
 
                 echo "</div>
@@ -519,7 +519,7 @@
                                             <div>
                                                 <div style='width: 40%; float: left; height: 150px;'>";
 
-                echo "<figure><img src='image/market/" . $value->gambarBarang . "'width=100% height=100%;></figure><br>";
+                echo "<figure><img src='image/market/" . $value->gambarBarang . "'width=50% height=100%;></figure><br>";
 
 
                 echo "</div>
@@ -608,7 +608,7 @@
             <div id="id5" class="tabs" style="display: none">
                 <?php
                 foreach ($hasil5 as $key => $value) {
-                    echo "Ini Halaman diterima
+                    echo "
                 <fieldset class='' style='border:#dddddd 1px solid'>
                     <div>
                         <div class='column' style='border-right:#dddddd 1px solid;'>
@@ -630,7 +630,7 @@
                         </div>
 
                     </div>
-                </fieldset>";
+                </fieldset>";  
                 }
                 ?>
             </div>
