@@ -2,12 +2,24 @@
     figure:hover{
         transform: scale(2.4); 
     }
+
+    .column {
+        width: 58%;
+        float: left;
+    }
+
+    .column1 {
+        width: 38%;
+        float: right;
+    }
+
 </style>
   
     <div class="container">
-        <div class="w3-card-4 w3-white" style="width:60%; margin: auto; padding: 50px; height: 1050px; margin-top: 5%;">
+        <div class="w3-card-4 w3-white" style="margin: auto; padding: 50px; height: 750px;">
             <form action="pembayaranMarketWanted" method="GET">  
-                    <h2>Persetujuan Penitipan Barang</h2>  <br>
+                    <h3><b>Persetujuan Penitipan Barang</b></h3><br>
+                    <div class="column">
                     <table>
                         <tr>
                             <td><label for="namaBarang">Nama Barang</label></td>
@@ -105,7 +117,9 @@
                             ?></td>
                         </tr>
                     </table>
-                    <br>
+                     
+
+                   
                     <label for="gambarBarang">Gambar Barang</label>
                     <?php
                     foreach($result as $key=>$value){
@@ -115,15 +129,17 @@
                         echo"<figure><img src='image/market/".$value->gambarBarang."'width=250px height=150px></figure><br>"; 
                     }
                     ?> 
+                    </div> 
 
-                    <br>
+                    <div class="column1">
                     <input type='radio' id='verified' name='verified' value='verified'>Verified<br>
                     <input type='radio' id='unverified' name='verified' value='unverified'>Unverified<br>      
                     <br>
                     <label for='note'>Note</label> <br>
-                    <textarea name='note' id='note' cols='30' rows='5'></textarea>
+                    <textarea name='note' id='note' cols='40' rows='5'></textarea>
                     <br><br><br><br><br>
-                    <input type='submit' class='w3-btn w3-right w3-theme' value='Submit'>   
+                    <input type='submit' class='w3-btn w3-right w3-theme' style="width:100%;" value='Submit'>   
+                    </div>
             </form>    
         </div>
     </div>

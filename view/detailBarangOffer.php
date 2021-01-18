@@ -95,7 +95,7 @@
                         echo"<input type='hidden' name='alamat' value='$value->alamat'>";
                         echo"<figure><img src='image/market/".$value->gambarBarang."'width=250px height=150px></figure><br>"; 
                     }
-                    ?><br> 
+                    ?>
                     
                     <p style="color:red; font-size:12px;">Note : <br>Sebelum melakukan pembelian barang, silakan menghubungi traveller terlebih dahulu
                     untuk negosiasi harga (Harga Ongkir). Untuk kontak traveller bisa dilihat pada profilenya.</p>

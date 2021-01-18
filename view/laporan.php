@@ -25,7 +25,7 @@
     }
 </style>
 
-<ul class="nav" style="margin-top:7%; background-color:white; margin-left:2%;">
+<ul class="nav" style="margin-top:4%; background-color:white; margin-left:2%;">
     <li class="nav-item w3-text-theme w3-text-theme">
         <a class="nav-link w3-text-theme" href="homeAdmin" style="height: 100%;">Post Trip</a>
     </li>
@@ -167,7 +167,7 @@
 
                     <div id="id3" class="tabs" style="display: none;">
                         <table class="table table-striped" style="margin-top:2%;">
-                            <p>Customer yang paling banyak melakukan transaksi dalam kurun waktu 3 bulan terakhir</p>
+                            <p>User yang paling banyak melakukan transaksi dalam kurun waktu 3 bulan terakhir</p>
                             <tr>
                                 <th>No</th>
                                 <th>Nama User</th>

@@ -18,8 +18,7 @@
     <div class="container">
         <div class="w3-card-4 w3-white" style=" margin: auto; padding: 50px; height: 700px;">
             <form action="beliBarangWanted" method="GET">
-                <h3><b>Penitipan Barang</b></h3>
-                <br><br>
+                <h3><b>Penitipan Barang</b></h3><br>
                     <div class="column1">
                     <table>
                         <tr>
@@ -68,7 +67,6 @@
                             </td>
                         </tr>
                     </table>
-                    <br>
                     <label for="gambarBarang">Gambar Barang</label>
                     <?php
                     foreach($result as $key=>$value){
